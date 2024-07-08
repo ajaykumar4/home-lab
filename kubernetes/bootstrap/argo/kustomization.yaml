@@ -6,7 +6,7 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.9.18
+  - github.com/argoproj/argo-cd/manifests/cluster-install?ref=v2.11.4
   - argocd-secret-role.yaml
   - argocd-secret-rolebinding.yaml
   - cmp-plugin.yaml
