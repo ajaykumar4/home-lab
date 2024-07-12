@@ -4,7 +4,7 @@
 # docker run --rm -ti             --entrypoint bash foobar
 # docker run --rm -ti --user root --entrypoint bash foobar
 
-ARG BASE_IMAGE=docker.io/library/ubuntu:22.04
+ARG BASE_IMAGE=docker.io/library/ubuntu:24.04
 
 FROM $BASE_IMAGE
 
