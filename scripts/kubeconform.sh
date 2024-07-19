@@ -21,6 +21,7 @@ kubeconform_args=(
     "-schema-location"
     "default"
     "-schema-location"
+    "-skip=Secret"
     "https://kubernetes-schemas.pages.dev/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json"
     "-verbose"
 )
