@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.schema.json",
-  "name": "Flux Cluster Template",
+  "name": "Argo Cluster Template",
   "image": "ghcr.io/onedr0p/cluster-template/devcontainer:latest",
   "initializeCommand": "docker pull ghcr.io/onedr0p/cluster-template/devcontainer:latest",
   "postCreateCommand": {

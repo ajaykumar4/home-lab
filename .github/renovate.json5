@@ -14,7 +14,7 @@
   "rebaseWhen": "conflicted",
   "schedule": ["every weekend"],
   "ignorePaths": ["**/*.sops.*"],
-  "flux": {
+  "argo": {
     "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"]
   },
   "helm-values": {
@@ -49,9 +49,9 @@
     },
     // groups
     {
-      "description": ["Flux Group"],
-      "groupName": "Flux",
-      "matchPackagePatterns": ["fluxcd"],
+      "description": ["Argo Group"],
+      "groupName": "Argo",
+      "matchPackagePatterns": ["argocd"],
       "matchDatasources": ["docker", "github-tags"],
       "versioning": "semver",
       "group": {
