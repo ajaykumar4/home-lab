@@ -18,9 +18,10 @@ configs:
                 - "*"
     secret:
         argocdServerAdminPassword: $2a$10$VS18cczTtbUep4iBCs0FdORY9tWiBZ/ew4m62ciotMBWrWeyC.JNO
-        argocdServerAdminPasswordMtime: 2024-11-29T16:49:31
+        argocdServerAdminPasswordMtime: 2024-11-29T17:18:59
         githubSecret: bd77b8ded03b9fdc259013f221d5c244
 controller:
+    replicas: 2
     metrics:
         enabled: true
         applicationLabels:
@@ -30,6 +31,7 @@ controller:
             additionalLabels:
                 release: kube-prometheus-stack
 dex:
+    replicas: 2
     metrics:
         enabled: true
         serviceMonitor:
@@ -44,6 +46,7 @@ redis:
             additionalLabels:
                 release: kube-prometheus-stack
 server:
+    replicas: 2
     allowAnyNamespace: true
     ingress:
         enabled: true
@@ -58,6 +61,7 @@ server:
             additionalLabels:
                 release: kube-prometheus-stack
 notifications:
+    replicas: 2
     metrics:
         enabled: true
         serviceMonitor:
@@ -65,6 +69,7 @@ notifications:
             additionalLabels:
                 release: kube-prometheus-stack
 repoServer:
+    replicas: 2
     serviceAccount:
         create: true
         name: argocd-repo-server
@@ -149,14 +154,14 @@ sops:
         - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBqcFhHaDFEek04SmVuRmRK
-            RHRPVkxoUm5OZDVxdGh0djQzQnpkTml4eUdBCnlzdXcvNTBsYjY5R0VBUUpCclUw
-            YlpRb2QzZE1Kc2VTY2FnWGNCM3lyYzgKLS0tIFNhQWdyL1F5SDJtOGZUZlpqdlJY
-            c0Q0cFZLS24vUGlScy8rQVNUTWhIUUEKLp0C0T+55y+4e/TYcWXTSTAU5Yy+TeDl
-            ufXRUwTfeXvROVHchyAzHIUilqkNp/dUY0Y7U1sAkLxpN4FOd9MEog==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBhT0RQbXJ2UWpFUlFMenFm
+            eWd5MFlPRUZramplem9way9jY0V3cHZZam1ZCm9hZVorRlAxT1l5QThwcnhIMnZC
+            cER0cVcwOXN6T1FGbzRUa2tGd2tWaGsKLS0tIDFDaCsyRSt1aUxCVjNtVGZHMWxI
+            dVF5eDJDbW5hN0NrMFdzMzEwVkpIMDgK3jIhERs4sZGfPK/HM0HzriFx6ofkOcBY
+            q3/UTXyXMfj1yvVA9YPYcbn4X0jLk9P0eWrnaQzjubIg8q+E+CZzSQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-11-29T16:49:33Z"
-    mac: ENC[AES256_GCM,data:jfo1GMJCljlZYktYcp3NM0TZqn9wh2iSYEpliP7Y3J8q7ExTvdQiToMckea60DopZHdE1ggHKCKCrCSQunPd/X087YufcnU49Xb+/aRpkoknHuCvicExh0e4faM0WUhR+M9qeOpyfWyc2so/jyxDqEcDvASit7YAPgUIVNYhj3Q=,iv:1qLAxCoyTk+W//+ZYfwUX2WRYnV3dfnZHONJhWqxlcE=,tag:08iUh1EXDwHqKFpdw0x8gw==,type:str]
+    lastmodified: "2024-11-29T17:19:00Z"
+    mac: ENC[AES256_GCM,data:clt/uIeJmOxNmqTgmEj0UARzUUR7s28IRimfDmK5wiX1xwXZJqrcYJO9UK8DiniHawyeVvXJKKKoedALxd9fUnT6xlaxCHrUwLHDunGXfUxiEFRfcq/2qcq3metWFXuQoFb+glMrWFv/fD9oQxIbTTPp+KSLFIhjweMw5rieTio=,iv:2hoqnKaTQIyva6E+Wd+U8UUYK/aTJH16DWBRaZPfyj0=,tag:KJA+LSRYadSem03fS+g3QA==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.9.1
