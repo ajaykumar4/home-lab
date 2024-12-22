@@ -1,5 +1,5 @@
 ---
-providerRegex: ^(rpi01|rpi02|rpi03|jetson01|jetson02)$
+providerRegex: ^(home-lab)$
 bypassDnsResolution: true
 metrics:
   enable: true

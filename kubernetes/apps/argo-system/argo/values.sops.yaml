@@ -18,7 +18,7 @@ configs:
                 - "*"
     secret:
         argocdServerAdminPassword: $2a$10$VS18cczTtbUep4iBCs0FdORY9tWiBZ/ew4m62ciotMBWrWeyC.JNO
-        argocdServerAdminPasswordMtime: 2024-12-01T16:45:26
+        argocdServerAdminPasswordMtime: 2024-12-22T02:14:18
         githubSecret: bd77b8ded03b9fdc259013f221d5c244
 controller:
     replicas: 2
@@ -154,14 +154,14 @@ sops:
         - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBjanFTV3laY0p4eDVwZi9q
-            UXVJSFNXSHA5T2N2Nk9vWlZvWHZld25QQ2pvClJXOUxSUHVYNndoL1o1dFFubzBl
-            ZXFwQ0NDWmtnOW1rNzlUbE5UL1BJTU0KLS0tIGpSQnl1bWdyNko2T1IzUHB1MHZB
-            dXV6dFovZDFIM2h5SzNIWml4N0FFdEEKtUOOAJK0tII2UC0c2F8n/aHxdkzeYkEg
-            QdWrUGzdmMuKx5KWNlJi65+NSxvE+Kjgp9j06r0Cm5Z3zfmVz8z6wg==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxR2NiOVlBZHhyNDBZVitE
+            d29KdE41dE5ROGtIemF6bzYrSGJodWsxSUhZCmEvRzlKeWN6SC9EUjlYQUZEeG94
+            eml0dm03dHhuVk5tSnZld29uYW9JTncKLS0tIDlJNk5nOW81bW9kdXZwUUN1bWhp
+            d00yUDVGUENDNDNTUTZxenBIRnlQVE0K8NH1rmeKn7ekdUknznCvb3jyNnQ5s9rD
+            1+mJ6OE/uNSX5gP6fWvJY35DcEHYMt1Z1pm7Rmby/5W44QdINx11zw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-12-01T16:45:26Z"
-    mac: ENC[AES256_GCM,data:/yiYb0LIDhpfalf1SMQIyS0ETRFxKPDYZvDFI3qZzmPs2Z4dBfRbCH42Lcr7syHF8pzmj2k2tVqv4LXlFrjjOKzhQpAmHCYKw0XBhEXrjkZ3rqF+FwCj7aREOhzCnwmQC1Pifh9sHLBlP4sXKHbJteg+yQaz4T1gPMt30az0TwE=,iv:Fc7QErdtXj064NpI7Gg4uD/HVjuNokxeX1tFGg2AxkQ=,tag:Cqxu16BSvw6cbrqe4oR8sQ==,type:str]
+    lastmodified: "2024-12-22T02:14:18Z"
+    mac: ENC[AES256_GCM,data:JIfcgOo0d/rP0QP6nrGC6HOrtqSH3ixttS3tgHrd1LFJaJMZTM+iR0o/c5//WLB3vJHVgfu9Y1DCg5Sw3zCt1OS77pjTZtVmRouMMqsWk4pXNohrSDGTLEzj3NpS1jR5BbgJieKhUyg+8+MS8NrhcKwYuJOawTpy+xM6LK7G8ic=,iv:4J5NFDY5XrKYqeRKlU+y/Fe4jCLvr6GFdOgJfAewrWA=,tag:Z4EoBrC5uCDKHzkgcRYc4g==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
-    version: 3.9.1
+    version: 3.9.2

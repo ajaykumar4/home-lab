@@ -8,7 +8,7 @@ cgroup:
     hostRoot: /sys/fs/cgroup
 cluster:
     id: 1
-    name: aj-home-lab
+    name: home-lab
 cni:
     exclusive: false
 # NOTE: devices might need to be set if you have more than one active NIC on your hosts
@@ -112,14 +112,14 @@ sops:
         - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBnNTdPU21lQUd4M1pTaDkv
-            dGtWelhuQkdNZ1N4c2hnOUt6WFlxVUZiakY4Cm50ME0wNWt0QkN4K21Ib3NRb3hR
-            RkV5Vk92UWg5QVAvNmFlK3ZuZ01RYnMKLS0tIHlVQW5VaU1STW5aWGFPd2JJSHdL
-            TTNWNWV1dnVtdTVaOUQrTzJSeTNVNVEKbgJ/QUTsciMOW+B4xZmezZj8T6GAKbYI
-            vHV9pjpKWqtUlXmR/ipcLo8/lDTSxp2+Ski8sfvUuWlRMCSHb5QoKw==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBGQUcvakZBYmU3Mlc5VERi
+            aE5hWUVYUVB5T3ViTG1uMHRSQlJFaHJqcUh3ClBSNUVFcEd3TG1CTVFrWmVSMFVT
+            c2ZoZDB2TnRXMXJTdjVUR3laV1UxYVUKLS0tIFBMdHlXQk5nUHRlZ2FQV1R2RHVW
+            VDNVUVkzRDI3cSs2ZVQ4RUFIWnFjdUEKMDYCtr3MuyyS0gyd86Cm/G571+BxT4Z1
+            GvIm7UzHpyRGHmTk9JvoyLOAevXcyIiFRYJ2/LbJAd3HoOTg1oDprg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-12-01T16:45:26Z"
-    mac: ENC[AES256_GCM,data:pIRURrzYP6Ww/xFi+INIkGBbytx/Ouj4ePW35iovkWq6v36N3deV5DD/eA34h/d8eJt53pC2uwAZuy79AxruBnYnc968pHI1KYOl31SdX/J9+wgEBiNznZNGiaRoFQOHKavPdeDrqhSWn/P3avQXgXEONDAVjj2SH7ACojJpth0=,iv:ukCrdHD7q/zAYn5yFG5e+1L995AZu4VzhhGn0sfj768=,tag:/chrQWDswgSNvzx3VhQmJQ==,type:str]
+    lastmodified: "2024-12-22T02:14:18Z"
+    mac: ENC[AES256_GCM,data:/BS2ttAc4qoz/jK4Dh4TakoQfpCyG9EvqQ/7Llpz9kgAyVEbp+5iMriHFwY3FI3CFgv++4J9OitG7rpQ0AMs7LF8JGCT597wDNlPMUPA/1IRXNTxlf74Zu6RbZ32IjX1cxLtMFDBKQEFJIQmrqiynwbK0CerR91iBd6hh0NGp0Y=,iv:28qimn3rDsyS3xtV9fhPU0rpUTFTXMxSJ5meM/lU3gc=,tag:rubyKRDXANtMvdMVH4Iz0Q==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
-    version: 3.9.1
+    version: 3.9.2

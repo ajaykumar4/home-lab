@@ -1,11 +1,11 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
 ---
 # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-talosVersion: v1.8.3
+talosVersion: v1.9.0
 # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
-kubernetesVersion: v1.31.3
+kubernetesVersion: v1.32.0
 
-clusterName: "aj-home-lab"
+clusterName: "home-lab"
 endpoint: https://192.168.8.200:6443
 
 clusterPodNets:
@@ -26,85 +26,17 @@ cniConfig:
   name: none
 
 nodes:
-  - hostname: "rpi01"
-    ipAddress: "192.168.8.4"
-    installDisk: "/dev/mmcblk0"
-    talosImageURL: factory.talos.dev/installer/ee21ef4a5ef808a9b7484cc0dda0f25075021691c8c09a276591eedb638ea1f9
+  - hostname: "home-lab"
+    ipAddress: "192.168.8.111"
+    installDisk: "/dev/sdb"
+    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
-          hardwareAddr: "e4:5f:01:47:71:6b"
+          hardwareAddr: "a8:20:66:55:65:7e"
         dhcp: false
         addresses:
-          - "192.168.8.4/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.8.1"
-        mtu: 1500
-        vip:
-          ip: "192.168.8.200"
-  - hostname: "rpi02"
-    ipAddress: "192.168.8.5"
-    installDisk: "/dev/mmcblk0"
-    talosImageURL: factory.talos.dev/installer/ee21ef4a5ef808a9b7484cc0dda0f25075021691c8c09a276591eedb638ea1f9
-    controlPlane: true
-    networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "e4:5f:01:47:6b:50"
-        dhcp: false
-        addresses:
-          - "192.168.8.5/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.8.1"
-        mtu: 1500
-        vip:
-          ip: "192.168.8.200"
-  - hostname: "rpi03"
-    ipAddress: "192.168.8.6"
-    installDisk: "/dev/mmcblk0"
-    talosImageURL: factory.talos.dev/installer/ee21ef4a5ef808a9b7484cc0dda0f25075021691c8c09a276591eedb638ea1f9
-    controlPlane: true
-    networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "e4:5f:01:47:74:c8"
-        dhcp: false
-        addresses:
-          - "192.168.8.6/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.8.1"
-        mtu: 1500
-        vip:
-          ip: "192.168.8.200"
-  - hostname: "jetson01"
-    ipAddress: "192.168.8.7"
-    installDisk: "/dev/mmcblk1"
-    talosImageURL: factory.talos.dev/installer/c7d6f36c6bdfb45fd63178b202a67cff0dd270262269c64886b43f76880ecf1e
-    controlPlane: true
-    networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "48:b0:2d:3c:c0:ae"
-        dhcp: false
-        addresses:
-          - "192.168.8.7/24"
-        routes:
-          - network: 0.0.0.0/0
-            gateway: "192.168.8.1"
-        mtu: 1500
-        vip:
-          ip: "192.168.8.200"
-  - hostname: "jetson02"
-    ipAddress: "192.168.8.8"
-    installDisk: "/dev/mmcblk1"
-    talosImageURL: factory.talos.dev/installer/c7d6f36c6bdfb45fd63178b202a67cff0dd270262269c64886b43f76880ecf1e
-    controlPlane: true
-    networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "48:b0:2d:3c:c0:ab"
-        dhcp: false
-        addresses:
-          - "192.168.8.8/24"
+          - "192.168.8.111/24"
         routes:
           - network: 0.0.0.0/0
             gateway: "192.168.8.1"
@@ -114,7 +46,6 @@ nodes:
 
 # Global patches
 patches:
-  - "@./patches/global/cluster-discovery.yaml"
   - "@./patches/global/containerd.yaml"
   - "@./patches/global/disable-search-domain.yaml"
   - "@./patches/global/dns.yaml"
@@ -127,7 +58,6 @@ patches:
 # Controller patches
 controlPlane:
   patches:
-    - "@./patches/controller/api-access.yaml"
     - "@./patches/controller/cluster.yaml"
     - "@./patches/controller/disable-admission-controller.yaml"
     - "@./patches/controller/etcd.yaml"
