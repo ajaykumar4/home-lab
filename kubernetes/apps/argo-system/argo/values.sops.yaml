@@ -18,7 +18,7 @@ configs:
                 - "*"
     secret:
         argocdServerAdminPassword: $2a$10$VS18cczTtbUep4iBCs0FdORY9tWiBZ/ew4m62ciotMBWrWeyC.JNO
-        argocdServerAdminPasswordMtime: 2024-12-22T02:14:18
+        argocdServerAdminPasswordMtime: 2024-12-22T11:58:05
         githubSecret: bd77b8ded03b9fdc259013f221d5c244
 controller:
     replicas: 2
@@ -154,14 +154,14 @@ sops:
         - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxR2NiOVlBZHhyNDBZVitE
-            d29KdE41dE5ROGtIemF6bzYrSGJodWsxSUhZCmEvRzlKeWN6SC9EUjlYQUZEeG94
-            eml0dm03dHhuVk5tSnZld29uYW9JTncKLS0tIDlJNk5nOW81bW9kdXZwUUN1bWhp
-            d00yUDVGUENDNDNTUTZxenBIRnlQVE0K8NH1rmeKn7ekdUknznCvb3jyNnQ5s9rD
-            1+mJ6OE/uNSX5gP6fWvJY35DcEHYMt1Z1pm7Rmby/5W44QdINx11zw==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBOSjUwRHNCUFduUWpBTGNG
+            VGpuTjdnM3p0bWkwUTlSL00yRzlIU3AxRWc4ClV0VlJ2K1dIT21UUUp6bTdRSzNp
+            K3hYWUQ2QVl1VWdDODk3azVBNVI3RW8KLS0tIDRocXE0cktzUFh5eElQYkhTWC95
+            ZFc3MG9GYlRoeGdGK3BLUDY0NDR0QlkKXK8pKeQSaf7MLSId0StXN/J4tQBOtd+f
+            cs2hVrJPnScX1tYgRYSlUVOKq/durqyjcyDCt7G7asn3QGTPdJeyuw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-12-22T02:14:18Z"
-    mac: ENC[AES256_GCM,data:JIfcgOo0d/rP0QP6nrGC6HOrtqSH3ixttS3tgHrd1LFJaJMZTM+iR0o/c5//WLB3vJHVgfu9Y1DCg5Sw3zCt1OS77pjTZtVmRouMMqsWk4pXNohrSDGTLEzj3NpS1jR5BbgJieKhUyg+8+MS8NrhcKwYuJOawTpy+xM6LK7G8ic=,iv:4J5NFDY5XrKYqeRKlU+y/Fe4jCLvr6GFdOgJfAewrWA=,tag:Z4EoBrC5uCDKHzkgcRYc4g==,type:str]
+    lastmodified: "2024-12-22T11:58:10Z"
+    mac: ENC[AES256_GCM,data:I6F09FBlAjFQafMc2Jh/HBCNJYinmtFNfA2U/iHj/mKbUJ5zrP2Cl+Vuim/+hu2adv5anSRiEhUP3cCt6SKpxKfAQb4rF4BBQyYftEDQuumMa26tuaj+Dbbg0XWfXPqUgUjiLGLqoN8qaxZhvp1/M6WxRg2ggn44ZUN/L2XJ8p4=,iv:cMrXt9st5lUc+rk3oEaoekeQiJQc33TI3+KoOon1g1w=,tag:KBtG70KVgyHF3ioEdunEPA==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.9.2
