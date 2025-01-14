@@ -39,7 +39,7 @@ releases:
   - name: kubelet-csr-approver
     namespace: kube-system
     chart: postfinance/kubelet-csr-approver
-    version: 1.2.3
+    version: 1.2.5
     values:
       - ../apps/kube-system/kubelet-csr-approver/values.yaml
     needs:
@@ -60,7 +60,7 @@ releases:
   - name: argo
     namespace: argo-system
     chart: oci://ghcr.io/argoproj/argo-helm/argo-cd
-    version: 7.7.11
+    version: 7.7.15
     wait: false
     secrets:
       - ../apps/argo-system/argo/values.sops.yaml
