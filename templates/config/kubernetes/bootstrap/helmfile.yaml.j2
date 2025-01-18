@@ -32,7 +32,7 @@ releases:
   - name: coredns
     namespace: kube-system
     chart: coredns/coredns
-    version: 1.37.0
+    version: 1.37.1
     values:
       - ../apps/kube-system/coredns/values.yaml
     needs:
@@ -41,7 +41,7 @@ releases:
   - name: spegel
     namespace: kube-system
     chart: oci://ghcr.io/spegel-org/helm-charts/spegel
-    version: v0.0.29
+    version: v0.0.30
     values:
       - ../apps/kube-system/spegel/values.yaml
     needs:
@@ -50,7 +50,7 @@ releases:
   - name: argo-cd
     namespace: argo-system
     chart: oci://ghcr.io/argoproj/argo-helm/argo-cd
-    version: 7.7.15
+    version: 7.7.16
     secrets:
       - ../apps/argo-system/argo-cd/values.sops.yaml
     needs:
