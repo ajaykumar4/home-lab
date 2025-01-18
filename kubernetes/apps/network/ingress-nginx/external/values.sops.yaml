@@ -1,66 +1,73 @@
 fullnameOverride: ingress-nginx-external
 controller:
-    service:
-        annotations:
-            external-dns.alpha.kubernetes.io/hostname: external.aknuk.dev
-            io.cilium/lb-ipam-ips: 192.168.8.203
-        externalTrafficPolicy: Cluster
-    ingressClassResource:
-        name: external
-        default: false
-        controllerValue: k8s.io/external
-    admissionWebhooks:
-        objectSelector:
-            matchExpressions:
-                - key: ingress-class
-                  operator: In
-                  values:
-                    - external
-    config:
-        client-body-buffer-size: 100M
-        client-body-timeout: 120
-        client-header-timeout: 120
-        enable-brotli: "true"
-        enable-real-ip: "true"
-        hsts-max-age: 31449600
-        keep-alive-requests: 10000
-        keep-alive: 120
-        log-format-escape-json: "true"
-        log-format-upstream: |
-            {"time": "$time_iso8601", "remote_addr": "$proxy_protocol_addr", "x_forwarded_for": "$proxy_add_x_forwarded_for", "request_id": "$req_id", "remote_user": "$remote_user", "bytes_sent": $bytes_sent, "request_time": $request_time, "status": $status, "vhost": "$host", "request_proto": "$server_protocol", "path": "$uri", "request_query": "$args", "request_length": $request_length, "duration": $request_time, "method": "$request_method", "http_referrer": "$http_referer", "http_user_agent": "$http_user_agent"}
-        proxy-body-size: 0
-        proxy-buffer-size: 16k
-        ssl-protocols: TLSv1.3 TLSv1.2
-    metrics:
-        enabled: true
-        serviceMonitor:
-            enabled: true
-            namespaceSelector:
-                any: true
-    extraArgs:
-        default-ssl-certificate: network/aknuk-dev-production-tls
-    resources:
-        requests:
-            cpu: 100m
-        limits:
-            memory: 500Mi
+  service:
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: external.aknuk.dev
+      lbipam.cilium.io/ips: 192.168.8.203
+    externalTrafficPolicy: Cluster
+  ingressClassResource:
+    name: external
+    default: false
+    controllerValue: k8s.io/external
+  admissionWebhooks:
+    objectSelector:
+      matchExpressions:
+        - key: ingress-class
+          operator: In
+          values:
+            - external
+  config:
+    allow-snippet-annotations: true
+    annotations-risk-level: Critical
+    client-body-buffer-size: 100M
+    client-body-timeout: 120
+    client-header-timeout: 120
+    enable-brotli: "true"
+    enable-ocsp: "true"
+    enable-real-ip: "true"
+    force-ssl-redirect: "true"
+    hide-headers: Server,X-Powered-By
+    hsts-max-age: 31449600
+    keep-alive-requests: 10000
+    keep-alive: 120
+    log-format-escape-json: "true"
+    log-format-upstream: |
+      {"time": "$time_iso8601", "remote_addr": "$proxy_protocol_addr", "x_forwarded_for": "$proxy_add_x_forwarded_for", "request_id": "$req_id", "remote_user": "$remote_user", "bytes_sent": $bytes_sent, "request_time": $request_time, "status": $status, "vhost": "$host", "request_proto": "$server_protocol", "path": "$uri", "request_query": "$args", "request_length": $request_length, "duration": $request_time,"method": "$request_method", "http_referrer": "$http_referer", "http_user_agent": "$http_user_agent"}
+    proxy-body-size: 0
+    proxy-buffer-size: 16k
+    ssl-protocols: TLSv1.3 TLSv1.2
+    use-forwarded-headers: "true"
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      namespaceSelector:
+        any: true
+  extraArgs:
+    default-ssl-certificate: network/aknuk-dev-staging-tls
+  resources:
+    requests:
+      cpu: 100m
+    limits:
+      memory: 500Mi
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age:
-        - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBFcVhOM2NaYnhQZlg4SEJI
-            R21rbVpOVXJCWlRUVEdna05zREFKaFJCRlNzCjNzQ2t1TVNVeWdHV0docWtueDl4
-            OEVUeU41NThpYkp4KzQweVNGU3B0RVkKLS0tIFFzaFBYWjBROFRGbWRYVkhDT0hV
-            NWpOcDVHVk1aM2g4bCtUM210K0RhQUEKzX1sgH6ieq3fh96VfREcjRxVZyEnibS2
-            xaDWj9ce/iCGPM2whaE9FQXL8Y6fUgH3keFnuy6wTV+e66up0+JIgw==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-12-22T18:02:11Z"
-    mac: ENC[AES256_GCM,data:Ph9zsPQF/7LqlqFIZFV5Bn0pUnRBqF7D/+RA3fvzIVkhqKdNdWae+IwJk1155EslA6LTW/0lRltnUJLNZkHpOSmyVYPwHXfxOn62h5BP55Ys1xpgejteEkWL1J2OOBQAOqOrm9rDqqlTFehPg0Gex35O7zpBkTItu60Nu+HOecw=,iv:hl7tSEa/uCUCYMGo0BO5FOtZXUGoT4ngOCFFEfKKSnY=,tag:lfzegFz1RL3uTgBK+oGx+g==,type:str]
-    pgp: []
-    encrypted_regex: ^(data|stringData)$
-    version: 3.9.2
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB2dFJzSSt4NkU0WjBZbmVG
+        QUZMUWp1R2tMMW81bnZWaW9nYVZPNHliNVNBCkRlYUJoeXBZTjhwWFNyMnBSRXZi
+        VndZM1cybU0yNythQXVzWTVRTEhnSlEKLS0tIDZ2RlprRENpaER3UkxSM09qYTRP
+        QnM1NXUzZkx2dStMUGMreFpiaU9PSFUKLz/CC1QrMCR+qnalkVIyOyeplL97A5rK
+        uWF3TApSmdMedM8dHkhrF5b2aM+SwPgJUaGkPD4AQbkNEtY66p/jJQ==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-01-18T01:30:59Z"
+  mac: ENC[AES256_GCM,data:Bczp0E0qOKN9IjkwWq2sLg+Yhgv4reGFVeKMH5VewTZn8hZ5TIEwkWMXlWWnukC3RAlOoSQqOWpbZ7ylqO8qGvtqDP+qeK5MXxTGG3iXNIbWyjgrS8PVzzM6uYgz8z9rkbofNc31iMHdQ1Tkl+jw44Vjld/4Ywx1pfOZSddkJ/I=,iv:oGbIV5GcFbFOgLFxGhiFHbblxAXbaMKTbWM4UprdsAo=,tag:M/UQY+eV0rUkESVHO548XQ==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.9.3

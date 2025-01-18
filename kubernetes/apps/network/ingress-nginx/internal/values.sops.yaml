@@ -1,65 +1,74 @@
 fullnameOverride: ingress-nginx-internal
 controller:
-    service:
-        annotations:
-            io.cilium/lb-ipam-ips: 192.168.8.201
-        externalTrafficPolicy: Cluster
-    ingressClassResource:
-        name: internal
-        default: true
-        controllerValue: k8s.io/internal
-    admissionWebhooks:
-        objectSelector:
-            matchExpressions:
-                - key: ingress-class
-                  operator: In
-                  values:
-                    - internal
-    config:
-        client-body-buffer-size: 100M
-        client-body-timeout: 120
-        client-header-timeout: 120
-        enable-brotli: "true"
-        enable-real-ip: "true"
-        hsts-max-age: 31449600
-        keep-alive-requests: 10000
-        keep-alive: 120
-        log-format-escape-json: "true"
-        log-format-upstream: |
-            {"time": "$time_iso8601", "remote_addr": "$proxy_protocol_addr", "x_forwarded_for": "$proxy_add_x_forwarded_for", "request_id": "$req_id", "remote_user": "$remote_user", "bytes_sent": $bytes_sent, "request_time": $request_time, "status": $status, "vhost": "$host", "request_proto": "$server_protocol", "path": "$uri", "request_query": "$args", "request_length": $request_length, "duration": $request_time, "method": "$request_method", "http_referrer": "$http_referer", "http_user_agent": "$http_user_agent"}
-        proxy-body-size: 0
-        proxy-buffer-size: 16k
-        ssl-protocols: TLSv1.3 TLSv1.2
-    metrics:
-        enabled: true
-        serviceMonitor:
-            enabled: true
-            namespaceSelector:
-                any: true
-    extraArgs:
-        default-ssl-certificate: network/aknuk-dev-production-tls
-    resources:
-        requests:
-            cpu: 100m
-        limits:
-            memory: 500Mi
+  service:
+    annotations:
+      lbipam.cilium.io/ips: 192.168.8.201
+    externalTrafficPolicy: Cluster
+  ingressClassResource:
+    name: internal
+    default: true
+    controllerValue: k8s.io/internal
+  admissionWebhooks:
+    objectSelector:
+      matchExpressions:
+        - key: ingress-class
+          operator: In
+          values:
+            - internal
+  config:
+    allow-snippet-annotations: true
+    annotations-risk-level: Critical
+    # taken from https://github.com/ai-robots-txt/ai.robots.txt
+    block-user-agents: AdsBot-Google,Amazonbot,anthropic-ai,Applebot-Extended,Bytespider,CCBot,ChatGPT-User,ClaudeBot,Claude-Web,cohere-ai,Diffbot,FacebookBot,FriendlyCrawler,Google-Extended,GoogleOther,GPTBot,img2dataset,omgili,omgilibot,peer39_crawler,peer39_crawler/1.0,PerplexityBot,YouBot,
+    client-body-buffer-size: 100M
+    client-body-timeout: 120
+    client-header-timeout: 120
+    enable-brotli: "true"
+    enable-ocsp: "true"
+    enable-real-ip: "true"
+    force-ssl-redirect: "true"
+    hide-headers: Server,X-Powered-By
+    hsts-max-age: 31449600
+    keep-alive-requests: 10000
+    keep-alive: 120
+    log-format-escape-json: "true"
+    log-format-upstream: |
+      {"time": "$time_iso8601", "remote_addr": "$proxy_protocol_addr", "x_forwarded_for": "$proxy_add_x_forwarded_for", "request_id": "$req_id", "remote_user": "$remote_user", "bytes_sent": $bytes_sent, "request_time": $request_time, "status": $status, "vhost": "$host", "request_proto": "$server_protocol", "path": "$uri", "request_query": "$args", "request_length": $request_length, "duration": $request_time, "method": "$request_method", "http_referrer": "$http_referer", "http_user_agent": "$http_user_agent"}
+    proxy-body-size: 0
+    proxy-buffer-size: 16k
+    ssl-protocols: TLSv1.3 TLSv1.2
+    use-forwarded-headers: "true"
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      namespaceSelector:
+        any: true
+  extraArgs:
+    default-ssl-certificate: network/aknuk-dev-staging-tls
+  resources:
+    requests:
+      cpu: 100m
+    limits:
+      memory: 500Mi
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age:
-        - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBUZFk5ZExPSHBHQm8zSjNN
-            Szg0R3RMR0t2dGhGUm9jUGNlYnVmMzFXc1c4ClFKWmJncmloYTZENVlEbWRQVGpX
-            ZzZ2bmlhczFlVmMxRGxRVnRYKyt5dWcKLS0tIGs4YzlsL1NSZjE3dHprK1VzTXNY
-            R2RON1c1b3l4Y3NSbVk4TUlFZVYzZlUKq/tr1t7JdPSifNC95AOw6jk/g/LBJi/k
-            fAjHU/edzxzjHtbnCGwZm2ZzGHq670g8EP7eR90nUBmv4YEHMSEgtw==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-12-22T18:02:11Z"
-    mac: ENC[AES256_GCM,data:rz7V1NKRHIlUXcAaCo/lAADszpekBaoZu5r7JOhyIgjB+LQc7hNjsETcRm4HZgbUskvZOfzwdqcaI7i/cPCArP19rxGLHi7ptBK5ZkuZB11eW8jujMATVUJtFJ8LHFU38GBfPPZj18agOqCao5ZQ8YHBeLb0pH5RNVTCQdiAswU=,iv:S6exSOhI+zG6KHHwgs+yFvaKSp68SDVgT0rAxLBRZ4w=,tag:J8a20gjqC/dISSWCZ6093A==,type:str]
-    pgp: []
-    encrypted_regex: ^(data|stringData)$
-    version: 3.9.2
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTdm01NFVaYVIxYkpVSXph
+        MU9qYWpmL0dya05QaWt0cXUvZ1QwOXFSUVRjClZvWEhXREVRbDEvdmNJbXk5Wkpp
+        czhaM3hHV1A4L1h3UTRJaElQUWxCQXMKLS0tIFF1c21EZzVaZHcxb2FaL3doTTNF
+        RXUvMk5zM0g0ekU1TkxCSkQzNkw4YzgKmQJdyz/xSG2vXa6mmboMsp7W6UamBI7y
+        EW7zZi2vpPGMsvQDH+6U5xtVMqW8gOu6pHz9dqpijXP5LFYPHiO+fw==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-01-18T01:30:58Z"
+  mac: ENC[AES256_GCM,data:MuWrh0J1zU0YEUGZ0g4Ynxo/CEhYW5cX5tF9tB1SGBk9CIrNQ52HqWf1dcFejMqmccLTxI1ToSAd4xUS33zORRjRyCPBvKuvP09HY4YMoLo7DOzM3tMZo3HL2Rb819jHNZwVG9Yw61yA0IefCKsmm77m8uc6xFn2EkwCYCav/zo=,iv:3Bhcb3n24n00UFE2B9Cf1Ya2kEh/3iujTszwQFd0Jn4=,tag:KC+1ICoTvgSQxOq4c8oxOw==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.9.3

@@ -1,7 +1,0 @@
----
-providerRegex: ^(home-lab)$
-bypassDnsResolution: true
-metrics:
-  enable: true
-  serviceMonitor:
-    enabled: true

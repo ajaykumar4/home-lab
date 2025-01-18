@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflared-configmap
+data:
+  config.yaml: ENC[AES256_GCM,data:vzSqAoA+HOW3wg+yxuI7aM964HXKah6+0LFH5UsUXwZwddi1yOflHdYhilbHsAemXeiRuLLlqhntQNJqfQ4RByKeiqBcSeizH7eZouv47NE/H+Uy0ObO4pMbspK2Zv5SNRuBMZBi/uy+vgGYuf1XGUOk8OnmXu9ok2LXkYvjXcf5+D2kriJAiBCydv4+wnJJpZtrC8CL0jIO07PTbH/sgQb+BTHodI8DNW3kwzovaqO+Fc0bXt1KG8I7B5P4FocEE2d1ritJikeEtIFBkDOb95TU89uEQUNAz5cAZqHLMZUyHMsqoXkBKsX8VjIsog0U3SV3Z8nH+kJjZD9IMz3Ucg0lcmKJL3d3ZgKCZGkMcGs+GKutv2l+MuVBe5kfIU5je4Vk1FBqcmQ6ce2axdVPOjDcarQeBSJpTCF6Y+DxhH7+BeuSpzr3ieWyH3JgPdYQ6CiaI23x8sbPoWpylEgSuEy7lMXGfZfB+pvWtIuNptz+4POaXiqM/jBcDEEGR0xoXY3CJkyImXt36ZeqzvpeloIaC64Thc/soA==,iv:L6Oh+M+DF3OjzSO1B5Tp9c9/ne5rRQjULPDJD//OSl0=,tag:msZgkDQ3jgcqnfAJzGP3uQ==,type:str]
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBBR0dScTVxeXZJTFgvbDRI
+        VGN3UHkrVU81emV0T1JJb1gvRWFPWGRDejFnCnBGOUJ6UUg3bXM0bzZwSGl6SFBU
+        Z1ZMK0hUenZVUEtRMHF0bG05d2NpV2sKLS0tIDBxa1J5TVlVOW1YaGM0U20vUlFZ
+        SysyK25lWWx4MFoxOGFJS0cxWHpQazAKxnlI/iw2ZicKv6j1yB7bfgXGq17/5Y6P
+        NjUi/Cz7mVWL3VdJCq90fy5wQyCg3oMwRN/Vmc7obn/y3olTk4aKCQ==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-01-18T01:30:59Z"
+  mac: ENC[AES256_GCM,data:FZGemYZakPsyww52ZEU4gHfo8k+mxuw3Ti6FRdA727dFbZPIxbIMJTrOugm+MN5DZW2vkvK1Lk84jD1QLsmQQGsN9eZMBxPWxsFHZOdSzeN5F4DtWEU6K6pNiwzBc+rxKJkzRU9wF1El5COFQB/ZadBNOJAx5yVAfFrIeOmy65w=,iv:neQLRLXQpIf8at7Knv6JLFkDerdnZHF0aSuwhOysyhc=,tag:f6eOVBxCfbutv0yaw5uW9Q==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.9.3

@@ -1,33 +1,34 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-    name: aknuk-dev-staging
+  name: aknuk-dev-staging
 spec:
-    secretName: aknuk-dev-staging-tls
-    issuerRef:
-        name: letsencrypt-staging
-        kind: ClusterIssuer
-    commonName: aknuk.dev
-    dnsNames:
-        - aknuk.dev
-        - '*.aknuk.dev'
+  secretName: aknuk-dev-staging-tls
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
+  commonName: aknuk.dev
+  dnsNames:
+    - aknuk.dev
+    - '*.aknuk.dev'
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age:
-        - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBOaTJkZHVZVnRJRjUrQWpv
-            SzRjU2dQaDhYWHhCR3k0TURvRzFEcy9yZ3lBClZjWHhBN3M2TlpiNjA1aHJpL2R0
-            b0FBcmJQTWNIVDQ0N2g4Q0tlYmM2MVEKLS0tIHRYTC8zSXlRK0NIMXVXR1RqL1A1
-            dTlrUEN6MmJPNVBHUUUzZ3dTd3NsdkEKAjtQwsjXqsannab6DlyJaYk/Bu98+6Xq
-            ZHQ2b7bBKf/NKjLeyuLBNYB+u0xNY9OpK7g+MxOmDIV8JgElpQeoWg==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-12-22T18:02:11Z"
-    mac: ENC[AES256_GCM,data:g8UOsRZFHTivKzU19DstvsXsuInEVHS4gNiaKb8LhQEHVz8X8zCwtk1GAlPOPaOoar4SUhqAvPvkUgBPheDmPS7KgMFVGzF+sFyFJYt1xD6+/fCYmqxdGYKJollqROC9/5E4Xxwa5pZ639fjOcqPgr+9DKGADKtYKMeQ0uQjJEI=,iv:SEt1wuh8Q8AqdK+X2dT77h1Gb9lTD7I/ieN6LSq9+zQ=,tag:zvKY/G2L9L9zrEOKOsrd7g==,type:str]
-    pgp: []
-    encrypted_regex: ^(data|stringData)$
-    version: 3.9.2
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBsN2YyQTZhZVRNQ3ZFazEw
+        VkxQdGJ3eVVBZUZqSlhaUy94ODlNUVh1ZWxJCktoSTdESXJGSzI4WjArVVhrZ2ky
+        QnIwRW1lUk5mME1nUEZJTDlXc1NobW8KLS0tIHNHa3JqNm5QWGM5UUtNS2s5T3ZV
+        cml4c3lESkJaUnl5dkRQeWgvaW55YkEKs6dyz/d+L9W+3fTytyjW75JIHSeFkGfi
+        RAwVntdWFgeB8CloFnNCmg8mSVvdBWAfPFOtkornBXYtR8CaVo9GZA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-01-18T01:30:59Z"
+  mac: ENC[AES256_GCM,data:627rToblYRth24Zre7d+bEULxXRP84i4gPeuA4R0IgWSsRnBLZpv2vZb0UssFjf2tFMknw7AuI+H+Yp4WU3TwCoWOjien1eYIHb/L1HMQXD4IMBE4v5BaxHa9l37G0HAOatYnlBsTm2KXESgWSuefDx3qbhMoJnDfdl4joy0HCM=,iv:ws2H/5D53B1eB1ezimsaf3NCmYKIKJRZx5QSYB+cyrs=,tag:WoHMkSpnPXO1F5jYBWfA6w==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.9.3

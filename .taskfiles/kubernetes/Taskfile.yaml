@@ -2,37 +2,14 @@
 # yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: '3'
 
-vars:
-  KUBECONFORM_SCRIPT: "{{.SCRIPTS_DIR}}/kubeconform.sh"
-
 tasks:
 
-  apply-ks:
-    desc: Apply a Argo KS for a cluster [PATH=required]
-    cmd: >
-      kubectl apply --namespace argo-system --server-side -f {{.KUBERNETES_DIR}}/apps/{{.PATH}}/ks.yaml
-    requires:
-      vars: [PATH]
-    vars:
-      KS:
-        sh: argocd app get --namespace argo-system {{base .PATH}} 2>&1
-    preconditions:
-      - test -f {{.KUBERNETES_DIR}}/apps/{{.PATH}}/ks.yaml
-      - which argocd kubectl yq
-
   reconcile:
-    desc: Force update Argo to pull in changes from your Git repository
-    cmd: argocd app sync cluster --namespace argo-system
+    desc: Force Flux to pull in changes from your Git repository
+    cmd: flux --namespace flux-system reconcile kustomization flux-system --with-source
     preconditions:
       - test -f {{.KUBECONFIG}}
-      - which argocd
-
-  kubeconform:
-    desc: Validate Kubernetes manifests with kubeconform
-    cmd: bash {{.KUBECONFORM_SCRIPT}} {{.KUBERNETES_DIR}}
-    preconditions:
-      - test -f {{.KUBECONFORM_SCRIPT}}
-      - which kubeconform
+      - which flux
 
   resources:
     desc: Gather common resources in your cluster, useful when asking for support

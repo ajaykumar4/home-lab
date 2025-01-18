@@ -1,125 +1,94 @@
 autoDirectNodeRoutes: true
 bpf:
-    # Required for Talos `.machine.features.hostDNS.forwardKubeDNSToHost`
-    masquerade: false
-cgroup:
-    automount:
-        enabled: false
-    hostRoot: /sys/fs/cgroup
-cluster:
-    id: 1
-    name: home-lab
+  masquerade: true
+  # Ref: https://github.com/siderolabs/talos/issues/10002
+  hostLegacyRouting: true
 cni:
-    exclusive: false
+  # Required for pairing with Multus CNI
+  exclusive: false
+cgroup:
+  automount:
+    enabled: false
+  hostRoot: /sys/fs/cgroup
 # NOTE: devices might need to be set if you have more than one active NIC on your hosts
 # devices: eno+ eth+
 endpointRoutes:
-    enabled: true
+  enabled: true
 envoy:
-    enabled: false
+  enabled: false
+dashboards:
+  enabled: true
+hubble:
+  enabled: false
 ipam:
-    mode: kubernetes
+  mode: kubernetes
 ipv4NativeRoutingCIDR: 10.69.0.0/16
 k8sServiceHost: 127.0.0.1
 k8sServicePort: 7445
 kubeProxyReplacement: true
 kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
 l2announcements:
-    enabled: true
+  enabled: true
 loadBalancer:
-    algorithm: maglev
-    mode: snat
+  algorithm: maglev
+  mode: dsr
 localRedirectPolicy: true
+operator:
+  replicas: 1
+  rollOutPods: true
+  prometheus:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  dashboards:
+    enabled: true
+prometheus:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+    trustCRDsExist: true
 rollOutCiliumPods: true
 routingMode: native
 securityContext:
-    capabilities:
-        ciliumAgent:
-            - CHOWN
-            - KILL
-            - NET_ADMIN
-            - NET_RAW
-            - IPC_LOCK
-            - SYS_ADMIN
-            - SYS_RESOURCE
-            - DAC_OVERRIDE
-            - FOWNER
-            - SETGID
-            - SETUID
-        cleanCiliumState:
-            - NET_ADMIN
-            - SYS_ADMIN
-            - SYS_RESOURCE
+  capabilities:
+    ciliumAgent:
+      - CHOWN
+      - KILL
+      - NET_ADMIN
+      - NET_RAW
+      - IPC_LOCK
+      - SYS_ADMIN
+      - SYS_RESOURCE
+      - PERFMON
+      - BPF
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
+    cleanCiliumState:
+      - NET_ADMIN
+      - SYS_ADMIN
+      - SYS_RESOURCE
 socketLB:
-    hostNamespaceOnly: true
-hubble:
-    enabled: true
-    metrics:
-        enabled:
-            - dns:query
-            - drop
-            - tcp
-            - flow
-            - port-distribution
-            - icmp
-            - http
-        serviceMonitor:
-            enabled: true
-        dashboards:
-            enabled: true
-            annotations:
-                grafana_folder: Cilium
-    relay:
-        enabled: true
-        rollOutPods: true
-        prometheus:
-            serviceMonitor:
-                enabled: true
-    ui:
-        enabled: true
-        rollOutPods: true
-        ingress:
-            enabled: true
-            className: internal
-            hosts:
-                - hubble.aknuk.dev
-operator:
-    replicas: 1
-    rollOutPods: true
-    prometheus:
-        enabled: true
-        serviceMonitor:
-            enabled: true
-    dashboards:
-        enabled: true
-        annotations:
-            grafana_folder: Cilium
-prometheus:
-    enabled: true
-    serviceMonitor:
-        enabled: true
-        trustCRDsExist: true
-dashboards:
-    enabled: true
-    annotations:
-        grafana_folder: Cilium
+  hostNamespaceOnly: true
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age:
-        - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBveTNlMThLS1owVFptclFl
-            MVFiT1VEZW5lSyt5STVBNTU1dm1MTFprUFhrCjY3QXlOMUxlRE04VStsU3QyeXFM
-            N0ZjSy9meTJkd0ZseTJiWDZ4RzdXZmcKLS0tIHR4QkJRVGlCa2FCYmtLai9FR3Jr
-            WGRqa3hRY1F5SGlqdFp5ZHhtTjR3ODQK9iWxSgaQTNAxaARvBViHBGo3vJH12bnM
-            2ciLyJzdvPc4m/4fzn3DPN3BjpaYtIU12w4ITSpbtC6+t2EuBaPo/Q==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-12-22T18:02:11Z"
-    mac: ENC[AES256_GCM,data:a0PYEyngur6j6LJpsWKxh9riAzLK2iZnifHnxYpgc/dwWMbAoHB3f2DqoYwQfO71yPXCfFXZDGWoK0OQTrUycpargmqA+gnshsWwfXinqNJVJPqeuqS88lj9LpMkuyVnuvrmNHiaGOMUop+bNecWIIegBfbvJldWp4nJq/RtA7A=,iv:btHMifp7D5k12tNuAD71HYIg04Zj8sVQdzvejP8Z35Q=,tag:s50t52JgCuk/2qeTsHP7jQ==,type:str]
-    pgp: []
-    encrypted_regex: ^(data|stringData)$
-    version: 3.9.2
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA5R1FsaytpVDk3MXBPOHBV
+        aWhmcDl0SWpGSHBMWDVxZHgxRTBsL1VDbDNFCkpYVzVlbGowallIZ2N4Z25mZk9C
+        M2RDTUNmSyt4dmt2SnRpQWpHK0dncW8KLS0tIDJDQzZjQ29BK002Nk9wZ0F1Mlhs
+        K05wOWVnN2JpNjR0cEhLcG15cjgzMEEK9IRyz+/Rqd5UapK8eyyeOXuAS6SIEpiC
+        f/Jumc2roJv9DElVxEvfjgZ2KQ6GCnTFYYS5DE4TDrx8JwW4Sz7LWw==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-01-18T01:30:59Z"
+  mac: ENC[AES256_GCM,data:xHu41gJRvwIlYNzmktssj4h2KKPaxM96WvzuxYa5znMKamnXZvRf0syEXX94LXSCJe4Ampcei9ytRsFDxZEx6JqBkpuMOFWMUu5fs23eoK7+9tQ0TdojzZ4UXUb83CGW4qZaZf+XXGRsGMfAETnqb6dVL34xFtdW3uJDToYfa3o=,iv:kuGVMy0T/L6nTRU5EvfwVG8RIhSv6awDjZxSm8KrE58=,tag:+eRfUl8wpfMdoJTWAGZp+Q==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.9.3

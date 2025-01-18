@@ -5,7 +5,7 @@ talosVersion: v1.9.1
 # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
 kubernetesVersion: v1.32.0
 
-clusterName: "home-lab"
+clusterName: kubernetes
 endpoint: https://192.168.8.200:6443
 
 clusterPodNets:
@@ -28,7 +28,9 @@ cniConfig:
 nodes:
   - hostname: "home-lab"
     ipAddress: "192.168.8.111"
-    installDisk: "/dev/sdb"
+    installDisk: "/dev/sda"
+    machineSpec:
+      secureboot: false
     talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
     controlPlane: true
     networkInterfaces:
@@ -38,7 +40,7 @@ nodes:
         addresses:
           - "192.168.8.111/24"
         routes:
-          - network: 0.0.0.0/0
+          - network: "0.0.0.0/0"
             gateway: "192.168.8.1"
         mtu: 1500
         vip:
@@ -46,20 +48,15 @@ nodes:
 
 # Global patches
 patches:
-  - "@./patches/global/cluster-discovery.yaml"
-  - "@./patches/global/containerd.yaml"
-  - "@./patches/global/disable-search-domain.yaml"
-  - "@./patches/global/dns.yaml"
-  - "@./patches/global/hostdns.yaml"
-  - "@./patches/global/kubelet.yaml"
-  - "@./patches/global/ntp.yaml"
-  - "@./patches/global/openebs-local.yaml"
-  - "@./patches/global/sysctl.yaml"
+  - "@./patches/global/machine-files.yaml"
+  - "@./patches/global/machine-kubelet.yaml"
+  - "@./patches/global/machine-network.yaml"
+  - "@./patches/global/machine-sysctls.yaml"
+  - "@./patches/global/machine-time.yaml"
 
 # Controller patches
 controlPlane:
   patches:
+    - "@./patches/controller/admission-controller-patch.yaml"
     - "@./patches/controller/cluster.yaml"
-    - "@./patches/controller/disable-admission-controller.yaml"
-    - "@./patches/controller/etcd.yaml"
 
