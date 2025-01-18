@@ -132,7 +132,7 @@ repoServer:
           name: helm-secrets-private-keys
     initContainers:
         - name: gitops-tools
-          image: ghcr.io/ajaykumar4/gitops-tools:1.0.0
+          image: ghcr.io/ajaykumar4/gitops-tools:1.0.1
           imagePullPolicy: Always
           command:
             - sh
@@ -160,8 +160,8 @@ sops:
             NkhDa3FQY0RQdDU2OWhLSTJ0LzVwNjQKy0vU+MPjO9HHSAEkn3AJdzbQnADrBB3z
             3gcnz5+bMm4aE6ebWnIzom/AphFYHhsWuKrDwAGSkHmGfzTPWpz2lA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-01-18T05:05:50Z"
-    mac: ENC[AES256_GCM,data:khKGxik7n+p+CLRFGmfAS+yVZpXby5Ajh9ZDlLxSoppk1LqNb8EFfibb3L7etXZZ/w2IpNRIdpJ8mCRnuoMUhlhR5IT3ZMNkj0749kihMexZ8Flo3FCUQbQmRxPSOr58R9bM7YK8zxRf+f+UicHMLws0W8EJWIApvocNoQ6poJE=,iv:Txegy8T6oCNsNGIgWWb4cIW2Ox5gITjxX//Ee6jjqoQ=,tag:aQYF4clm2yG2K8O7zDo/0Q==,type:str]
+    lastmodified: "2025-01-18T05:12:23Z"
+    mac: ENC[AES256_GCM,data:EzNcvME3NE9Ui1PI1Fag3qe2TcyuvWQQcKr8rOCHK3c8xul7ct52eeHK2ofSp2TFeXVoEucTQZfWpeV7PQ+2ySlTMgX7pI4dhX1YcwbIer9duovtecbfsONUHVIsIkxzzv6SmmAlW7prqCDEW2w7eVtkLuB+XwfLbrL3w5pLpeg=,iv:CjcaolVX6kq4UFJjpTMNXQtZMeDJ7EvLZukgEHg736E=,tag:xG+4P0GaVU09cE+E/PGIog==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
