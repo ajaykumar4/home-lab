@@ -12,7 +12,10 @@ tasks:
 
   :init:
     desc: Initialize configuration files
-    cmd: mv {{.TEMPLATE_CONFIG_FILE | replace ".yaml" ".sample.yaml"}} {{.TEMPLATE_CONFIG_FILE}}
+    cmds:
+      - mv {{.TEMPLATE_CONFIG_FILE | replace ".yaml" ".sample.yaml"}} {{.TEMPLATE_CONFIG_FILE}}
+      - task: generate-age-key
+      - task: generate-deploy-key
     status:
       - test -f {{.TEMPLATE_CONFIG_FILE}}
 
@@ -26,7 +29,7 @@ tasks:
       - task: validate-talos-config
     preconditions:
       - msg: |
-          An existing Age key interferes with age key in this repository.
+          An existing Age key interferes with the age key in this repository.
           Rename or delete ~/.config/sops/age/keys.txt
         sh: '! test -f ~/.config/sops/age/keys.txt'
 
@@ -37,6 +40,14 @@ tasks:
       - test -f {{.SOPS_AGE_KEY_FILE}}
     preconditions:
       - which age-keygen
+
+  generate-deploy-key:
+    desc: Create the deploy key
+    cmd: ssh-keygen -t ecdsa -b 521 -C "deploy-key" -f {{.ROOT_DIR}}/deploy.key -q -P ""
+    status:
+      - test -f {{.ROOT_DIR}}/deploy.key
+    preconditions:
+      - which ssh-keygen
 
   render-configs:
     desc: Template the configuration files
@@ -62,7 +73,7 @@ tasks:
         sh: find "{{.KUBERNETES_DIR}}" -type f -name "*.sops.*"
     preconditions:
       - test -f {{.SOPS_AGE_KEY_FILE}}
-      - test -f {{.SOPS_CONFIG_FILE}}
+      - test -f {{.ROOT_DIR}}/.sops.yaml
       - which sops
 
   validate-kubernetes-config:
@@ -74,10 +85,31 @@ tasks:
 
   validate-talos-config:
     desc: Validate the Talhelper config
-    cmd: talhelper validate talconfig {{.TALHELPER_CONFIG_FILE}}
+    dir: "{{.TALHELPER_DIR}}"
+    cmd: talhelper validate talconfig {{.TALHELPER_DIR}}/talconfig.yaml
     preconditions:
-      - test -f {{.TALHELPER_CONFIG_FILE}}
+      - test -f {{.TALHELPER_DIR}}/talconfig.yaml
       - which talhelper
+
+  debug:
+    desc: Gather common resources in your cluster
+    cmds:
+      - for: { var: RESOURCE }
+        cmd: kubectl get {{.ITEM}} {{.CLI_ARGS | default "-A"}}
+    vars:
+      RESOURCE: >-
+        nodes
+        gitrepositories
+        kustomizations
+        helmrepositories
+        helmreleases
+        certificates
+        certificaterequests
+        ingresses
+        pods
+    preconditions:
+      - test -f {{.KUBECONFIG}}
+      - which kubectl
 
   tidy:
     desc: Archive template related files and directories
@@ -88,14 +120,13 @@ tasks:
       - rm -rf {{.ROOT_DIR}}/.github/workflows/e2e.yaml
       - rm -rf {{.ROOT_DIR}}/.github/workflows/mise.yaml
       - |
-        {{.SED}} 's/(..\.j2)\?//g' {{.ROOT_DIR}}/.github/renovate.json5
+        {{.SED}} -i 's/(..\.j2)\?//g' {{.ROOT_DIR}}/.github/renovate.json5
       - mv {{.TEMPLATE_DIR}} {{.TIDY_FOLDER}}/templates
       - mv {{.MAKEJINJA_CONFIG_FILE}} {{.TIDY_FOLDER}}/makejinja.toml
       - mv {{.ROOT_DIR}}/requirements.txt {{.TIDY_FOLDER}}/requirements.txt
       - mv {{.TEMPLATE_CONFIG_FILE}} {{.TIDY_FOLDER}}/config.yaml
-      - mv {{.TEMPLATE_CONFIG_FILE}} {{.TIDY_FOLDER}}/config.sample.yaml
       - |
-        {{.SED}} '/template:/d' {{.ROOT_DIR}}/Taskfile.yaml
+        {{.SED}} -i '/template:/d' {{.ROOT_DIR}}/Taskfile.yaml
       - mv {{.ROOT_DIR}}/.taskfiles/template {{.TIDY_FOLDER}}/.taskfiles/
     vars:
       TIDY_FOLDER: '{{.PRIVATE_DIR}}/{{now | unixEpoch}}'

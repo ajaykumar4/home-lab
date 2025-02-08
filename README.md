@@ -11,7 +11,7 @@ The features included will depend on the type of configuration you want to use. 
 1. **"Argo cluster"** - a Kubernetes cluster deployed on-top of [Talos Linux](https://github.com/siderolabs/talos) with an opinionated implementation of [Argo](https://github.com/argoproj/argo-cd) using [GitHub](https://github.com/) as the Git provider and [sops](https://github.com/getsops/sops) to manage secrets.
 
     - **Required:** Some knowledge of [Containers](https://opencontainers.org/), [YAML](https://yaml.org/), and [Git](https://git-scm.com/).
-    - **Components:** [argo](https://github.com/argoproj/argo-cd), [cilium](https://github.com/cilium/cilium), [cert-manager](https://github.com/cert-manager/cert-manager), [spegel](https://github.com/spegel-org/spegel), [reloader](https://github.com/stakater/Reloader), and [openebs](https://github.com/openebs/openebs).
+    - **Components:** [argo](https://github.com/argoproj/argo-cd), [cilium](https://github.com/cilium/cilium), [cert-manager](https://github.com/cert-manager/cert-manager), [spegel](https://github.com/spegel-org/spegel), [reloader](https://github.com/stakater/Reloader).
 
 2. **"Argo cluster with Cloudflare"** - An addition to "**Argo cluster**" that provides DNS and SSL with [Cloudflare](https://www.cloudflare.com/). [Cloudflare Tunnel](https://www.cloudflare.com/products/tunnel/) is also included to provide external access to certain applications deployed in your cluster.
 
@@ -102,7 +102,7 @@ There are **4 stages** outlined below for completing this project, make sure you
 
 1. Install Talos:
 
-   📍 _It might take a while for the cluster to be setup (10+ minutes is normal). During which time you will see a variety of error messages like: "couldn't get current server API group list," "error: no matching resources found", etc. **This is a normal.** If this step gets interrupted, e.g. by pressing <kbd>Ctrl</kbd> + <kbd>C</kbd>, you likely will need to [reset the cluster](#-reset) before trying again_
+   📍 _It might take a while for the cluster to be setup (10+ minutes is normal). During which time you will see a variety of error messages like: "couldn't get current server API group list," "error: no matching resources found", etc. 'Ready' will remain "False" as no CNI is deployed yet. **This is a normal.** If this step gets interrupted, e.g. by pressing <kbd>Ctrl</kbd> + <kbd>C</kbd>, you likely will need to [reset the cluster](#-reset) before trying again_
 
     ```sh
     task bootstrap:talos
@@ -124,7 +124,7 @@ There are **4 stages** outlined below for completing this project, make sure you
 
 4. Watch the rollout of your cluster happen:
 
-   📍 _Depending on the features you choose a successful rollout will include pods being deployed into the **cert-manager, argo-system, network and openebs-system** namespaces_
+   📍 _Depending on the features you choose a successful rollout will include pods being deployed into the **cert-manager, argo-system and network** namespaces_
 
     ```sh
     watch kubectl get pods --all-namespaces
@@ -186,7 +186,7 @@ task talos:reset # --force
 task talos:generate-config
 # Apply the config to the node
 task talos:apply-node IP=? MODE=?
-# e.g. task talos:apply-config IP=10.10.10.10 MODE=auto
+# e.g. task talos:apply-node IP=10.10.10.10 MODE=auto
 ```
 
 ### ⬆️ Updating Talos and Kubernetes versions
@@ -197,7 +197,7 @@ task talos:apply-node IP=? MODE=?
 ```sh
 # Upgrade node to a newer Talos version
 task talos:upgrade-node IP=?
-# e.g. task talos:upgrade IP=10.10.10.10
+# e.g. task talos:upgrade-node IP=10.10.10.10
 ```
 
 ```sh
@@ -216,21 +216,21 @@ The base Renovate configuration in your repository can be viewed at [.github/ren
 
 ## 🐛 Debugging
 
-Below is a general guide on trying to debug an issue with an resource or application. For example, if a workload/resource is not showing up or a pod has started but in a `CrashLoopBackOff` or `Pending` state.
+Below is a general guide on trying to debug an issue with an resource or application. For example, if a workload/resource is not showing up or a pod has started but in a `CrashLoopBackOff` or `Pending` state. Most of these steps do not include a way to fix the problem as the problem could be one of many different things.
 
-1. Start by checking all Argo Applications and verify they are healthy.
+1. Verify all Argo Applications  are up-to-date and in a ready state.
 
     ```sh
       kubectl get applications -n argo-system
     ```
 
-2. Then check the if the pod is present.
+2. Do you see the pod of the workload you are debugging?
 
     ```sh
     kubectl -n <namespace> get pods -o wide
     ```
 
-3. Then check the logs of the pod if its there.
+3. Check the logs of the pod if its there.
 
     ```sh
     kubectl -n <namespace> logs <pod-name> -f
@@ -248,7 +248,7 @@ Below is a general guide on trying to debug an issue with an resource or applica
     kubectl -n <namespace> get events --sort-by='.metadata.creationTimestamp'
     ```
 
-Resolving problems that you have could take some tweaking of your YAML manifests in order to get things working, other times it could be a external factor like permissions on NFS. If you are unable to figure out your problem see the help section below.
+Resolving problems that you have could take some tweaking of your YAML manifests in order to get things working, other times it could be a external factor like permissions on a NFS server. If you are unable to figure out your problem see the support sections below.
 
 ## 🧹 Tidy up
 
@@ -283,8 +283,7 @@ Instead of using [k8s_gateway](https://github.com/ori-edge/k8s_gateway) to provi
 
 ### Storage
 
-The included CSI (openebs in local-hostpath mode) is a great start for storage but soon you might find you need more features like replicated block storage, or to connect to a NFS/SMB/iSCSI server. If you need any of those features be sure to check out the projects like [rook-ceph](https://github.com/rook/rook), [longhorn](https://github.com/longhorn/longhorn), [openebs](https://github.com/openebs/openebs), [democratic-csi](https://github.com/democratic-csi/democratic-csi), [csi-driver-nfs](https://github.com/kubernetes-csi/csi-driver-nfs),
-and [synology-csi](https://github.com/SynologyOpenSource/synology-csi).
+You might find you need persistent storage for your workloads with features like replicated block storage, or to connect to a NFS/SMB/iSCSI server. If you need any of those features be sure to check out the projects like [rook-ceph](https://github.com/rook/rook), [longhorn](https://github.com/longhorn/longhorn), [openebs](https://github.com/openebs/openebs), [democratic-csi](https://github.com/democratic-csi/democratic-csi), [csi-driver-nfs](https://github.com/kubernetes-csi/csi-driver-nfs), [csi-driver-smb](https://github.com/kubernetes-csi/csi-driver-smb) or [synology-csi](https://github.com/SynologyOpenSource/synology-csi).
 
 ### Community Repositories
 

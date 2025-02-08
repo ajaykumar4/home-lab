@@ -2,43 +2,43 @@
 # yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: '3'
 
-env:
-  TALOSCONFIG: '{{.TALHELPER_CLUSTER_DIR}}/talosconfig'
-
 tasks:
 
   talos:
     desc: Bootstrap the Talos cluster
-    dir: '{{.KUBERNETES_DIR}}/bootstrap/talos'
+    dir: '{{.TALHELPER_DIR}}'
     cmds:
-      - '{{if eq .TALHELPER_SECRET_EXISTS "false"}}talhelper gensecret > {{.TALHELPER_SECRET_FILE}}{{end}}'
-      - '{{if eq .TALHELPER_SECRET_EXISTS "false"}}sops --encrypt --in-place {{.TALHELPER_SECRET_FILE}}{{end}}'
-      - talhelper genconfig --config-file {{.TALHELPER_CONFIG_FILE}} --secret-file {{.TALHELPER_SECRET_FILE}} --out-dir {{.TALHELPER_CLUSTER_DIR}}
-      - talhelper gencommand apply --config-file {{.TALHELPER_CONFIG_FILE}} --out-dir {{.TALHELPER_CLUSTER_DIR}} --extra-flags="--insecure" | bash
-      - until talhelper gencommand bootstrap --config-file {{.TALHELPER_CONFIG_FILE}} --out-dir {{.TALHELPER_CLUSTER_DIR}} | bash; do sleep 10; done
-      - until talhelper gencommand kubeconfig --config-file {{.TALHELPER_CONFIG_FILE}} --out-dir {{.TALHELPER_CLUSTER_DIR}} --extra-flags="{{.ROOT_DIR}} --force" | bash; do sleep 10; done
+      - '[ -f talsecret.sops.yaml ] || talhelper gensecret | sops --filename-override talos/talsecret.sops.yaml --encrypt /dev/stdin > talsecret.sops.yaml'
+      - talhelper genconfig
+      - talhelper gencommand apply --extra-flags="--insecure" | bash
+      - until talhelper gencommand bootstrap | bash; do sleep 10; done
+      - until talhelper gencommand kubeconfig --extra-flags="{{.ROOT_DIR}} --force" | bash; do sleep 10; done
     vars:
       TALHELPER_SECRET_EXISTS:
-        sh: test -f {{.TALHELPER_SECRET_FILE}} && echo true || echo false
+        sh: test -f {{.TALHELPER_DIR}}/talsecret.sops.yaml && echo true || echo false
     preconditions:
-      - test -f {{.SOPS_CONFIG_FILE}}
+      - test -f {{.ROOT_DIR}}/.sops.yaml
       - test -f {{.SOPS_AGE_KEY_FILE}}
-      - test -f {{.TALHELPER_CONFIG_FILE}}
+      - test -f {{.TALHELPER_DIR}}/talconfig.yaml
       - which talhelper sops
 
   apps:
     desc: Bootstrap apps into the Talos cluster
     cmds:
       - until kubectl wait --for=condition=Ready=False nodes --all --timeout=600s; do sleep 10; done
-      - kubectl create namespace argo-system --dry-run=client -o yaml | kubectl apply --server-side --filename -
-      - '{{if eq .SOPS_SECRET_EXISTS "false"}}cat {{.SOPS_AGE_KEY_FILE}} | kubectl --namespace argo-system create secret generic helm-secrets-private-keys --from-file=key.txt=/dev/stdin{{end}}'
-      - helmfile --file {{.KUBERNETES_DIR}}/bootstrap/helmfile.yaml apply --skip-diff-on-install --suppress-diff
+      - for: { var: APPLY_NAMESPACES }
+        cmd: kubectl create namespace {{base .ITEM}} --dry-run=client --output=yaml | kubectl apply --server-side --filename -
+      - for: { var: APPLY_SECRETS }
+        cmd: sops exec-file {{.ITEM}} "kubectl --namespace argo-system apply --server-side --filename {}"
+      - helmfile --file {{.KUBERNETES_DIR}}/bootstrap/apps/helmfile.yaml apply --skip-diff-on-install --suppress-diff
       - kubectl apply --server-side --filename {{.KUBERNETES_DIR}}/argo
     vars:
-      SOPS_SECRET_EXISTS:
-        sh: kubectl --namespace argo-system get secret sops-age &>/dev/null && echo true || echo false
+      APPLY_NAMESPACES:
+        sh: ls -d {{.KUBERNETES_DIR}}/apps/*
+      APPLY_SECRETS:
+        sh: find {{.KUBERNETES_DIR}}/argo/{repositories,settings} -type f -name '*.sops.yaml'
     preconditions:
       - test -f {{.KUBECONFIG}}
-      - test -f {{.KUBERNETES_DIR}}/bootstrap/helmfile.yaml
+      - test -f {{.KUBERNETES_DIR}}/bootstrap/apps/helmfile.yaml
       - test -f {{.SOPS_AGE_KEY_FILE}}
       - which helmfile kubectl sops

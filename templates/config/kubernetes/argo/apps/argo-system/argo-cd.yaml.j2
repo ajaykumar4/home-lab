@@ -11,13 +11,13 @@ metadata:
 spec:
   project: kubernetes
   sources:
-    - repoURL: #{ github.address }#
+    - repoURL: "https://github.com:#{ github.repository }#.git"
       path: kubernetes/apps/argo-system/argo-cd
       targetRevision: #{ github.branch }#
       ref: repo
     - repoURL: ghcr.io/argoproj/argo-helm
       chart: argo-cd
-      targetRevision: 7.7.16
+      targetRevision: 7.7.23
       helm:
         releaseName: argo-cd
         valueFiles:

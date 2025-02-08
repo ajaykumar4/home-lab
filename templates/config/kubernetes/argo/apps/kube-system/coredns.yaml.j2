@@ -9,13 +9,13 @@ metadata:
 spec:
   project: kubernetes
   sources:
-    - repoURL: #{ github.address }#
+    - repoURL: "https://github.com:#{ github.repository }#.git"
       path: kubernetes/apps/kube-system/coredns
       targetRevision: #{ github.branch }#
       ref: repo
-    - repoURL: https://coredns.github.io/helm
+    - repoURL: ghcr.io/coredns/charts
       chart: coredns
-      targetRevision: 1.37.1
+      targetRevision: 1.39.0
       helm:
         releaseName: coredns
         valueFiles:

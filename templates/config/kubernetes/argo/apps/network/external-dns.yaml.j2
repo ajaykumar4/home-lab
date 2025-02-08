@@ -9,13 +9,13 @@ metadata:
 spec:
   project: kubernetes
   sources:
-    - repoURL: #{ github.address }#
+    - repoURL: "https://github.com:#{ github.repository }#.git"
       path: kubernetes/apps/network/external-dns
       targetRevision: #{ github.branch }#
       ref: repo
     - repoURL: https://kubernetes-sigs.github.io/external-dns
       chart: external-dns
-      targetRevision: 1.15.0
+      targetRevision: 1.15.1
       helm:
         releaseName: external-dns
         valueFiles:

@@ -1,0 +1,51 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/helmfile
+
+helmDefaults:
+  timeout: 600
+  force: true
+  wait: true
+  waitForJobs: true
+
+repositories:
+  - name: cilium
+    url: https://helm.cilium.io
+
+  - name: jetstack
+    url: https://charts.jetstack.io
+
+releases:
+  - name: cilium
+    namespace: kube-system
+    chart: cilium/cilium
+    version: 1.16.6
+    values:
+      - ['{{ requiredEnv "KUBERNETES_DIR" }}/apps/kube-system/cilium/values.sops.yaml']
+    hooks:
+      - events: ['presync']
+        command: bash
+        args: ['{{ requiredEnv "KUBERNETES_DIR" }}/bootstrap/apps/scripts/cilium-presync.sh']
+
+  - name: coredns
+    namespace: kube-system
+    chart: oci://ghcr.io/coredns/charts/coredns
+    version: 1.39.0
+    values:
+      - ['{{ requiredEnv "KUBERNETES_DIR" }}/apps/kube-system/coredns/values.yaml']
+    needs: ['kube-system/cilium']
+
+  - name: cert-manager
+    namespace: cert-manager
+    chart: jetstack/cert-manager
+    version: v1.17.0
+    values:
+      - ['{{ requiredEnv "KUBERNETES_DIR" }}/apps/cert-manager/cert-manager/values.yaml']
+    needs: ['kube-system/coredns']
+
+  - name: argo-cd
+    namespace: argo-system
+    chart: oci://ghcr.io/argoproj/argo-helm/argo-cd
+    version: 7.7.23
+    secrets:
+      - ['{{ requiredEnv "KUBERNETES_DIR" }}/apps/argo-system/argo-cd/values.sops.yaml']
+    needs: ['cert-manager/cert-manager']

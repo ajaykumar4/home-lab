@@ -9,13 +9,13 @@ metadata:
 spec:
   project: kubernetes
   sources:
-    - repoURL: #{ github.address }#
+    - repoURL: "https://github.com:#{ github.repository }#.git"
       path: kubernetes/apps/cert-manager/cert-manager
       targetRevision: #{ github.branch }#
       ref: repo
     - repoURL: https://charts.jetstack.io
       chart: cert-manager
-      targetRevision: v1.16.3
+      targetRevision: v1.17.0
       helm:
         releaseName: cert-manager
         valueFiles:

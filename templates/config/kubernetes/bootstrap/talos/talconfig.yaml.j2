@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
 ---
 # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-talosVersion: v1.9.2
+talosVersion: v1.9.3
 # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
 kubernetesVersion: v1.32.1
 
@@ -36,7 +36,7 @@ nodes:
       serial: "#{ item.disk }#"
     #% endif %#
     machineSpec:
-      secureboot: #{ true if item.secureboot else false | lower }#
+      secureboot: #{ (true if item.secureboot else false) | string | lower }#
     talosImageURL: factory.talos.dev/installer#{ "-secureboot" if item.secureboot else ""}#/#{ item.schematic_id }#
     controlPlane: #{ (item.controller) | string | lower }#
     networkInterfaces:
