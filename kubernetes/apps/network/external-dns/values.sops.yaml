@@ -1,0 +1,49 @@
+fullnameOverride: external-dns
+provider: cloudflare
+env:
+  - name: CF_API_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: external-dns-secret
+        key: api-token
+extraArgs:
+  - --cloudflare-dns-records-per-page=1000
+  - --cloudflare-proxied
+  - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
+  - --crd-source-kind=DNSEndpoint
+  - --events
+  - --ignore-ingress-tls-spec
+  - --ingress-class=external
+policy: sync
+sources:
+  - crd
+  - ingress
+txtPrefix: k8s.
+txtOwnerId: default
+domainFilters:
+  - aknuk.dev
+serviceMonitor:
+  enabled: true
+podAnnotations:
+  secret.reloader.stakater.com/reload: external-dns-secret
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBLNDRVTEF3cFlvYUk3Zko0
+        N0VNR0lFSVV6QUlrWnRBdFFGWnFySVdiT3pjCndIWHVEbERVZ1RpY3I5STJlRWdn
+        dTRYTHFlcExrYnlLM280MHBBU0NuVWMKLS0tIE9ENCt6QmFPSi9YYjVYeHBYV0I3
+        dXZVUGFvTjRpOUhHNTF0SFZyWk91SFUKMRCjmo35Hb3biolvsWyAppbUvLgGU1nx
+        6lXcvNvr1wqpJiLGbQtC5z1s9bZzzmTa7Av4ORUw5eRfG6uWfnIGRQ==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-02-08T00:50:31Z"
+  mac: ENC[AES256_GCM,data:e2lCCweW4+TRxuvxv/RxJg+3MUmXYww1TnwaoKz/IyQo8K0+pHenYmLWHoIPS5wlb1fiI0zqgFU5mwL09Hg1BZM86fIQqXqML0Zhi6/Pdl6eSkODjG08cK6U+aD3WaSulT0KDqznie4lH58E60MaQIHEy2Jv9b1LaxdRAVanztE=,iv:m9n0n0EHbEz2Ypf66AAsOBXc2VWESzCdtUl+2LfC60A=,tag:388kcHYqbJHdtkSQWsUPzg==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.9.4

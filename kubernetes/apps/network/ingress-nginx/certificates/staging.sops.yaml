@@ -1,0 +1,34 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: aknuk-dev-staging
+spec:
+  secretName: aknuk-dev-staging-tls
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
+  commonName: aknuk.dev
+  dnsNames:
+    - aknuk.dev
+    - '*.aknuk.dev'
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBpQWxVVGxWR1VmT25OZk05
+        V2pwVGxPazk0T1F6SnhyMFVKczNTK2F1Wml3Cit5UTFsTXJZMGxKSjd6cUltNDRI
+        eUhDTDU0a01zRWlsbFhaMUVlT1lLbGMKLS0tIHh0TEl2VlFQMmJDbDkyZDlJU25C
+        bjlMY3ZISk5aYUVmdWIyQjBtNTI4OVEKTTyFaeA/3omHql90aqelGXRqhUjQ0yN4
+        FPPPhYaRwgTl+2xL6teVPWPDetOPJBfDMHJaOE9VpPJ18Xn7SM/1CQ==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-02-08T00:50:31Z"
+  mac: ENC[AES256_GCM,data:PjRG3uTenaB3gOVMsR/C4ItOsALrgx8uS3j7PU+A2FtF3THWH3LxYz/qzvb4AH370q1Vi6gFIzu1gCe3877IEzLhdDqNNbMSZZmZFmJbI5ykXM/S4G28O9CrH3RgAC88ttKljH1cOxjY/blJ60fmYknz/J4euE2IqaQ+dtofP4w=,iv:RAH0iQ+hUMPcLyog/jtSLTgurVZ5/Z4ZJr5pVg0KHUA=,tag:4WEgUvzZsqQc0JWNTZ6TFA==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.9.4

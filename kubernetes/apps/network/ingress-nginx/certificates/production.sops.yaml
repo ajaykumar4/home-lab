@@ -1,0 +1,34 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: aknuk-dev-production
+spec:
+  secretName: aknuk-dev-production-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: aknuk.dev
+  dnsNames:
+    - aknuk.dev
+    - '*.aknuk.dev'
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB3c0FYSXNOcU1CRjk5amFJ
+        TVFYK1M5dGlOTlRFRElYZXBCL1hTYUdtSkVRCjA1RllkRy9vTHBKVElSZzUxY2Vx
+        UGpienRRL3VwQThpQ0hXbDVSR3RjWjQKLS0tIHVUS2NnemZBWWUxMzFQS0JVcXVn
+        Sm1jNmJMd1VqeDlxanBUd3pZV1BubFUKz+pL/Y5FJKENOnWBJoXJ0vg0OBs+ET6A
+        KqCTdCD08xtMmrD+sQHOMNxIQ8cqxU/sCh7b7JXuSjEchBD92W2yvg==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-02-08T00:50:31Z"
+  mac: ENC[AES256_GCM,data:GxJD7pHR1oEcJlJEXXxYFHCZZYC4VWJWXYBrnHOj1D+RDfwxu/Da2uwzJHsGa7n38I6qArJjfoDEWzh5rEqE3KHKPspxkFhiTgS5ryLp69F5Tvcwe9Gp37NIjLP50CBOBq6UK/5eC3VbOgky1eU2gQpL9FtEhF5LWRBVkxYpEt4=,iv:l3JMHXVNfidJv3vur39QfK6oxgkRWAvCs8waWhbf7tg=,tag:daNDL76bVTdTa7A4UzjGWw==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.9.4

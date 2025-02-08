@@ -1,0 +1,81 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/cert-manager.io/clusterissuer_v1.json
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-production
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-production
+    solvers:
+      - dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name: cert-manager-secret
+              key: api-token
+        selector:
+          dnsZones:
+            - aknuk.dev
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA4MU1JeCtLc2dpa1BuWVRz
+        cDIvRkxuSjN3cG1JMGdxem9mSUNKeklRem5RCjUzV1VUMXFWcXQzUHNORndKUnVT
+        NFlyUmgvOGdwdFExTmhDUDY5cGhQSlEKLS0tIEpGdy8xM096NWk2bEZBL1A3Tit6
+        ZnI3S0RxQXlwWFNJY0hyYVBrUVlWVTQKnmdTvyCdjnETOZi4ScRqx4KBkLLTFfhB
+        51Px/JcgyR82Muk/aAME5heag5nVkG41nNJDwIC+FVcjWU5ZEoCDFw==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-02-08T00:50:31Z"
+  mac: ENC[AES256_GCM,data:2AP28qs8WJmmlaaQETgARXgwPcoDJDfs5kEcnrS1MK/qrB9H4YH3F+JJgpE9Dbom9VQcPYsYdapNcaWkgX7iyXNxySHlIYxFcEgiHYwVd3MzGGYE62JUK4EOSS51f/3rrwqumzY3g1xp6mYDBmDJ/qa5XH6oJpEJPQixQxMfOy8=,iv:drKEi4jg7JQg+Wbk9uTlbzmo3dBjiEYb7gkF1Mig7lA=,tag:1xZcwAAcneqwjYzMyAFwNw==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.9.4
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/cert-manager.io/clusterissuer_v1.json
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+spec:
+  acme:
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    solvers:
+      - dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name: cert-manager-secret
+              key: api-token
+        selector:
+          dnsZones:
+            - aknuk.dev
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA4MU1JeCtLc2dpa1BuWVRz
+        cDIvRkxuSjN3cG1JMGdxem9mSUNKeklRem5RCjUzV1VUMXFWcXQzUHNORndKUnVT
+        NFlyUmgvOGdwdFExTmhDUDY5cGhQSlEKLS0tIEpGdy8xM096NWk2bEZBL1A3Tit6
+        ZnI3S0RxQXlwWFNJY0hyYVBrUVlWVTQKnmdTvyCdjnETOZi4ScRqx4KBkLLTFfhB
+        51Px/JcgyR82Muk/aAME5heag5nVkG41nNJDwIC+FVcjWU5ZEoCDFw==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-02-08T00:50:31Z"
+  mac: ENC[AES256_GCM,data:2AP28qs8WJmmlaaQETgARXgwPcoDJDfs5kEcnrS1MK/qrB9H4YH3F+JJgpE9Dbom9VQcPYsYdapNcaWkgX7iyXNxySHlIYxFcEgiHYwVd3MzGGYE62JUK4EOSS51f/3rrwqumzY3g1xp6mYDBmDJ/qa5XH6oJpEJPQixQxMfOy8=,iv:drKEi4jg7JQg+Wbk9uTlbzmo3dBjiEYb7gkF1Mig7lA=,tag:1xZcwAAcneqwjYzMyAFwNw==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.9.4
