@@ -9,7 +9,7 @@ metadata:
 spec:
   project: kubernetes
   sources:
-    - repoURL: "https://github.com:ajaykumar4/home-lab-argocd.git"
+    - repoURL: "https://github.com/ajaykumar4/home-lab-argocd.git"
       path: kubernetes/apps/kube-system/kubelet-csr-approver
       targetRevision: main
       ref: repo
