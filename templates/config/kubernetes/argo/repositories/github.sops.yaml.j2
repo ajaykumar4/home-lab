@@ -18,5 +18,5 @@ stringData:
     #{ deploy_key() }#
     #%- endfilter %#
   #% else %#
-  url: "https://github.com:#{ github.repository }#.git"
+  url: "https://github.com/#{ github.repository }#.git"
   #% endif %#

@@ -8,7 +8,7 @@ spec:
   project: default
 
   source:
-    repoURL: "https://github.com:#{ github.repository }#.git"
+    repoURL: "https://github.com/#{ github.repository }#.git"
     path: kubernetes/argo/apps
     targetRevision: #{ github.branch }#
     directory:

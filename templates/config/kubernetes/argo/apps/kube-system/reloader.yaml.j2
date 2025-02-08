@@ -9,7 +9,7 @@ metadata:
 spec:
   project: kubernetes
   sources:
-    - repoURL: "https://github.com:#{ github.repository }#.git"
+    - repoURL: "https://github.com/#{ github.repository }#.git"
       path: kubernetes/apps/kube-system/reloader
       targetRevision: #{ github.branch }#
       ref: repo
