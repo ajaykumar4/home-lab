@@ -20,7 +20,7 @@ releases:
     chart: cilium/cilium
     version: 1.16.6
     values:
-      - ['{{ requiredEnv "KUBERNETES_DIR" }}/apps/kube-system/cilium/values.sops.yaml']
+      - ['{{ requiredEnv "KUBERNETES_DIR" }}/apps/kube-system/cilium/values.yaml']
     hooks:
       - events: ['presync']
         command: bash
