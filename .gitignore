@@ -22,4 +22,3 @@ Brewfile.lock.json
 # Bootstrap
 /config.yaml
 cloudflared.json
-*.bck

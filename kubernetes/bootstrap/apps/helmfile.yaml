@@ -18,12 +18,8 @@ releases:
   - name: cilium
     namespace: kube-system
     chart: cilium/cilium
-    version: 1.17.0
+    version: 1.17.1
     values: ['{{ requiredEnv "KUBERNETES_DIR" }}/apps/kube-system/cilium/values.yaml']
-    hooks:
-      - events: ['presync']
-        command: bash
-        args: ['{{ requiredEnv "KUBERNETES_DIR" }}/bootstrap/apps/scripts/cilium-presync.sh']
 
   - name: coredns
     namespace: kube-system
@@ -35,7 +31,7 @@ releases:
   - name: cert-manager
     namespace: cert-manager
     chart: jetstack/cert-manager
-    version: v1.17.0
+    version: v1.17.1
     values: ['{{ requiredEnv "KUBERNETES_DIR" }}/apps/cert-manager/cert-manager/values.yaml']
     needs: ['kube-system/coredns']
 
