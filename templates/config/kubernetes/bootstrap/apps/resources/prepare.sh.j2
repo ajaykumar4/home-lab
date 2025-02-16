@@ -107,31 +107,6 @@ function apply_namespaces() {
     done
 }
 
-# ConfigMaps to be applied before the helmfile charts are installed
-function apply_configmaps() {
-    gum "${LOG_ARGS[@]}" debug "Applying ConfigMaps"
-
-    local -r configmaps=(
-        "${KUBERNETES_DIR}/argo/settings/cluster-settings.yaml"
-    )
-
-    for configmap in "${configmaps[@]}"; do
-        if [ ! -f "${configmap}" ]; then
-            gum "${LOG_ARGS[@]}" warn "File does not exist" file "${configmap}"
-            continue
-        fi
-        if kubectl --namespace argo-system diff --filename "${configmap}" &>/dev/null; then
-            gum "${LOG_ARGS[@]}" info "ConfigMap resource is up-to-date" resource "$(basename "${configmap}" ".yaml")"
-            continue
-        fi
-        if kubectl --namespace argo-system apply --server-side --filename "${configmap}" &>/dev/null; then
-            gum "${LOG_ARGS[@]}" info "ConfigMap resource applied successfully" resource "$(basename "${configmap}" ".yaml")"
-        else
-            gum "${LOG_ARGS[@]}" fatal "Failed to apply ConfigMap resource" resource "$(basename "${configmap}" ".yaml")"
-        fi
-    done
-}
-
 # SOPS secrets to be applied before the helmfile charts are installed
 function apply_sops_secrets() {
     gum "${LOG_ARGS[@]}" debug "Applying secrets"
@@ -171,7 +146,6 @@ function main() {
     wait_for_nodes
     apply_prometheus_crds
     apply_namespaces
-    apply_configmaps
     apply_sops_secrets
     success
 }
