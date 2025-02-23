@@ -1,4 +1,3 @@
-#% if cloudflare.enabled %#
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -13,4 +12,3 @@ spec:
   dnsNames:
     - "#{ cloudflare.domain }#"
     - "*.#{ cloudflare.domain }#"
-#% endif %#

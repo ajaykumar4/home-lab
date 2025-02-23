@@ -1,4 +1,3 @@
-#% if cloudflare.enabled %#
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -24,4 +23,3 @@ data:
           noTLSVerify: true
         #% endif %#
       - service: http_status:404
-#% endif %#
