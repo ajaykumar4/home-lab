@@ -56,17 +56,17 @@ sops:
   azure_kv: []
   hc_vault: []
   age:
-    - recipient: age1f9ycc3gy6pg7rdw5akfqpc2nxcqxcfktdf070mvf4e7jtvqhg58s0u6s22
+    - recipient: age1tatahq8d27vvdsv8ke4hwtenklmczxgqq83zmc405lwgw4gn6erqg7ryrz
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBvRC82YlRKQXZILysxR01K
-        cThEUlVSbTM5QWhxNWhqVnlCKzFCVGVkM21VCkxnTGxFSG5EanVaVEROTnBtRXJP
-        NFNHdXhzUWJqVDREQUFSMG9JMmFNc1kKLS0tIEFtM2RiZGJ3R0ltRjc0RWxuYUFt
-        aE1aTkcxc1ZoeWFFUmx6NlhHemtnYjQKfl7rvmq2AhXOVai/Ty9sbbNxSynkxtcN
-        gbPE6nnd7IDjEJ3UILmxEnhWTOKbPn0P1vPix8fXFv1rwzhCoVQepg==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA1U0VpdlNUSVNTMm9ZblJT
+        MWFVczZrZXcrUUV4S0syTkVXQ0xZNlFKd1F3ClpER2lOaHk4eHM2SldiWENRME9Q
+        THZVRkN1WVo1dGdMSGxjYUN1WFRCalkKLS0tIFVwVitZQmlkcXdDTUdSUXI1UTN6
+        ZGFTSEVUa2RaZkZUa1F4Wk9pWEZlbHMKa8BUV+4IegWZjb68aMNkfbVy5mh+oMaH
+        mitIKBfJTadN0q7gAU3YYO47Mx5UEQbwJdPH4kzwJaaR1ZqXWJ7sug==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-03-06T20:46:21Z"
-  mac: ENC[AES256_GCM,data:XWBLQA/SpUM1jZ3Uu0KraYA8itp1iHbXcQEUGqCNL2eVt9PsEgW4aX8gJuwP3sl/lQuGon+9avIhS8HCSkX8QZoUYpl/qvN9y9WvhOrjMEmysTK9d9LzG4PvZm6zqp1B3/L3ocwDPPWkmxsdcjeQS79sIMQNMX31XYu7QAvO+oE=,iv:ddSbjeEGY2rwBVlhf/a6bHXy7yY5eOrkc+7ezndLK/Y=,tag:Vjbgecf0K2LqNaKMCoV6VQ==,type:str]
+  lastmodified: "2025-03-06T22:38:59Z"
+  mac: ENC[AES256_GCM,data:FNitQG2jTVfaI2aRKYhjIbOajbFRQVn/hOKc7UMK8MiGzhoDesRUL/Y7PauzKQ2bW4bOZSQz9kE6HT9JwRCgwNYvQverCR88t+7yAW58vjMm4XNcZcaS6qEexnuG7ZASKF5JzOWgs791P5+EZ2p260/YqhbCOE5l0UyAKXK0Tnw=,iv:54ci3NLYwQ9HUMaHDG/Ue1zeOgToP4T3kd7NUqcARbI=,tag:Iqw7Pc3HtfWIM6uidJwq8g==,type:str]
   pgp: []
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true

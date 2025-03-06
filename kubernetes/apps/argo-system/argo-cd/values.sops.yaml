@@ -18,8 +18,8 @@ configs:
           - "*"
   secret:
     argocdServerAdminPassword: $2a$10$VS18cczTtbUep4iBCs0FdORY9tWiBZ/ew4m62ciotMBWrWeyC.JNO
-    argocdServerAdminPasswordMtime: 2025-03-06T20:46:21
-    githubSecret: 4097e9922c7feaaeb35570150d5cf34d
+    argocdServerAdminPasswordMtime: 2025-03-06T22:38:58
+    githubSecret: 93fc7ba2424f0da6e297c005d2615ae8
 controller:
   replicas: 2
   metrics:
@@ -151,17 +151,17 @@ sops:
   azure_kv: []
   hc_vault: []
   age:
-    - recipient: age1f9ycc3gy6pg7rdw5akfqpc2nxcqxcfktdf070mvf4e7jtvqhg58s0u6s22
+    - recipient: age1tatahq8d27vvdsv8ke4hwtenklmczxgqq83zmc405lwgw4gn6erqg7ryrz
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBWY3A5ekd0V3UxdWF4L0ho
-        dEFzcXQwZGVpNldlNTFLcEozd29HRU1aQm5vCk5hTVFjOWYxRE1ub0xqUFV1U3l4
-        WGs3bFkwc3ptY0dQMkRJdTFUSFkwblEKLS0tIHRCRFlLQkFMdEFJd1I0VmJ5Nzh2
-        QW5ob1laeTRySCtDNlV5S0RiZDBQTEUKzlmU/eR/34ZCe4MG73y/JUuwkBfQdkDB
-        jYw0cCKMqnjGc85KNeX+DWqx78mFjWOkaoMiQs7GxULqD09SgN+ROw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBQRUJOS2RWekZlb3NjdnpU
+        NU5XUWgyb0R5a3Z5bFVWSUZWczlQbFJhRVVFCnhJVTBIeFpwRmlyN3ZZVzYxT0ty
+        SWFiRWVIUGVSTEtIbEE0MHlaREFPUzAKLS0tIE1vSUJGbUhZZGs2MHBGaU5zcSt0
+        cjFhK3dOWEQ5aGFFVm8vRkNCMVMrMDAKHouvO0x1W75+dCIFb4E2yUE1OrLaPcOC
+        G1Q+DnfU61pRntBC2zC0NdUNxyPM3Fi6TQ83I5ZdHm+iVE/rtiu8vg==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-03-06T20:46:22Z"
-  mac: ENC[AES256_GCM,data:AULgCHZ33qQbqzvGLFIs7tY8h2TQMUcPsMLRRFTnXGesicc3+txvOjoTLrPszE+9rZCAq3Qw0gWhDwwsNi5kbhAhZajopQxr/CbKbIM70X5JYyvlXmPu/P0mOvj829TmKzAWy7CrafuOSu0pqNMvDTgQ2s9qMSFHuLMr8qoEqSc=,iv:OSjl1dSOmu87sDqmSeks/ixT7F5qRJ9jlQRNhuPSGk8=,tag:eC8b/edWz/ix8t9Fw+3K7g==,type:str]
+  lastmodified: "2025-03-06T22:38:59Z"
+  mac: ENC[AES256_GCM,data:Dq4VPEc6U9eVcMWVZkDf2C5QMOZjUR5O1WD/winB5xANH6ocn7/pVOfkE8TzY5RTEFke7LBmbwks7LYd7IUQ3bmEcqvncmeN4v4qWsJaS6GufZQLEJVP7npWEAZ7YEmMae8vgAxnSDcCi9m2pMuo9p3uKx2ajye36a/UUqKxXFc=,iv:GpxKjLGUKzXVZK60S9lAVHSdDfTj9kkRTBqFu8rV0Us=,tag:sYJgOz6sfQZDVPtHEr3d5A==,type:str]
   pgp: []
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true

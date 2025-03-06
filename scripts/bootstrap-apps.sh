@@ -99,7 +99,6 @@ function apply_helm_releases() {
     log info "Helm releases applied successfully"
 }
 
-
 # Apply Argo Cluster Bootstrapping
 function apply_argo_bootstrapping() {
     log debug "Applying Argo Bootstrapping"

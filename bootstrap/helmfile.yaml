@@ -8,6 +8,10 @@ helmDefaults:
   # waitRetries: 3 # Not supported by Helm yet
 
 repositories:
+  - name: argo-helm
+    url: oci://ghcr.io/argoproj/argo-helm
+    oci: true
+
   - name: coredns
     url: ghcr.io/coredns/charts
     oci: true
@@ -46,7 +50,7 @@ releases:
 
   - name: argo-cd
     namespace: argo-system
-    chart: oci://ghcr.io/argoproj/argo-helm/argo-cd
+    chart: argo-helm/argo-cd
     version: 7.8.8
     secrets: ['{{ requiredEnv "ROOT_DIR" }}/kubernetes/apps/argo-system/argo-cd/values.sops.yaml']
     needs: ['cert-manager/cert-manager']
