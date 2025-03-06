@@ -3,7 +3,7 @@ controller:
   service:
     annotations:
       external-dns.alpha.kubernetes.io/hostname: external.aknuk.dev
-      lbipam.cilium.io/ips: 192.168.8.203
+      lbipam.cilium.io/ips: 192.168.8.204
     externalTrafficPolicy: Cluster
   ingressClassResource:
     name: external
@@ -56,17 +56,17 @@ sops:
   azure_kv: []
   hc_vault: []
   age:
-    - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
+    - recipient: age1f9ycc3gy6pg7rdw5akfqpc2nxcqxcfktdf070mvf4e7jtvqhg58s0u6s22
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA4c3I5QnNScTVlcnIwdUlO
-        Tk1FOCtzaUkvWVFBU0xDamgyT3VGbjZYTndnCkV5TGJqYWtlUEp0dk91L2o2TGJp
-        RHNDcGk2d2xGSTNDN2RRaVIyWmVPeEEKLS0tIDNVWS9ySGtvKzBHWGlHeER6VkRZ
-        SXUyM1JNRDVnOURka3F3SWdHQ1dadkUKdJpcJ7iatenN/UHaG3fk2rpkg3/CdLgN
-        yvUCiIoBfjl8c8Nq4AY4giuKJH55BNZ4OPeB5AwJT9WiSZwx+Qg5TA==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBvRC82YlRKQXZILysxR01K
+        cThEUlVSbTM5QWhxNWhqVnlCKzFCVGVkM21VCkxnTGxFSG5EanVaVEROTnBtRXJP
+        NFNHdXhzUWJqVDREQUFSMG9JMmFNc1kKLS0tIEFtM2RiZGJ3R0ltRjc0RWxuYUFt
+        aE1aTkcxc1ZoeWFFUmx6NlhHemtnYjQKfl7rvmq2AhXOVai/Ty9sbbNxSynkxtcN
+        gbPE6nnd7IDjEJ3UILmxEnhWTOKbPn0P1vPix8fXFv1rwzhCoVQepg==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-02-23T15:33:01Z"
-  mac: ENC[AES256_GCM,data:XCtf342CN4kA3d747vxLYC7egzcun8DGRoYty7AFsetMwW/Oym4LsXrV/Ub+aXUSZ4/T/gfFQ6l9QFvTSoVQ/iSDD6ztSMsCF+mCfPGUxgWeL79wQFH0IBmsGSd4xrMnmBH+tGkUdCZpuR7Nh1ShcoosaXzf1TAqzVYstRFJh+s=,iv:c8SSkKoH0dDbqA5WP8ABfQtzwovAUwSfew1iywiaFkk=,tag:ObeSgeTc4Zt7eoApi/70TA==,type:str]
+  lastmodified: "2025-03-06T20:46:21Z"
+  mac: ENC[AES256_GCM,data:XWBLQA/SpUM1jZ3Uu0KraYA8itp1iHbXcQEUGqCNL2eVt9PsEgW4aX8gJuwP3sl/lQuGon+9avIhS8HCSkX8QZoUYpl/qvN9y9WvhOrjMEmysTK9d9LzG4PvZm6zqp1B3/L3ocwDPPWkmxsdcjeQS79sIMQNMX31XYu7QAvO+oE=,iv:ddSbjeEGY2rwBVlhf/a6bHXy7yY5eOrkc+7ezndLK/Y=,tag:Vjbgecf0K2LqNaKMCoV6VQ==,type:str]
   pgp: []
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true

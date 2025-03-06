@@ -6,19 +6,19 @@ talosVersion: v1.9.4
 kubernetesVersion: v1.32.2
 
 clusterName: kubernetes
-endpoint: https://192.168.8.200:6443
+endpoint: https://192.168.8.201:6443
 
 clusterPodNets:
-  - "10.69.0.0/16"
+  - "10.42.0.0/16"
 clusterSvcNets:
-  - "10.96.0.0/16"
+  - "10.43.0.0/16"
 
 additionalApiServerCertSans: &sans
-  - "192.168.8.200"
   - "127.0.0.1"
+  - "192.168.8.201"
 additionalMachineCertSans: *sans
 
-# Disable built-in Flannel to use Cilium
+# Disable built-in CNI to use Cilium
 cniConfig:
   name: none
 
@@ -41,7 +41,7 @@ nodes:
             gateway: "192.168.8.1"
         mtu: 1500
         vip:
-          ip: "192.168.8.200"
+          ip: "192.168.8.201"
 
 # Global patches
 patches:

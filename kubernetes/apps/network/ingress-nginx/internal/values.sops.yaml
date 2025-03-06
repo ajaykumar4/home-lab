@@ -2,7 +2,7 @@ fullnameOverride: ingress-nginx-internal
 controller:
   service:
     annotations:
-      lbipam.cilium.io/ips: 192.168.8.201
+      lbipam.cilium.io/ips: 192.168.8.203
     externalTrafficPolicy: Cluster
   ingressClassResource:
     name: internal
@@ -57,17 +57,17 @@ sops:
   azure_kv: []
   hc_vault: []
   age:
-    - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
+    - recipient: age1f9ycc3gy6pg7rdw5akfqpc2nxcqxcfktdf070mvf4e7jtvqhg58s0u6s22
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBsUTlLY2lMU0t6RFJ4Tmla
-        aVN1OCtUNFNQdzEvTFBaUzZhUmpNaXVBcDFVCm9sei9YMDE5UTZIOXJwSFlFcnZO
-        ZC85a2NlL3k5L215bnFob2VkNlorOWsKLS0tIHNodGxjTmk2V0RxaFpNNHUxV1p3
-        NXZjWUVya2kzUjlqb05adjBmR3F2TkUKkhj7Xcb7rWw/S/w0VCYb4IzObMrX4nKt
-        tJHp3dhRe4J9iNqfMhOeK9yUZ8pcPeeXopH8WBsPuw7kvrJdgC/6Ww==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTYy9BV1RSMUlKREZWOWg0
+        bEd6bFJ3eFJpTnJIbXJkTkFTbTA4N1YvRkhnCktTYUZjSlFDUkE3UjNreHEwcG4x
+        WFhvMnRhakFvc1JvV2VPSFFxZVU3S3MKLS0tIFlRSUtmUXFXV3NXb215M1pJbFV5
+        ZGwvZDRkSzhZdWhrMDUxOFBFb1VwbTAKD8//+xObAxjuAuvhb1eO+vqh0YMiDmMc
+        4Xs1w8XjkJkFwakbPybRPUXBnkOm6UjsBKVs8VV4g4Ue4vjInfLicQ==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-02-23T15:33:01Z"
-  mac: ENC[AES256_GCM,data:RHf4ku/wFChZpqH4pNb13FroVSbVC0No7hhJoTgUD2JjNKBUlhSxZ7jOJqHVIAlBr6BXjUGgIo50huiL9fWuTp12QsveOitVv86h9IJe4e5+cOn87JrBpSlRx37x4E65/9fE0k5DcVgOi2ukoGO9VbVBccQOsB25LSv9Rn2b2xo=,iv:CWrjvbYSa6h5RoSzNk0H4qbB9+OgBtoYeVBhEwEgihc=,tag:SVref1v5idffF+YlISF6gA==,type:str]
+  lastmodified: "2025-03-06T20:46:22Z"
+  mac: ENC[AES256_GCM,data:k4VkQF76QI/2jgAHw5Jn5/SNWache/a5dDyiiwd1997wzygUNzYE2V07k1ru1txNsK4KhSX9ixCDSBZRgiGm9YwEjEbhPslf5niEVwqgNYsNYNBFBR1R5rSMWMcUenzEUJKP4q942iFBsLdruF7oyLfFp/xhelXCRpbBzu8bn/c=,iv:R19DuVbrWuvbPyFBrYEj/6wvfeDK2q7DKtQZWpXkASM=,tag:x46olLkH+Zi1TP/zTxKS1w==,type:str]
   pgp: []
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true

@@ -10,7 +10,7 @@ spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab-argocd.git"
-      path: kubernetes/apps/network/ingress-nginx/certificates
+      path: kubernetes/apps/network/ingress-nginx/tls
       targetRevision: main
       ref: repo
     - repoURL: https://kubernetes.github.io/ingress-nginx

@@ -18,8 +18,8 @@ configs:
           - "*"
   secret:
     argocdServerAdminPassword: $2a$10$VS18cczTtbUep4iBCs0FdORY9tWiBZ/ew4m62ciotMBWrWeyC.JNO
-    argocdServerAdminPasswordMtime: 2025-02-23T15:32:58
-    githubSecret: bd77b8ded03b9fdc259013f221d5c244
+    argocdServerAdminPasswordMtime: 2025-03-06T20:46:21
+    githubSecret: 4097e9922c7feaaeb35570150d5cf34d
 controller:
   replicas: 2
   metrics:
@@ -151,17 +151,17 @@ sops:
   azure_kv: []
   hc_vault: []
   age:
-    - recipient: age1vntqr796ff4ql0rd0j5y7z8e2750uejm4v6kymleqlyeldt9yyvs4xv7e0
+    - recipient: age1f9ycc3gy6pg7rdw5akfqpc2nxcqxcfktdf070mvf4e7jtvqhg58s0u6s22
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBzYSswQVpwWXBxRWRSRk05
-        YXZKYXdmeENpd0FDNmRBbGV5SHIwV2VETzJzCmFkUGJTcXFVMTZNcm1rdVpFZmUw
-        aE1aMlQrNWNQRG1vWncwcW43clEzNWsKLS0tIEVJN2lxSUhnVTVuSzlXeVVtRS9r
-        Y2FDZDBWWjNybWtrenVCOHNnWUNsTEUKoG/fBKwMfaiDSnM6l0acTdqaHTLhFF6B
-        HVdQKxQTo+ceRw1GqCVR9dR909lbjepEdgmwvYxwydmModRX4aFsew==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBWY3A5ekd0V3UxdWF4L0ho
+        dEFzcXQwZGVpNldlNTFLcEozd29HRU1aQm5vCk5hTVFjOWYxRE1ub0xqUFV1U3l4
+        WGs3bFkwc3ptY0dQMkRJdTFUSFkwblEKLS0tIHRCRFlLQkFMdEFJd1I0VmJ5Nzh2
+        QW5ob1laeTRySCtDNlV5S0RiZDBQTEUKzlmU/eR/34ZCe4MG73y/JUuwkBfQdkDB
+        jYw0cCKMqnjGc85KNeX+DWqx78mFjWOkaoMiQs7GxULqD09SgN+ROw==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-02-23T15:33:02Z"
-  mac: ENC[AES256_GCM,data:9/vBN5sVbbz7e7pu2bfvtqe9PzW0K9zbulaHwoR1l84EqEMD9aiX6McSTV3bO3bAngx+7xdobhAox099aPPdvsVkIoAXZr1lnKViwtynj0VsHUrnhLGxhM2wS9XGcemcdxF057qpTvA7LFKbvYk+lk8u4Z8Fc1NGpgOhsneFh4w=,iv:9QfdQGnAoP7jmSqcRAMLM9GLEqYjlJoIXI/euYwzB4w=,tag:otG5+B3a+htmyyEw/tleWw==,type:str]
+  lastmodified: "2025-03-06T20:46:22Z"
+  mac: ENC[AES256_GCM,data:AULgCHZ33qQbqzvGLFIs7tY8h2TQMUcPsMLRRFTnXGesicc3+txvOjoTLrPszE+9rZCAq3Qw0gWhDwwsNi5kbhAhZajopQxr/CbKbIM70X5JYyvlXmPu/P0mOvj829TmKzAWy7CrafuOSu0pqNMvDTgQ2s9qMSFHuLMr8qoEqSc=,iv:OSjl1dSOmu87sDqmSeks/ixT7F5qRJ9jlQRNhuPSGk8=,tag:eC8b/edWz/ix8t9Fw+3K7g==,type:str]
   pgp: []
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
