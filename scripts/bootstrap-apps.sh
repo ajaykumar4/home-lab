@@ -68,13 +68,13 @@ function apply_sops_secrets() {
         fi
 
         # Check if the secret resources are up-to-date
-        if sops exec-file "${secret}" "kubectl --namespace flux-system diff --filename {}" &>/dev/null; then
+        if sops exec-file "${secret}" "kubectl --namespace argo-system diff --filename {}" &>/dev/null; then
             log info "Secret resource is up-to-date" "resource=$(basename "${secret}" ".sops.yaml")"
             continue
         fi
 
         # Apply secret resources
-        if sops exec-file "${secret}" "kubectl --namespace flux-system apply --server-side --filename {}" &>/dev/null; then
+        if sops exec-file "${secret}" "kubectl --namespace argo-system apply --server-side --filename {}" &>/dev/null; then
             log info "Secret resource applied successfully" "resource=$(basename "${secret}" ".sops.yaml")"
         else
             log error "Failed to apply secret resource" "resource=$(basename "${secret}" ".sops.yaml")"
@@ -165,7 +165,7 @@ function main() {
     apply_helm_releases
     apply_argo_bootstrapping
 
-    log info "Congrats! The cluster is bootstrapped and Flux is syncing the Git repository"
+    log info "Congrats! The cluster is bootstrapped and Argo is syncing the Git repository"
 }
 
 main "$@"
