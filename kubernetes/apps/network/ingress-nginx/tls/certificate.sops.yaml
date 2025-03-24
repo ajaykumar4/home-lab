@@ -2,11 +2,11 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: aknuk-dev-staging
+  name: aknuk-dev-production
 spec:
-  secretName: aknuk-dev-staging-tls
+  secretName: aknuk-dev-production-tls
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt-production
     kind: ClusterIssuer
   commonName: aknuk.dev
   dnsNames:
@@ -18,17 +18,17 @@ sops:
   azure_kv: []
   hc_vault: []
   age:
-    - recipient: age1tatahq8d27vvdsv8ke4hwtenklmczxgqq83zmc405lwgw4gn6erqg7ryrz
+    - recipient: age1hxqvf8yac5g5647gzsa95luvza94853l7mj7hle4u4933dyu3d3saxa80h
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBJTVYxcWl5Rm5kTG5JNU1j
-        UGZGTDBkSXh3YTF3N1JTWk9vOTYwMWZmVUNBCmp1QndJMW5aOXhYUk1JaTk0bFZu
-        emhVUlVCVGhFRDNpSExNQ3Bsejd1UWsKLS0tIHlwRDVOekZ1T3g4QXdKcVNhdTlr
-        bmdESUE5alFML0d2ak10R2o3SCtmNnMKWQJo8bdm03mbNwVsu2RtvFf+DY/OZwZV
-        e4eXlt85YAAVadaGZUHOz61Y+Wyzkbf9SkT8DvBY6mjpW+yiqWi6cw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVdC9vb3greGx3OHNmZnIz
+        MXI1eGdhTmhmS3grZitROFY5cFlDMUhsTUZzCnU4WUFTL0J6L29rRUZrallYaERa
+        ZGhpSzMzaHVxSFQ4QjhwbWxBYlI0WlEKLS0tIDF3a3RaekRqckJjekFRbW1aMWpV
+        ejRqN0VOcDFsYTY2U1NSTklscUZ4QUEKeSdTgwirSQZDbrKm2urqBqVVCvoFbgCx
+        OW5C3KEh30IQMjqag8/UymXGXn3zOgoa8DkmDr48Umh0hLI5yJffoQ==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-03-07T16:39:37Z"
-  mac: ENC[AES256_GCM,data:FRUvWe/jPysE52/5QNMMiecXCMy0hevpqgYUrHEsbek9edvK+nGswKguPCTCP/Uhx66BDtAm0/nrteeO5DdVwOMq3U1ySeTK5HrxM72Ac7E3nCBolEQU4ltQYJw6YBiuocURwzvrwY7Ll3eXJvDx3klt7HWql6a6s2b8PipP4vg=,iv:9BRo/+oD4Y2JCiu9KJu6OntAjONyJ0joAJePB/EiMAM=,tag:4sz4ypE48t9GR2G7qgUVAg==,type:str]
+  lastmodified: "2025-03-24T00:23:44Z"
+  mac: ENC[AES256_GCM,data:UQW6LaT2+sLw0YNGOqv9wifgM/RP1cCtz3DR/WSj214R8SAlrdQaDxIzj+8IpLgmOKBG2BOTSYruGx7hcHwMRNp5dfsb0u8VTIZD5QdoqQ86sOohQJs98P6UazzDOT1tltoiF1uXCcyvPaNAJuTGJ78I7UlKDGTUizGjeYbWtxA=,iv:eTYsjSkxMkngCKOfD5uypIMEsdrhV5sawt/bEprhUWs=,tag:FvjWqhz8zaf+DYmx05eQKA==,type:str]
   pgp: []
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true

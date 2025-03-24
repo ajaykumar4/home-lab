@@ -18,8 +18,8 @@ configs:
           - "*"
   secret:
     argocdServerAdminPassword: $2a$10$VS18cczTtbUep4iBCs0FdORY9tWiBZ/ew4m62ciotMBWrWeyC.JNO
-    argocdServerAdminPasswordMtime: 2025-03-07T16:39:33
-    githubSecret: 93fc7ba2424f0da6e297c005d2615ae8
+    argocdServerAdminPasswordMtime: 2025-03-24T00:23:41
+    githubSecret: eaf646f288c504051ce7c8bbd30c360d
 controller:
   replicas: 2
   metrics:
@@ -151,17 +151,17 @@ sops:
   azure_kv: []
   hc_vault: []
   age:
-    - recipient: age1tatahq8d27vvdsv8ke4hwtenklmczxgqq83zmc405lwgw4gn6erqg7ryrz
+    - recipient: age1hxqvf8yac5g5647gzsa95luvza94853l7mj7hle4u4933dyu3d3saxa80h
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA5VWpWWi9CQlBWMGd4Njhr
-        bUdjVG1IRm93UUpsdEdPVHlPdk1BTk94MXdRCm9FK1greTV0ZmsyTlc5QTFEK3hy
-        WUY4TVdsL3MyTTlSUFlNRTBCMmtOU2MKLS0tIERsNCtIYWdpTW90ZzNLdXhQODJm
-        c2tIcFgzaEVVTzNOV0VNSXM4Z09VMUEKeFNGQKytrLdxP3dty7m+5fXys8cIBsNr
-        iitsTzHOiYpzZxfmMhq65m+uqWCbMAIKCg721v+2lfClZ7CLTEBIKQ==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBhOWhEVGxUR1NlWStDemQw
+        OE1WcnV3Y0ZmOUhpZS81cjBGV1hEM0FYcWp3ClVCRk9SbTBuQllhRkRkR0E0aHR3
+        U2luN2o4OHRhSDNlckVXaXpwQWtLMU0KLS0tIERvVXJTdTdRamFVbjJVSVJyaEZN
+        UXd6ZFJoQmVmMVU5TzllWnFobjhOOXcKd8/FWWCqxP++nAskrutp1gVocr+0L5XT
+        Hor+SLOAXITGedqsvwkddHK9H+j5qvQzJArLhMroFxfLbXaE5ts6WQ==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-03-07T16:39:37Z"
-  mac: ENC[AES256_GCM,data:mYne9YgMUHa6coT6fIYHqBdphY9ttVFIzwrfBz3QeI4YAKW8Tf/aDLOBpwe9SshOzQhTagUURCiNk1tmvDZHCXjt7RBcBaR+mJrQC4uH5z5cskkBeDIUaxX7Kpjhibu959SB/dZdHhVO4HHGRhNuVKGzWpkMGwHEN7UVHZ21uM0=,iv:5tzjrp8MaHcnrDEc6YR/GGLSnfDxnEhYKGLtyzT6J7E=,tag:bvyW3bs0T/BORSVT81GF8A==,type:str]
+  lastmodified: "2025-03-24T00:23:44Z"
+  mac: ENC[AES256_GCM,data:7M3la/g5XnUzpOxO2d/KePSf2Xr3C71MJ4WmTa4nPyFc4YsPgj+FToJezAI8l/7g43e4muPQSn+p9SbO7d/C/YQa//jIyWc9G1Iw4R0nkXsywXSrwzfjbXyCLUO+ZZviaeWSSLFepmLoVrmngO2cXXWHYlVRT+FFSUphCKIq47Q=,iv:2XsOYSvCGsnHD1PnEId1t7Vvt4V0J8E3OUaQgJEtdzY=,tag:puH/SoihpQYG3E91jxZqBg==,type:str]
   pgp: []
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
