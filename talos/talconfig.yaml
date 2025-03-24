@@ -5,10 +5,10 @@ clusterName: kubernetes
 talosVersion: "${talosVersion}"
 kubernetesVersion: "${kubernetesVersion}"
 
-endpoint: https://192.168.8.200:6443
+endpoint: https://192.168.8.201:6443
 additionalApiServerCertSans: &sans
   - "127.0.0.1"
-  - "192.168.8.200"
+  - "192.168.8.201"
 additionalMachineCertSans: *sans
 
 clusterPodNets: ["10.42.0.0/16"]
@@ -37,7 +37,7 @@ nodes:
             gateway: "192.168.8.1"
         mtu: 1500
         vip:
-          ip: "192.168.8.200"
+          ip: "192.168.8.201"
 
 # Global patches
 patches:
