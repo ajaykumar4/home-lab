@@ -1,5 +1,5 @@
 controllers:
-  echo-server:
+  echo:
     strategy: RollingUpdate
     containers:
       app:
@@ -54,13 +54,13 @@ defaultPodOptions:
       type: RuntimeDefault
 service:
   app:
-    controller: echo-server
+    controller: echo
     ports:
       http:
         port: 8080
 serviceMonitor:
   app:
-    serviceName: echo-server
+    serviceName: echo
     endpoints:
       - port: http
         scheme: http
@@ -88,14 +88,14 @@ sops:
     - recipient: age1hxqvf8yac5g5647gzsa95luvza94853l7mj7hle4u4933dyu3d3saxa80h
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBpUG0vYzBrdy9lNXBwQVUr
-        dE1ianJid1RQRU50bkdtMmVmVVVFRUltQUJBCmx1anR1d2F0SmR4cWxBd25ydmVN
-        bUlrbVZVYXNkNFBhSk9wZUx0ak1qVlEKLS0tIEx4WDhTQU1OMVRKY3psRVgrWHh3
-        VWVXRkNJQmNTRkhzOFJUdi9TYW82cGsK925iv+HOHsDwEObsM4DeCiVNhznTDkUi
-        1b+MNnANyMmCVK1NjElj+M7ThHSoEQia0bz37NUWWm7286yB4wS93Q==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVVmVwbDB1SWdCV09ud2ll
+        L2NQUFhhbEhYWmlGTTFuSmw3N0ZPdUwybWtrCjFCaFRUVGRUcmZjNTkvWTRtRVR0
+        ZG4vY3VDNStoSmNTaFIwbk9HcTVDU1EKLS0tIFJ1TkJ3ZjJtSzdMS3ZYb0FqT0lh
+        VldtZnlZdyt2TkVnU1hZSVdzM25LU00KfUln049IMtotVGwzJ9YE0845eHMtQPMU
+        N1yZrKQ1j7z+hqikm6L8vKiBci2qzp8gXIgNmUKpToWbyshyyboBmA==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-03-24T01:16:30Z"
-  mac: ENC[AES256_GCM,data:INroFTUhIjHk1YAZOmGmpv5F7BUI3CFtKvJFJEjLBGC1YH/+9PbW3ZD23oZxT1wnpFKmN7vnXNKYBpdIXfuGTEcEbWaulwAQutT+xBSkMDvDLi9GdYqwRRXO8QOrOCfEGIwlJlJbGFrIkRSGoqKj+7EWZuXgCuuXBf+ahoe26n0=,iv:KwmXQBdoVGw7pxZLyrW0jPs7Eez/M0R1hfeVfC/cI0g=,tag:iPKnwKWPfh6bFSJHmF/MTA==,type:str]
+  lastmodified: "2025-03-24T20:16:53Z"
+  mac: ENC[AES256_GCM,data:O2a2KMeIwav5QyRXS8qo2GHXClI4HdbNZdKrmB/+wTwjsdOCYZAqw2Q8xCygPxAAdwTR2CalGn8KaL2qGRvPCwySrGkkyMwgUjrD02ueBz5auZoYCyR5IfEbcetQczb2VqyRJqaoUu5KpGEhHNuwI+YkTlpDx9oJXVXA56RXxAQ=,iv:qmPM2/ks1hu4uRdRGXhKvIp/YHPWcwsoFPbdsYsnNdo=,tag:9LNlu3mzC0wGHWY5LfaofQ==,type:str]
   pgp: []
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true

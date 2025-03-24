@@ -9,8 +9,8 @@ metadata:
   labels:
     argocd.argoproj.io/secret-type: repository
 stringData:
-  type: ENC[AES256_GCM,data:WzJR,iv:PfKKaCcknuBApCwJcGEzBdQFPg9iI5mX2xgPVGeBiV0=,tag:Qu2YdkAI/oT/l2D6kX9eDw==,type:str]
-  url: ENC[AES256_GCM,data:2w8xpKspFV+OUzIYWqNDePpXgBE12gab75bE1jQdtyjAb96dfzkSNk5ek28N1Nit3g==,iv:F4QqWPE3MqNSPFFnjd/r9QtW71YHOcr7eHaHsEcY/Gg=,tag:XhshPB7oXn2VcmutA5K02g==,type:str]
+  type: ENC[AES256_GCM,data:ri+d,iv:ri6qkWrHFgkTdCHFaxDmz2OdeSiWR4WF2ilK+oGsEe4=,tag:NA5FrrvsM7ueoc38txQOjg==,type:str]
+  url: ENC[AES256_GCM,data:MY0ka3qk6auav/7omB1EoGVI6Sj4YYW4Jq2A9YePadb0seBBRhxIcM899B3/KgVo9w==,iv:CNddaImAre8VmmLXRJ0uott4oWzYIcbeWnsvH1aJrrs=,tag:8/Hu6hohXdk47+kPoGuCBg==,type:str]
 sops:
   kms: []
   gcp_kms: []
@@ -20,14 +20,14 @@ sops:
     - recipient: age1hxqvf8yac5g5647gzsa95luvza94853l7mj7hle4u4933dyu3d3saxa80h
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBOajJvamZRdUJzcVlhbTBE
-        cnFSd1FnYVVkb2NyWC9iUUEyck1mK0kwMEJVClAvdTcxWEM3RHhkcStRZFQ4eVBB
-        YWgwWG1qcFlweVpWaEZubzNDaExZUE0KLS0tIGtZc0xPYWNiRCtwd2I2TUNvZTY2
-        K0lua2RPSGV2VjNkb055ZE5rWHI4em8KSiwktIzxCl1MM9JjzHQpY/2eIkae5LwS
-        UVrRSspEzsU5cTQjf4oEGBw9Q2+CWVREn08htuyvOhQOo+tRORoymQ==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBHSlFpc2U2SU44bmYwVFJR
+        SUpHV1NCNEhGOGt6cEZsUzdCYUtJMkZJNFFjCm14TGl6TU10TDFBK3NHa3pCbGdK
+        VDVtemRxemcrYVJyVVlyendCU2p6akkKLS0tIE9sNXRTa0EyenVJUjZoSjlKaUxY
+        SzlieXJ5cUtJV1ZVQjY1TktJTHdJd1kKzI7wGnPIWLapw1fxnlbk6CzxO2LEPQJg
+        DY1pAHTY7xF3psY+Qq5BlJPg2AzDiY56qEvj8oxdqZ7otxBEGnizWQ==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-03-24T01:16:29Z"
-  mac: ENC[AES256_GCM,data:4S/nkrA0b+wy/gIfOyJANRgdb5i/m8jcwG0I15Ww4KhvM7AZMARZV7Wng+gRKY40+aKG8mJ4wYRtOwinBhbqGcbDwY7r7i0Ud0eBZAqa5oGT3mZFsuUSyPaaOMqQZaFIsk4e6qfaBnmHMWe0bNkQ9S1G+HyK6J2RyljD7hkoJrc=,iv:bkcQn/d7vNxF0EppFrdVWhary/6ATaQSuFe3R0OodKU=,tag:U3t9t+W+K7KmfwYazT2UAQ==,type:str]
+  lastmodified: "2025-03-24T20:16:52Z"
+  mac: ENC[AES256_GCM,data:0I1I6K75zvx7IQlIMJf3vkwIghz2De5XgOgZuzviYuNfGcAgt+5PGnO2yAcPWAvRyGf1Y9HTNhT0p/t/hIcXAHwHFPHsScubU/6kWrcwJBqq3dGGx6TF55w1Jlo2aTueyB/sVvRVSJzSN6jAsw7mypFHR5SCWdMN7oRhH6xUvVA=,iv:+N7Gp9ieguymL3Jl5eCuGydudKF5WoJJd+1Gvq0aLVA=,tag:ybZ+Lw15PbxJOE73mAomaA==,type:str]
   pgp: []
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
