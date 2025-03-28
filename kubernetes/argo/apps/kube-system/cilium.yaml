@@ -9,9 +9,9 @@ metadata:
 spec:
   project: kubernetes
   sources:
-    - repoURL: "https://github.com/#{ repository_name }#.git"
+    - repoURL: "https://github.com/ajaykumar4/home-lab-argocd.git"
       path: kubernetes/apps/kube-system/cilium
-      targetRevision: #{ repository_branch }#
+      targetRevision: main
       ref: repo
     - repoURL: https://helm.cilium.io
       chart: cilium

@@ -2,24 +2,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: reloader
+  name: coredns
   namespace: argo-system
   annotations:
     argocd.argoproj.io/sync-wave: '0'
 spec:
   project: kubernetes
   sources:
-    - repoURL: "https://github.com/#{ repository_name }#.git"
-      path: kubernetes/apps/kube-system/reloader
-      targetRevision: #{ repository_branch }#
+    - repoURL: "https://github.com/ajaykumar4/home-lab-argocd.git"
+      path: kubernetes/apps/kube-system/coredns
+      targetRevision: main
       ref: repo
-    - repoURL: ghcr.io/stakater/charts
-      chart: reloader
-      targetRevision: 2.0.0
+    - repoURL: ghcr.io/coredns/charts
+      chart: coredns
+      targetRevision: 1.39.2
       helm:
-        releaseName: reloader
+        releaseName: coredns
         valueFiles:
-          - $repo/kubernetes/apps/kube-system/reloader/values.yaml
+          - $repo/kubernetes/apps/kube-system/coredns/values.yaml
   destination:
     name: in-cluster
     namespace: kube-system

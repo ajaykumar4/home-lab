@@ -9,9 +9,9 @@ metadata:
 spec:
   project: kubernetes
   sources:
-    - repoURL: "https://github.com/#{ repository_name }#.git"
+    - repoURL: "https://github.com/ajaykumar4/home-lab-argocd.git"
       path: kubernetes/apps/network/ingress-nginx/tls
-      targetRevision: #{ repository_branch }#
+      targetRevision: main
       ref: repo
     - repoURL: https://kubernetes.github.io/ingress-nginx
       chart: ingress-nginx
