@@ -52,7 +52,7 @@ serviceMonitor:
       - port: http
 route:
   app:
-    hostnames: ["{{ .Release.Name }}.#{ cloudflare_domain }#"]
+    hostnames: ["echo.#{ cloudflare_domain }#"]
     parentRefs:
       - name: external
         namespace: kube-system
