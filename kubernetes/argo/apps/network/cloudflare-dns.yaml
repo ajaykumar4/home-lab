@@ -10,7 +10,7 @@ spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab-argocd.git"
-      path: kubernetes/apps/network/external-dns
+      path: kubernetes/apps/network/cloudflare-dns
       targetRevision: main
       ref: repo
     - repoURL: https://kubernetes-sigs.github.io/external-dns
