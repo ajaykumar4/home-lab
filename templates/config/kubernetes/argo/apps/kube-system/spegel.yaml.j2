@@ -1,3 +1,4 @@
+#% if spegel_enabled %#
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -15,7 +16,7 @@ spec:
       ref: repo
     - repoURL: ghcr.io/spegel-org/helm-charts
       chart: spegel
-      targetRevision: 0.1.1
+      targetRevision: 0.2.0
       helm:
         releaseName: spegel
         valueFiles:
@@ -31,3 +32,4 @@ spec:
     syncOptions:
     - CreateNamespace=true
     - ServerSideApply=true
+#% endif %#

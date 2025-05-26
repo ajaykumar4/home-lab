@@ -18,23 +18,18 @@ spec:
           dnsZones:
             - aknuk.dev
 sops:
-  kms: []
-  gcp_kms: []
-  azure_kv: []
-  hc_vault: []
   age:
     - recipient: age1hxqvf8yac5g5647gzsa95luvza94853l7mj7hle4u4933dyu3d3saxa80h
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxMjFZWkZETWtmZHErazZU
-        ZGgxZ2lyMG8xcVI2YnFtL1RtRFJIMDVzVlF3CjVGUUJydUJybFd4NTlvRDNJRng5
-        NHh6d01IRGVNZ0hzdnVTTFZxK0tOc3cKLS0tIHluWEpFMFp3dGNFb0FhenRCKytF
-        TFFiMWVmNWpueVEvK0pLSE9zQkRITjAKz6nB49/yyRhcm8JM/77+NPvdF40nsZgZ
-        0SUQCF12af9xQ5sITypsz6t0G1cu9ZnrFpBiaz/71a6uEs+TRDGxbw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA4L2k1aG10MHBQSy9Tckln
+        NmJLaUpvWXhMMlR0Z1RSbGc0SjErdi9US3hnClluTXZJWlRHc1RIcUY2eXpOM2tP
+        OWtVc3NpRWs0OVBObEwya1pLVlZ1ZUEKLS0tIFRiVEwvNDBqZU14dXFlK01pc2wv
+        VW0vSTZqY09QVmVuRXZWc0kzZ0R2QlEK0khLsMeE6GcMPwpxSgPUYYSdHudrPjeX
+        IyreV050mlMb8mP8aKqFDuFfrt1XhsC6I5Kteo09oNk1s5CwGuOGYw==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-03-28T21:55:31Z"
-  mac: ENC[AES256_GCM,data:e0lzwGLlLTiIzzNVFSfAlePJAXatWWdKH27WlUuMBcd/YB2lH5cK8+PMsK5S85f3AturVTHO1909pEZRdAlkheMH4gB4e8/EeNEMHf/0GRGLGqOFHU9uoYu0xTvI3fx1Be4uQq1pSAev1rIQw4PgKRtKmSeIx/J/UWZdBobIjDM=,iv:Zbf/f7O57klTcvpt51gZWfP/LbkU3NQIOFBf4JSg+hA=,tag:VV9rd28ew/YFV0rmiuxIkg==,type:str]
-  pgp: []
+  lastmodified: "2025-05-26T20:12:12Z"
+  mac: ENC[AES256_GCM,data:+LmdoOm+Uqn9Kv2p0FJvmAOPI3f3BlMGGcGo0V/VkFYXFv875VkQKm25YziuGkUxExC4jxkEaKw3VceYWEiyQkRByHa/eVYQmnD+zoCgNFiQbr59ZhHPgxqCt2AmqUE4+Ag9BLe+2EH+kDTVzSwdyAHQ7Ae6MVhcmwrvePSU4C4=,iv:LSpoPV6VltSbHOEt9AP3hGQLIpkbBfDGNMXKwkTwSTE=,tag:v9oQsZqwcfgWv1uZZUGxow==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
-  version: 3.9.4
+  version: 3.10.2

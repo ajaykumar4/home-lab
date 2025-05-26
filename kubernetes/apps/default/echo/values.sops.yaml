@@ -5,7 +5,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/mendhak/http-https-echo
-          tag: 34
+          tag: 37
         env:
           HTTP_PORT: 8080
           LOG_WITHOUT_NEWLINE: true
@@ -63,40 +63,31 @@ serviceMonitor:
     serviceName: echo
     endpoints:
       - port: http
-        scheme: http
-        path: /metrics
-        interval: 1m
-        scrapeTimeout: 10s
-ingress:
+route:
   app:
-    className: external
-    annotations:
-      external-dns.alpha.kubernetes.io/target: external.aknuk.dev
-    hosts:
-      - host: '{{ .Release.Name }}.aknuk.dev'
-        paths:
-          - path: /
-            service:
-              identifier: app
-              port: http
+    hostnames:
+      - '{{ .Release.Name }}.aknuk.dev'
+    parentRefs:
+      - name: external
+        namespace: kube-system
+        sectionName: https
+    rules:
+      - backendRefs:
+          - identifier: app
+            port: 8080
 sops:
-  kms: []
-  gcp_kms: []
-  azure_kv: []
-  hc_vault: []
   age:
     - recipient: age1hxqvf8yac5g5647gzsa95luvza94853l7mj7hle4u4933dyu3d3saxa80h
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB3UVl4eE1SUTRkNyt0cXR2
-        bm4yakcwSno1ek1IajArTnFiZnRCOUNaZlRNCjRpd1k5ek5YaTRKazhnam5wZllJ
-        L3hWRUJqdXYwdzBTeDE1eU1QdVBVTTQKLS0tIGNGeUxPekdMQ0dFTDZCMXVRbTU5
-        MWxXUnJoM3VORlBobTNmREVXL09xdjQKFKB6dbQl3Ts69ETl3aStZrF6y84MhPGF
-        DC9zQkn9cjy3TrlElwLWeXw+CBtuLgopK2nr9myDHPKS2zTxp3rkbQ==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYbDVFRk1KY1d1ZXQ0NllY
+        WTZpZFhqd0tXWjFFNzVOam1pZE9pbGJvWVhnCis5bUFoUDk5T2FFVUlYRXNGOEpJ
+        V1QxSTRVQ2gzZGFUbko3RWQxUXJqTVEKLS0tIDFCOFpaTnVjVU9PMkxBd2RqYmVU
+        YzVEWG05NGJvL2F4enl6WEVSYzcrZDAK9F7KSfqN5fDtUeHbqZYk3219gNpSKTYA
+        +tRmafS6MRsItMeEEDr+VmIeDkVRmluDdE+PN680NwF/trMaYQzwfg==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-03-28T21:55:32Z"
-  mac: ENC[AES256_GCM,data:F6th5VJDHuiPcRm+S3PTJCz8RMC9JhkNDo9kjHXKRBZkBrbK32G7sVtksnfgTzMIu8fISGP/oyKY7ywqyFS5vBBrOlDIlPZE7d55ORKwivcqfW5vBzjRSFH+0rO4cIfGOmghlyaji9L1Ozi6wH3ubnuBfdpy2SXGiJ6IfarCQcw=,iv:8iFEo/InEjnuaOzFMSMAI3HrCqAExoZOZaSHOFFwaQQ=,tag:3mdqK1FDquFFFLTITZashQ==,type:str]
-  pgp: []
+  lastmodified: "2025-05-26T20:12:12Z"
+  mac: ENC[AES256_GCM,data:133hwHQNsL5d/zSz8rdvxSVrNl+u1OPPRVDnPcpFrHItPdERTy8tlq8HljXp7diaY++ETeoOIaZoGBOaRnq+nPjIdh4yIQf5gwiiW4gjci5qPLk3c3kgRNMGzijZUzrHHH8jiBbnIxe0NRjvEOYI12lWeO4OZ7ptSmIPeiV7xzo=,iv:b+ujrmHfH5QYXjPJCWKyHqK7eCzodHaMRHJwU+4BVds=,tag:RdpBgzE+DJddYwI2v8+gKQ==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
-  version: 3.9.4
+  version: 3.10.2
