@@ -18,7 +18,7 @@ configs:
           - "*"
   secret:
     argocdServerAdminPassword: $2a$10$VS18cczTtbUep4iBCs0FdORY9tWiBZ/ew4m62ciotMBWrWeyC.JNO
-    argocdServerAdminPasswordMtime: 2025-05-26T21:12:11
+    argocdServerAdminPasswordMtime: 2025-05-26T21:37:29
     githubSecret: eaf646f288c504051ce7c8bbd30c360d
 controller:
   replicas: 2
@@ -58,14 +58,8 @@ server:
           sectionName: https
       rules:
         - backendRefs:
-            - identifier: argocd-server
+            - identifier: app
               port: http
-  ingress:
-    enabled: true
-    ingressClassName: external
-    annotations:
-      external-dns.alpha.kubernetes.io/target: external.aknuk.dev
-    hostname: argo.aknuk.dev
   metrics:
     enabled: true
     serviceMonitor:
@@ -162,14 +156,14 @@ sops:
     - recipient: age1hxqvf8yac5g5647gzsa95luvza94853l7mj7hle4u4933dyu3d3saxa80h
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBRLzNJMDdJNzMyUXB5U2V0
-        RWMvRnMzUkFTUTNFK3laK0p3UmRoUVhjWVZ3CmtodnIrTStQN3Y2MFR6UHErems3
-        UG54Y2JWbVlyQ3ZsUkpjbWZFb1FlS3cKLS0tIHJmeGk4dHJlSW1XczJFQnBkdURQ
-        SWQyN05tVlZITTc0bG5vY2x1alRPYU0KAwTnQTB/2Ksmu6b0hhFiTwBN0ikjHWY9
-        CQexuzZxAIoNxM4XFyECQNYkBsYtyyUUNTxxrPcKemNsMSMO5pyetw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBmcWFpK2tPdVRQeWl6ZGlJ
+        cm1yS2dITzdaZlVXTU1RRXRsUm9sa2dsYjFRCitOaGtKS0t1RmEyM2tSdFFNWTd4
+        S2dyQWV4MEJhdWdiNjhjMzU1UDlvdUUKLS0tIG5NZXlsRlhRK0tkTVh5anBydEth
+        cU9SOXRoRS9DKzZ1ZExhaFVHNVBPVUEKvhqvq3eUlRFA4NTREbmy0ES2pCzGeBxa
+        0eHKo4TD24vuoBZJmFcWaLeacFFFK7sLWJgUlqqj2LrV8WuJRxAIZg==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-05-26T20:12:12Z"
-  mac: ENC[AES256_GCM,data:Ocgk+7QSqsnztlFArYePEXJxGpa8zyFMMLghXVcGVis/O8vAs3oxuQ1xD0HUflJ/CDX5npunByVi85UYL/WakpCeJybxXTxTXzCwxxRlkh8WO0uxkL7G+/GhF0F86oCInjHk50qPwYlkI6lWySpns7SfY9x3yGdwtQnd/mcXgGI=,iv:ymeoeYxeXL9ZR8YEoKcVwJkNnAhwtIyoLgJeTl8u3SA=,tag:D0nmjnickooDstMriZIhYQ==,type:str]
+  lastmodified: "2025-05-26T20:37:30Z"
+  mac: ENC[AES256_GCM,data:GPhPWMTGqYXmJc/AJPYN0riGRoNjG35KPt7vCp5h9jgUjnGovtc3/3Z3hSQulzTqD+DJhILKvNjYO0VM8xPfT8oRvBrwj3sK1BPZqbORqv4QgAhLE1/PYHo1Or5IkF3kYLMv1YmitUUvg1ktFRfTk2yxEycL4FBRjdtUO/e21SM=,iv:wcATgpr9fytHMA5VBv40wnb+dqqBINqPJbVsGXo+9lQ=,tag:O1Kv7CzpJs1vSQA1BUSHtw==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.10.2

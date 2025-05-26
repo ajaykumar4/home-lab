@@ -55,14 +55,8 @@ server:
           sectionName: https
       rules:
         - backendRefs:
-            - identifier: argocd-server
+            - identifier: app
               port: http
-  ingress:
-    enabled: true
-    ingressClassName: external
-    annotations:
-      external-dns.alpha.kubernetes.io/target: "external.#{ cloudflare_domain }#"
-    hostname: "argo.#{ cloudflare_domain }#"
   metrics:
     enabled: true
     serviceMonitor: *service-monitor
