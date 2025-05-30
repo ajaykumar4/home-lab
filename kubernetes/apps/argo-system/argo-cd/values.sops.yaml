@@ -1,7 +1,8 @@
+fullnameOverride: argocd
 crds:
   install: true
-global:
-  domain: argo.aknuk.dev
+  # -- Keep CRDs on chart uninstall
+  keep: false
 configs:
   params:
     server.insecure: true
@@ -18,7 +19,7 @@ configs:
           - "*"
   secret:
     argocdServerAdminPassword: $2a$10$VS18cczTtbUep4iBCs0FdORY9tWiBZ/ew4m62ciotMBWrWeyC.JNO
-    argocdServerAdminPasswordMtime: 2025-05-30T21:02:38
+    argocdServerAdminPasswordMtime: 2025-05-30T21:15:11
     githubSecret: eaf646f288c504051ce7c8bbd30c360d
 controller:
   replicas: 2
@@ -156,14 +157,14 @@ sops:
     - recipient: age1hxqvf8yac5g5647gzsa95luvza94853l7mj7hle4u4933dyu3d3saxa80h
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSByL0hNYWRLZE4rM2x6MERB
-        TGhrRFNoOEdwVEwxYklocDdxSDBYVlNkWEVVCmg5N0lwV3QwQ2diUGZLdTd6QVJs
-        RFpjbnp4UnBvY3M4YWVDRzN4Wk10NUEKLS0tIHNHUmVWcE1jMGlhK1BVWEN0NG93
-        VGZPS3FGSGYrbC94b3h5WW56OHFybUUK1W77AYfmwy2PDLhy/ClErYaKa4ni9XRV
-        WTwBGz8/8LL9zSamBd39mHG+HHPgMjKClkovdaUk5zUx6jKf7hwYRQ==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA0UTJMT2o5RVNDUWhJVjdK
+        bmFTakcwWVg0SVYvVkpsaFI1eFNEWlU3cER3CitLeGViQ0greHNkNUpDeS9kSWxL
+        TWJwY3BjYTdsUHRvQmE1Uk1aL3AvNjgKLS0tIGZjQTd0NHB3YkgzQjBIRzk3dXFO
+        NUxvcFBzcGdWL0hCYTdnME9sejU0em8KeAPQn39h7OSUxlyNxTCqVBtsUBtBNseF
+        vPrbzKRvpU6cUft3IF+wIo97iq2Nb4dLOBgD0mc6BEy9KvBcGNt7KQ==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-05-30T20:02:39Z"
-  mac: ENC[AES256_GCM,data:n9qO+NsHHlc12WLSXqwODU9NxiPllA3oXnQp4pfKQZxEC7BJTVNzCWKNzhiF2vWgsG6Jk9z39PuulHzKT6MlPKQtNIGCH2WD2SRp9FCm9bwD5HJwXU3rrfMgiVmBlRxllPW/SdPOkZIvhWriL38hdGoIhuLJDbMkhnw1Oh89/yg=,iv:Ya+AsAr87cA9Jep43wnbMjKa/88PY5KEdcL9ypsEOMY=,tag:c3OAs4NmWqupeOH7mg7xVw==,type:str]
+  lastmodified: "2025-05-30T20:15:11Z"
+  mac: ENC[AES256_GCM,data:bLEIyGP7SjiN84vuKGlYnhDzKdn0q31p1V30fmRPdK7OC1V6fAsdnJVFFPebOH43BWyjPdkILKCZJFvnr95+mdyqpq7vj+ywx6h9hruA7q7FbNbLFqVCGtvUFVUOEwEHlh3f0R1IIqJ1KWqjXrgNvkhr44WdcLkQW8EaKYk3Yjo=,iv:1HNoX28eLDYlF+aArAAYsqAY9qOgD741u5m2uuDXcRA=,tag:bZMy3uwWO7BHjnkndBSf9w==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.10.2

@@ -1,7 +1,8 @@
+fullnameOverride: "argocd"
 crds:
   install: true
-global:
-  domain: "argo.#{ cloudflare_domain }#"
+  # -- Keep CRDs on chart uninstall
+  keep: false
 configs:
   params:
     server.insecure: true
