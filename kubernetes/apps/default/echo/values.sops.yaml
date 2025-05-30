@@ -50,8 +50,6 @@ defaultPodOptions:
     runAsNonRoot: true
     runAsUser: 65534
     runAsGroup: 65534
-    seccompProfile:
-      type: RuntimeDefault
 service:
   app:
     controller: echo
@@ -80,14 +78,14 @@ sops:
     - recipient: age1hxqvf8yac5g5647gzsa95luvza94853l7mj7hle4u4933dyu3d3saxa80h
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA1SDBsc3VHN1BtUVhhc1hG
-        ZldHTkFoTHgvWWgrbXQ5cytZTGNIUThEam5nCmhWbXBVY0N5UURsRWJZc29YMW5B
-        L3ZKcEFXY1RBZEJNTE9zSERRZlRMNVEKLS0tIFYvNDFTTFluaEhVbEQydUgzaktW
-        d3lzZ2VHSk9RZlh1alR5MXdma1hxNVEKfs29ASP4rzAK5GaLaIJ/5w+fjShRRqd6
-        /cU9aU/pXnZw+Xuf16LuPRlNiaqhD5kMQ+qcW31Hxhc8HkenGKwDDg==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBqUi8xSGY5ZVN0YnpnWFpu
+        MHpBMnQvZE1zRytmdWZJOHkvV3JUUytPMnowCmNvek5kMVFUN1RwWUQ3VWZBeVdz
+        LzVvNk1sOTdWUmNNNGpVN0pJUzRraVUKLS0tIHpOMkwyOWFRcU5ZakVJTEtoZll0
+        S0dJZWdIbW94K09aN1l5TThlZmhUdGcKD/596XxUDNI2CAoozOOQrqD9CFAGpVRS
+        iNnIzSSlXjayC1DqB6w7td1ZSQNYm/EzabIA3ow6svqRTm/5uWr7zQ==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-05-27T09:28:42Z"
-  mac: ENC[AES256_GCM,data:rvmxRirFqTC01dJjjPVv7LOpI/EacGzomaJVHDkVuy1eEqVOgSw86xHrssLWHOUyD2PPtEPdU42ozylcQz02OvIRiWpFwyW77+zMGz+NUZaOS43aIHnO4lFqas53oCx4ctRAhlOnsC3nddlgXxqyJ1PUDgoXOaBhISxi437xmdM=,iv:AEWGs56D05s/kDSkvEgB6bPZ9ZDPQU994OK2if/BKD8=,tag:Q+Z/El+bXPJg6Cn93Buq7A==,type:str]
+  lastmodified: "2025-05-30T18:49:36Z"
+  mac: ENC[AES256_GCM,data:fxtZTLFbPh4vjocTpUZGmavUlDK+4FcdJLUw0FuH2nD8VHb4IVOPCKgCTGwEW8R2Hv54jgc1ceH28ORdlPfpoGllsSI8HOOH+Qx3glE2pOqXgTE1s/O4R59VG9G3rvR1Du6skovi54+H3AsYpOdEAu8GABbejXXWdKJh68o5jmw=,iv:KSI0eR+XEyhL4g5rIw43Pb30NtCiUoZ/J8dZg942xbQ=,tag:4UH8r1JPoUOzCzMMFPsE3A==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.10.2

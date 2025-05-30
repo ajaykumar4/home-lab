@@ -3,11 +3,16 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: external
+  annotations:
+    external-dns.alpha.kubernetes.io/target: external.aknuk.dev
 spec:
   gatewayClassName: cilium
   addresses:
     - type: IPAddress
       value: 192.168.8.204
+  infrastructure:
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: external.aknuk.dev
   listeners:
     - name: http
       protocol: HTTP
@@ -32,14 +37,14 @@ sops:
     - recipient: age1hxqvf8yac5g5647gzsa95luvza94853l7mj7hle4u4933dyu3d3saxa80h
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBwSVhMc3VzZ1ZPd1FrbjJV
-        Qm1TTERBZzBMUDRZTDR0L082anVGcjJwYmhrClJVK1FBa3FvTEwzL3kxemU3OEt1
-        eDlxRGorV3h3dnc0cTVrTGNBNmMza0kKLS0tIFRWUVNYaDFtZkxzNkIrN05DeUVh
-        eUJZcUtzUHVrTDZQbk5BajZmb1J3TFUKPBxjqEstFR9c7M7IqsGXJgdkGRmk2BbN
-        IaFqaqMWl3PVOx0obVZbHmQQUi6RqeWan6SDTw9PPGZIDUqoBm83gQ==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA2azh0MHEvOWEzb0d6aWRm
+        OWRUNkJmaU9acTBybmN6SnF2U05rS3J4eXk4CjB2djZMQWNFdUExVVh0RUFGUndN
+        elYxdVNLVklqaFBWUHJXYThoU1daR0UKLS0tIHhFTk9XTHVWMk1LNTJOYlNjbDNF
+        QU1BM0ZUOUk2eXozTyttZmdHSktMWG8KuT2Vxo7HhkY81rcl19T2+CUfw680qtiJ
+        MuKPyrWy3rWCEz4AATA+Sa3hurFTXuIAvexSP+v1NlxfJYlVWZkG+Q==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-05-27T09:28:42Z"
-  mac: ENC[AES256_GCM,data:AbmPLZKPk9WLA/i/1Gz5Sz3ubENEpW0FDYtHK+bwb0Pqe9cKeQ4Y2NndwLsR46XLgWZok3MXQxddW1wkIKUN59XMto3qwzdpFhL6rm5KcUn+7PVEsLBlk/RCnQCiy4kaqERoeHfvWUhQ4ol8cII0wAx9p5Ngkyl2XtjZVFkHkPk=,iv:GDDtzyMYRazDrPdveyYQ+UPOw9qrxLGJoo6xCU/XTnE=,tag:x3vcLqEBWIMOk1UBL9N/nQ==,type:str]
+  lastmodified: "2025-05-30T18:49:36Z"
+  mac: ENC[AES256_GCM,data:JVeAb+yhd0wsRQqOD4hKDjPgJDYRecOK5rxsxz04vmpfgbT5t3mbf9fZb3gAR1XAV4XhZo/b/JVw+6WAMnkRFOudu4H9MbcEnUn3vFR7s6ZMd/x9VTL0ERybXnX/mDgIkOF53FQWWKWswOv/53ILSN9wWSyc4wMvuLEuQ3SqbLs=,iv:3B7KEEYThkGPbSMv6RUkUulKVKJmyoLJ5urkm8+CRUU=,tag:J+mIWONvCeIJcIee10Jr6Q==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.10.2
