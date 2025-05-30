@@ -7,12 +7,9 @@ spec:
   parentRefs:
     - name: external
       namespace: kube-system
+      sectionName: https
   hostnames: ["argo.#{ cloudflare_domain }#"]
   rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
+    - backendRefs:
         - name: argocd-server
           port: 80
