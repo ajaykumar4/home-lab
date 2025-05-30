@@ -55,8 +55,8 @@ server:
           sectionName: https
       rules:
         - backendRefs:
-            - identifier: app
-              port: http
+          - name: argocd-server
+            port: http
   metrics:
     enabled: true
     serviceMonitor: *service-monitor
