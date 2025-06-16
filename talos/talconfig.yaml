@@ -20,7 +20,7 @@ cniConfig:
 
 nodes:
   - hostname: "rpi3"
-    ipAddress: "192.168.8.3"
+    ipAddress: "192.168.8.6"
     installDisk: "/dev/mmcblk0"
     machineSpec:
       secureboot: false
@@ -31,7 +31,7 @@ nodes:
           hardwareAddr: "e4:5f:01:47:74:c8"
         dhcp: false
         addresses:
-          - "192.168.8.3/24"
+          - "192.168.8.6/24"
         routes:
           - network: "0.0.0.0/0"
             gateway: "192.168.8.1"
