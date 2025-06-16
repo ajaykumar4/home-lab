@@ -9,7 +9,7 @@ spec:
   gatewayClassName: cilium
   addresses:
     - type: IPAddress
-      value: 192.168.8.204
+      value: 192.168.8.203
   infrastructure:
     annotations:
       external-dns.alpha.kubernetes.io/hostname: external.aknuk.dev
@@ -34,17 +34,17 @@ spec:
             name: aknuk-dev-production-tls
 sops:
   age:
-    - recipient: age1hxqvf8yac5g5647gzsa95luvza94853l7mj7hle4u4933dyu3d3saxa80h
+    - recipient: age170k3ff22g9s0yqkrgtfr7mhuppsl88dq463autrhgj8rfwe4kq4s2kjzme
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBnK2U4TVZZVGhSRG41VlFS
-        WlpWbEl5ZG82OWo5SFpOU1ZlSTdlelJjNFFNCjU0NCtnR2xCNGxueUNieWZwRXZz
-        blVOc2I5dkZ1cStIZDBmZXdPT05BSDQKLS0tIDJ2RDdvTlZLOWJCS0NWSG1RYXpk
-        bWRydzZ0QWdaZU1SbmoyWnBGZzZiQ3MKHO/6LpgaejmEwjP0y8IQk3Xru/B2TH6N
-        BiRQWrnqFB2hwB/lBa+IVq05sX1AzkHSXUaqKf1KtW0tln2H/W9ejA==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBNMlhFNjZBMzZZUUoxK1hH
+        c2dpTjB1N0N2YzRJU3cwWlZzbGNoa2MyZ0NBClJ4TVRvcWMxYlF5QUptOTl0amZJ
+        aXBuR3RGZHNINGU5S2Q1TmFIMU5DSXMKLS0tIGpmWHYvV0hsL1F6YXNYNGFrTk5a
+        ZVM5SlYyRTFNcXU3NHpsRFBpM0dtR1kKCVxPkhFehkpWwYXDXt0uDuFXs8aeIXPq
+        hbukD8UcqsA08J3fLCvGakcvt9kTBahBqyusr9vhuJ+UzEAxdX6xPw==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-05-30T22:23:22Z"
-  mac: ENC[AES256_GCM,data:Pc2LnKCa3SrvFprgAkp1P11C8SWjOpi807eH7Mot84cQnoX26dXO+Y5o/J4f7IdPXLPjM15OyE1Bqq3y1tAu+YpgmauSFuwVBT8vQbnS5ZNy1oNxyaJ+mVwdM4vFjsoulA1y7JKv32gm4gkIy+VKMxx9k3TuZFB8Y+T57qUIVzQ=,iv:PRWf+5VuuGWjct2z4umQdN0Sb/TEvvp2usmj1Psjo8E=,tag:715P/tycaSUj8VcsdS3XAw==,type:str]
+  lastmodified: "2025-06-16T23:32:36Z"
+  mac: ENC[AES256_GCM,data:q+YP/x16ObP6Hkj6lEzGhB62pULtBQPm8eIA5z2KKWEDL0JsoDyaY0z0XvGshk01CUjdtgh8Cw960oiF+kVWnqW3O/j0+WVrHtQyfJli9lGYlsdky2DNQTp+5CsKL67HLPQ5P1zj6sInO4RcV2s/ijmzNGQCrOSI6gXN5Joh/+U=,iv:yEX115b9ITrZa9WYlieKrWD9SbLzVXHFNrPfkr2VoVY=,tag:27TpHqWkF4oZVeX6wJwJkw==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.10.2

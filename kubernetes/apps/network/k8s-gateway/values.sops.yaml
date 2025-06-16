@@ -5,24 +5,24 @@ service:
   type: LoadBalancer
   port: 53
   annotations:
-    io.cilium/lb-ipam-ips: 192.168.8.202
+    io.cilium/lb-ipam-ips: 192.168.8.201
   externalTrafficPolicy: Cluster
 watchedResources:
   - HTTPRoute
   - Service
 sops:
   age:
-    - recipient: age1hxqvf8yac5g5647gzsa95luvza94853l7mj7hle4u4933dyu3d3saxa80h
+    - recipient: age170k3ff22g9s0yqkrgtfr7mhuppsl88dq463autrhgj8rfwe4kq4s2kjzme
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA2cU9WZDhpUUE0M21TNlhy
-        SFpqbFV2eTJEY2ROYWVhdFFBdnRhNVhBSTJvCllJWVRnNHBSY0pmTENLTmtzbDRV
-        Tmp1WkpkckpOekVBMTZ5OVdENTlWcjgKLS0tIDl0cUR5ZUJmei9WWTViWldoMTN5
-        TktjYkhqTk9yUmVFT1M1am1YQ2pUQncKF0nFR4LMG/1kDSeQ2CiWrDSPzUeVSrSO
-        w8AqaLMX4L96B70EXfn8k3ATfn2Ph16pb0vq2Blz8UpMWl0+TZ6rCw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA0dXRabkVxWDcxVS8wSXdM
+        NUViS3Juc3Z4NVd6OUQzblM5aUhmTmpqckhjCmhCOUYzdERXU2FrTjNaTkM2Wmxj
+        R1lYM2U3b0d6aDlvNWJBclVBNVVXNE0KLS0tIGlTNmppVzRVQTM5VEhXZmdXbk5h
+        eGVDY0NSMC9vdVBLNDNIR3I2dUVlWjgKuDENwYALN3qNnNv7rX9M9hVuUkZb7iHS
+        dC/2fE64pHyoxBifEyERiiimHYk3W2QIU6O8BRrqhm6YFD5w4NPzvQ==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-05-30T22:23:22Z"
-  mac: ENC[AES256_GCM,data:A8y8BvxzcWSeeEG7Uahs4WiiUp+ze90qYW/63/I1YYO0gY5Z9d+B9u+2faFdkIyeqKG8NByVTcNuuYFL0juBNnaSsHf/kTEC0/uBmWfMutds/jGYFCFOyjvHbj+ATKttLJ0AObl+Nv6OuyP3WofTZMOWDTikbbg0Tge7yD5W1CI=,iv:wD4/colCOEXC77ERtPpVE/p56Zmp0Eo77ggOMNLqjk8=,tag:nFDiMh+Ezx4KpImELFEm7g==,type:str]
+  lastmodified: "2025-06-16T23:32:36Z"
+  mac: ENC[AES256_GCM,data:5NDkU0JP64kUAXNeqqULmWIfyyn4si/j8L43uuCi1QD8+Xa6AIQw0OfORAwNwCftPdnK8prsPfi0a70E4wI1k4P20/0z219E552BJs1NmnHiJ1hFPZYCWk/ikPb/bTGCpd65uzYyMrvafWJmGP4U+SlzaYU0qYRWZiGimiX3zC8=,iv:VfJFzbkd5RghJYpSbRnj+IW+RcAIT2JFD79graA0swE=,tag:1Xwdnf5dsZuVO3OFmtHtJw==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.10.2

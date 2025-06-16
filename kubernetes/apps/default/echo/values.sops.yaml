@@ -75,17 +75,17 @@ route:
             port: 8080
 sops:
   age:
-    - recipient: age1hxqvf8yac5g5647gzsa95luvza94853l7mj7hle4u4933dyu3d3saxa80h
+    - recipient: age170k3ff22g9s0yqkrgtfr7mhuppsl88dq463autrhgj8rfwe4kq4s2kjzme
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBEVEdjVVNxMTc3M21nbUdn
-        bDQ3WnZXZGVNb0kxMmJ1REwva3I5NXA1ajI4Cnh0amdQd1ZpVE5mZXlsZ0hWZUM3
-        eWtxUUI5SzVtMTZtMTl3YnFSUkFFeVkKLS0tIGtZMElXVmI2Wi9YN0d5enJOOW13
-        TG5RR2EvRDdSZkMzSlFHUnFKTlFwR0kKmtUpjiEQMwHREQtkS+3cRQMkNVgSlBjf
-        C1AL0EHVW4IEMmc6XRkipIZ5j0txNOvKHdG70UIJpJ988SftpXmDzw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBrMjlWVEw4SlQrWndUT0JQ
+        c3h6S295dHNTMVdqOGxVbThtK2tjb25PTkFjCk4ySC9yL1hBQVFOZzBEVlJ6QUJx
+        bklhU3JyMWc2V2REU0FHb2MrMXk2SFEKLS0tIGo2cDdTTnBweUxuZDhLa2gybnl6
+        MnRqMHV6YTkwVE5kTWVVaFhoUUJwbEEKtOEVrB4zggNRz2Axhil5tl3QOB8uTsv4
+        HWWZPnvQiMjL5SHJ9U6cVahXFGxw+cFa4l3OH0y5xnsBxHSno0yFJQ==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-05-30T22:23:22Z"
-  mac: ENC[AES256_GCM,data:3dMYBBsR9hVy0/v6j6uBnqMxZOhg2hl0cuIFPsa0Q9JvZBRIQ/TMamUjdz0smf+uM60Z95Zwq+IxP0//Hhgsxr4hUeD1z3Vn6KWFQyeGxdlREHMLaX2nbuburnlw3nTjj53ox9cqMmq7eZyrqF5h2hg7oOpIL4AYxB8xDuogI3k=,iv:l5gGqNidBKjyCxEdN8UIDIAo0uaEUsyWW/Q76u6J3E0=,tag:5MEX/1cti5Nd4URLtbdZ5w==,type:str]
+  lastmodified: "2025-06-16T23:32:36Z"
+  mac: ENC[AES256_GCM,data:pFzNA1sFjEx47x3J7d1TOG+E+nHrWWQRRj/6IcKENHBqhd3wm2MFOdoCNhzHwpffjqfJ16VlPZCNj2LcMjerRpPPEZXOwDXpF9eeRAWteiDftatDYM/9AbK71yxi8E6YncHGqO6pevZVWDHuBRp44MutLbF3AOiEE+poWfGRXwA=,iv:Huxn5sIxjU2Qo/R3H0u+VApovTAAXsSb6Z3UhCrbl2M=,tag:vRPTvBCiddkZjNO+XvDyCg==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.10.2
