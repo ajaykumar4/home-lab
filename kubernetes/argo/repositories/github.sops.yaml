@@ -9,21 +9,21 @@ metadata:
   labels:
     argocd.argoproj.io/secret-type: repository
 stringData:
-  type: ENC[AES256_GCM,data:BdpH,iv:4STbglPh9kDmwA5UPTiLAb6Ap0lKEoQPGmVx3naVK6I=,tag:c5FAih2vRAjPxv3KFAMcKg==,type:str]
-  url: ENC[AES256_GCM,data:oOdGmN7dgtoV+b1Y+aktwWhE583YcrdmR2tP/sJny1xZh5KsMoGAqiL7bDwgw7Ermw==,iv:yvHE3Vbw3uUp3VItrNfnrC2rHOv10tqNlo+zKdnI3F4=,tag:nhz87pytmRORJrNTb3P7fg==,type:str]
+  type: ENC[AES256_GCM,data:Tb/8,iv:37JzrSopXsKE9J8oIO6y8RR67qRdJDfiI+szVs7+L2I=,tag:8bTcYDyw1EeeoXvphNiy0w==,type:str]
+  url: ENC[AES256_GCM,data:Yg0I5aFscq4T1c/MnfIK6W67j4KLjSh7t9atdFnGrpzEPiOBZPLL2Oo33+DI5NqdDA==,iv:Q7wNqc3Q/p4wAsW+0q+D5bb4VqCL8bqoGD7oXy3pxpw=,tag:pAHDIn2F6FvKhoxp0Hp9wg==,type:str]
 sops:
   age:
-    - recipient: age170k3ff22g9s0yqkrgtfr7mhuppsl88dq463autrhgj8rfwe4kq4s2kjzme
+    - recipient: age1cg2mpusgf59fckt9j68saxexepahmkxktv0v2fs48dm76w6xkc6sla4xdx
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBpMTRXazVsTm1xTHdMNFJQ
-        SGEwTjhud3FQc2RNdUxTVGZ6Wm9ha0FGU2pnCmRnVUxhRXIyc2h6OTNBMyt0YnBx
-        TS9tQ0V2VFpQN2tzb3ZWVU1zK1VqbEEKLS0tIFliVks0dnIvUURJQVJGOU13UDdW
-        ODB6Wmd2dlY5QmN0YXdzTkdGT0VoRncKXsluYigqnw9kMpCX9xIH2Gn/3ALeqt4c
-        7UtSmOSzO6czLKMSzTU2Ygoon62QJvhTJrknJ9lbrBw/8qziOm3OjA==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB5U2FGRmduZmhHRTZWWUZv
+        N2xnZUJBUkJkM0hUemNvdVhib25hdE9OUDJjCkNtSEVpcjRKdFVpZVVMbEFnNmZ6
+        bU5RZHk2TlJONHF6V2RGZGFIeW80MU0KLS0tIDNhNTVzUlpzcm9QZjM2RTVkdkdX
+        K24rWlUxVy9ueEYyMVF3Nk04b05UUHMKxIBglcEtQcTOUNfY/O3akc9wte+YU6cW
+        /UsL4Vjj+DR4mDPPecvE18WUXsxiuHWSyYnlChBDIPyBd78K+fY7tg==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-06-16T23:34:39Z"
-  mac: ENC[AES256_GCM,data:80fXHvjQP4Kb8sqKjTjIjsdKNLB/kknuguE8E+z441j9hkiDkMDzIRGAZynBS8V4JykATL3T1xOl4griSlR2esueEoM194XGL9jMJx4Gg1vOOOBk1CYmjimUP/LbDzGRoZi0kn/ZJIRTqGANbHn3MHl+kAMt0bPCQEruqn10KO0=,iv:AEcvYyL8XOatgqtvFPum9SHcjA3oxh5Qp8A9xTIwFys=,tag:A3vkB8Ea3nrmhrdiAbDvKw==,type:str]
+  lastmodified: "2025-06-17T08:41:35Z"
+  mac: ENC[AES256_GCM,data:sKEw7OGPPmJYWw9LlF5G6zM+4nlXxQKduigDFIItpkZmPQKYeNRojjk/g/DF+O2cweOD3Atzi9aDiS/7JF4TJlEOPX/lpxbAlc1+rLmNBdGdbHGhJP6WGWPqclP3yjyXwHS8T8Viz+xdFewn7iiawWM/ndsg4nGRbwTDHMe27J8=,iv:LP5pg7asY3r9I39Q6QKFwhLEbMXTkoJXT8hgrFuArrM=,tag:lkat+CY1cgqx8IDcFR1wQQ==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.10.2

@@ -12,17 +12,17 @@ watchedResources:
   - Service
 sops:
   age:
-    - recipient: age170k3ff22g9s0yqkrgtfr7mhuppsl88dq463autrhgj8rfwe4kq4s2kjzme
+    - recipient: age1cg2mpusgf59fckt9j68saxexepahmkxktv0v2fs48dm76w6xkc6sla4xdx
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAwdk1lb2VOTGRDTGFWTzRu
-        TzhOSy9vaGVTakZxK2xFUzFTSjVSMVlwREg4CnBFTS9LTUVjOXVDQVZPRWIyVi9E
-        MDZHTHY0QUpUc2xWcThxNHArL2VVbEUKLS0tIC9YbDM3di9iNENyTjgxTmI4eHpC
-        OFFrYmt2VUgvMEVQanBkVlM1eURaclEKsjRvWwON1j4nG9qZNUVWFcbiLzBGeclv
-        OvSvIc3keL3daM1VK4MuEX8fhQI82nwEF4iLjrR0djgdZgl6WV+4cw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVdjdheXFYaHk0NU00ZlBV
+        cENYZjJjeEdhdkduRlVienhtcVgwcjF0OUZvCjZmcVFqN2J5VlBMY0xIKzhheFpu
+        SmpmM0pRTFR2L0ZzK0pYNHd6aktDbHcKLS0tIEI2QlNlelYySzJRbFBscDdZMlBL
+        aGJGZExaMmk0bkY2UVk4N2s2L3VPV2MKm6nEVzl5vJ3YWlEP/BYkwzmh02GhQM6P
+        Pqh/7oiIAng5mt71FmsXeF1unb56w9GP1KDx8qS2F4uD7RdRMoFo0g==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-06-16T23:34:39Z"
-  mac: ENC[AES256_GCM,data:0FiORrotXB7qOT1XVSN53U2+ChdkdGnhEJOyjsW07N5Rrq0OnxPqpSoc8lRojWrl+1VU2r6uMvJyoOBqffTc1PTm0920codE42XtLStFa0qaPwmKcETUaTujgJ+XtU0cNcMJLz7OqkaF42eCvcAvDJhq8AR1dXKiM2K4C0YSd3g=,iv:QkQBIzh8APX496kePnOWfxMIwupIkq1MgKUhVFZdxvI=,tag:ee2nimqc5JsthQWCjClvZA==,type:str]
+  lastmodified: "2025-06-17T08:41:35Z"
+  mac: ENC[AES256_GCM,data:NBNOUEEx4x+CXEl8kWkjIQLUbkcEFBmmGSIEV1HmfGSyu6lNFfcJCRzMDOLkCy1WgYqEDjVRQcQIcHFIgpjbql8/LJ6JJlqS5O61Ku99unTpp+ARrT940/XKoa9x8+95DHOO+L8XLZgF9rr8Zm0BYhg+W1qrLRlovei9BvJ9G+Y=,iv:ySF9JHkhP0ESgM9M2mQEqIri3cb2z2YTJYo6sFmJt/0=,tag:UJKAasK/drmut8pCnhRmMQ==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.10.2

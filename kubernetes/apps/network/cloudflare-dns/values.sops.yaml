@@ -27,17 +27,17 @@ podAnnotations:
   secret.reloader.stakater.com/reload: cloudflare-dns-secret
 sops:
   age:
-    - recipient: age170k3ff22g9s0yqkrgtfr7mhuppsl88dq463autrhgj8rfwe4kq4s2kjzme
+    - recipient: age1cg2mpusgf59fckt9j68saxexepahmkxktv0v2fs48dm76w6xkc6sla4xdx
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBnT1FOQm9TcUpJb1NKY0pD
-        dFFxOUkzUHMvUisyUnVsYVVFREJVVjIwbFhJCmJ4UTFrUXZ5N2lRWU9GaDFybEhR
-        c3NndW1kaUQ2ODVtbGRnRTlhTXZlUE0KLS0tIGZMZVhQL1ZTelFSSGJsZjB2Ukt4
-        UmlqVXhSRWZ6TUJ2NEdtL1dBQ0U3cDgK6biMtiuTny+oLvmoa+fsmocxV+USPn8x
-        Z5fXBqE2F6uBg3YtYKI/Ma21alnMoAP8Mag0QtQ4938izSMl+tzQdQ==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBlcjRSM3psR09BTVhhRzQ4
+        QmYzQ1ZwOC82cndFcld0Vng0QkdWOGlWYmtnCkczMnl5WWQwbksreVZsMGZ2Nk4z
+        TXdRUXVMMERNakhFVm55ZXU3T1NqRWsKLS0tIDRHVkJOU2lRNnhCcGFtWVpScVZQ
+        YTlHZDdZSXRMZmlHSFlhQ3pjSFd6TTQK96QjWEhwAXIQcFo/NNb8KVJqQ7Pn+Y/i
+        0fi4+pTqMAqACcHMhuiyuKqSNyGpPAbz2B3hOmyYyyW0H7YCgS2zPQ==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-06-16T23:34:39Z"
-  mac: ENC[AES256_GCM,data:VaIyfMHJwF0VZzy4rxrJWMmpOCD4cR6Mf6MrusdYCT8lfgHwQXu3KIKrS+Gj4pqB1mQ+7RZuMdtbU4iTm7qNrUYl7ws5TY8brGBUpxMQf9/d/SlXaZMNLrnsZKl0dm9CfqnysN2DRYGTZpomCyAOvGj2Xc08kRa1XDsr05Z2Nd4=,iv:3y1eqrG8+U4NcpddMgATH1eve0fJ1TcCtfdjZJJa1YA=,tag:6xB/K+sbf0bo5H/q0ayOrw==,type:str]
+  lastmodified: "2025-06-17T08:41:35Z"
+  mac: ENC[AES256_GCM,data:goj/kioCe4UUpDl5w7fM8StmcX3scNPU8tgkGOqOH5X8AYYIEDtlE1bJIv5jKmJMyqkvd6gJ19uqHluqvAk/gNDgylFp4WySk7h0Pkn4ORpOaN9fQbRTuVjwzrgqKN4dTAHaT5E/DLgF0WPOKMhJvL5BW8FEyHHVmkkNKKqaph0=,iv:QCKDhNj+y9WoSf3l6KnDEWRwh+WQcD9nplmyoCgEzZk=,tag:SGMA3OsRvL+EnWMkeY4xhQ==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.10.2

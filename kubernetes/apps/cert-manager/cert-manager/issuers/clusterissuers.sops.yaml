@@ -19,17 +19,17 @@ spec:
             - aknuk.dev
 sops:
   age:
-    - recipient: age170k3ff22g9s0yqkrgtfr7mhuppsl88dq463autrhgj8rfwe4kq4s2kjzme
+    - recipient: age1cg2mpusgf59fckt9j68saxexepahmkxktv0v2fs48dm76w6xkc6sla4xdx
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBSV0VZSklrcm9kQkduR1l0
-        dU9EN3RacmlxekVXOEZmM0NQWUxrak1YUGpFCnJGd1V5eFJ3UHB4S3drd3Y2Zktw
-        SS9oNlVESUY0ZG1kYnNNMzg0c3JNU2MKLS0tIHI5QXBhdWxCWmZySzd5MVFSTW1G
-        cW84ZW05T2w4cnM4bXl6TFhSbE9qcVkKzYO1pCebi3LCd2iGRLLajtvN9TcMiUDk
-        45S9supM8BEuTh7gN6EkqGDNSePjbn3ImHgII/nlJKgtcq7D8D/5Nw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBWOGw5ZlBNbUtzNGlUYmpn
+        MnByNStsaGhJRkRHemZUSStMVHNHYU1yR0c4ClR2UEN5TDNaUFVZU20veUY3VlVv
+        ZEQ0Zmg0d3BTdHgzbEJzcXEybGlHeWMKLS0tIEpkOENDeFQ2TUpoOFkrU3U5dzJT
+        OThWSkZKVEQ3blBkWXJ6MWNiZ0ZJZU0K39slv8uTkoICe8t7NowQeAr2Ws2rCnKT
+        skZlh3AWUjcn1ccxCHEeMSkjRNJGC3ME/8nGSdsQJf1xJNTHYLV21w==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-06-16T23:34:39Z"
-  mac: ENC[AES256_GCM,data:BKpdPrzVKy+sftfw8hvNaMrhPzNhZf3y/UiKV4/DxyObhkuNZSQkmG7bacemgbzz19LNLy1x0eOEZg2KQ9WLEFqejE5Le9T/xV1eAgPNwXfaM4pMBi0NJvLLaGZvh7Yjl0Hq8/kwoGxxu6WkAkLxaLgaNFJa3b/0TIbTQBM/YXM=,iv:4tgWXjX/LM0TdMjInfXn7lccBaJF7zDEa6C/leBK4EE=,tag:vL7uKV0by8VY6alw8rpHIg==,type:str]
+  lastmodified: "2025-06-17T08:41:35Z"
+  mac: ENC[AES256_GCM,data:efCu22xf+YEtvldWrKmKQmYY8eDkWU0/GBuhUOTeH6NgJ7KdpRBmzF8E0+BOTBrpmf3UXxd8D0CvI3X/MbBQgoX6V2wLJ1HmEYVweFijFX0zowa/CMXCRlhJEV4V/RtTB+yF8CGPSOaXkMovoAwQDdw7ZSFv2+c68VaNQeGb8iA=,iv:5iyb4SpaVDbWlctjSogcoyPfwV/6CnDZcp9cn+sCaco=,tag:Dnp5lFjArhmQHe0F4dzwxQ==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.10.2
