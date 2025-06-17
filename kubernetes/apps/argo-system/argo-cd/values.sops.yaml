@@ -1,22 +1,22 @@
 fullnameOverride: argocd
 configs:
   secret:
-    argocdServerAdminPassword: $2a$10$1hCJQvRt1oHZ.rNbvbfNnejUUlVn2mfHOSKXNr2Q5Ko5TW/c6WP4m%
-    argocdServerAdminPasswordMtime: 2025-06-17T09:58:17
+    argocdServerAdminPassword: $2a$10$v4s9wG4nsr7V0uVOq/OF7.8AaHue1TC9fVn4VAeCwvuwAFOjIWyqq%
+    argocdServerAdminPasswordMtime: 2025-06-17T15:39:55
     githubSecret: 90404c7d626c572309d603f260d72933
 sops:
   age:
     - recipient: age1cg2mpusgf59fckt9j68saxexepahmkxktv0v2fs48dm76w6xkc6sla4xdx
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBtendXS0s2V2RDOVNZU3F0
-        R3pUZ2ZuQ1BjZEN1ZDZwNWFDc2owcUlhY1h3ClY5WVVQbmhIc1crQUdycjNVdisv
-        bWcyMU5EUHgyem8wVkNxOWxkOGxqalUKLS0tIDN0ZU5hYTA0Z2dKbUdVTUlrU2lF
-        UUN4V0VNL2xUV2ZQdnEvT2JERi9qNGcKFiALXSK4pNZMUe3BEv/07mUfIKSTBfkh
-        CMi0PFMFWOu4jxHad+ZBY9Xq+5MVJm+f+y4DpRTpdYGLFHGWGrFbDA==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBCeXBQQVdualZuTjJHM0x4
+        S0lTSVRTeHd0c2dEaExTSlBxeVk3R3p6WUZBCkhiMW5yKzZjMS9tZklleEZyMlhU
+        Tzg3SUxJTDFGN2NBZ1lqanE3dmhXdEkKLS0tIDlERm4wVnhpT3RaM3FnazBvbHpm
+        ejc2Wkw0RHV3YTFEMC9ScVk5ZHUxN00K1hAN9SDemOruWSx5m0h6cw4Vv8l6EUD9
+        qiIWjSCdHCAnLTFSnVqlqR0FDtD2ePzMhWzNsDLq1evO0KzMbslZBQ==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-06-17T08:58:17Z"
-  mac: ENC[AES256_GCM,data:1U+fDM7x4nYf16Ox9b0BjHWsWnwW+aSc2G8RT6WJ4EYh/tKruTS7qR+NeFe1+XBFrNFw9TdlkBgcAV47gUhNxyIGxC+fEcAN3KqHYPSiJhv8DZ8VtCPx9NSMVxGD36b37sc1Rs5NCZcfv//qbVmfihqGioaNhaYbcV+if+p91co=,iv:sQT7gXjVdCzD/avEt2sAKGiyLPctin/QkneCkr5bGpQ=,tag:zW9cyqvnWJHbsDn6JPY7iA==,type:str]
+  lastmodified: "2025-06-17T14:39:56Z"
+  mac: ENC[AES256_GCM,data:bFysZjjdjnWK6jfKQjF/UoHhg283bqoZMx5qA2Zzdkhve/r77mn50iBT50qjlTLpQXmvxj2YhC2yPDr8A1P++1j1B8BZFN0h8omcIQCQp3EAmxLVyOAeZRiH5Y4DbDb3ocpJKkGpFzgMfPVVs0FDIsiZxxq4LopK2DYpEI2Tz4s=,iv:wQTqSZzP1sMSWT2uigOflWiTzKcpgpbP9e5niQLjw4c=,tag:SLVYFlu9qMzY2GjjSBC1+A==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.10.2
