@@ -22,14 +22,14 @@ sops:
     - recipient: age1cg2mpusgf59fckt9j68saxexepahmkxktv0v2fs48dm76w6xkc6sla4xdx
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBjMThiRkJIQkhDSnB6UkQz
-        UHovWDlUcm5NVUhqOGJEK29td3NrMVZYbFdjCmh6aUdwMXllMWhGeTRZUTZweDJZ
-        Nm9USmtBVXNRREM2bFBvZUdoOUt4MWsKLS0tIHJXdjRzNlUyYjZIeVVFVmtnazRZ
-        THFPSWZLNDhZNHJKeDRoeHEwcVVaNjgKReGk8yg9W5n9Tv60o+Jkc75Ud6HTqLwt
-        q4aUU6tsES6UI5TzxAe2d9CTIX0ouKVqamNiTkG5H9OH5LP6EIltHw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBmKzRUcllhVGcrYUEySThl
+        Z0xETXZtRFhUTzFrZUVnN2o2ZFFXTElUYWtzCnQ1SUg1b0hPaE1xRGZGcHRKTlZM
+        SkJ4cDJoRW5KNXlmSGQwdWQrKzEwemsKLS0tIG5PWjYzUENsNldSRk03VDFjWXlE
+        cUZXOXp4bmR1eTRJeVRDNmVTbTZnQzAKmy7r5WBzk/sMTyxSZ8EoH7qspMCbIvcb
+        58+LDrcsIn35a4ZqbCnNIC4AT9ww44xnvCYO72FgypR6DXWX4U8mIw==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-06-17T12:08:21Z"
-  mac: ENC[AES256_GCM,data:wNTC3fRALKNRWCs7C0T/VAh5BI2mxFMzTEan5DSa6LBx7ZBv8SRyTeoilBKmFBzN8/4mfFrF4rc7RC0YduFMqyt3AUlMF22oTn37AWlOaB9nAuNfCcg9C+CVgeAOVCti4qTUQMXcKSOD6ouQy2WakU7EnKWa2xNM2IxyXKkXn4E=,iv:6JAIeof22H3+ak4LqSca5KpSEd0F7bMhjXdXUUALHQs=,tag:Rt2utsbBJS+rLVx01LfhUQ==,type:str]
+  lastmodified: "2025-06-17T14:25:52Z"
+  mac: ENC[AES256_GCM,data:ISGf105bQFN8JqBZXiL9W/ptCa53IJ1LSgMoPBrR66/SNvL3Jww+iQ1kie9ydUaKJPrgFbWdywG3YkqNMzF8oYhg3IpYjiUDaaaLEgH96h/AtLu962fvqjK9AdQC0OsD2yTe49skwFZtfaz72Awd7wZ7Yv3EnbSVQnx7VLaiICo=,iv:SOw4LuHYowh/svmJ312PxNeeGWkGISk3LjKvW/QgOaw=,tag:tgyPuA22Ec9qq73ioV3pHg==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.10.2
