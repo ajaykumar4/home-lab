@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflare-tunnel-configmap
+data:
+  config.yaml: ENC[AES256_GCM,data:hCQ5DMSuPRclrpC5TWK7Th+v8we3RnEkMOPtjsfTVxVtoTOFCsSi3KvnwTOA8pDkh3AB9BfLtqCa0ixYQO8ealHmDBcmC57uCQs7IfM0H/f6SbW1TZZcSfVJCFXTVyNWqAX8OvXWmmUMVEyrtRIGRgmsfN2I8Ukz25Lq0Qz7SiDE6g2DzW44ByBm6Z2uLsoHmZwaFDATwgZOT+REWbZcBQ5zifexbbam/3dqQKgO/nw1Z2rZ9WycwnyI4v4FLbuxAfaC8TVOld9DRh5bxdl6Hx8biS3tWAVC8ZQ/cTu3j6lK4VjTPNgLjYXAnfd6irmwzIeFTzITnt/I0iA=,iv:2ciqh1dOP5AkCPlO15Uf101L+PQbSDO/2czs6zaPt3A=,tag:2+C0IcfZ3t+mKJEhP4iGYQ==,type:str]
+sops:
+  age:
+    - recipient: age1ckpjl5l70jve252ure5e356yh05fzumyun66yefgp9yxc6mqqgeshe5z6d
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBwYTFYdVMySnZHZjJYaXg1
+        T2FFZ1U3djZpa0x1UjkxRGJ1SCs3VGVEZ2hvCkN2R05DT3kzS1RuWEQzT1hZWWFV
+        WXVzeTlSRm1qWC9KaXZFbE80OUdxNW8KLS0tIHpVVzFGNEZ1TG1aVHVnaXg2Z2RZ
+        REFxZWY5RWx2TnV3YU5xc2hWNGw4aVUKUSc+wWh7tHR87xdfqHlEE5cbeyW0RxDF
+        wBL8Va5lE9KEODvtKdTLycYL95pUFVHlKd02hcsBvoK/sDo0vAmXzw==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-06-26T20:37:48Z"
+  mac: ENC[AES256_GCM,data:YNGcEZXaQt+JV8j442UFl56xgvg9aJBJYBzO6hxLV68Z+BtRieoADBFzK1kMwJyUz8Rk1gxcU04kT8uwBic5gtRsVHJHr4XoKxs7jMP5YxvOcZWHCNuK+I7LacDgATh2iPaijNRHBM6XSvTPBAyAFLrr34xL/uJAQp1vJUZShJ4=,iv:CKlJv3NIUhNko8J/QZ2/UyD5DjwdKvSry+02eQjSn8g=,tag:KFi5j6pdoh054L2HM4f29A==,type:str]
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.10.2

@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=https://github.com/datreeio/CRDs-catalog/raw/refs/heads/main/gateway.networking.k8s.io/gateway_v1.json
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: external
+  annotations:
+    external-dns.alpha.kubernetes.io/target: external.aknuk.dev
+spec:
+  gatewayClassName: cilium
+  addresses:
+    - type: IPAddress
+      value: 192.168.88.203
+  infrastructure:
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: external.aknuk.dev
+  listeners:
+    - name: http
+      protocol: HTTP
+      port: 80
+      hostname: '*.aknuk.dev'
+      allowedRoutes:
+        namespaces:
+          from: Same
+    - name: https
+      protocol: HTTPS
+      port: 443
+      hostname: '*.aknuk.dev'
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        certificateRefs:
+          - kind: Secret
+            name: aknuk-dev-production-tls
+sops:
+  age:
+    - recipient: age1ckpjl5l70jve252ure5e356yh05fzumyun66yefgp9yxc6mqqgeshe5z6d
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBqeDJQVUU1VlJRRTFPdWgw
+        L2F1LzJMWm9nSkZTb3pWQlREclFWeVdjdFNvCk4zbGZCajFCWWFWTHZJOVlJMlJ4
+        TkxlRU4xbmVTRFN6eWZtcDR3WVpZNjgKLS0tIDBOclRybTkzaXZ0TWZSM2pMT1No
+        cHh4Qjl2RVMzYnQyVVpGWVZPekUvK1UKXfUX6L57M0w+jkbcyVL/z5djMWN0DkhW
+        r/jt9ujQrRZMo6tVmpNToRcOD8kqN27zJ3OmeO7wnN8ffrXTJVpmmA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-06-26T20:37:48Z"
+  mac: ENC[AES256_GCM,data:atX2dhHx2M8wTBL2yaZZ+2SLDrv9AB1Mj/KO3D/6LuHrKT/S4+UUL39WUMO3ACNPTyUHAYXCUSlbtzS5X9QJEORlTFtrOFkvslyIPr74L9hIVv/OPxsIObfQRfRMIB9jqxBRBFLzokNLiRxvH2s9I+K44oNBlyDtgoHIYAD/I/k=,iv:gc/iY5EdlyKSXjnBTtnkkAxegMxpv+Pt4ZRO2k4LFkI=,tag:IQBwOkPj5kFe3AkKZPUzxA==,type:str]
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.10.2

@@ -1,0 +1,28 @@
+fullnameOverride: k8s-gateway
+domain: aknuk.dev
+ttl: 1
+service:
+  type: LoadBalancer
+  port: 53
+  annotations:
+    io.cilium/lb-ipam-ips: 192.168.88.201
+  externalTrafficPolicy: Cluster
+watchedResources:
+  - HTTPRoute
+  - Service
+sops:
+  age:
+    - recipient: age1ckpjl5l70jve252ure5e356yh05fzumyun66yefgp9yxc6mqqgeshe5z6d
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBrZ0RBZEcrdUk2ckF1Tnpw
+        dWREZ1ZJOFdhdWNIMHE3NThOZnFLZHdrZTA4CloxQmtscmRCdzkxSkxyVWhLRk5J
+        cXFjQkc5WnJ1dlNnQXZlOGV5OU1ZM28KLS0tIFRRT2wvUWhCZngzYVZDK0sxYnRu
+        aUVkTlcyRmZTaHZHZlRRVlJPengzeWcKCPsC7M36/3vOeAhGSUDoJyVmQ8a7Ykfu
+        4ThrY7K9g5YHEX3A7rRlHyCEDX96WvuySgZ4bgRn8+QJTe2Dj/keTg==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-06-26T20:37:48Z"
+  mac: ENC[AES256_GCM,data:rj8EVw7HNcWblPTSe9bWMHAR1rRV1MNK8PVOrrPwdZv/hlHK9L65HzzgXtuvAm+bhRx5IGtI0HmhmaXhL4yWxUkItTt3rOGbFADlE3uCL4tsJWdcdx+7AFLyvK5MPwGlQ4IZJXHj2muntt1eJ+ybot4C0ITIwG5uewOJqd2pOVs=,iv:Dpgm2aSEOJ4lmLK/eF7dQ+Cpd7SgD6PtUZipqGf2B+w=,tag:3gHfpd3UzG1bofRK1PaleA==,type:str]
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.10.2
