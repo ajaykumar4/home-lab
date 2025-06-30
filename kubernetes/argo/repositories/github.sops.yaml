@@ -8,8 +8,6 @@ metadata:
         argocd.argoproj.io/sync-wave: "1"
     labels:
         argocd.argoproj.io/secret-type: repository
-    finalizers:
-        - resources-finalizer.argocd.argoproj.io
 stringData:
     type: ENC[AES256_GCM,data:ZoTY,iv:tyDHfCGasCW2V6iqZCme3C4PrfCh5cx2+58J9Un4cMk=,tag:KTp6mO/NsZLMF4lb+L3NWQ==,type:str]
     url: ENC[AES256_GCM,data:ulaXKKf3m7vNvROForvo+ES3oj6zAYqapwrBUpceGvV8LggbVstJWgsf,iv:tAt/PNHvMI6B912CE1h5aQQ5htpADwlCU7xzcXIUG0g=,tag:Qdn9FZDz8Y2TKzmwKSEK7g==,type:str]
@@ -24,8 +22,8 @@ sops:
             dzBMRXM0Sk1tbC9SL2JHZWo3UWs2M2sKhP4o+z0yagdke6DnC+wtnkHelHt0R3Wf
             zYXrF/WKjQhT7Ph4VnInhnHPIcbv3wDiwsbw9fm3lopL1QKs3vEpEw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-06-30T21:26:22Z"
-    mac: ENC[AES256_GCM,data:JHtFE66thEbBkHSKVw2NxEG4vN8RRQ7o68oMBLJnEYo5lm0z/W4wJQMQA8xxzIEijaq1i3F5pCmSetwPeB/0R1dhwMo4Nwxti/on6VOXFTDF/2xOraQTViDHwtCQx2Y/KPmr/20fE+Di2kM6ikS3QWOlan0by1jkvrnIf4ZDq4o=,iv:Qzsv1bdywBqwGyx99p+bl9wBNLWe8JRB08gPZJDd2jo=,tag:atJDWkcT44uE4QeE3lt+3w==,type:str]
+    lastmodified: "2025-06-30T21:41:00Z"
+    mac: ENC[AES256_GCM,data:RZplkS6eSj/x3sP3M3PvHqFvmzJEZluOvwj4yRgl8N82PfHoFFt4vplakyywqwHSknVFIgn7ADzRvtARoCzuMTLkoaOaruwCOcqsFT3RzpiMt5A2V0vSnJSAvTFw8jqR7L+nNmSs3AO4n0MvprlfBbniH3Z6CwDIW2GNXfRXneE=,iv:Ux6sRtiG3yEaUfisAODPQZ+Gsj3pCIcqWdyDGSNlmA4=,tag:JVTrGJmgI7LcO5SM3CRiHw==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.10.2
