@@ -24,7 +24,7 @@ nodes:
     installDisk: "/dev/mmcblk0"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/ee21ef4a5ef808a9b7484cc0dda0f25075021691c8c09a276591eedb638ea1f9
+    talosImageURL: factory.talos.dev/installer/f8a903f101ce10f686476024898734bb6b36353cc4d41f348514db9004ec0a9d
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -43,7 +43,7 @@ nodes:
     installDisk: "/dev/mmcblk0"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/ee21ef4a5ef808a9b7484cc0dda0f25075021691c8c09a276591eedb638ea1f9
+    talosImageURL: factory.talos.dev/installer/f8a903f101ce10f686476024898734bb6b36353cc4d41f348514db9004ec0a9d
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -62,7 +62,7 @@ nodes:
     installDisk: "/dev/mmcblk0"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/ee21ef4a5ef808a9b7484cc0dda0f25075021691c8c09a276591eedb638ea1f9
+    talosImageURL: factory.talos.dev/installer/f8a903f101ce10f686476024898734bb6b36353cc4d41f348514db9004ec0a9d
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -81,7 +81,7 @@ nodes:
     installDisk: "/dev/mmcblk1"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/c7d6f36c6bdfb45fd63178b202a67cff0dd270262269c64886b43f76880ecf1e
+    talosImageURL: factory.talos.dev/installer/21c41d63e77b0bcf86bfe45d8891872a5fe7ef76cb4424a451179c059d8c272b
     controlPlane: false
     networkInterfaces:
       - deviceSelector:

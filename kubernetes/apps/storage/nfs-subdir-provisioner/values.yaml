@@ -1,0 +1,9 @@
+nfs:
+  server: 192.168.88.11
+  path: /mnt/truenas/home-lab
+storageClass:
+  name: truenas-nfs
+  defaultClass: true
+  reclaimPolicy: Retain
+  accessModes: ReadWriteMany
+  volumeBindingMode: Immediate

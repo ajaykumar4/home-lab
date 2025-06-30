@@ -8,6 +8,8 @@ metadata:
     argocd.argoproj.io/sync-wave: '0'
   labels:
     argocd.argoproj.io/instance: argo
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: kubernetes
   sources:

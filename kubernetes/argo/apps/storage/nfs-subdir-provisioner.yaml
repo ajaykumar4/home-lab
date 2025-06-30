@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: coredns
+  name: echo
   namespace: argo-system
   annotations:
     argocd.argoproj.io/sync-wave: '0'
@@ -12,19 +12,19 @@ spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-      path: kubernetes/apps/kube-system/coredns
+      path: kubernetes/apps/storage/nfs-subdir-provisioner
       targetRevision: main
       ref: repo
-    - repoURL: ghcr.io/coredns/charts
-      chart: coredns
-      targetRevision: 1.43.0
+    - repoURL: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
+      targetRevision: 4.0.18  # Update if needed
+      chart: nfs-subdir-external-provisioner
       helm:
-        releaseName: coredns
+        releaseName: nfs-subdir-provisioner
         valueFiles:
-          - $repo/kubernetes/apps/kube-system/coredns/values.yaml
+          - $repo/kubernetes/apps/storage/nfs-subdir-provisioner/values.yaml
   destination:
     name: in-cluster
-    namespace: kube-system
+    namespace: storage
   syncPolicy:
     automated:
       allowEmpty: true
