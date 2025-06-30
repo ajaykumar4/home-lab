@@ -3,6 +3,7 @@ apiVersion: v1
 kind: Secret
 metadata:
     name: github
+    namespace: argo-system
     annotations:
         argocd.argoproj.io/sync-wave: "1"
     labels:
@@ -23,8 +24,8 @@ sops:
             dzBMRXM0Sk1tbC9SL2JHZWo3UWs2M2sKhP4o+z0yagdke6DnC+wtnkHelHt0R3Wf
             zYXrF/WKjQhT7Ph4VnInhnHPIcbv3wDiwsbw9fm3lopL1QKs3vEpEw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-06-27T19:00:51Z"
-    mac: ENC[AES256_GCM,data:A9vhn8eqVm/gfTwwZVIHSQwEOe3nFOnobTp+Q6rjMvAfZL9wcq+zgp8auYVfdzWD+aab/PAPsGRGLh715yc6xf2Q5Xef3nhpu74eIiG1N/utDuCNsPUzE+1lh8EVI0c35QYZDJsA8qRP9V/vMliPL4qQCT/d3A5cmCJtoPcrZQM=,iv:yxD4tKbGctTfoQdbYFengs9cLyeUKqOzmWXJpyQ/5W0=,tag:2O7o+G+eFJ+iH0Zw/MDDNg==,type:str]
+    lastmodified: "2025-06-30T21:26:22Z"
+    mac: ENC[AES256_GCM,data:JHtFE66thEbBkHSKVw2NxEG4vN8RRQ7o68oMBLJnEYo5lm0z/W4wJQMQA8xxzIEijaq1i3F5pCmSetwPeB/0R1dhwMo4Nwxti/on6VOXFTDF/2xOraQTViDHwtCQx2Y/KPmr/20fE+Di2kM6ikS3QWOlan0by1jkvrnIf4ZDq4o=,iv:Qzsv1bdywBqwGyx99p+bl9wBNLWe8JRB08gPZJDd2jo=,tag:atJDWkcT44uE4QeE3lt+3w==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.10.2
