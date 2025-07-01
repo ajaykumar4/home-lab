@@ -9,7 +9,6 @@
     ":disableRateLimiting",
     ":semanticCommits",
   ],
-  revertWhen: "unpublished",
   dependencyDashboard: true,
   dependencyDashboardTitle: "Renovate Dashboard 🤖",
   schedule: ["every weekend"],
