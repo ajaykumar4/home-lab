@@ -8,6 +8,7 @@
     ":dependencyDashboard",
     ":disableRateLimiting",
     ":semanticCommits",
+    "revertWhen": "unpublished",
   ],
   dependencyDashboard: true,
   dependencyDashboardTitle: "Renovate Dashboard 🤖",
@@ -77,6 +78,7 @@
     {
       description: "Auto-merge Mise Tools",
       matchManagers: ["mise"],
+      matchDatasources: ["github-releases"],
       automerge: true,
       automergeType: "branch",
       matchUpdateTypes: ["minor", "patch"],
