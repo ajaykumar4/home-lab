@@ -59,7 +59,7 @@
     {
       "description": "External DNS Group",
       "groupName": "External-DNS",
-      "matchPackageNames": ["/external-dns/"],
+      "matchPackageNames": ["/external-dns/", "/cloudflare-dns/"],
       "matchDatasources": ["docker"],
       "group": {
         "commitMessageTopic": "{{{groupName}}} group"
