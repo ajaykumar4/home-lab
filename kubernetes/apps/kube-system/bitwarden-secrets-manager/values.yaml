@@ -1,7 +1,0 @@
-fullnameOverride: "bitwarden-secrets-manager"
-
-bitwarden-sdk-server:
-  enabled: true
-
-serviceMonitor:
-  enabled: true

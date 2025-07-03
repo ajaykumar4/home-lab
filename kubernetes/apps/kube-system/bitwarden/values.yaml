@@ -1,0 +1,5 @@
+settings:
+  # How often the secrets synchronize in seconds.  Minimum value is 180.
+  bwSecretsManagerRefreshInterval: 300
+  # Cloud region for sync.  Please see: https://bitwarden.com/help/families-for-enterprise-self-hosted/#step-1-enable-cloud-communication
+  cloudRegion: EU
