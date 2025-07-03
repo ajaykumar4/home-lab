@@ -5,6 +5,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: bitwarden
+  namespace: kube-system
 roleRef:
   kind: ClusterRole
   name: bitwarden-secret-reader
