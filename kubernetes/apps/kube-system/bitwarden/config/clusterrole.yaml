@@ -1,11 +1,9 @@
+# clusterrole-clusterpushsecret.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: bitwarden-secret-reader
+  name: external-secrets-clusterpushsecret
 rules:
-- apiGroups: [""]
-  resources: ["secrets"]
-  # Restrict the permission to only the specific secret name for security.
-  resourceNames: ["bw-auth-token"]
-  # The "get" verb allows the operator to read the secret's content.
-  verbs: ["get", "list", "watch"]
+  - apiGroups: ["external-secrets.io"]
+    resources: ["clusterpushsecrets"]
+    verbs: ["get", "list", "watch"]

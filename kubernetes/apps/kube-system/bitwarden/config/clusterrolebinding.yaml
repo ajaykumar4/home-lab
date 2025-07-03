@@ -1,12 +1,13 @@
+# clusterrolebinding-clusterpushsecret.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: bitwarden-secret-reader-binding
-subjects:
-- kind: ServiceAccount
-  name: bitwarden
-  namespace: kube-system
+  name: external-secrets-clusterpushsecret-binding
 roleRef:
-  kind: ClusterRole
-  name: bitwarden-secret-reader
   apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: external-secrets-clusterpushsecret
+subjects:
+  - kind: ServiceAccount
+    name: external-secrets
+    namespace: kube-system

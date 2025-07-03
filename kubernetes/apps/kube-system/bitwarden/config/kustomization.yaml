@@ -4,5 +4,8 @@ kind: Kustomization
 resources:
   - ./clusterrole.yaml
   - ./clusterrolebinding.yaml
+  - ./certificate.yaml
+  - ./secret-store.yaml
+  - ./issuer.yaml
 generators:
 - ./secret-generator.yaml
