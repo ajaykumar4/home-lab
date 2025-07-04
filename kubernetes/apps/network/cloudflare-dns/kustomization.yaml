@@ -8,7 +8,7 @@ helmCharts:
     version: 1.17.0
     releaseName: cloudflare-dns
     namespace: network
-    valuesFile: values.sops.yaml
+    valuesFile: values.yaml
 
 resources:
   - ./config
