@@ -17,4 +17,7 @@ helmCharts:
     version: 1.17.0
     releaseName: cloudflare-dns
     namespace: network
-    valuesFile: values.yaml
+    valuesFrom:
+      - kind: Secret
+        name: cloudflare-dns-secret-generator
+        key: values.yaml
