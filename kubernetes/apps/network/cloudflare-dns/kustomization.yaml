@@ -8,9 +8,6 @@ resources:
 generators:
 - ./secret-generator.yaml
 
-generatorOptions:
-  disableNameSuffixHash: true
-
 helmCharts:
   - name: external-dns
     repo: https://kubernetes-sigs.github.io/external-dns
@@ -19,5 +16,5 @@ helmCharts:
     namespace: network
     valuesFrom:
       - kind: Secret
-        name: cloudflare-dns-helm-secret # This MUST match the name in the ksops generator.
-        key: values.yaml 
+        name: cloudflare-dns-helm-secret
+        key: values.yaml
