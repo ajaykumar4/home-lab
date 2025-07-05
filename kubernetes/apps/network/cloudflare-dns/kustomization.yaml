@@ -11,10 +11,7 @@ helmCharts:
     version: 1.17.0
     releaseName: cloudflare-dns
     namespace: network
-    valuesFile: values.sops.yaml
-
-generators:
-  - ./secret-generator.yaml
+    valuesFile: values.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
