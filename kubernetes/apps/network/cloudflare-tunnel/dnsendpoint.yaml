@@ -1,10 +1,36 @@
-apiVersion: externaldns.k8s.io/v1alpha1
-kind: DNSEndpoint
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
 metadata:
-  name: cloudflare-tunnel
+  name: cloudflare-dns-endpoint-from-k8s
 spec:
-  endpoints:
-    - dnsName: "external.$(DOMAIN_NAME)"
-      recordType: CNAME
-      targets:
-        - "$(CF_TUNNEL_ID).cfargotunnel.com"
+  refreshInterval: 1h
+  secretStoreRef:
+    name: bitwarden-backend
+    kind: ClusterSecretStore
+
+  # Define the final DNSEndpoint to be created
+  target:
+    template:
+      engineVersion: v2
+      apiVersion: externaldns.k8s.io/v1alpha1
+      kind: DNSEndpoint
+      metadata:
+        name: cloudflare-tunnel
+      spec:
+        endpoints:
+          - dnsName: "external.{{ .domain_name }}"
+            recordType: CNAME
+            targets:
+              - "{{ .cloudflare_tunnel_id }}.cfargotunnel.com"
+
+  data:
+    - secretKey: cloudflare_api_token
+      remoteRef:
+        key: 1e0d1ec7-223d-4c57-b013-b31300c9410c
+    - secretKey: domain_name
+      remoteRef:
+        key: 7569e9ac-888a-438b-ab6b-b31300c7df9a
+    - secretKey: cloudflare_tunnel_id
+      remoteRef:
+        key: 88766610-07b4-41d5-859b-b313012111d6
+        property: TunnelID
