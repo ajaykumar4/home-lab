@@ -1,9 +1,10 @@
----
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-resources:
-  - ./config
+configMapGenerator:
+- name: cloudflare-dns-values
+  files:
+    - values.yaml
 
 helmCharts:
   - name: external-dns
@@ -11,7 +12,12 @@ helmCharts:
     version: 1.17.0
     releaseName: cloudflare-dns
     namespace: network
-    valuesFile: values.yaml
+    valuesFrom:
+      - kind: ConfigMap
+        name: cloudflare-dns-values
+        key: values.yaml
 
+resources:
+  - ./config
 generatorOptions:
   disableNameSuffixHash: true
