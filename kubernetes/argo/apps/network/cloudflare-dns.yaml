@@ -18,10 +18,11 @@ spec:
       targetRevision: 1.17.0
       helm:
         releaseName: cloudflare-dns
-        valuesFrom:
-          - kind: Secret
-            name: cloudflare-secrets
-            valuesKey: values.yaml
+        parameters:
+          # This tells Helm to use the entire content of the secret key as its values
+          - name: global.values
+            value: |
+              $repo.cloudflare-secrets.values.yaml
   destination:
     name: in-cluster
     namespace: network
