@@ -4,12 +4,12 @@ env:
     - name: CF_API_TOKEN
       valueFrom:
         secretKeyRef:
-            name: cloudflare-dns-secret
+            name: cluster-secrets
             key: cloudflare-token
     - name: DOMAIN_NAME
       valueFrom:
         secretKeyRef:
-            name: cloudflare-dns-secret
+            name: cluster-secrets
             key: domain-name
 extraArgs:
     - --cloudflare-dns-records-per-page=1000
@@ -29,4 +29,4 @@ domainFilters:
 serviceMonitor:
     enabled: true
 podAnnotations:
-    secret.reloader.stakater.com/reload: cloudflare-dns-secret
+    secret.reloader.stakater.com/reload: cluster-secrets
