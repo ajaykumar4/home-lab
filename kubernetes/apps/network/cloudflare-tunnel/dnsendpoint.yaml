@@ -4,7 +4,7 @@ metadata:
   name: cloudflare-tunnel
 spec:
   endpoints:
-    - dnsName: "external.{{ (lookup "v1" "Secret" .Release.Namespace "cloudflare-tunnel-secrets").data.domain_name | b64dec }}"
+    - dnsName: "external.{{ domain_name }}"
       recordType: CNAME
       targets:
-        - "{{ (lookup "v1" "Secret" .Release.Namespace "cloudflare-tunnel-secrets").data.cloudflare_tunnel_id | b64dec }}.cfargotunnel.com"
+        - "{{ cloudflare_tunnel_id }}.cfargotunnel.com"
