@@ -22,5 +22,3 @@ domainFilters:
     - $(DOMAIN_NAME)
 serviceMonitor:
     enabled: true
-podAnnotations:
-    secret.reloader.stakater.com/reload: cloudflare-secrets
