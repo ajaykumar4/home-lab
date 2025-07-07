@@ -1,4 +1,4 @@
-apiVersion: external-secrets.io/v1
+apiVersion: external-secrets.io/v1 # Best practice is to use v1beta1
 kind: ExternalSecret
 metadata:
   name: cloudflare-dns-endpoint-from-k8s
@@ -8,14 +8,16 @@ spec:
     name: bitwarden-backend
     kind: ClusterSecretStore
 
-  # Define the final DNSEndpoint to be created
+  # The 'target' block itself defines the resource to be created
   target:
+    # Define the DNSEndpoint directly here
+    apiVersion: externaldns.k8s.io/v1alpha1
+    kind: DNSEndpoint
+    name: cloudflare-tunnel # The name of the final DNSEndpoint object
+
+    # Use a template ONLY for the parts that need templating
     template:
       engineVersion: v2
-      apiVersion: externaldns.k8s.io/v1alpha1
-      kind: DNSEndpoint
-      metadata:
-        name: cloudflare-tunnel
       spec:
         endpoints:
           - dnsName: "external.{{ .domain_name }}"
@@ -23,6 +25,7 @@ spec:
             targets:
               - "{{ .cloudflare_tunnel_id }}.cfargotunnel.com"
 
+  # Data to be fetched for the template
   data:
     - secretKey: cloudflare_api_token
       remoteRef:
