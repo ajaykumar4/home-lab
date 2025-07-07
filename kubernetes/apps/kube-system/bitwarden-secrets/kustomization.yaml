@@ -6,10 +6,3 @@ resources:
   - ./cert
   - ./cluster
 
-helmCharts:
-  - name: external-secrets
-    repo: https://charts.external-secrets.io
-    version: 0.18.2
-    releaseName: bitwarden-secrets
-    namespace: kube-system
-    valuesFile: values.yaml

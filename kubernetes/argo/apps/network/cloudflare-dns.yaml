@@ -13,8 +13,13 @@ spec:
       path: kubernetes/apps/network/cloudflare-dns
       targetRevision: main
       ref: repo
-      kustomize:
-        version: v5.7.0
+    - repoURL: https://kubernetes-sigs.github.io/external-dns
+      chart: external-dns
+      targetRevision: 1.17.0
+      helm:
+        releaseName: cloudflare-dns
+        valueFiles:
+          - $repo/kubernetes/apps/network/cloudflare-dns/values.yaml
   destination:
     name: in-cluster
     namespace: network
