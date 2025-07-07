@@ -5,7 +5,7 @@ env:
       valueFrom:
         secretKeyRef:
             name: cloudflare-dns-secret
-            key: api-token
+            key: cloudflare-token
     - name: DOMAIN_NAME
       valueFrom:
         secretKeyRef:
