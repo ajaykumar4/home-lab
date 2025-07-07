@@ -18,14 +18,14 @@ spec:
         config.yaml: |
             ---
             originRequest:
-              originServerName: "external.{{ .domain-name }}"
+              originServerName: "external.{{ .domain_name }}"
             ingress:
-              - hostname: "{{ .domain-name }}"
+              - hostname: "{{ .domain_name }}"
                 service: &svc https://cilium-gateway-external.kube-system.svc.cluster.local
-              - hostname: "*.{{ .domain-name }}"
+              - hostname: "*.{{ .domain_name }}"
                 service: *svc
               - service: http_status:404
   data:
-    - secretKey: domain-name
+    - secretKey: domain_name
       remoteRef:
         key: 7569e9ac-888a-438b-ab6b-b31300c7df9a
