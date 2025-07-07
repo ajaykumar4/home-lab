@@ -13,6 +13,8 @@ spec:
       path: kubernetes/apps/network/cloudflare-dns
       targetRevision: main
       ref: repo
+      kustomize:
+        version: v5.7.0
   destination:
     name: in-cluster
     namespace: network
