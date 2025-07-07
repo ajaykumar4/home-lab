@@ -4,7 +4,7 @@ metadata:
   name: cloudflare-tunnel
 spec:
   endpoints:
-    - dnsName: "external.{{ domain_name }}"
+    - dnsName: "external.{{ .domain_name }}"
       recordType: CNAME
       targets:
-        - "{{ cloudflare_tunnel_id }}.cfargotunnel.com"
+        - "{{ .cloudflare_tunnel_id }}.cfargotunnel.com"
