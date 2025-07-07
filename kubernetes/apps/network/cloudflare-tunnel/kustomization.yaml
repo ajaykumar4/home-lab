@@ -5,4 +5,4 @@ resources:
   - ./config
   - ./cloudflare-tunnel-secrets.yaml
   - ./cloudflare-tunnel-config.yaml
-  - ./dnsendpoint.yaml
+  #- ./dnsendpoint.yaml
