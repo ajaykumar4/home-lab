@@ -5,12 +5,17 @@ env:
       valueFrom:
         secretKeyRef:
             name: cloudflare-secrets
-            key: cloudflare-api-token
+            key: cloudflare_api_token
     - name: DOMAIN_NAME
       valueFrom:
         secretKeyRef:
             name: cloudflare-secrets
-            key: domain-name
+            key: domain_name
+    - name: CF_TUNNEL_ID
+      valueFrom:
+        secretKeyRef:
+            name: cloudflare-secrets
+            key: cloudflare_tunnel_id
 extraArgs:
     - --cloudflare-dns-records-per-page=1000
     - --cloudflare-proxied
