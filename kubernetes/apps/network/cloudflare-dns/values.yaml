@@ -16,7 +16,6 @@ sources:
     - gateway-httproute
 txtPrefix: k8s.
 txtOwnerId: default
-domainFilters:
-    - "{{ .domain-name }}"
+domainFilters: ["{{ .domain-name }}"]
 serviceMonitor:
     enabled: true
