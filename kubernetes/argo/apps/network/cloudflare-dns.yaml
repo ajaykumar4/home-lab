@@ -18,8 +18,10 @@ spec:
       targetRevision: 1.17.0
       helm:
         releaseName: cloudflare-dns
-        valueFiles:
-          - $repo/kubernetes/apps/network/cloudflare-dns/values.yaml
+        valuesFrom:
+          - kind: Secret
+            name: cloudflare-secrets
+            valuesKey: values.yaml
   destination:
     name: in-cluster
     namespace: network
