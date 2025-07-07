@@ -2,9 +2,15 @@ fullnameOverride: cloudflare-dns
 provider: cloudflare
 env:
     - name: CF_API_TOKEN
-      value: "{{ .cloudflare_token }}"
+      valueFrom:
+        secretKeyRef:
+            name: cloudflare-secrets
+            key: cloudflare-token
     - name: DOMAIN_NAME
-      value: "{{ .domain_name }}"
+      valueFrom:
+        secretKeyRef:
+            name: cloudflare-secrets
+            key: domain-name
 extraArgs:
     - --cloudflare-dns-records-per-page=1000
     - --cloudflare-proxied
@@ -22,3 +28,5 @@ domainFilters:
     - $(DOMAIN_NAME)
 serviceMonitor:
     enabled: true
+podAnnotations:
+    secret.reloader.stakater.com/reload: cloudflare-secrets
