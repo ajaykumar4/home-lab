@@ -5,3 +5,32 @@ resources:
   - ./config
   - ./cloudflare-tunnel-config.yaml
   - ./dnsendpoint.yaml
+
+replacements:
+- source:
+    kind: Secret
+    name: cloudflare-tunnel-configmap
+    fieldPath: data.domain_name
+  targets:
+  - select:
+      kind: DNSEndpoint
+      name: cloudflare-tunnel-endpoint
+    fieldPaths:
+    - spec.endpoints.0.dnsName
+    options:
+      delimiter: "."
+      index: 1 # Replaces the part after the first delimiter "external."
+
+- source:
+    kind: Secret
+    name: cloudflare-tunnel-configmap
+    fieldPath: data.tunnel_id
+  targets:
+  - select:
+      kind: DNSEndpoint
+      name: cloudflare-tunnel-endpoint
+    fieldPaths:
+    - spec.endpoints.0.targets.0
+    options:
+      delimiter: "."
+      index: 0

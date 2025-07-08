@@ -1,0 +1,4 @@
+apiVersion: v2
+name: dns-endpoint
+description: Helm chart to manage ExternalDNS DNSEndpoint with Cloudflare tunnel
+version: 0.1.0
