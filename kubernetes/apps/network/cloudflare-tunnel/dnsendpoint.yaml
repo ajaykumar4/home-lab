@@ -12,8 +12,8 @@ spec:
     template:
       engineVersion: v2
       templateFrom:
-        - target: Data
-          literal: |
+      - target: Data
+        literal: |-
             apiVersion: externaldns.k8s.io/v1alpha1
             kind: DNSEndpoint
             metadata:
