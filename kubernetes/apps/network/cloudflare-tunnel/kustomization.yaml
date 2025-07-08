@@ -10,7 +10,7 @@ replacements:
 - source:
     kind: Secret
     name: cloudflare-tunnel-configmap
-    fieldPath: data.domain_name
+    fieldPath: data.DOMAIN_NAME
   targets:
   - select:
       kind: DNSEndpoint
@@ -24,7 +24,7 @@ replacements:
 - source:
     kind: Secret
     name: cloudflare-tunnel-configmap
-    fieldPath: data.tunnel_id
+    fieldPath: data.TUNNEL_ID
   targets:
   - select:
       kind: DNSEndpoint
