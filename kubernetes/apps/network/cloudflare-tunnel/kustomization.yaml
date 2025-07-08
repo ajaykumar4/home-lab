@@ -7,7 +7,7 @@ resources:
   - ./cloudflare-tunnel-config.yaml
 
 secretGenerator:
-- name: cloudflare-templated-data # Must match the secret created by ExternalSecret
+- name: cloudflare-tunnel-configmap # Must match the secret created by ExternalSecret
   files:
   - dnsendpoint.yaml # The key containing the DNSEndpoint manifest
   behavior: merge # Use the existing secret
