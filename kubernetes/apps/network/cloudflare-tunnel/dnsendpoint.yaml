@@ -16,6 +16,7 @@ spec:
           kind: DNSEndpoint
           metadata:
             name: cloudflare-tunnel-endpoint
+            namespace: network
           spec:
             endpoints:
               - dnsName: "external.${DOMAIN_NAME}"
