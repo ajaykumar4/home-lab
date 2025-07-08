@@ -1,36 +1,36 @@
----
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
 resources:
   - ./config
   - ./cloudflare-tunnel-config.yaml
   - ./dnsendpoint.yaml
 
 replacements:
-- source:
-    kind: Secret
-    name: cloudflare-tunnel-configmap
-    fieldPath: data.DOMAIN_NAME
-  targets:
-  - select:
-      kind: DNSEndpoint
-      name: cloudflare-tunnel-endpoint
-    fieldPaths:
-    - spec.endpoints.0.dnsName
-    options:
-      delimiter: "."
-      index: 1 # Replaces the part after the first delimiter "external."
+  - source:
+      kind: Secret
+      name: cloudflare-tunnel-configmap
+      fieldPath: data.DOMAIN_NAME
+    targets:
+      - select:
+          kind: DNSEndpoint
+          name: cloudflare-tunnel-endpoint
+        fieldPaths:
+          - spec.endpoints.0.dnsName
+        options:
+          delimiter: "."
+          index: 1 # replaces `replaceme` in `external.replaceme`
 
-- source:
-    kind: Secret
-    name: cloudflare-tunnel-configmap
-    fieldPath: data.TUNNEL_ID
-  targets:
-  - select:
-      kind: DNSEndpoint
-      name: cloudflare-tunnel-endpoint
-    fieldPaths:
-    - spec.endpoints.0.targets.0
-    options:
-      delimiter: "."
-      index: 0
+  - source:
+      kind: Secret
+      name: cloudflare-tunnel-configmap
+      fieldPath: data.TUNNEL_ID
+    targets:
+      - select:
+          kind: DNSEndpoint
+          name: cloudflare-tunnel-endpoint
+        fieldPaths:
+          - spec.endpoints.0.targets.0
+        options:
+          delimiter: "."
+          index: 0 # replaces `replaceme` in `replaceme.cfargotunnel.com`
