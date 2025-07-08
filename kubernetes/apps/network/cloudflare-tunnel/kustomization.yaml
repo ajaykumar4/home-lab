@@ -7,21 +7,8 @@ resources:
   - ./cloudflare-tunnel-config.yaml
 
 secretGenerator:
-- name: cloudflare-tunnel-configmap # Must match the secret created by ExternalSecret
-  files:
-  - dnsendpoint.yaml # The key containing the DNSEndpoint manifest
-  behavior: merge # Use the existing secret
-  type: Opaque
-
-# This patch removes the temporary Secret from the Kustomize output,
-# so only the DNSEndpoint manifest within it gets applied.
-patches:
-- patch: |-
-    $patch: delete
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: cloudflare-templated-data
-  target:
-    kind: Secret
-    name: cloudflare-templated-data
+  - name: cloudflare-tunnel-configmap
+    files:
+      - dnsendpoint.yaml
+      - config.yaml
+    type: Opaque
