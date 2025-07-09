@@ -12,7 +12,7 @@ env:
       secretKeyRef:
         name: *secret
         key: *name
-  - name: &name CF_DOMAIN_FILTER
+  - name: &name CF_DOMAIN
     valueFrom:
       secretKeyRef:
         name: *secret
@@ -29,7 +29,7 @@ policy: sync
 sources: ["crd", "gateway-httproute"]
 txtOwnerId: default
 txtPrefix: k8s.
-domainFilters: ["$(CF_DOMAIN_FILTER)"]
+domainFilters: ["$(CF_DOMAIN)"]
 serviceMonitor:
   enabled: true
 podAnnotations:
