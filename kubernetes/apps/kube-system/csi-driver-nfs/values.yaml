@@ -1,0 +1,13 @@
+storageClass:
+  create: true
+  name: nfs-slow
+  parameters:
+    server: truenas.home.lan
+    share: /mnt/truenas/home-lab
+  mountOptions:
+    - nfsvers=4.2
+    - nconnect=16
+    - hard
+    - noatime
+  reclaimPolicy: Delete
+  volumeBindingMode: Immediate
