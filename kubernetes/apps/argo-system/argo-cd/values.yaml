@@ -135,6 +135,8 @@ repoServer:
       value: /usr/local/bin/helm
     - name: SOPS_AGE_KEY_FILE # For age
       value: /helm-secrets-private-keys/key.txt
+    - name: AVP_TYPE
+      value: kubernetessecret
   volumes:
     - name: custom-tools
       emptyDir: {}
