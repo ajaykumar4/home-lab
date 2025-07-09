@@ -11,6 +11,8 @@ spec:
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
       path: kubernetes/apps/kube-system/metrics-server
+      plugin:
+        name: avp-kustomize
       targetRevision: main
       ref: repo
     - repoURL: https://kubernetes-sigs.github.io/metrics-server

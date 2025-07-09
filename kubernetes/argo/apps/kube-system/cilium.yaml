@@ -11,6 +11,8 @@ spec:
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
       path: kubernetes/apps/kube-system/cilium
+      plugin:
+        name: avp-kustomize
       targetRevision: main
       ref: repo
     - repoURL: https://helm.cilium.io

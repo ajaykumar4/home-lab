@@ -13,6 +13,8 @@ spec:
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
       path: kubernetes/apps/storage/nfs-subdir-provisioner
+      plugin:
+        name: avp-kustomize
       targetRevision: main
       ref: repo
     - repoURL: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner

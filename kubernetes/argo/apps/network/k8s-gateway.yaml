@@ -11,6 +11,8 @@ spec:
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
       path: kubernetes/apps/network/k8s-gateway
+      plugin:
+        name: avp-kustomize
       targetRevision: main
       ref: repo
     - repoURL: https://ori-edge.github.io/k8s_gateway
