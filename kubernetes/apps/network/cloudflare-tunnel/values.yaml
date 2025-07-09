@@ -59,7 +59,7 @@ serviceMonitor:
       - port: http
 persistence:
   config-file:
-    type: configMap
+    type: secret
     name: cloudflare-tunnel-configmap
     globalMounts:
       - path: /etc/cloudflared/config.yaml
