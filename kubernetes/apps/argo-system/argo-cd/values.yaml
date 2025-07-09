@@ -25,19 +25,6 @@ configs:
   cmp:
     create: true
     plugins:
-      avp-kustomize:
-        discover:
-          find:
-            command:
-              - find
-              - "."
-              - -name
-              - kustomization.yaml
-        generate:
-          command:
-            - sh
-            - "-c"
-            - "kustomize build . | argocd-vault-plugin generate -"
       avp:
         discover:
           find:
@@ -167,28 +154,6 @@ repoServer:
           name: custom-tools
   # argocd-vault-plugin with Helm
   extraContainers:
-    # argocd-vault-plugin with Kustomize
-    - name: avp-kustomize
-      command: [/var/run/argocd/argocd-cmp-server]
-      image: quay.io/argoproj/argocd
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 999
-      volumeMounts:
-        - mountPath: /var/run/argocd
-          name: var-files
-        - mountPath: /home/argocd/cmp-server/plugins
-          name: plugins
-        - mountPath: /tmp
-          name: tmp
-        # Register plugins into sidecar
-        - mountPath: /home/argocd/cmp-server/config/plugin.yaml
-          subPath: avp-kustomize.yaml
-          name: argocd-cmp-cm
-        # Important: Mount tools into $PATH
-        - name: custom-tools
-          subPath: argocd-vault-plugin
-          mountPath: /usr/local/bin/argocd-vault-plugin
     # argocd-vault-plugin with plain YAML
     - name: avp
       command: [/var/run/argocd/argocd-cmp-server]
