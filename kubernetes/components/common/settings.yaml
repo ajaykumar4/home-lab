@@ -11,6 +11,8 @@ spec:
   source:
     repoURL: "https://github.com/ajaykumar4/home-lab.git"
     path: kubernetes/argo/settings
+    plugin:
+      name: avp-kustomize
     targetRevision: main
   destination:
     name: in-cluster

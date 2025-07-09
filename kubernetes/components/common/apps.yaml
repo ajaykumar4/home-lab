@@ -11,6 +11,8 @@ spec:
   source:
     repoURL: "https://github.com/ajaykumar4/home-lab.git"
     path: kubernetes/argo/apps
+    plugin:
+      name: avp-kustomize
     targetRevision: main
     directory:
       recurse: true
