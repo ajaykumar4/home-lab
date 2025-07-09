@@ -38,23 +38,6 @@ configs:
             - sh
             - "-c"
             - "kustomize build . | argocd-vault-plugin generate -"
-      avp-helm:
-        discover:
-          find:
-            command:
-              - sh
-              - "-c"
-              - "find . -name 'Chart.yaml' && find . -name 'values.yaml'"
-        generate:
-          # **IMPORTANT**: passing `${ARGOCD_ENV_HELM_ARGS}` effectively allows users to run arbitrary code in the Argo CD
-          # repo-server (or, if using a sidecar, in the plugin sidecar). Only use this when the users are completely trusted. If
-          # possible, determine which Helm arguments are needed by your users and explicitly pass only those arguments.
-          command:
-            - sh
-            - "-c"
-            - |
-              helm template $ARGOCD_APP_NAME -n $ARGOCD_APP_NAMESPACE ${ARGOCD_ENV_HELM_ARGS} . |
-              argocd-vault-plugin generate -
       avp:
         discover:
           find:
@@ -184,27 +167,6 @@ repoServer:
           name: custom-tools
   # argocd-vault-plugin with Helm
   extraContainers:
-    - name: avp-helm
-      command: [/var/run/argocd/argocd-cmp-server]
-      image: quay.io/argoproj/argocd
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 999
-      volumeMounts:
-        - mountPath: /var/run/argocd
-          name: var-files
-        - mountPath: /home/argocd/cmp-server/plugins
-          name: plugins
-        - mountPath: /tmp
-          name: tmp
-        # Register plugins into sidecar
-        - mountPath: /home/argocd/cmp-server/config/plugin.yaml
-          subPath: avp-helm.yaml
-          name: argocd-cmp-cm
-        # Important: Mount tools into $PATH
-        - name: custom-tools
-          subPath: argocd-vault-plugin
-          mountPath: /usr/local/bin/argocd-vault-plugin
     # argocd-vault-plugin with Kustomize
     - name: avp-kustomize
       command: [/var/run/argocd/argocd-cmp-server]
