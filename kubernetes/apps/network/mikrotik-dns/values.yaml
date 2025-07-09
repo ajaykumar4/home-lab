@@ -5,7 +5,7 @@ logLevel: debug
 logFormat: text
 
 interval: 5s
-sources: ["crd", "gateway-httproute"]
+sources: ["service", "gateway-httproute"]
 registry: txt
 txtOwnerId: default
 txtPrefix: k8s.
