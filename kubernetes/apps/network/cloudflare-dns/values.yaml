@@ -1,32 +1,36 @@
-fullnameOverride: cloudflare-dns
-provider: cloudflare
+fullnameOverride: &app cloudflare-dns
+provider:
+  name: cloudflare
 env:
-    - name: CF_API_TOKEN
-      valueFrom:
-        secretKeyRef:
-            name: cloudflare-secrets
-            key: cloudflare_api_token
-    - name: DOMAIN_NAME
-      valueFrom:
-        secretKeyRef:
-            name: cloudflare-secrets
-            key: domain_name
+  - name: &name CF_API_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: &secret cloudflare-secret
+        key: *name
+  - name: &name CF_ZONE_ID
+    valueFrom:
+      secretKeyRef:
+        name: *secret
+        key: *name
+  - name: &name CF_DOMAIN_FILTER
+    valueFrom:
+      secretKeyRef:
+        name: *secret
+        key: *name
 extraArgs:
-    - --cloudflare-dns-records-per-page=1000
-    - --cloudflare-proxied
-    - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
-    - --crd-source-kind=DNSEndpoint
-    - --gateway-name=external
+  - --cloudflare-dns-records-per-page=1000
+  - --cloudflare-proxied
+  - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
+  - --crd-source-kind=DNSEndpoint
+  - --gateway-name=external
+  - --zone-id-filter=$(CF_ZONE_ID)
 triggerLoopOnEvent: true
 policy: sync
-sources:
-    - crd
-    - gateway-httproute
-txtPrefix: k8s.
+sources: ["crd", "gateway-httproute"]
 txtOwnerId: default
-domainFilters:
-    - $(DOMAIN_NAME)
+txtPrefix: k8s.
+domainFilters: ["$(CF_DOMAIN_FILTER)"]
 serviceMonitor:
-    enabled: true
+  enabled: true
 podAnnotations:
-    secret.reloader.stakater.com/reload: cloudflare-secrets
+  secret.reloader.stakater.com/reload: *secret
