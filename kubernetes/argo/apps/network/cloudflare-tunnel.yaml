@@ -6,6 +6,7 @@ metadata:
   namespace: argo-system
   annotations:
     argocd.argoproj.io/sync-wave: '0'
+    argocd.argoproj.io/manifest-generate-plugin: avp-kustomize
 spec:
   project: kubernetes
   sources:
@@ -13,8 +14,6 @@ spec:
       path: kubernetes/apps/network/cloudflare-tunnel
       targetRevision: main
       ref: repo
-      plugin:
-        name: avp
     - repoURL: ghcr.io/bjw-s/helm
       chart: app-template
       targetRevision: 3.7.3
