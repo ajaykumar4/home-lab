@@ -22,6 +22,23 @@ configs:
           - CiliumIdentity
         clusters:
           - "*"
+  cmp:
+    create: true
+    plugins:
+      avp:
+        allowConcurrency: true
+        lockRepo: false
+        init:
+          command: [sh]
+          args: [-c, 'echo "Initializing..."']
+        discover:
+          find:
+            command:
+              - sh
+              - "-c"
+              - "find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep ."
+        generate:
+          command: [argocd-vault-plugin, generate, "."]
 controller:
   autoscaling:
     enabled: true
@@ -97,12 +114,14 @@ repoServer:
       value: /usr/local/bin/helm
     - name: SOPS_AGE_KEY_FILE # For age
       value: /helm-secrets-private-keys/key.txt
+    - name: AVP_TYPE
+      value: kubernetessecret
   volumes:
+    - name: argocd-cmp-cm
+      configMap:
+        name: argocd-cmp-cm
     - name: custom-tools
       emptyDir: {}
-    - configMap:
-        name: argocd-cmp-cm
-      name: argocd-cmp-cm
     # kubectl create secret generic helm-secrets-private-keys --from-file=key.asc=assets/gpg/private2.gpg
     - name: helm-secrets-private-keys
       secret:
@@ -137,3 +156,27 @@ repoServer:
       volumeMounts:
         - mountPath: /custom-tools
           name: custom-tools
+  # argocd-vault-plugin with Helm
+  extraContainers:
+    # argocd-vault-plugin with plain YAML
+    - name: avp
+      command: [/var/run/argocd/argocd-cmp-server]
+      image: quay.io/argoproj/argocd
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 999
+      volumeMounts:
+        - mountPath: /var/run/argocd
+          name: var-files
+        - mountPath: /home/argocd/cmp-server/plugins
+          name: plugins
+        - mountPath: /tmp
+          name: tmp
+        # Register plugins into sidecar
+        - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+          subPath: avp.yaml
+          name: argocd-cmp-cm
+        # Important: Mount tools into $PATH
+        - name: custom-tools
+          subPath: argocd-vault-plugin
+          mountPath: /usr/local/bin/argocd-vault-plugin
