@@ -23,6 +23,7 @@ configs:
         clusters:
           - "*"
   cmp:
+    enabled: true
     plugins:
       - avp-kustomize:
           discover:
