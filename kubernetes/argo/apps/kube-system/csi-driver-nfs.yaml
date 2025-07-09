@@ -15,7 +15,7 @@ spec:
       path: kubernetes/apps/kube-system/csi-driver-nfs
       targetRevision: main
       ref: repo
-    - repoURL: oci://ghcr.io/home-operations/charts-mirror/csi-driver-nfs
+    - repoURL: ghcr.io/home-operations/charts-mirror/csi-driver-nfs
       targetRevision: 4.11.0
       chart: csi-driver-nfs
       helm:
