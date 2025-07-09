@@ -60,7 +60,7 @@ serviceMonitor:
 persistence:
   config-file:
     type: secret
-    name: cloudflare-tunnel-configmap
+    name: cloudflare-tunnel-secret
     globalMounts:
       - path: /etc/cloudflared/config.yaml
         subPath: config.yaml
