@@ -13,8 +13,6 @@ domainFilters: ["$(MIKROTIK_DOMAIN)"]
 policy: sync
 serviceMonitor:
   enabled: true
-podAnnotations:
-  secret.reloader.stakater.com/reload: *secret
 
 provider:
   name: webhook
@@ -82,3 +80,6 @@ extraArgs:
   - --managed-record-types=SRV
   - --managed-record-types=NS
   - --gateway-name=internal
+
+podAnnotations:
+  secret.reloader.stakater.com/reload: *secret
