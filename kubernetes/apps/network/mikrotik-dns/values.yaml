@@ -1,0 +1,84 @@
+---
+fullnameOverride: &app mikrotik-dns
+
+logLevel: debug
+logFormat: text
+
+interval: 5s
+sources: ["crd", "gateway-httproute"]
+registry: txt
+txtOwnerId: default
+txtPrefix: k8s.
+domainFilters: ["$(MIKROTIK_DOMAIN)"]
+policy: sync
+serviceMonitor:
+  enabled: true
+podAnnotations:
+  secret.reloader.stakater.com/reload: *secret
+
+provider:
+  name: webhook
+  webhook:
+    image:
+      repository: ghcr.io/mirceanton/external-dns-provider-mikrotik
+      tag: 1.4.11
+    env:
+      - name: LOG_FORMAT
+        value: json
+      - name: LOG_LEVEL
+        value: debug
+
+      - name: MIKROTIK_DEFAULT_TTL
+        value: "1800"
+      - name: MIKROTIK_DEFAULT_COMMENT
+        value: Managed by ExternalDNS
+
+      - name: &name MIKROTIK_BASEURL
+        valueFrom:
+          secretKeyRef:
+            name: &secret mikrotik-dns-secret
+            key:  *name
+      - name: &name MIKROTIK_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: *secret
+            key: *name
+      - name: &name MIKROTIK_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: *secret
+            key: *name
+      - name: &name MIKROTIK_SKIP_TLS_VERIFY
+        valueFrom:
+          secretKeyRef:
+            name: *secret
+            key: *name
+      - name: &name MIKROTIK_DOMAIN
+        valueFrom:
+          secretKeyRef:
+            name: *secret
+            key: *name
+
+    livenessProbe:
+      httpGet:
+        path: /healthz
+        port: http-webhook
+      initialDelaySeconds: 10
+      timeoutSeconds: 5
+    readinessProbe:
+      httpGet:
+        path: /readyz
+        port: http-webhook
+      initialDelaySeconds: 10
+      timeoutSeconds: 5
+
+extraArgs:
+  - --ignore-ingress-tls-spec
+  - --managed-record-types=A
+  - --managed-record-types=AAAA
+  - --managed-record-types=CNAME
+  - --managed-record-types=TXT
+  - --managed-record-types=MX
+  - --managed-record-types=SRV
+  - --managed-record-types=NS
+  - --gateway-name=internal
