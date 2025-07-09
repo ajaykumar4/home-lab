@@ -175,6 +175,7 @@ repoServer:
       volumeMounts:
         - mountPath: /custom-tools
           name: custom-tools
+  extraContainers:
     # argocd-vault-plugin with Kustomize
     - name: avp-kustomize
       command: [/var/run/argocd/argocd-cmp-server]
