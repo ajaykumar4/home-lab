@@ -185,7 +185,11 @@ repoServer:
   # argocd-vault-plugin with Helm
   extraContainers:
     - name: avp-helm
+      command: [/var/run/argocd/argocd-cmp-server]
       image: quay.io/argoproj/argocd
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 999
       volumeMounts:
         - mountPath: /var/run/argocd
           name: var-files
@@ -203,7 +207,11 @@ repoServer:
           mountPath: /usr/local/bin/argocd-vault-plugin
     # argocd-vault-plugin with Kustomize
     - name: avp-kustomize
+      command: [/var/run/argocd/argocd-cmp-server]
       image: quay.io/argoproj/argocd
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 999
       volumeMounts:
         - mountPath: /var/run/argocd
           name: var-files
@@ -221,7 +229,11 @@ repoServer:
           mountPath: /usr/local/bin/argocd-vault-plugin
     # argocd-vault-plugin with plain YAML
     - name: avp
+      command: [/var/run/argocd/argocd-cmp-server]
       image: quay.io/argoproj/argocd
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 999
       volumeMounts:
         - mountPath: /var/run/argocd
           name: var-files
