@@ -209,10 +209,6 @@ repoServer:
         - mountPath: /home/argocd/cmp-server/config/plugin.yaml
           subPath: avp-kustomize.yaml
           name: argocd-cmp-cm
-        # Important: Mount tools into $PATH
-        - name: custom-tools
-          subPath: argocd-vault-plugin
-          mountPath: /usr/local/bin/argocd-vault-plugin
         - mountPath: /usr/local/sbin/helm
           subPath: helm
           name: custom-tools
