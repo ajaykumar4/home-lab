@@ -6,7 +6,6 @@ metadata:
   namespace: argo-system
   annotations:
     argocd.argoproj.io/sync-wave: '0'
-    argocd.argoproj.io/manifest-generate-plugin: avp-kustomize
 spec:
   project: kubernetes
   sources:
