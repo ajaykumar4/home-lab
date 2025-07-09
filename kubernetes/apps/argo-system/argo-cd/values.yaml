@@ -25,48 +25,48 @@ configs:
   cmp:
     enabled: true
     plugins:
-      - avp-kustomize:
-          discover:
-            find:
-              command:
-                - find
-                - "."
-                - -name
-                - kustomization.yaml
-          generate:
+      avp-kustomize:
+        discover:
+          find:
             command:
-              - sh
-              - "-c"
-              - "kustomize build . | argocd-vault-plugin generate -"
-      - avp-helm:
-          discover:
-            find:
-              command:
-                - sh
-                - "-c"
-                - "find . -name 'Chart.yaml' && find . -name 'values.yaml'"
-          generate:
-            # **IMPORTANT**: passing `${ARGOCD_ENV_HELM_ARGS}` effectively allows users to run arbitrary code in the Argo CD
-            # repo-server (or, if using a sidecar, in the plugin sidecar). Only use this when the users are completely trusted. If
-            # possible, determine which Helm arguments are needed by your users and explicitly pass only those arguments.
-            command:
-              - sh
-              - "-c"
-              - |
-                helm template $ARGOCD_APP_NAME -n $ARGOCD_APP_NAMESPACE ${ARGOCD_ENV_HELM_ARGS} . |
-                argocd-vault-plugin generate -
-      - avp:
-          discover:
-            find:
-              command:
-                - sh
-                - "-c"
-                - "find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep ."
-          generate:
-            command:
-              - argocd-vault-plugin
-              - generate
+              - find
               - "."
+              - -name
+              - kustomization.yaml
+        generate:
+          command:
+            - sh
+            - "-c"
+            - "kustomize build . | argocd-vault-plugin generate -"
+      avp-helm:
+        discover:
+          find:
+            command:
+              - sh
+              - "-c"
+              - "find . -name 'Chart.yaml' && find . -name 'values.yaml'"
+        generate:
+          # **IMPORTANT**: passing `${ARGOCD_ENV_HELM_ARGS}` effectively allows users to run arbitrary code in the Argo CD
+          # repo-server (or, if using a sidecar, in the plugin sidecar). Only use this when the users are completely trusted. If
+          # possible, determine which Helm arguments are needed by your users and explicitly pass only those arguments.
+          command:
+            - sh
+            - "-c"
+            - |
+              helm template $ARGOCD_APP_NAME -n $ARGOCD_APP_NAMESPACE ${ARGOCD_ENV_HELM_ARGS} . |
+              argocd-vault-plugin generate -
+      avp:
+        discover:
+          find:
+            command:
+              - sh
+              - "-c"
+              - "find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep ."
+        generate:
+          command:
+            - argocd-vault-plugin
+            - generate
+            - "."
 controller:
   autoscaling:
     enabled: true
