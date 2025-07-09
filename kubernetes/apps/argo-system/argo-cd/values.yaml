@@ -145,8 +145,8 @@ repoServer:
     - name: custom-tools
       emptyDir: {}
     - configMap:
-        name: cmp-plugin
-      name: cmp-plugin
+        name: argocd-cmp-cm
+      name: argocd-cmp-cm
     # kubectl create secret generic helm-secrets-private-keys --from-file=key.asc=assets/gpg/private2.gpg
     - name: helm-secrets-private-keys
       secret:
@@ -195,7 +195,7 @@ repoServer:
         # Register plugins into sidecar
         - mountPath: /home/argocd/cmp-server/config/plugin.yaml
           subPath: avp-helm.yaml
-          name: cmp-plugin
+          name: argocd-cmp-cm
         # Important: Mount tools into $PATH
         - name: custom-tools
           subPath: argocd-vault-plugin
@@ -213,7 +213,7 @@ repoServer:
         # Register plugins into sidecar
         - mountPath: /home/argocd/cmp-server/config/plugin.yaml
           subPath: avp-kustomize.yaml
-          name: cmp-plugin
+          name: argocd-cmp-cm
         # Important: Mount tools into $PATH
         - name: custom-tools
           subPath: argocd-vault-plugin
@@ -231,7 +231,7 @@ repoServer:
         # Register plugins into sidecar
         - mountPath: /home/argocd/cmp-server/config/plugin.yaml
           subPath: avp.yaml
-          name: cmp-plugin
+          name: argocd-cmp-cm
         # Important: Mount tools into $PATH
         - name: custom-tools
           subPath: argocd-vault-plugin
