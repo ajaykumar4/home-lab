@@ -13,6 +13,8 @@ spec:
       path: kubernetes/apps/network/cloudflare-tunnel
       targetRevision: main
       ref: repo
+      plugin:
+        name: avp
     - repoURL: ghcr.io/bjw-s/helm
       chart: app-template
       targetRevision: 3.7.3
