@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
   - ./config
   - ./cloudflare-tunnel-config.yaml
+  - ./dnsendpoint.yaml
 

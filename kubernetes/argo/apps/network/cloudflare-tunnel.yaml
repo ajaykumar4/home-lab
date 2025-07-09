@@ -11,13 +11,10 @@ spec:
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
       path: kubernetes/apps/network/cloudflare-tunnel
-      targetRevision: main
-      ref: repo
-    - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-      path: kubernetes/apps/network/cloudflare-tunnel/dnsendpoint
       plugin:
         name: avp-kustomize
       targetRevision: main
+      ref: repo
     - repoURL: ghcr.io/bjw-s/helm
       chart: app-template
       targetRevision: 3.7.3

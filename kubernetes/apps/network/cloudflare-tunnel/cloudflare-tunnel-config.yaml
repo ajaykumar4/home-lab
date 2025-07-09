@@ -7,17 +7,11 @@ spec:
   secretStoreRef:
     name: bitwarden-backend
     kind: ClusterSecretStore
-  # ...
   target:
     name: cloudflare-tunnel-configmap
-    # this is how the Kind=Secret will look like
     template:
       engineVersion: v2
       data:
-        domain_name: "{{ .domain_name }}"
-        tunnel_id: "{{ .cloudflare_tunnel_id }}"
-        tunnel_details: "{{ .cloudflare_tunnel }}"
-        # multiline string
         config.yaml: |
             ---
             originRequest:
@@ -29,13 +23,6 @@ spec:
                 service: *svc
               - service: http_status:404
   data:
-    - secretKey: cloudflare_tunnel
-      remoteRef:
-        key: 88766610-07b4-41d5-859b-b313012111d6
-    - secretKey: cloudflare_tunnel_id
-      remoteRef:
-        key: 88766610-07b4-41d5-859b-b313012111d6
-        property: TunnelID
     - secretKey: domain_name
       remoteRef:
         key: 7569e9ac-888a-438b-ab6b-b31300c7df9a
