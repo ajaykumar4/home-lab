@@ -9,11 +9,17 @@ metadata:
 spec:
   project: kubernetes
   sources:
+    - repoURL: "https://github.com/ajaykumar4/home-lab.git"
+      path: kubernetes/apps/observability/kube-prometheus-stack
+      targetRevision: main
+      ref: repo
     - repoURL: ghcr.io/prometheus-community/charts
       chart: kube-prometheus-stack
       targetRevision: 75.10.0
       helm:
         releaseName: kube-prometheus-stack
+        valueFiles:
+          - $repo/kubernetes/apps/observability/kube-prometheus-stack/values.yaml
   destination:
     name: in-cluster
     namespace: observability
