@@ -18,8 +18,6 @@ spec:
       targetRevision: 75.10.0
       helm:
         releaseName: kube-prometheus-stack
-        valueFiles:
-          - $repo/kubernetes/apps/observability/kube-prometheus-stack/values.yaml
   destination:
     name: in-cluster
     namespace: observability
