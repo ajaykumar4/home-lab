@@ -47,6 +47,11 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities: { drop: ["ALL"] }
+        resources:
+          requests:
+            cpu: 100m
+          limits:
+            memory: 256Mi
 defaultPodOptions:
   securityContext:
     runAsNonRoot: true
