@@ -2,8 +2,8 @@ storageClass:
   create: true
   name: nfs-slow
   parameters:
-    server: truenas.home.lan
-    share: /mnt/truenas/home-lab
+    server: nas.local
+    share: /media/home-lab/k8s
   mountOptions:
     - nfsvers=4.2
     - nconnect=16
