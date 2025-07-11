@@ -30,11 +30,6 @@ controllers:
           GATUS_CONFIG_PATH: /config
           GATUS_DELAY_START_SECONDS: 5
           WEB_PORT: &port 80
-          - name: &name CF_DOMAIN
-            valueFrom:
-              secretKeyRef:
-                name: gatus-secret
-                key: *name
         probes:
           liveness: &probes
             enabled: true
