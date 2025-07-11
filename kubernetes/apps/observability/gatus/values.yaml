@@ -24,7 +24,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/twin/gatus
-          tag: v5.19.0
+          tag: v5.20.0
         env:
           TZ: Europe/Dublin
           GATUS_CONFIG_PATH: /config
@@ -77,6 +77,13 @@ route:
       - name: external
         namespace: kube-system
         sectionName: https
+persistence:
+  data:
+    enabled: true
+    existingClaim: gatus
+    globalMounts:
+      - path: /data
+        readOnly: false
 rbac:
   roles:
     gatus:
