@@ -1,0 +1,13 @@
+storageClass:
+  create: true
+  name: nfs-slow
+  parameters:
+    server: nas.local
+    share: /media/home-lab/k8s
+  mountOptions:
+    - nfsvers=4.2
+    - nconnect=16
+    - hard
+    - noatime
+  reclaimPolicy: Delete
+  volumeBindingMode: Immediate

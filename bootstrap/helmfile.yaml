@@ -9,6 +9,8 @@ helmDefaults:
 repositories:
   - name: cilium
     url: https://helm.cilium.io
+  - name: jetstack
+    url: https://charts.jetstack.io
 
 releases:
   - name: cilium
@@ -37,15 +39,15 @@ releases:
   - name: cert-manager
     namespace: cert-manager
     atomic: true
-    chart: oci://quay.io/jetstack/charts/cert-manager
-    version: v1.17.2
+    chart: jetstack/cert-manager
+    version: v1.18.2
     values: ['../kubernetes/apps/cert-manager/cert-manager/values.yaml']
     needs: ['kube-system/spegel']
 
   - name: argo-cd
     namespace: argo-system
     chart: oci://ghcr.io/argoproj/argo-helm/argo-cd
-    version: 8.1.1
+    version: 8.1.3
     values: ['../kubernetes/apps/argo-system/argo-cd/values.yaml']
     secrets: ['../kubernetes/apps/argo-system/argo-cd/values.sops.yaml']
     needs: ['cert-manager/cert-manager']

@@ -19,7 +19,7 @@ spec:
       helm:
         releaseName: cloudflare-dns
         valueFiles:
-          - $repo/kubernetes/apps/network/cloudflare-dns/values.sops.yaml
+          - $repo/kubernetes/apps/network/cloudflare-dns/values.yaml
   destination:
     name: in-cluster
     namespace: network
@@ -29,5 +29,8 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
-    - ServerSideApply=true
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true
+      - PruneLast=true
+      - RespectIgnoreDifferences=true

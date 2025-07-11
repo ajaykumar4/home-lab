@@ -22,8 +22,30 @@ configs:
           - CiliumIdentity
         clusters:
           - "*"
+  cmp:
+    create: true
+    plugins:
+      avp-kustomize:
+        allowConcurrency: true
+        lockRepo: false
+        init:
+          command: [sh]
+          args: [-c, 'echo "Initializing..."']
+        discover:
+          find:
+            command:
+              - find
+              - "."
+              - -name
+              - kustomization.yaml
+        generate:
+          command:
+            - sh
+            - "-c"
+            - "kustomize build --enable-alpha-plugins --enable-exec . | argocd-vault-plugin generate -"
 controller:
-  replicas: 2
+  autoscaling:
+    enabled: true
   metrics:
     enabled: true
     applicationLabels:
@@ -33,7 +55,8 @@ controller:
       additionalLabels:
         release: kube-prometheus-stack
 dex:
-  replicas: 2
+  autoscaling:
+    enabled: true
   metrics:
     enabled: true
     serviceMonitor: *service-monitor
@@ -42,21 +65,26 @@ redis:
     enabled: true
     serviceMonitor: *service-monitor
 server:
-  replicas: 2
+  autoscaling:
+    enabled: true
   allowAnyNamespace: true
   metrics:
     enabled: true
     serviceMonitor: *service-monitor
 notifications:
-  replicas: 2
+  autoscaling:
+    enabled: true
   metrics:
     enabled: true
     serviceMonitor: *service-monitor
 repoServer:
-  replicas: 2
+  autoscaling:
+    enabled: true
   serviceAccount:
     create: true
     name: argocd-repo-server
+  clusterRoleRules:
+    enabled: true
   rbac:
     - apiGroups:
         - ""
@@ -64,6 +92,8 @@ repoServer:
         - secrets
       verbs:
         - get
+        - list
+        - watch
   env:
     - name: HELM_PLUGINS
       value: /custom-tools/helm-plugins/
@@ -92,9 +122,14 @@ repoServer:
       value: /usr/local/bin/helm
     - name: SOPS_AGE_KEY_FILE # For age
       value: /helm-secrets-private-keys/key.txt
+    - name: AVP_TYPE
+      value: kubernetessecret
   volumes:
     - name: custom-tools
       emptyDir: {}
+    - configMap:
+        name: argocd-cmp-cm
+      name: argocd-cmp-cm
     # kubectl create secret generic helm-secrets-private-keys --from-file=key.asc=assets/gpg/private2.gpg
     - name: helm-secrets-private-keys
       secret:
@@ -111,11 +146,14 @@ repoServer:
     - mountPath: /usr/local/bin/ksops
       name: custom-tools
       subPath: ksops
+    - mountPath: /usr/local/bin/argocd-vault-plugin
+      name: custom-tools
+      subPath: argocd-vault-plugin
     - mountPath: /helm-secrets-private-keys/
       name: helm-secrets-private-keys
   initContainers:
     - name: gitops-tools
-      image: ajaykumar4/gitops-tools:2025.6.0
+      image: ajaykumar4/gitops-tools:2025.7.2
       imagePullPolicy: Always
       command: [sh, -ec]
       args:
@@ -126,3 +164,66 @@ repoServer:
       volumeMounts:
         - mountPath: /custom-tools
           name: custom-tools
+  extraContainers:
+    # argocd-vault-plugin with Kustomize
+    - name: avp-kustomize
+      command: [/var/run/argocd/argocd-cmp-server]
+      image: quay.io/argoproj/argocd
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 999
+      env:
+        - name: HELM_PLUGINS
+          value: /custom-tools/helm-plugins/
+        - name: HELM_SECRETS_CURL_PATH
+          value: /custom-tools/curl
+        - name: HELM_SECRETS_SOPS_PATH
+          value: /custom-tools/sops
+        - name: HELM_SECRETS_VALS_PATH
+          value: /custom-tools/vals
+        - name: HELM_SECRETS_KUBECTL_PATH
+          value: /custom-tools/kubectl
+        - name: HELM_SECRETS_BACKEND
+          value: sops
+        # https://github.com/jkroepke/helm-secrets/wiki/Security-in-shared-environments
+        - name: HELM_SECRETS_VALUES_ALLOW_SYMLINKS
+          value: "false"
+        - name: HELM_SECRETS_VALUES_ALLOW_ABSOLUTE_PATH
+          value: "true"
+        - name: HELM_SECRETS_VALUES_ALLOW_PATH_TRAVERSAL
+          value: "false"
+        - name: HELM_SECRETS_WRAPPER_ENABLED
+          value: "true"
+        - name: HELM_SECRETS_DECRYPT_SECRETS_IN_TMP_DIR
+          value: "true"
+        - name: HELM_SECRETS_HELM_PATH
+          value: /usr/local/bin/helm
+        - name: SOPS_AGE_KEY_FILE # For age
+          value: /helm-secrets-private-keys/key.txt
+        - name: AVP_TYPE
+          value: kubernetessecret
+      volumeMounts:
+        - mountPath: /var/run/argocd
+          name: var-files
+        - mountPath: /home/argocd/cmp-server/plugins
+          name: plugins
+        - mountPath: /tmp
+          name: tmp
+        # Register plugins into sidecar
+        - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+          subPath: avp-kustomize.yaml
+          name: argocd-cmp-cm
+        - mountPath: /usr/local/sbin/helm
+          subPath: helm
+          name: custom-tools
+        - mountPath: /usr/local/bin/kustomize
+          name: custom-tools
+          subPath: kustomize
+        - mountPath: /usr/local/bin/ksops
+          name: custom-tools
+          subPath: ksops
+        - mountPath: /usr/local/bin/argocd-vault-plugin
+          name: custom-tools
+          subPath: argocd-vault-plugin
+        - mountPath: /helm-secrets-private-keys/
+          name: helm-secrets-private-keys

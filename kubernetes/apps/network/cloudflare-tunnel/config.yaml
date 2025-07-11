@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflare-tunnel-configmap
+data:
+  config.yaml: |
+    ---
+    originRequest:
+      originServerName: "external.<path:network:cloudflare-tunnel-secret#CF_DOMAIN>"
+    ingress:
+      - hostname: "<path:network:cloudflare-tunnel-secret#CF_DOMAIN>"
+        service: &svc https://cilium-gateway-external.kube-system.svc.cluster.local
+      - hostname: "*.<path:network:cloudflare-tunnel-secret#CF_DOMAIN>"
+        service: *svc
+      - service: http_status:404
