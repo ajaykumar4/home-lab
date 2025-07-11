@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: gatus
+  name: kube-prometheus-stack
   namespace: argo-system
   annotations:
     argocd.argoproj.io/sync-wave: '0'
@@ -10,16 +10,16 @@ spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-      path: kubernetes/apps/observability/gatus
+      path: kubernetes/apps/observability/kube-prometheus-stack
       targetRevision: main
       ref: repo
-    - repoURL: ghcr.io/bjw-s-labs/helm
-      chart: app-template
-      targetRevision: 4.1.2
+    - repoURL: ghcr.io/prometheus-community/charts/
+      chart: kube-prometheus-stack
+      targetRevision: 75.10.0
       helm:
-        releaseName: gatus
+        releaseName: kube-prometheus-stack
         valueFiles:
-          - $repo/kubernetes/apps/observability/gatus/values.yaml
+          - $repo/kubernetes/apps/observability/kube-prometheus-stack/values.yaml
   destination:
     name: in-cluster
     namespace: observability
