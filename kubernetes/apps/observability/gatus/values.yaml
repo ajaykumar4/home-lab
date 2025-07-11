@@ -26,19 +26,15 @@ controllers:
           repository: ghcr.io/twin/gatus
           tag: v5.20.0
         env:
-          - name: TZ
-            value: Europe/Dublin
-          - name: GATUS_CONFIG_PATH
-            value: /config
-          - name: GATUS_DELAY_START_SECONDS
-            value: "5" # Values should be strings
-          - name: WEB_PORT
-            value: &port "80" # Anchor applied to the value, and value is a string
-          - name: CF_DOMAIN # Name of the environment variable
+          TZ: Europe/Dublin
+          GATUS_CONFIG_PATH: /config
+          GATUS_DELAY_START_SECONDS: 5
+          WEB_PORT: &port 80
+          - name: &name CF_DOMAIN
             valueFrom:
               secretKeyRef:
                 name: gatus-secret
-                key: CF_DOMAIN 
+                key: *name
         probes:
           liveness: &probes
             enabled: true
@@ -80,8 +76,8 @@ serviceMonitor:
 route:
   app:
     hostnames:
-      - "{{ .Release.Name }}.$(CF_DOMAIN)"
-      - status.$(CF_DOMAIN)
+      - "{{ .Release.Name }}.aknuk.dev"
+      - status.aknuk.dev
     parentRefs:
       - name: external
         namespace: kube-system

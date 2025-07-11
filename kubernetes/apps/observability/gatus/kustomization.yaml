@@ -3,6 +3,3 @@ kind: Kustomization
 
 resources:
   - ./config.yaml
-
-generatorOptions:
-  disableNameSuffixHash: true
