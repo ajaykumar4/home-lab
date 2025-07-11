@@ -2,7 +2,7 @@ storageClass:
   create: true
   name: nfs-slow
   parameters:
-    server: 192.168.88.10
+    server: nas.internal
     share: /media/home-lab/k8s
   mountOptions:
     - nfsvers=4.2
