@@ -2,7 +2,7 @@ storageClass:
   create: true
   name: nfs-slow
   parameters:
-    server: nas.local
+    server: nas.aknuk.dev
     share: /media/home-lab/k8s
   mountOptions:
     - nfsvers=4.2
