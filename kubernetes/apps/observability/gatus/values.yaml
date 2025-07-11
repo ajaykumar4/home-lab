@@ -77,13 +77,6 @@ route:
       - name: external
         namespace: kube-system
         sectionName: https
-persistence:
-  data:
-    enabled: true
-    existingClaim: gatus
-    globalMounts:
-      - path: /data
-        readOnly: false
 rbac:
   roles:
     gatus:
@@ -102,8 +95,20 @@ rbac:
 serviceAccount:
   gatus: {}
 persistence:
-  config:
+  data:
+    enabled: true
     existingClaim: gatus
+    globalMounts:
+      - path: /data
+        readOnly: false
+
+  config:
+    enabled: true
+    type: emptyDir  # or use existingClaim: gatus if you want to persist
+    globalMounts:
+      - path: /config
+        readOnly: false
+
   config-file:
     type: configMap
     name: gatus-configmap
@@ -111,3 +116,4 @@ persistence:
       - path: /config/config.yaml
         subPath: config.yaml
         readOnly: true
+
