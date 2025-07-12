@@ -104,7 +104,7 @@ persistence:
 
   config:
     enabled: true
-    existingClaim: gatus
+    type: emptyDir  # or use existingClaim: gatus if you want to persist
     globalMounts:
       - path: /config
         readOnly: false
