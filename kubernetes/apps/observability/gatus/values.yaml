@@ -95,8 +95,20 @@ rbac:
 serviceAccount:
   gatus: {}
 persistence:
+  data:
+    enabled: true
+    existingClaim: gatus
+    globalMounts:
+      - path: /data
+        readOnly: false
+
   config:
     existingClaim: gatus
+    type: emptyDir  # or use existingClaim: gatus if you want to persist
+    globalMounts:
+      - path: /config
+        readOnly: false
+
   config-file:
     type: configMap
     name: gatus-configmap
@@ -104,3 +116,4 @@ persistence:
       - path: /config/config.yaml
         subPath: config.yaml
         readOnly: true
+
