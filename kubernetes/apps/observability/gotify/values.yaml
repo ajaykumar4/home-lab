@@ -1,5 +1,4 @@
-applicationName: &app gotify
-
+fullnameOverride: &app gotify
 controllers:
   gotify:
     annotations:
@@ -27,7 +26,7 @@ controllers:
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
-          capabilities: { drop: ["ALL"] }
+          capabilities: {drop: ["ALL"]}
         resources:
           requests:
             cpu: 5m
@@ -49,25 +48,13 @@ service:
         port: &port 80
 route:
   main:
+    enabled: true
+    kind: HTTPRoute
     parentRefs:
-      - name: external
-        namespace: kube-system
-        sectionName: https
-    hostnames:
-      - notifications.aknuk.dev
-    rules:
-      - backendRefs:
-          - name: *app
-            port: *port
-        matches:
-          - path:
-              type: PathPrefix
-              value: /
-  internal:
-    parentRefs:
-      - name: external
-        namespace: kube-system
-        sectionName: https
+      - kind: Gateway
+        name: internal
+        namespace: network
+        sectionName: websecure
     hostnames:
       - gotify.aknuk.dev
     rules:
