@@ -43,7 +43,7 @@ route:
         namespace: kube-system
         sectionName: https
     hostnames:
-      - gotify.aknuk.dev
+      - notifications.aknuk.dev
     rules:
       - backendRefs:
           - name: *app
@@ -52,9 +52,9 @@ route:
           - path:
               type: PathPrefix
               value: /
-  internal:
+  external:
     parentRefs:
-      - name: internal
+      - name: external
         namespace: kube-system
         sectionName: https
     hostnames:
