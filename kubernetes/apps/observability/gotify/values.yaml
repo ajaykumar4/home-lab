@@ -42,9 +42,7 @@ route:
       - name: external
         namespace: kube-system
         sectionName: https
-    hostnames:
-      - notifications.aknuk.dev
-      - gotify.aknuk.dev
+    hostnames: ["{{ .Release.Name }}.aknuk.dev"]
     rules:
       - backendRefs:
           - name: *app
