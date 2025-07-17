@@ -1,3 +1,4 @@
+applicationName: &app gotify
 
 controllers:
   gotify:
