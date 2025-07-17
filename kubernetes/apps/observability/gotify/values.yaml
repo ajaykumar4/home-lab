@@ -19,7 +19,6 @@ controllers:
           tag: 2.6.3
         env:
           TZ: 'Europe/Dublin'
-          GOTIFY_DATABASE_DIALECT: postgres
         envFrom:
           - secretRef:
               name: gotify-admin-secret
