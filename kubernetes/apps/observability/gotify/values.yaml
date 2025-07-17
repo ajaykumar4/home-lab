@@ -44,20 +44,6 @@ route:
         sectionName: https
     hostnames:
       - notifications.aknuk.dev
-    rules:
-      - backendRefs:
-          - name: *app
-            port: *port
-        matches:
-          - path:
-              type: PathPrefix
-              value: /
-  external:
-    parentRefs:
-      - name: external
-        namespace: kube-system
-        sectionName: https
-    hostnames:
       - gotify.aknuk.dev
     rules:
       - backendRefs:
