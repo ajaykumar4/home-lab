@@ -43,7 +43,7 @@ route:
         namespace: kube-system
         sectionName: https
     hostnames:
-      - notifications.rafaribe.com
+      - notifications.aknuk.dev
     rules:
       - backendRefs:
           - name: *app
@@ -58,7 +58,7 @@ route:
         namespace: kube-system
         sectionName: https
     hostnames:
-      - gotify.rafaribe.com
+      - gotify.aknuk.dev
     rules:
       - backendRefs:
           - name: *app
