@@ -22,7 +22,7 @@ alertmanager:
     storage:
       volumeClaimTemplate:
         spec:
-          storageClassName: nfs-slow
+          storageClassName: nfs
           resources:
             requests:
               storage: 1Gi
@@ -66,7 +66,7 @@ prometheus:
     storageSpec:
       volumeClaimTemplate:
         spec:
-          storageClassName: nfs-slow
+          storageClassName: nfs
           resources:
             requests:
               storage: 50Gi

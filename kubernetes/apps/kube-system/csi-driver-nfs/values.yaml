@@ -1,6 +1,6 @@
 storageClass:
   create: true
-  name: nfs-slow
+  name: nfs
   parameters:
     server: nas.internal
     share: /media/home-lab/k8s
