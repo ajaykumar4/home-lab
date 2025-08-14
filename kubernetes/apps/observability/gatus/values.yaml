@@ -6,7 +6,7 @@ controllers:
       init-config:
         image:
           repository: ghcr.io/home-operations/k8s-sidecar
-          tag: 1.30.7
+          tag: 1.30.8
         env:
           FOLDER: /config
           LABEL: gatus.io/enabled
