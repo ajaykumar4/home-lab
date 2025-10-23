@@ -5,5 +5,5 @@ kind: Kustomization
 generators:
 - ./secret-generator.yaml
 resources:
-  - https://github.com/kubernetes-sigs/gateway-api/config/crd/experimental?timeout=120&ref=v1.3.0
+  - https://github.com/kubernetes-sigs/gateway-api/config/crd/experimental?timeout=120&ref=v1.4.0
 
