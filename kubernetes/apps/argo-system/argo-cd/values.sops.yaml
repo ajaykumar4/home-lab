@@ -2,21 +2,21 @@ fullnameOverride: argocd
 configs:
   secret:
     argocdServerAdminPassword: $2a$10$syaGHe99pqZTLSnPGC9YDeacU2tX9d13a6omjFgpjS4kttsYTy6US
-    argocdServerAdminPasswordMtime: 2025-10-30T22:52:44
+    argocdServerAdminPasswordMtime: 2025-10-30T23:45:15
     githubSecret: d12d875aec799a60317e8d8381efb9c7
 sops:
   age:
     - recipient: age1ckpjl5l70jve252ure5e356yh05fzumyun66yefgp9yxc6mqqgeshe5z6d
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBPU3hNOFIyMnVsRmY3TDd3
-        NitVYU8rQkJNbXNPWC9QQWVSbTlwTlFEWldBCmxQN1NQMVFVckdhVHBCRzVMQlQr
-        ays4WmNmQk1ua0RIS3d1MnlSTUx3RUkKLS0tIEpkMXV4amtkQU5Xakx0RzQveElL
-        RG1YaHJtcFFPK3d3b2lXak0rMllvcUEK0/SUVC484i01ZimB9xT5hCb0mlaYsvMt
-        z2xtCq4ElivkoNqJs79iRYt0pv72FNd6Qq0RMqBDZii9HueaTsU2tg==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBKRTJ1NW9ycW43T0ZQREUr
+        czkzbEI2dnNKeHc4dVlKTGQvb2owc2JtSFdBCjFaSU1jaDFlRnBkNkNSZE1tLzV0
+        NUcyb01mc2NkRDRvRjhRcmxJaGpsUDQKLS0tIDFjdE9RSXBmaDlqYVNOZkJ2ZFhw
+        MWw5TmdDVkJmN3ZpVlRsRUFZNGtXNTAKKshTbga4EYAAPsHOslrEH4srm/gwQCVJ
+        L1dQDiw3CEM9OiAWD+uysTUo7jzTgoAM4kLqn1X0KPYh3NcxKccLqw==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-10-30T22:52:45Z"
-  mac: ENC[AES256_GCM,data:7Ij8yXTdIMHLJjOhjCKqcq6KSk3+yvlQxF4dLw+R1hY631hsWW+ZX1ajCalzt60lwThmxvsrYAzHQ9Ws1XG4iuWSQvmxdDrWU/YYymHbMQU9q63EdAC409XBLi73B1uRCR6jLlpuQH+TJkLjGF9LLDqp6cTgnNzeDqq19KEz3og=,iv:fiumVCpj9EIiebYGcdvbIiKs5odUrqbzCisyIfQmO/8=,tag:7oHV+S4eW2J+cNj+d0libQ==,type:str]
+  lastmodified: "2025-10-30T23:45:16Z"
+  mac: ENC[AES256_GCM,data:LP+DhFUXiqQgS3331H6anU+EfY6AEUyVBGrMp66KrwxAcVuFpQBhVYaA30y1V+nk5bIm8EFyV3Cfm+rdClL5SHip1nRLeOqFxVrGJoqnIgVQchmC1jMMaUGxpsGwGBz3KIGN+IDtnPN4qiMQGZ7dFMOo6nJL7nioX6i2yqzvO/E=,iv:UyCaG8HiaqLm6EWcPKbeuyhsjL39R64x+YQOuvqoqJ4=,tag:plm69Dq7hv/0wDAjDtQzSQ==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.11.0
