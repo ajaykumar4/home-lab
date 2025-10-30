@@ -3,20 +3,20 @@ kind: ConfigMap
 metadata:
   name: cloudflare-tunnel-configmap
 data:
-  config.yaml: ENC[AES256_GCM,data:wlT/LhwTS9518g07wGNLYymEjCnTk3VvuUuvpSUwYsuXP61PD/W7mcluYSQ0200FyEgfOL9i6HHdTgDv98y8Q4dt/aGKRHmKFGFVsqfNs3F8RhZwrC+fozhWwV+rRMWeAiiJRtZUVywsP353tj0/LopoGTh+jhtFTWdAqS7x6AfDmYUUNRzSQKHeFPJRFMZLiQSaQk00sVws6wrNHfWQTUR0paANRPVRtLHxlsPuGcvvWMn4p6aXyr6ZptZC3tcWsEEFcnrP3fUyYYn4tAGZDsuS1deiUOpYwg1VT2COp5fe1LSsOjMZCoKlg3SZ8ZgCyBo=,iv:Ww/z5pyD0FhPcOjQ1BFxlri48glzPvzdVM5MW9t0zRI=,tag:ebJ6SG+zCoojNvazRATeUw==,type:str]
+  config.yaml: ENC[AES256_GCM,data:CMqfAsjR/NWoN8TC1lv/rPC6PSckB3a+V+j8mUWMvVCIqakWUJjvnkILrvTwoFcEY9dnK7MmUjU+Ka41pV7Ga0Zd4btJIbS/4osunja2QDoBoKmx5qgUlJuSKCAUQ0yNV/+p5vXyHEoVekeiglLLEWpIi6svq8HywsXIXtAN3bYvfgramdj5G44sbyUDtTXv25qZHP4gehmx+L+I0L1ZJ11HnjbwJQK9lKtuL5IfrI2piFxIjqgXe9o53Mxdd3moJdQk46BlUaHCo+rQA5j2jHusifcoHtvjNJTZhLvezUkPwXqBQvT6rPldBndCzTA74dk=,iv:34qwErvDEbI86e0Ly31cM4kUI4hzH8rg34Z8mOO6mn4=,tag:et28e3UI8oO4Ipd8pQdDkw==,type:str]
 sops:
   age:
     - recipient: age1ckpjl5l70jve252ure5e356yh05fzumyun66yefgp9yxc6mqqgeshe5z6d
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBma004TWh6bzdGYnJPbFhE
-        d0FuSXFPZHhOYWUyM1AvTm9oa0hWQkxzeVFRCkpZR2hkbVc5Y1ErMTNMS3dMNDRn
-        ZzhkVit0VUgrc1Q3SGpHUTRHQy94MEEKLS0tIHY0QlpNeDMzRXhQc0o2Zkhyazhu
-        dEY5OUwrc1pCWDNkVzJjRVJDMmtIb0EKUEEQPQyyPxY9aFBG7KtUdNEnr1r+l7gk
-        uKTqX47O/w8MScR09jPG9JfjDlJP2bPhTLiYmEZ5+fNRHhppRQEJKA==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBtQXhURDFwS1kvUUpEZEpL
+        cm4zQ3M1bVBxZVJVZlQ1RGtnUUM1eVc4aEdvCkNhYlNsL1BWWWNrd1NMR1lCaWUz
+        bldRQUQzTDV5V3B0dXdaeTNkZVY3dkkKLS0tIHdrYkpJNW5Sak5wbllJYmx5bnlI
+        T3dOaTFzSzFuNnpUcWNEZDRNbHp3YkUKme1v4mubOVXSDSKj3F49CZ5fteWjJWuX
+        P18prOZFhH9UnzUrcADrd61zbVOFUsqjDWGWx+jrEAdeARJHL38UNA==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-10-30T22:46:43Z"
-  mac: ENC[AES256_GCM,data:YEVgEpKr4FjNiAcNEifnnhYVQqz7icsgFQzqkXH3feUkbeNQw9b65IuRQGbwTPPYEraMZ2HZc3eRWs4bjBhC8nzjvmn8tzZMeg+axmSF0EAQ6+thy62tOAMpxZbxBBtmBo1meVjM9DLH4n0xKk/ondGPXPD6ljNdkmCL2vUNqGk=,iv:Wv0HE0NbWu9DugefmEdcqGcXnm2+ML9Jnsg8wVg+RNI=,tag:3gVjAOQLVcgm192p+eIuQg==,type:str]
+  lastmodified: "2025-10-30T22:51:00Z"
+  mac: ENC[AES256_GCM,data:3/utphay8sCINfh/N07UxxkxgwEYxxQ3p42wdycu4mxhn/1jIs02f57m3gSQ4fKflxjfhQBsrRAy2wkAfRQ/ftoLNMALcKp8IY11Ogn067oIZ1Aj2pwEknbvabOeKvZQRbJvmGp/4oSDHc39aJ19Aj6a2twE/p9+D3n2MIcRyJs=,iv:MKVemWAFD7tRjgTDgyIhLxQN96ky/zBvsxNRkUTkLkw=,tag:ywK8+dTbkn/EgmBeE+NCEQ==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.11.0
