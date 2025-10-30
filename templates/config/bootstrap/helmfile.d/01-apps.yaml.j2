@@ -31,7 +31,7 @@ releases:
     namespace: cert-manager
     chart: oci://quay.io/jetstack/charts/cert-manager
     version: v1.19.1
-    values: ['../kubernetes/apps/cert-manager/cert-manager/values.yaml'']
+    values: ['../kubernetes/apps/cert-manager/cert-manager/values.yaml']
     #% if spegel_enabled %#
     needs: ['kube-system/spegel']
     #% else %#
