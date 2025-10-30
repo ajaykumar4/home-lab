@@ -1,29 +1,28 @@
-# yaml-language-server: $schema=https://kubernetesjsonschema.dev/v1.18.1-standalone-strict/secret-v1.json
 apiVersion: v1
 kind: Secret
 metadata:
-    name: github
-    namespace: argo-system
-    annotations:
-        argocd.argoproj.io/sync-wave: "1"
-    labels:
-        argocd.argoproj.io/secret-type: repository
+  name: github
+  namespace: argo-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  labels:
+    argocd.argoproj.io/secret-type: repository
 stringData:
-    type: ENC[AES256_GCM,data:ZoTY,iv:tyDHfCGasCW2V6iqZCme3C4PrfCh5cx2+58J9Un4cMk=,tag:KTp6mO/NsZLMF4lb+L3NWQ==,type:str]
-    url: ENC[AES256_GCM,data:ulaXKKf3m7vNvROForvo+ES3oj6zAYqapwrBUpceGvV8LggbVstJWgsf,iv:tAt/PNHvMI6B912CE1h5aQQ5htpADwlCU7xzcXIUG0g=,tag:Qdn9FZDz8Y2TKzmwKSEK7g==,type:str]
+  type: ENC[AES256_GCM,data:AAD/,iv:6EAAemh35rQX/NonJZqpVKsni6g6SnMTQLM/8gG9KZs=,tag:+uT4F8XjWryqH6gx8xKamQ==,type:str]
+  url: ENC[AES256_GCM,data:LlTFXgbjJlliI8HLJo8dJMYKmk6fDqWEyahZAQHEIfhVn4wIGaBgXACX,iv:uaP69vkMuLljtBT3Z5I0z8FTyWtzhM2h034aoLpNvf0=,tag:M1CxZu6JBewa1QNn1z2xVw==,type:str]
 sops:
-    age:
-        - recipient: age1ckpjl5l70jve252ure5e356yh05fzumyun66yefgp9yxc6mqqgeshe5z6d
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB4Ym9BNWptblM2ek5YU01u
-            U1R6c3h6Tk1vL3MzdDZ1bmx1UU1oT0hOYVVRCkYvWGc4Qmx4Y2d5cWtFVDhXM3Yy
-            UXhDVWw0VitpK2dVOWJMRVJ5dVFxU00KLS0tIHlIWGdaUEUrbUgwOWQ4ZXA2QnRm
-            dzBMRXM0Sk1tbC9SL2JHZWo3UWs2M2sKhP4o+z0yagdke6DnC+wtnkHelHt0R3Wf
-            zYXrF/WKjQhT7Ph4VnInhnHPIcbv3wDiwsbw9fm3lopL1QKs3vEpEw==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-06-30T21:41:00Z"
-    mac: ENC[AES256_GCM,data:RZplkS6eSj/x3sP3M3PvHqFvmzJEZluOvwj4yRgl8N82PfHoFFt4vplakyywqwHSknVFIgn7ADzRvtARoCzuMTLkoaOaruwCOcqsFT3RzpiMt5A2V0vSnJSAvTFw8jqR7L+nNmSs3AO4n0MvprlfBbniH3Z6CwDIW2GNXfRXneE=,iv:Ux6sRtiG3yEaUfisAODPQZ+Gsj3pCIcqWdyDGSNlmA4=,tag:JVTrGJmgI7LcO5SM3CRiHw==,type:str]
-    encrypted_regex: ^(data|stringData)$
-    mac_only_encrypted: true
-    version: 3.10.2
+  age:
+    - recipient: age1ckpjl5l70jve252ure5e356yh05fzumyun66yefgp9yxc6mqqgeshe5z6d
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAvTGhEYXp3Zy9EWTdTZDZY
+        S1N5bngxZVRGMnJFeHcxc09XOFZPWk5tUmxBCmtaalJITlpydjI0QUVaWUg1Z3Rs
+        aEl3SE91OFRxY0FNUmVsZHl5WXBRUEUKLS0tIFF6T1oxRXNMOUtUdjM4M3M0WjJB
+        blNmNkhmTiswU2pXU2c1SjhZaWxtQ0UKXdga6QfvcATXxVeJ0E2v+leVtrNpkmJM
+        iNqoa2rrKM1m0FAtTQBLdU4gDBOOXNiwvyjhBonHYenNrs+PH5abDA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-10-30T22:12:05Z"
+  mac: ENC[AES256_GCM,data:bAAbBAf8e0IL6NQhxP23U4/AhTV/Y6PprrAuNvNZb+evxcXutIVtTQlETjNGHnrxG1QgdiavrMrU5AGcRn4KGkhqwVs513odIzzg+Co40U4BvIZrYpdeTcJBAjhtAZvbyqEk3L8mzV2iXMkqKMgEd/IMigve9IobdA6rguyYk3k=,iv:rx2urJ/OIKjTBnbYsd4FZwhj6e/um+UENuT4JTM4gCo=,tag:RGwAWaH3ANOvaKMyrrRy8g==,type:str]
+  encrypted_regex: ^(data|stringData)$
+  mac_only_encrypted: true
+  version: 3.11.0

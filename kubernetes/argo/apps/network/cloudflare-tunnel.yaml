@@ -11,13 +11,11 @@ spec:
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
       path: kubernetes/apps/network/cloudflare-tunnel
-      plugin:
-        name: avp-kustomize
       targetRevision: main
       ref: repo
-    - repoURL: ghcr.io/bjw-s-labs/helm
+    - repoURL: ghcr.io/bjw-s/helm
       chart: app-template
-      targetRevision: 4.3.0
+      targetRevision: 3.7.3
       helm:
         releaseName: cloudflare-tunnel
         valueFiles:
@@ -30,6 +28,12 @@ spec:
       allowEmpty: true
       prune: true
       selfHeal: true
+    retry:
+      limit: 1
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 3m
     syncOptions:
       - CreateNamespace=true
       - ApplyOutOfSyncOnly=true

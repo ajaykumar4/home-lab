@@ -1,5 +1,4 @@
 ---
-# yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: '3'
 
 set: [pipefail]
@@ -21,6 +20,7 @@ env:
 includes:
   bootstrap: .taskfiles/bootstrap
   talos: .taskfiles/talos
+  template: .taskfiles/template
 
 tasks:
 

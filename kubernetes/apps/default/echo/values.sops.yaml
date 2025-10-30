@@ -66,7 +66,7 @@ route:
     hostnames:
       - echo.aknuk.dev
     parentRefs:
-      - name: external
+      - name: envoy-external
         namespace: kube-system
         sectionName: https
     rules:
@@ -78,14 +78,14 @@ sops:
     - recipient: age1ckpjl5l70jve252ure5e356yh05fzumyun66yefgp9yxc6mqqgeshe5z6d
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBEa3pubklCZEtOR2krU1ZD
-        U2Z6ZHROeUVySHR6eHA4aGNReVJkcFNCZmt3CmczbWljSmNiandyd0M3OGlnQ0Uz
-        ZVhlRG1nZGRBNjl6Z1gvQVNTUjAyUXcKLS0tIElIWWVSa3JSWUFxdkVkN0ltaVhx
-        L2twSmpYUDFkRmk2RGlXRy9BWmRzQW8KwO2XAdGXhGvdpSaS0jnKLoQ2pURvsRr9
-        IzUvxuvxZSsjjXDnRapS/z3XNyUuSig/hqR+DH3cRP/KdfD/+nX7kQ==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBOYVFmaGJNMUtWa3gzMEdX
+        YjhITEkvamVtajByako0V2hvYUM0UU1WeWtnClRDa2tNeVkvVkE5NnBCR3d2Mk1V
+        dUhLTHBLYnM5NHpnZ1pmSjdZNGtrOUUKLS0tIGIrSlhwN243QU02cGhWd1Z4YlJr
+        STdlNDhENzdSd3FHQlh0Z29rcCtTQzAKI9BAQ/ZJ2QhsSpoirIK1FBqEGoljRdd2
+        PZ2sPZe7j7IIZC7KPTNPOkKulX8VXqDSB2qLmg3gSxJYr/nyBTTuow==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-06-27T13:18:27Z"
-  mac: ENC[AES256_GCM,data:LIFi2VNqZEeqv2Rl543hCibwFRu6ZW7XmOXX1mH2aiWnneWlAXZm5CwbD3vnB5LAIaPnfFARdss/ASYHGfuO3EpJHNYKFyp/FYobj9YDZZdvvl/VjUPvKYDqouh3pNNeogQUgoLaWk2gDpOJPWv4mjcQqnEvbKX/OEqFF7tZA4A=,iv:JgSDYwQA50b+1Ts5/fQ3FVsOskr+wuVP+kejBX9/KIE=,tag:amAHl1nJGEllLfLgPS6gmA==,type:str]
+  lastmodified: "2025-10-30T22:12:05Z"
+  mac: ENC[AES256_GCM,data:HAqoF0PuhmzE9VihZdOhQpWQ6f5ughzAvPQu5whv9VKC1RBnAq4YtUBSJbDFiYeXIRwIwo3ZQCjsstmtLK6hgvfFqnaDiJmY67VS+bfLgF0ubrW1h+N44JP3TEWKffpYtc3TgnMr6Ybon4KmH8rjcPctKbzPqSPqpe5mD2WJfV4=,iv:HaD4E5GvtwEZOWBhBfkC/9Ji5JZISyTYfWr21PflTRM=,tag:KBAggeFyeet9SJ7b2RxGUg==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
-  version: 3.10.2
+  version: 3.11.0

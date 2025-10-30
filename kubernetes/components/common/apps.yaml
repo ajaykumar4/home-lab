@@ -5,7 +5,7 @@ metadata:
   name: apps
   namespace: argo-system
   annotations:
-    argocd.argoproj.io/sync-wave: '-1'
+    argocd.argoproj.io/sync-wave: '1'
 spec:
   project: default
   source:
@@ -22,6 +22,12 @@ spec:
       allowEmpty: true
       prune: true
       selfHeal: true
+    retry:
+      limit: 1
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 3m
     syncOptions:
       - CreateNamespace=true
       - ApplyOutOfSyncOnly=true

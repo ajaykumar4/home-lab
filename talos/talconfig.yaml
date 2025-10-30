@@ -1,14 +1,13 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
 ---
 clusterName: kubernetes
 
 talosVersion: "${talosVersion}"
 kubernetesVersion: "${kubernetesVersion}"
 
-endpoint: https://192.168.88.200:6443
+endpoint: https://192.168.8.200:6443
 additionalApiServerCertSans: &sans
   - "127.0.0.1"
-  - "192.168.88.200"
+  - "192.168.8.200"
 additionalMachineCertSans: *sans
 
 clusterPodNets: ["10.42.0.0/16"]
@@ -20,7 +19,7 @@ cniConfig:
 
 nodes:
   - hostname: "rpi01"
-    ipAddress: "192.168.88.11"
+    ipAddress: "192.168.8.130"
     installDisk: "/dev/mmcblk0"
     machineSpec:
       secureboot: false
@@ -31,85 +30,13 @@ nodes:
           hardwareAddr: "e4:5f:01:47:6b:50"
         dhcp: false
         addresses:
-          - "192.168.88.11/24"
+          - "192.168.8.130/24"
         routes:
           - network: "0.0.0.0/0"
-            gateway: "192.168.88.1"
+            gateway: "192.168.8.1"
         mtu: 1500
         vip:
-          ip: "192.168.88.200"
-  - hostname: "rpi02"
-    ipAddress: "192.168.88.12"
-    installDisk: "/dev/mmcblk0"
-    machineSpec:
-      secureboot: false
-    talosImageURL: factory.talos.dev/installer/f8a903f101ce10f686476024898734bb6b36353cc4d41f348514db9004ec0a9d
-    controlPlane: true
-    networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "e4:5f:01:47:71:6b"
-        dhcp: false
-        addresses:
-          - "192.168.88.12/24"
-        routes:
-          - network: "0.0.0.0/0"
-            gateway: "192.168.88.1"
-        mtu: 1500
-        vip:
-          ip: "192.168.88.200"
-  - hostname: "rpi03"
-    ipAddress: "192.168.88.13"
-    installDisk: "/dev/mmcblk0"
-    machineSpec:
-      secureboot: false
-    talosImageURL: factory.talos.dev/installer/f8a903f101ce10f686476024898734bb6b36353cc4d41f348514db9004ec0a9d
-    controlPlane: true
-    networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "e4:5f:01:47:74:c8"
-        dhcp: false
-        addresses:
-          - "192.168.88.13/24"
-        routes:
-          - network: "0.0.0.0/0"
-            gateway: "192.168.88.1"
-        mtu: 1500
-        vip:
-          ip: "192.168.88.200"
-  - hostname: "jetson01"
-    ipAddress: "192.168.88.14"
-    installDisk: "/dev/mmcblk1"
-    machineSpec:
-      secureboot: false
-    talosImageURL: factory.talos.dev/installer/21c41d63e77b0bcf86bfe45d8891872a5fe7ef76cb4424a451179c059d8c272b
-    controlPlane: false
-    networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "48:b0:2d:3c:c0:ae"
-        dhcp: false
-        addresses:
-          - "192.168.88.14/24"
-        routes:
-          - network: "0.0.0.0/0"
-            gateway: "192.168.88.1"
-        mtu: 1500
-  - hostname: "jetson02"
-    ipAddress: "192.168.88.15"
-    installDisk: "/dev/mmcblk1"
-    machineSpec:
-      secureboot: false
-    talosImageURL: factory.talos.dev/installer/21c41d63e77b0bcf86bfe45d8891872a5fe7ef76cb4424a451179c059d8c272b
-    controlPlane: false
-    networkInterfaces:
-      - deviceSelector:
-          hardwareAddr: "48:b0:2d:3c:c0:ab"
-        dhcp: false
-        addresses:
-          - "192.168.88.15/24"
-        routes:
-          - network: "0.0.0.0/0"
-            gateway: "192.168.88.1"
-        mtu: 1500
+          ip: "192.168.8.200"
 
 # Global patches
 patches:
@@ -122,6 +49,5 @@ patches:
 # Controller patches
 controlPlane:
   patches:
-    - "@./patches/controller/admission-controller-patch.yaml"
     - "@./patches/controller/cluster.yaml"
 
