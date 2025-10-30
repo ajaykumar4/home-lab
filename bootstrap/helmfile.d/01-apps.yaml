@@ -10,26 +10,26 @@ releases:
     namespace: kube-system
     chart: oci://ghcr.io/home-operations/charts-mirror/cilium
     version: 1.18.3
-    values: ["${KUBERNETES_DIR}/apps/kube-system/cilium/values.yaml"]
+    values: ['../../kubernetes/apps/kube-system/cilium/values.yaml']
 
   - name: coredns
     namespace: kube-system
     chart: oci://ghcr.io/coredns/charts/coredns
     version: 1.45.0
-    values: ["${KUBERNETES_DIR}/apps/kube-system/coredns/values.yaml"]
+    values: ['../../kubernetes/apps/kube-system/coredns/values.yaml']
 
 
   - name: cert-manager
     namespace: cert-manager
     chart: oci://quay.io/jetstack/charts/cert-manager
     version: v1.19.1
-    values: ["${KUBERNETES_DIR}/apps/cert-manager/cert-manager/values.yaml"]
+    values: ['../../kubernetes/apps/cert-manager/cert-manager/values.yaml']
     needs: ['kube-system/coredns']
 
   - name: argo-cd
     namespace: argo-system
     chart: oci://ghcr.io/argoproj/argo-helm/argo-cd
     version: 9.0.5
-    values: ["${KUBERNETES_DIR}/apps/argo-system/argo-cd/values.yaml"]
-    secrets: ["${KUBERNETES_DIR}/apps/argo-system/argo-cd/values.sops.yaml"]
+    values: ['../../kubernetes/apps/argo-system/argo-cd/values.yaml']
+    secrets: ['../../kubernetes/apps/argo-system/argo-cd/values.sops.yaml']
 
