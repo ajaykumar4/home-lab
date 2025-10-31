@@ -14,7 +14,7 @@
   schedule: ["every weekend"],
   ignorePaths: ["**/*.sops.*"],
   argocd: {
-    managerFilePatterns: ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"],
+    managerFilePatterns: ["/(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$/"],
   },
   helmfile: {
     managerFilePatterns: [
@@ -22,8 +22,11 @@
       "/(^|/)helmfile\\.d/.+\\.ya?ml?(?:\\.j2)?$/",
     ],
   },
+  "helm-values": {
+    "managerFilePatterns": ["/(^|/)kubernetes/.+\\/values\\.ya?ml(?:\\.j2)?$/"]
+  },
   kubernetes: {
-    managerFilePatterns: ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"],
+    managerFilePatterns: ["/(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$/"],
   },
   kustomize: {
     managerFilePatterns: ["/^kustomization\\.ya?ml(?:\\.j2)?$/"],
