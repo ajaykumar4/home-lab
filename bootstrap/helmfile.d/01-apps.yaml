@@ -22,7 +22,7 @@ releases:
   - name: cert-manager
     namespace: cert-manager
     chart: oci://quay.io/jetstack/charts/cert-manager
-    version: v1.19.1
+    version: v1.19.3
     values: ['../../kubernetes/apps/cert-manager/cert-manager/values.yaml']
     needs: ['kube-system/coredns']
 
