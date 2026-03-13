@@ -18,19 +18,19 @@ cniConfig:
   name: none
 
 nodes:
-  - hostname: "rpi01"
-    ipAddress: "192.168.8.130"
-    installDisk: "/dev/mmcblk0"
+  - hostname: "home-lab"
+    ipAddress: "192.168.8.114"
+    installDisk: "/dev/sdc"
     machineSpec:
       secureboot: false
-    talosImageURL: factory.talos.dev/installer/f8a903f101ce10f686476024898734bb6b36353cc4d41f348514db9004ec0a9d
+    talosImageURL: factory.talos.dev/installer/1e17720baa2217bdf64a7caa256011144fce07af5dd12ce18baed735789e7c81
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
-          hardwareAddr: "e4:5f:01:47:6b:50"
+          hardwareAddr: "d8:5e:d3:0a:e9:75"
         dhcp: false
         addresses:
-          - "192.168.8.130/24"
+          - "192.168.8.114/24"
         routes:
           - network: "0.0.0.0/0"
             gateway: "192.168.8.1"

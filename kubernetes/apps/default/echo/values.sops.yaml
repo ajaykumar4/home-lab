@@ -1,66 +1,3 @@
-controllers:
-  echo:
-    strategy: RollingUpdate
-    containers:
-      app:
-        image:
-          repository: ghcr.io/mendhak/http-https-echo
-          tag: 37
-        env:
-          HTTP_PORT: 8080
-          LOG_WITHOUT_NEWLINE: true
-          LOG_IGNORE_PATH: /healthz
-          PROMETHEUS_ENABLED: true
-        probes:
-          liveness:
-            enabled: true
-            custom: true
-            spec:
-              httpGet:
-                path: /healthz
-                port: 8080
-              initialDelaySeconds: 0
-              periodSeconds: 10
-              timeoutSeconds: 1
-              failureThreshold: 3
-          readiness:
-            enabled: true
-            custom: true
-            spec:
-              httpGet:
-                path: /healthz
-                port: 8080
-              initialDelaySeconds: 0
-              periodSeconds: 10
-              timeoutSeconds: 1
-              failureThreshold: 3
-        securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          capabilities:
-            drop:
-              - ALL
-        resources:
-          requests:
-            cpu: 10m
-          limits:
-            memory: 64Mi
-defaultPodOptions:
-  securityContext:
-    runAsNonRoot: true
-    runAsUser: 65534
-    runAsGroup: 65534
-service:
-  app:
-    controller: echo
-    ports:
-      http:
-        port: 8080
-serviceMonitor:
-  app:
-    serviceName: echo
-    endpoints:
-      - port: http
 route:
   app:
     hostnames:
@@ -75,17 +12,17 @@ route:
             port: 8080
 sops:
   age:
-    - recipient: age1ckpjl5l70jve252ure5e356yh05fzumyun66yefgp9yxc6mqqgeshe5z6d
+    - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBvMUV3TmtMSmVFL1c0N2xW
-        eEFYRlFOVGtHdUI4MklrRHNZUW1EMDhaTWk4CmVuMVNzQ3JRZGs3RmdWMU5TYm5h
-        T1ZFV045dDNCSEdmNnIxUzFEYTR6WmsKLS0tIHZDUk9sQitBSktkWEhaLytrRDl0
-        UWl1TmZjMTBjclAyRE85M0RnZ3BKRTgKUscHf1OOkSRf5RMXo/jil05eOM5hE4Ry
-        sJmL3DGGpxWKS7Y0hFMaPyU6shT+AvcxV1pf9m6qi+0Lhz7C/nWIMA==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBKYmhKM2tqLzV0bFJtTDU1
+        aGszcVJBNGxwM3BtMXo1VXlKMUExU1RCS1JFCm1kTUx2QU5QS0E2bGk4TXNydWFi
+        enZnSWEzVEljbFk1Z1lVZWlYZWo4eTgKLS0tIEZNUkIyZ1N3M1BycEdRWDRua2pZ
+        bk1GRnJ4N0VkV1FWQWZhVUMwWGdsUWcKdBeJsgpvfxOL72UWA75s8bE1j751YGo6
+        8sLZgzuaZI3fd7lSlPL6EyX1TxwNzKK9ZvmOilIscl0v5vpGFF/TSw==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-10-31T00:00:50Z"
-  mac: ENC[AES256_GCM,data:MKJ2P74Zv3i38l3F2BVQ5qc6rgUX+um1zre7xwYbSIC3dCj/OJoqqB714amUsQVJE+T+/UYkgu68KA99Quqk4io/jwann9BQAB8YVpRUK78v/ASZPy2mse79634f8Ft+S075QYddKb/fVAKbRIUu1btbP3367paTJOsM+aWa1Rs=,iv:slIy+b3L+wUYJzvMUeHwcJyGEiRtGQgsCljTJpcz5wA=,tag:Vll+M9wwRgdNj1p0fjF5Sg==,type:str]
+  lastmodified: "2026-03-13T18:31:15Z"
+  mac: ENC[AES256_GCM,data:0WpOqYk0ty651Uhe+tNyfUSFxAXMpUJ5CULyS2S558vQ3/BU+l3Og4y8DnY1fykRfHs1/XxtVAHxW5LwbNxP3VA/efUbzYEJ++emY//rGIYr2O+XNcbuZnvJ+JQ3tTt+ju1CwQuG0+l7DDXy/oALa8GI//4BwYx/nuw8Fj3TqPY=,iv:9eE93yZZEekYojpfmk0DJocTQzbh6J9mbkmF7UR8wy4=,tag:HjfNNuei6pZ60vAYaO1rbw==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
-  version: 3.11.0
+  version: 3.12.1

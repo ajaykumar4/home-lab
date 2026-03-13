@@ -18,12 +18,9 @@ dashboards:
 endpointRoutes:
   enabled: true
 envoy:
-  rollOutPods: true
-  prometheus:
-     serviceMonitor:
-       enabled: true
+  enabled: false
 gatewayAPI:
-  enabled: true
+  enabled: false
 hubble:
   enabled: false
 ipam:
@@ -38,7 +35,8 @@ l2announcements:
 loadBalancer:
   algorithm: maglev
   mode: "dsr"
-localRedirectPolicy: true
+localRedirectPolicies:
+  enabled: true
 operator:
   dashboards:
     enabled: true
@@ -76,4 +74,5 @@ securityContext:
       - SYS_ADMIN
       - SYS_RESOURCE
 socketLB:
+  enabled: true
   hostNamespaceOnly: true

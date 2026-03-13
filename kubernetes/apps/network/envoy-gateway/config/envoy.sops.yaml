@@ -12,6 +12,7 @@ spec:
       envoyDeployment:
         replicas: 2
         container:
+          imageRepository: mirror.gcr.io/envoyproxy/envoy
           resources:
             requests:
               cpu: 100m
@@ -25,23 +26,23 @@ spec:
     metrics:
       prometheus:
         compression:
-          type: Gzip
+          type: Zstd
 sops:
   age:
-    - recipient: age1ckpjl5l70jve252ure5e356yh05fzumyun66yefgp9yxc6mqqgeshe5z6d
+    - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTUGQ3Um5yNXloaFQ5a1NV
-        U1krK1ZLVk1FanRzb2VsT2lNWmtWVUJ4T21NCjVFTm1iaTcwRmNuT29LU20rYmJv
-        Vjh0ZEVUalV4bXQvcXRQVmhvbFM1cDAKLS0tIGZjUlV0Wnh4SUpOZjh0UWxOdUU4
-        OUdXc3NaUzBFdDFKc0pZNnpWbUdmZW8KIASSjBP7VOYYHUFqM/FCE6VBBPn8qDAN
-        qzLg0smDW3eX/16Gmtudlr4kqIP8G6vyjNYDyqFa1KhvSkuSby4abw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBqVXdpZis2T1dvaFBFcHMy
+        NXN5bks5eFcwVjErSWN3RDg5UnhxOHdqQ0NzCkZCbUg5WGZUd2o1ODBmQ0ozRHFX
+        OTgxbW5UajZpaGhmK2hyRkFpWlkxVG8KLS0tICtRQzcvSEl0cE0zVCtQOWFadGti
+        bStMalY4QnhyRDE5NlZ3dDZ4dnVFb2MKTkRCNbse5c2jbRSd6Xa1ZPAGoR3C6sSu
+        /j/eecHc2a7l7W8EAgdw9CtBubktXcMi/EXhL6dE8GEEYb9VfVafJA==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-10-31T00:00:50Z"
-  mac: ENC[AES256_GCM,data:hEgy+G7uhm4I7M0360XBWptB/Tod92U6ZxMGZy+rLWxKIRkD+9eyi0DIvhopqCt3IeF4B9pSK0arUdMwzkN7baKo4RR534YNYNgEO8CwRz7AZY+DXm4RijHNriWVnbrRJXtKET1NvL22uiugWGhh4E4gcPTNzYiEMlzuBIFbUYk=,iv:Cx/8IMRpul7ZcaAgdOCX0zBL7uGInMYVdkRhCwsz2Dw=,tag:cC6uM9nde0UvVpOhAe41iQ==,type:str]
+  lastmodified: "2026-03-13T18:31:15Z"
+  mac: ENC[AES256_GCM,data:G2FJw9W7d8PHvSW2jef9DIPmtnt0BZp4nfT1GIZAZKXW+N7cHyXFQbcK99ceFECBA75Fv7QRPrXOtYmaaaXFjWJC5DLLjqxQ3JJ0FvM0OBcJ3YvMYUJuY92GwjYpm0bBpDFbz5bTDOd19xE7eP2gmBSXzsbi59Rm1HCjZypyJPw=,iv:T7Fp3sYaQBSa9wQjFcV3viuTyjgsOGyzq3ocfUFkpvo=,tag:MXpCcpgAXv9jeDmziRvVuA==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
-  version: 3.11.0
+  version: 3.12.1
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: GatewayClass
@@ -56,20 +57,20 @@ spec:
     namespace: network
 sops:
   age:
-    - recipient: age1ckpjl5l70jve252ure5e356yh05fzumyun66yefgp9yxc6mqqgeshe5z6d
+    - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTUGQ3Um5yNXloaFQ5a1NV
-        U1krK1ZLVk1FanRzb2VsT2lNWmtWVUJ4T21NCjVFTm1iaTcwRmNuT29LU20rYmJv
-        Vjh0ZEVUalV4bXQvcXRQVmhvbFM1cDAKLS0tIGZjUlV0Wnh4SUpOZjh0UWxOdUU4
-        OUdXc3NaUzBFdDFKc0pZNnpWbUdmZW8KIASSjBP7VOYYHUFqM/FCE6VBBPn8qDAN
-        qzLg0smDW3eX/16Gmtudlr4kqIP8G6vyjNYDyqFa1KhvSkuSby4abw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBqVXdpZis2T1dvaFBFcHMy
+        NXN5bks5eFcwVjErSWN3RDg5UnhxOHdqQ0NzCkZCbUg5WGZUd2o1ODBmQ0ozRHFX
+        OTgxbW5UajZpaGhmK2hyRkFpWlkxVG8KLS0tICtRQzcvSEl0cE0zVCtQOWFadGti
+        bStMalY4QnhyRDE5NlZ3dDZ4dnVFb2MKTkRCNbse5c2jbRSd6Xa1ZPAGoR3C6sSu
+        /j/eecHc2a7l7W8EAgdw9CtBubktXcMi/EXhL6dE8GEEYb9VfVafJA==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-10-31T00:00:50Z"
-  mac: ENC[AES256_GCM,data:hEgy+G7uhm4I7M0360XBWptB/Tod92U6ZxMGZy+rLWxKIRkD+9eyi0DIvhopqCt3IeF4B9pSK0arUdMwzkN7baKo4RR534YNYNgEO8CwRz7AZY+DXm4RijHNriWVnbrRJXtKET1NvL22uiugWGhh4E4gcPTNzYiEMlzuBIFbUYk=,iv:Cx/8IMRpul7ZcaAgdOCX0zBL7uGInMYVdkRhCwsz2Dw=,tag:cC6uM9nde0UvVpOhAe41iQ==,type:str]
+  lastmodified: "2026-03-13T18:31:15Z"
+  mac: ENC[AES256_GCM,data:G2FJw9W7d8PHvSW2jef9DIPmtnt0BZp4nfT1GIZAZKXW+N7cHyXFQbcK99ceFECBA75Fv7QRPrXOtYmaaaXFjWJC5DLLjqxQ3JJ0FvM0OBcJ3YvMYUJuY92GwjYpm0bBpDFbz5bTDOd19xE7eP2gmBSXzsbi59Rm1HCjZypyJPw=,iv:T7Fp3sYaQBSa9wQjFcV3viuTyjgsOGyzq3ocfUFkpvo=,tag:MXpCcpgAXv9jeDmziRvVuA==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
-  version: 3.11.0
+  version: 3.12.1
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
@@ -102,27 +103,27 @@ spec:
             name: aknuk-dev-production-tls
 sops:
   age:
-    - recipient: age1ckpjl5l70jve252ure5e356yh05fzumyun66yefgp9yxc6mqqgeshe5z6d
+    - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTUGQ3Um5yNXloaFQ5a1NV
-        U1krK1ZLVk1FanRzb2VsT2lNWmtWVUJ4T21NCjVFTm1iaTcwRmNuT29LU20rYmJv
-        Vjh0ZEVUalV4bXQvcXRQVmhvbFM1cDAKLS0tIGZjUlV0Wnh4SUpOZjh0UWxOdUU4
-        OUdXc3NaUzBFdDFKc0pZNnpWbUdmZW8KIASSjBP7VOYYHUFqM/FCE6VBBPn8qDAN
-        qzLg0smDW3eX/16Gmtudlr4kqIP8G6vyjNYDyqFa1KhvSkuSby4abw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBqVXdpZis2T1dvaFBFcHMy
+        NXN5bks5eFcwVjErSWN3RDg5UnhxOHdqQ0NzCkZCbUg5WGZUd2o1ODBmQ0ozRHFX
+        OTgxbW5UajZpaGhmK2hyRkFpWlkxVG8KLS0tICtRQzcvSEl0cE0zVCtQOWFadGti
+        bStMalY4QnhyRDE5NlZ3dDZ4dnVFb2MKTkRCNbse5c2jbRSd6Xa1ZPAGoR3C6sSu
+        /j/eecHc2a7l7W8EAgdw9CtBubktXcMi/EXhL6dE8GEEYb9VfVafJA==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-10-31T00:00:50Z"
-  mac: ENC[AES256_GCM,data:hEgy+G7uhm4I7M0360XBWptB/Tod92U6ZxMGZy+rLWxKIRkD+9eyi0DIvhopqCt3IeF4B9pSK0arUdMwzkN7baKo4RR534YNYNgEO8CwRz7AZY+DXm4RijHNriWVnbrRJXtKET1NvL22uiugWGhh4E4gcPTNzYiEMlzuBIFbUYk=,iv:Cx/8IMRpul7ZcaAgdOCX0zBL7uGInMYVdkRhCwsz2Dw=,tag:cC6uM9nde0UvVpOhAe41iQ==,type:str]
+  lastmodified: "2026-03-13T18:31:15Z"
+  mac: ENC[AES256_GCM,data:G2FJw9W7d8PHvSW2jef9DIPmtnt0BZp4nfT1GIZAZKXW+N7cHyXFQbcK99ceFECBA75Fv7QRPrXOtYmaaaXFjWJC5DLLjqxQ3JJ0FvM0OBcJ3YvMYUJuY92GwjYpm0bBpDFbz5bTDOd19xE7eP2gmBSXzsbi59Rm1HCjZypyJPw=,iv:T7Fp3sYaQBSa9wQjFcV3viuTyjgsOGyzq3ocfUFkpvo=,tag:MXpCcpgAXv9jeDmziRvVuA==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
-  version: 3.11.0
+  version: 3.12.1
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: envoy-internal
   annotations:
-    external-dns.alpha.kubernetes.io/target: internal.aknuk.dev
+    external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
 spec:
   gatewayClassName: envoy
   infrastructure:
@@ -148,31 +149,38 @@ spec:
             name: aknuk-dev-production-tls
 sops:
   age:
-    - recipient: age1ckpjl5l70jve252ure5e356yh05fzumyun66yefgp9yxc6mqqgeshe5z6d
+    - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTUGQ3Um5yNXloaFQ5a1NV
-        U1krK1ZLVk1FanRzb2VsT2lNWmtWVUJ4T21NCjVFTm1iaTcwRmNuT29LU20rYmJv
-        Vjh0ZEVUalV4bXQvcXRQVmhvbFM1cDAKLS0tIGZjUlV0Wnh4SUpOZjh0UWxOdUU4
-        OUdXc3NaUzBFdDFKc0pZNnpWbUdmZW8KIASSjBP7VOYYHUFqM/FCE6VBBPn8qDAN
-        qzLg0smDW3eX/16Gmtudlr4kqIP8G6vyjNYDyqFa1KhvSkuSby4abw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBqVXdpZis2T1dvaFBFcHMy
+        NXN5bks5eFcwVjErSWN3RDg5UnhxOHdqQ0NzCkZCbUg5WGZUd2o1ODBmQ0ozRHFX
+        OTgxbW5UajZpaGhmK2hyRkFpWlkxVG8KLS0tICtRQzcvSEl0cE0zVCtQOWFadGti
+        bStMalY4QnhyRDE5NlZ3dDZ4dnVFb2MKTkRCNbse5c2jbRSd6Xa1ZPAGoR3C6sSu
+        /j/eecHc2a7l7W8EAgdw9CtBubktXcMi/EXhL6dE8GEEYb9VfVafJA==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-10-31T00:00:50Z"
-  mac: ENC[AES256_GCM,data:hEgy+G7uhm4I7M0360XBWptB/Tod92U6ZxMGZy+rLWxKIRkD+9eyi0DIvhopqCt3IeF4B9pSK0arUdMwzkN7baKo4RR534YNYNgEO8CwRz7AZY+DXm4RijHNriWVnbrRJXtKET1NvL22uiugWGhh4E4gcPTNzYiEMlzuBIFbUYk=,iv:Cx/8IMRpul7ZcaAgdOCX0zBL7uGInMYVdkRhCwsz2Dw=,tag:cC6uM9nde0UvVpOhAe41iQ==,type:str]
+  lastmodified: "2026-03-13T18:31:15Z"
+  mac: ENC[AES256_GCM,data:G2FJw9W7d8PHvSW2jef9DIPmtnt0BZp4nfT1GIZAZKXW+N7cHyXFQbcK99ceFECBA75Fv7QRPrXOtYmaaaXFjWJC5DLLjqxQ3JJ0FvM0OBcJ3YvMYUJuY92GwjYpm0bBpDFbz5bTDOd19xE7eP2gmBSXzsbi59Rm1HCjZypyJPw=,iv:T7Fp3sYaQBSa9wQjFcV3viuTyjgsOGyzq3ocfUFkpvo=,tag:MXpCcpgAXv9jeDmziRvVuA==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
-  version: 3.11.0
+  version: 3.12.1
 ---
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: BackendTrafficPolicy
 metadata:
   name: envoy
 spec:
-  compression:
+  compressor:
+    - type: Zstd
+      zstd: {}
     - type: Brotli
+      brotli: {}
     - type: Gzip
-  connection:
-    bufferLimit: 8Mi
+      gzip: {}
+  retry:
+    numRetries: 2
+    retryOn:
+      triggers:
+        - reset
   targetSelectors:
     - group: gateway.networking.k8s.io
       kind: Gateway
@@ -182,20 +190,20 @@ spec:
       requestTimeout: 0s
 sops:
   age:
-    - recipient: age1ckpjl5l70jve252ure5e356yh05fzumyun66yefgp9yxc6mqqgeshe5z6d
+    - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTUGQ3Um5yNXloaFQ5a1NV
-        U1krK1ZLVk1FanRzb2VsT2lNWmtWVUJ4T21NCjVFTm1iaTcwRmNuT29LU20rYmJv
-        Vjh0ZEVUalV4bXQvcXRQVmhvbFM1cDAKLS0tIGZjUlV0Wnh4SUpOZjh0UWxOdUU4
-        OUdXc3NaUzBFdDFKc0pZNnpWbUdmZW8KIASSjBP7VOYYHUFqM/FCE6VBBPn8qDAN
-        qzLg0smDW3eX/16Gmtudlr4kqIP8G6vyjNYDyqFa1KhvSkuSby4abw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBqVXdpZis2T1dvaFBFcHMy
+        NXN5bks5eFcwVjErSWN3RDg5UnhxOHdqQ0NzCkZCbUg5WGZUd2o1ODBmQ0ozRHFX
+        OTgxbW5UajZpaGhmK2hyRkFpWlkxVG8KLS0tICtRQzcvSEl0cE0zVCtQOWFadGti
+        bStMalY4QnhyRDE5NlZ3dDZ4dnVFb2MKTkRCNbse5c2jbRSd6Xa1ZPAGoR3C6sSu
+        /j/eecHc2a7l7W8EAgdw9CtBubktXcMi/EXhL6dE8GEEYb9VfVafJA==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-10-31T00:00:50Z"
-  mac: ENC[AES256_GCM,data:hEgy+G7uhm4I7M0360XBWptB/Tod92U6ZxMGZy+rLWxKIRkD+9eyi0DIvhopqCt3IeF4B9pSK0arUdMwzkN7baKo4RR534YNYNgEO8CwRz7AZY+DXm4RijHNriWVnbrRJXtKET1NvL22uiugWGhh4E4gcPTNzYiEMlzuBIFbUYk=,iv:Cx/8IMRpul7ZcaAgdOCX0zBL7uGInMYVdkRhCwsz2Dw=,tag:cC6uM9nde0UvVpOhAe41iQ==,type:str]
+  lastmodified: "2026-03-13T18:31:15Z"
+  mac: ENC[AES256_GCM,data:G2FJw9W7d8PHvSW2jef9DIPmtnt0BZp4nfT1GIZAZKXW+N7cHyXFQbcK99ceFECBA75Fv7QRPrXOtYmaaaXFjWJC5DLLjqxQ3JJ0FvM0OBcJ3YvMYUJuY92GwjYpm0bBpDFbz5bTDOd19xE7eP2gmBSXzsbi59Rm1HCjZypyJPw=,iv:T7Fp3sYaQBSa9wQjFcV3viuTyjgsOGyzq3ocfUFkpvo=,tag:MXpCcpgAXv9jeDmziRvVuA==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
-  version: 3.11.0
+  version: 3.12.1
 ---
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: ClientTrafficPolicy
@@ -204,22 +212,15 @@ metadata:
 spec:
   clientIPDetection:
     xForwardedFor:
-      numTrustedHops: 1
-  connection:
-    bufferLimit: 4Mi
-    maxAcceptPerSocketEvent: 0
+      trustedCIDRs:
+        - 10.42.0.0/16
   http2:
-    initialStreamWindowSize: 512Ki
-    initialConnectionWindowSize: 8Mi
     onInvalidMessage: TerminateStream
   http3: {}
   targetSelectors:
     - group: gateway.networking.k8s.io
       kind: Gateway
   tcpKeepalive: {}
-  timeout:
-    http:
-      requestReceivedTimeout: 0s
   tls:
     minVersion: "1.2"
     alpnProtocols:
@@ -227,20 +228,20 @@ spec:
       - http/1.1
 sops:
   age:
-    - recipient: age1ckpjl5l70jve252ure5e356yh05fzumyun66yefgp9yxc6mqqgeshe5z6d
+    - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTUGQ3Um5yNXloaFQ5a1NV
-        U1krK1ZLVk1FanRzb2VsT2lNWmtWVUJ4T21NCjVFTm1iaTcwRmNuT29LU20rYmJv
-        Vjh0ZEVUalV4bXQvcXRQVmhvbFM1cDAKLS0tIGZjUlV0Wnh4SUpOZjh0UWxOdUU4
-        OUdXc3NaUzBFdDFKc0pZNnpWbUdmZW8KIASSjBP7VOYYHUFqM/FCE6VBBPn8qDAN
-        qzLg0smDW3eX/16Gmtudlr4kqIP8G6vyjNYDyqFa1KhvSkuSby4abw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBqVXdpZis2T1dvaFBFcHMy
+        NXN5bks5eFcwVjErSWN3RDg5UnhxOHdqQ0NzCkZCbUg5WGZUd2o1ODBmQ0ozRHFX
+        OTgxbW5UajZpaGhmK2hyRkFpWlkxVG8KLS0tICtRQzcvSEl0cE0zVCtQOWFadGti
+        bStMalY4QnhyRDE5NlZ3dDZ4dnVFb2MKTkRCNbse5c2jbRSd6Xa1ZPAGoR3C6sSu
+        /j/eecHc2a7l7W8EAgdw9CtBubktXcMi/EXhL6dE8GEEYb9VfVafJA==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-10-31T00:00:50Z"
-  mac: ENC[AES256_GCM,data:hEgy+G7uhm4I7M0360XBWptB/Tod92U6ZxMGZy+rLWxKIRkD+9eyi0DIvhopqCt3IeF4B9pSK0arUdMwzkN7baKo4RR534YNYNgEO8CwRz7AZY+DXm4RijHNriWVnbrRJXtKET1NvL22uiugWGhh4E4gcPTNzYiEMlzuBIFbUYk=,iv:Cx/8IMRpul7ZcaAgdOCX0zBL7uGInMYVdkRhCwsz2Dw=,tag:cC6uM9nde0UvVpOhAe41iQ==,type:str]
+  lastmodified: "2026-03-13T18:31:15Z"
+  mac: ENC[AES256_GCM,data:G2FJw9W7d8PHvSW2jef9DIPmtnt0BZp4nfT1GIZAZKXW+N7cHyXFQbcK99ceFECBA75Fv7QRPrXOtYmaaaXFjWJC5DLLjqxQ3JJ0FvM0OBcJ3YvMYUJuY92GwjYpm0bBpDFbz5bTDOd19xE7eP2gmBSXzsbi59Rm1HCjZypyJPw=,iv:T7Fp3sYaQBSa9wQjFcV3viuTyjgsOGyzq3ocfUFkpvo=,tag:MXpCcpgAXv9jeDmziRvVuA==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
-  version: 3.11.0
+  version: 3.12.1
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -264,17 +265,17 @@ spec:
             statusCode: 301
 sops:
   age:
-    - recipient: age1ckpjl5l70jve252ure5e356yh05fzumyun66yefgp9yxc6mqqgeshe5z6d
+    - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTUGQ3Um5yNXloaFQ5a1NV
-        U1krK1ZLVk1FanRzb2VsT2lNWmtWVUJ4T21NCjVFTm1iaTcwRmNuT29LU20rYmJv
-        Vjh0ZEVUalV4bXQvcXRQVmhvbFM1cDAKLS0tIGZjUlV0Wnh4SUpOZjh0UWxOdUU4
-        OUdXc3NaUzBFdDFKc0pZNnpWbUdmZW8KIASSjBP7VOYYHUFqM/FCE6VBBPn8qDAN
-        qzLg0smDW3eX/16Gmtudlr4kqIP8G6vyjNYDyqFa1KhvSkuSby4abw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBqVXdpZis2T1dvaFBFcHMy
+        NXN5bks5eFcwVjErSWN3RDg5UnhxOHdqQ0NzCkZCbUg5WGZUd2o1ODBmQ0ozRHFX
+        OTgxbW5UajZpaGhmK2hyRkFpWlkxVG8KLS0tICtRQzcvSEl0cE0zVCtQOWFadGti
+        bStMalY4QnhyRDE5NlZ3dDZ4dnVFb2MKTkRCNbse5c2jbRSd6Xa1ZPAGoR3C6sSu
+        /j/eecHc2a7l7W8EAgdw9CtBubktXcMi/EXhL6dE8GEEYb9VfVafJA==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-10-31T00:00:50Z"
-  mac: ENC[AES256_GCM,data:hEgy+G7uhm4I7M0360XBWptB/Tod92U6ZxMGZy+rLWxKIRkD+9eyi0DIvhopqCt3IeF4B9pSK0arUdMwzkN7baKo4RR534YNYNgEO8CwRz7AZY+DXm4RijHNriWVnbrRJXtKET1NvL22uiugWGhh4E4gcPTNzYiEMlzuBIFbUYk=,iv:Cx/8IMRpul7ZcaAgdOCX0zBL7uGInMYVdkRhCwsz2Dw=,tag:cC6uM9nde0UvVpOhAe41iQ==,type:str]
+  lastmodified: "2026-03-13T18:31:15Z"
+  mac: ENC[AES256_GCM,data:G2FJw9W7d8PHvSW2jef9DIPmtnt0BZp4nfT1GIZAZKXW+N7cHyXFQbcK99ceFECBA75Fv7QRPrXOtYmaaaXFjWJC5DLLjqxQ3JJ0FvM0OBcJ3YvMYUJuY92GwjYpm0bBpDFbz5bTDOd19xE7eP2gmBSXzsbi59Rm1HCjZypyJPw=,iv:T7Fp3sYaQBSa9wQjFcV3viuTyjgsOGyzq3ocfUFkpvo=,tag:MXpCcpgAXv9jeDmziRvVuA==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
-  version: 3.11.0
+  version: 3.12.1

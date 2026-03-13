@@ -7,20 +7,20 @@ spec:
     - dnsName: external.aknuk.dev
       recordType: CNAME
       targets:
-        - 2c62a172-a234-4d23-880c-a0a76019839c.cfargotunnel.com
+        - 82a675b2-425d-4816-965e-b81fa9053660.cfargotunnel.com
 sops:
   age:
-    - recipient: age1ckpjl5l70jve252ure5e356yh05fzumyun66yefgp9yxc6mqqgeshe5z6d
+    - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBuSGxQSXpiU2VKQ2doM09u
-        VGFaOUozRWRpTldsS3c3d3lDQTV5SmpjTWlrCnVabzhYcnBpYnhyVWF0a2tzSlgx
-        NUUyRnpQK256d2d4TEt1Y0ZPeWcwajgKLS0tIHNvUEpKRXdtcWFsMHBYLzQwQVpo
-        Z3FEN2k0WjdVOU9UZ2ZWUldPZUtRWGsK3nEvZxABd+7CgDKVAHLUoiZFuKKtYrMd
-        dKQp/qmj79OFLq+nT+y58aS4UThmYISCxaMq+1mNT9K9Pgco8+xoeg==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxZ2xyaXM4WSt4UFhyemhn
+        UytMbXgvRHRjTW5OVmxreHFFUkJUUlJ2TkdvCmQyVjM0UXR6TW1UTy9kcFdMWVdD
+        U1lXSUVJZTZIZ3dlbXkxaEI4UG01TEEKLS0tIFdOVDFhZWVIdHBMc05veUx5a1FY
+        R1lHM3RSN0cvcHVuN0JYVTVpWFdyQ1kKJPucRGv134QJ6V+4sReiOocT9tldPXVS
+        Oa+oYNBnHJATKYdSNNC8JGol8Bq36tEZ1QW8rin0K3wGHrpkqC74xw==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-10-31T00:00:49Z"
-  mac: ENC[AES256_GCM,data:s0dxiH5NnN4MzpWOC84aLpRfx7J4Ihycv9duTF1T/paFsfdMkJFNLvNgr9R4LM2/b7XTJa7xiIMOZq6uNlysC9JRLq1hZy86K0gZ6n7YijEYrg8GcMZQEn9xzhm5Koa11bcZT/gcxLXHTOl96OHgQTmP0UcO7Iq0ZAgYeON5crg=,iv:Q6zEprluyF3NEJXIYv8JPobcJv4fgYkfGaisGt+Q5ro=,tag:54Y4vS8rNaKcqKyMuhEC+Q==,type:str]
+  lastmodified: "2026-03-13T18:31:15Z"
+  mac: ENC[AES256_GCM,data:ZsryP37bQyvKfWEy/dYjmRg0kDYNRecZrmyG4QPRG5Ye4mDMhpdddiPQSBjMdtRIrE7J2hdsJD7cvqYK2bm0dJ/qZu8i2nP12UCXKyFfjROG33/B1fFiLux1QWVwsfGbacSwtGFIdoiskv3kfQSJOoNi+iBpfUo2/AQ1tprOhRc=,iv:mYRulE1eUPv/EcvTl8ZXOcELuVZRNvbbCB1A5VqU6RU=,tag:3GRFRzKapvFGMx72c5eBsw==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
-  version: 3.11.0
+  version: 3.12.1

@@ -12,17 +12,17 @@ watchedResources:
   - Service
 sops:
   age:
-    - recipient: age1ckpjl5l70jve252ure5e356yh05fzumyun66yefgp9yxc6mqqgeshe5z6d
+    - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBKV1hyK0U3ODhMZkZ2V2Yz
-        RFBTRTNPbjJFaDYvbllXMWNPWHhhSnZKNWgwClJHWWFWYjlPL3F3NjVWL1dFUSs4
-        MUxVV2lKRWlhSlE5TVZ1ZER2VkVObG8KLS0tIHg3Zm01THoyQm8xdnl3dzhyRzBa
-        Zm40eDFKbFJ2K0tRWjF6dkV6RGFoUHMKEPEvOdtN0MeTVxBLd80BENLiR7JpSuAI
-        S1c31BfBevqxwqXzoKSk7WePgH40f8R8hjs0cyqTXQqJByaVWrziBw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB2V1ZPb3JFckJHRmJ0ZmUv
+        RWdVVU9nVzNyL1IzWmIwaHZjL3Y3ZjYxbUFnCnBXVGdySmN1QTVVRVM2Ynd4YlJX
+        cDQwRHJkNm82OFlYRW1qZjZMOEJEbEkKLS0tIDNTdlZIa2VObVA1QzhsdU5rVDVq
+        MnJobjREMVp1TElhNmJVK1JidmoyVTgKyppjRDKpSuhpRfQMczkS/Uh6T6W15ExY
+        rYfA97kmaEsYxiIYwnothuQWZBEqLrW1zwiYBDNYRPa5p4v30TCTrQ==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-10-31T00:00:50Z"
-  mac: ENC[AES256_GCM,data:WC4Lx8xDya44JlILO8KTrAJspS3VC5a8YrDTTwHxP3SKeVRgJ5ihVs3bFqZUEKnYUuFmCukU6hIA3Uo62GRT2XIJMmq4AccqXjzO0R+XLTGNw2TshGGh/magXjov6OubBkVSxO1Vi0iyFbme3RNw5b1+hZWPcnmGIhq+kKAb7Is=,iv:u9DyoRlF15ptxyUyKDTcaW+/AE9Dqe/dHra5JzgfAdU=,tag:sqWNTw/7Hk3Du+ihX1W7rw==,type:str]
+  lastmodified: "2026-03-13T18:31:15Z"
+  mac: ENC[AES256_GCM,data:g6TxMBFRrkc9/u/oMB/cIF62VBhIdsZQi/ApjbzC/kE1YnQ6PXmHjjSyFJe0pl5rnUVksyD0A2Gp/0NQXMSo2+4BYYa+hvyMp3emJOwM9edQIvQbJERfgFLNalOfoFDD0Z4pX2kY/tvVgqkr/2LJXxLDFeeqGZROn2NhHu6bc6E=,iv:RwUNeaQ9nObZM64nDtFrIQ+6sUc2puB1K6iPqy9NI+k=,tag:8TmfT7Y4LZoQECTCNWI4Pw==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
-  version: 3.11.0
+  version: 3.12.1
