@@ -19,7 +19,7 @@ cniConfig:
 
 nodes:
   - hostname: "home-lab"
-    ipAddress: "192.168.8.114"
+    ipAddress: "192.168.8.2"
     installDisk: "/dev/sdc"
     machineSpec:
       secureboot: false
@@ -30,7 +30,7 @@ nodes:
           hardwareAddr: "d8:5e:d3:0a:e9:75"
         dhcp: false
         addresses:
-          - "192.168.8.114/24"
+          - "192.168.8.2/24"
         routes:
           - network: "0.0.0.0/0"
             gateway: "192.168.8.1"
