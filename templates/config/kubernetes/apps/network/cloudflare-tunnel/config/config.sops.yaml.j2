@@ -6,12 +6,10 @@ metadata:
 data:
   config.yaml: |
     ---
-    originRequest:
-      originServerName: "external.#{ cloudflare_domain }#"
-
     ingress:
-      - hostname: "#{ cloudflare_domain }#"
-        service: &svc https://envoy-external.network.svc.cluster.local
       - hostname: "*.#{ cloudflare_domain }#"
-        service: *svc
+        originRequest:
+          http2Origin: true
+          originServerName: "external.#{ cloudflare_domain }#"
+        service: https://envoy-external.network.svc.cluster.local:443
       - service: http_status:404
