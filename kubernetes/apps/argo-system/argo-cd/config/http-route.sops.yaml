@@ -6,6 +6,7 @@ spec:
   parentRefs:
     - name: envoy-external
       namespace: network
+      sectionName: https
   hostnames:
     - argo.aknuk.dev
   rules:
@@ -17,14 +18,14 @@ sops:
     - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYR0wwMU9ZRm1kRXJYYU1G
-        QTI5U1hyTEFxb2Y2MGh3TE1VQ3Y0ck5rNEJZCkIrcmFFRW9HYmc4Vm1yUG9TVWpm
-        RUVDS1FPL21PQThyS0hTSDBtTUV4Q28KLS0tIFErVkhCd1IzVXh3aEsyNmpwZk1D
-        a09jUlNLSnlYMEZzMldOckhENkxzelEK0sPWpswAR6WuC2CQkK0cEF6gXjCh9ZT4
-        rIzF4UR3bORjfIJE4QSZ4rUhY9J8nf7ElhSixJVoX91iKYiic65P6g==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBQT1pCb0d4dEN0cm9FM3k4
+        MXorNFZkRi90OXg3VzREU2hLblMweWZ0RlI0ClNEU01pM0gwQlRmUHlFNE9hZ0xu
+        Z1d3YWphVXdEVUIrR2FRZXIwWFQyTm8KLS0tIHdXOS9mdDFOMnR2UmxjMVU3akgx
+        NzR0azFLUlVESHVUZXZSSzU1OG9BWjAKR7MHJ24UQtNq+jLHGhrLOS9TNl93CU9O
+        sHLfTxed1JgmCetc8EXWb4+KVnFhAnIoasKMBhWUtbGITFS8Hc8agg==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2026-03-16T07:23:53Z"
-  mac: ENC[AES256_GCM,data:Y9S5SAFX1M1EYeyTa7Vfde+21pEnxmOPD/7psXTHsRe6dySzsNbHexuUIb+SPSf2OcNrQpocPeouoYqj5WtRWxruDfdT3IwtGR4pDxByMSQ92dQv12t6CFhEof62iOz3JpR//Gl4HJxMQEdTAPphk+/BPzPy/oL9NC0FpVyyxnk=,iv:fpeNGYP4CpZcQw0G7dXeSgxNhxaSFF71DJZOQpn31Fw=,tag:FD6y3OJ1y1/NdskNT++QnA==,type:str]
+  lastmodified: "2026-03-16T07:32:34Z"
+  mac: ENC[AES256_GCM,data:heQePj7+NO9ber9n313EOpT1AAPz7nl6WPiZ2BFU8gENb+k71FEYT3caYW0M4K7I/urPvDRVHWbiCOsYE+B6/pL8QLou32oB2SlPwK8c++Zrgp2TwqeQ6GRwbNeiQrcLeXacJBcEcqdjLqfHWFgCWYXGC1UiBufRVqDJyIpxFyg=,iv:FHA9oAwyqITteG3VHlsjROObt5CYUKb3b/OAxnOTL5M=,tag:YjuEs/7cbfiJ3HltaDOXzw==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.12.1
