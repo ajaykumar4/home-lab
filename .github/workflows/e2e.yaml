@@ -14,11 +14,9 @@ concurrency:
 
 jobs:
   configure:
-    if: ${{ github.repository == 'ajaykumar4/cluster-template' }}
+    if: ${{ github.repository == 'onedr0p/cluster-template' }}
     name: configure
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     strategy:
       fail-fast: false
       matrix:
@@ -54,6 +52,11 @@ jobs:
           FILENAME=talos/talsecret.sops.yaml
           talhelper gensecret | sops --filename-override $FILENAME --encrypt /dev/stdin > $FILENAME
           task talos:generate-config
+
+      - name: Run flux-local test
+        uses: docker://ghcr.io/allenporter/flux-local:v8.1.0@sha256:37c3c4309a351830b04f93c323adfcb0e28c368001818cd819cbce3e08828261
+        with:
+          args: test --enable-helm --all-namespaces --path /github/workspace/kubernetes/flux/cluster -v
 
       - name: Dry run bootstrap talos task
         run: task bootstrap:talos --dry

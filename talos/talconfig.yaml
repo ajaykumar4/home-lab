@@ -32,8 +32,8 @@ nodes:
         addresses:
           - "192.168.8.2/24"
         routes:
-          - network: "0.0.0.0/0"
-            gateway: "192.168.8.1"
+          - gateway: "192.168.8.1"
+            network: 0.0.0.0/0
         mtu: 1500
         vip:
           ip: "192.168.8.200"

@@ -27,8 +27,8 @@ tasks:
   default: task --list
 
   reconcile:
-    desc: Force Argo to pull in changes from your Git repository
-    cmd: argocd app list --project kubernetes -o name | xargs -I {} argocd app wait {} --sync --timeout 300
+    desc: Force Flux to pull in changes from your Git repository
+    cmd: flux --namespace flux-system reconcile kustomization flux-system --with-source
     preconditions:
       - test -f {{.KUBECONFIG}}
-      - which argocd
+      - which flux
