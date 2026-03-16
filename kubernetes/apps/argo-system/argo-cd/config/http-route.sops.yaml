@@ -5,7 +5,7 @@ metadata:
 spec:
   parentRefs:
     - name: envoy-external
-      namespace: kube-system
+      namespace: network
   hostnames:
     - argo.aknuk.dev
   rules:
@@ -17,14 +17,14 @@ sops:
     - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBhV1lTbUxxdkNFMzhiU1N5
-        OHY2eExQNFZmREp4b1RZRDc1a3NKZThHT3hzCjY1ZHZ4RU9ualJPb2wweVVhQUpm
-        UDg5SDVNVTZ1QXJENGErd0tkdTVlZlUKLS0tIG5TbW5vMDMwYndGdk5mN0FhQ2lj
-        VzdQbDhyWEJpTHhKcW9OV3NXRkVPM1EKkQmlmzbgFfFBcm2fMTRclEF9york/Ilb
-        uZ/Iv/BqL9YROWHKNgkSrG9/C/mm+mnapttwCy398H4k6g4RjE5Yjg==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB6aTNUSm9oYWx6dVUyb0gr
+        amtpUW5uaXR5MkhOdEhWblQ4S0V3L05OT0ZZClNTNFZXeG1ZVG5paDVIck9sMUhs
+        WnhiWnlWMWN2THFVdjFid1EwT1diM0EKLS0tIHRod0pid1RzNVpLd25kSEZXZkkv
+        dFY5bWg4cHg3MjN4dTU4NmNwYzVVSFEKoitiBTNlxyjGpY/x93bSQAZ3MsuUiEBj
+        Ld5HcWVOgIE4o4P4uEtYmotHGzFEWZVUnxE2rZnsaa+lj9w+B4UQGg==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2026-03-16T07:12:18Z"
-  mac: ENC[AES256_GCM,data:K6VHOqbQyAV0xWAQ9vrqXl5VNG21N67TS/vZ1B67hNT4xNkY0Ghp/qU7SnoOME2UzF3SKU4O/QtVr54Uu64a/gDiOf/gXNSO9FroBG1QiyZ3cWz7riwWLWV6yxyjH5zbEj7c4l1dPyGhStCLWcRFR43iyJCPDqlagXJrK0Ne1Ow=,iv:ThUk6WlTeZaR+U3eexwMnfXFcEeoB9Q2P0kKWZMJCYs=,tag:AF9OS9fjjcwaeirjuXQT+A==,type:str]
+  lastmodified: "2026-03-16T07:17:04Z"
+  mac: ENC[AES256_GCM,data:7CT16vfG4is6lDXLxZEVUwA0S9ghStfE7CKuwnRo2QlVHYw5PRVOvU4kh2rHsKkdDrsQPvhK6NwDv5syD6VYTV8irQASUTjsfDqXCwrUCm3IwassnqL4lUapPseGcD0j4fLUffhJ/hkOSZUgH0hR7wfXp1WUcL372qmEGjVouQU=,iv:zF7zLW+2S0lN+SbzS79zJ91uvDkxwdIN+qSW+3PNddA=,tag:fCscAzt4DQ7C8KusuNv3cQ==,type:str]
   encrypted_regex: ^(data|stringData)$
   mac_only_encrypted: true
   version: 3.12.1
