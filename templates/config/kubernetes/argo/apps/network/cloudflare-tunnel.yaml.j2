@@ -19,7 +19,7 @@ spec:
       helm:
         releaseName: cloudflare-tunnel
         valueFiles:
-          - $repo/kubernetes/apps/network/cloudflare-tunnel/values.yaml
+          - $repo/kubernetes/apps/network/cloudflare-tunnel/values.sops.yaml
   destination:
     name: in-cluster
     namespace: network
