@@ -63,6 +63,7 @@ configMaps:
             originRequest:
               http2Origin: true
               originServerName: "external.#{ cloudflare_domain }#"
+              noTLSVerify: true
             service: https://envoy-external.network.svc.cluster.local:443
           - service: http_status:404
 persistence:
