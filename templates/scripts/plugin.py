@@ -1,5 +1,6 @@
 from pathlib import Path
 from typing import Any
+from datetime import datetime
 
 import base64
 import ipaddress
@@ -101,7 +102,7 @@ def github_deploy_key(file_path: str = 'github-deploy.key') -> str:
         raise RuntimeError(f"Unexpected error while reading {file_path}: {e}")
 
 
-# Return the Flux / GitHub push token from github-push-token.txt
+# Return the Argo / GitHub push token from github-push-token.txt
 def github_push_token(file_path: str = 'github-push-token.txt') -> str:
     try:
         with open(file_path, 'r') as file:
@@ -118,6 +119,11 @@ def talos_patches(value: str) -> list[str]:
     if not path.is_dir():
         return []
     return [str(f) for f in sorted(path.glob('*.yaml.j2')) if f.is_file()]
+
+
+# Return current datetime
+def current_datetime() -> str:
+    return datetime.now().strftime('%Y-%m-%dT%H:%M:%S%Z')
 
 
 class Plugin(makejinja.plugin.Plugin):
@@ -164,5 +170,6 @@ class Plugin(makejinja.plugin.Plugin):
             cloudflare_tunnel_secret,
             github_deploy_key,
             github_push_token,
-            talos_patches
+            talos_patches,
+            current_datetime
         ]

@@ -20,7 +20,7 @@ cniConfig:
 nodes:
   - hostname: "home-lab"
     ipAddress: "192.168.8.2"
-    installDisk: "/dev/sdc"
+    installDisk: "/dev/sdb"
     machineSpec:
       secureboot: true
     talosImageURL: factory.talos.dev/installer-secureboot/1e17720baa2217bdf64a7caa256011144fce07af5dd12ce18baed735789e7c81
@@ -32,8 +32,8 @@ nodes:
         addresses:
           - "192.168.8.2/24"
         routes:
-          - gateway: "192.168.8.1"
-            network: 0.0.0.0/0
+          - network: "0.0.0.0/0"
+            gateway: "192.168.8.1"
         mtu: 1500
         vip:
           ip: "192.168.8.200"

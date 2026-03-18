@@ -58,9 +58,7 @@ function apply_sops_secrets() {
     log debug "Applying secrets"
 
     local -r secrets=(
-        "${ROOT_DIR}/bootstrap/github-deploy-key.sops.yaml"
-        "${ROOT_DIR}/bootstrap/sops-age.sops.yaml"
-        "${ROOT_DIR}/kubernetes/components/sops/cluster-secrets.sops.yaml"
+        "${ROOT_DIR}/kubernetes/components/common/helm-secrets-private-keys.sops.yaml"
     )
 
     for secret in "${secrets[@]}"; do
@@ -70,13 +68,13 @@ function apply_sops_secrets() {
         fi
 
         # Check if the secret resources are up-to-date
-        if sops exec-file "${secret}" "kubectl --namespace flux-system diff --filename {}" &>/dev/null; then
+        if sops exec-file "${secret}" "kubectl --namespace argo-system diff --filename {}" &>/dev/null; then
             log info "Secret resource is up-to-date" "resource=$(basename "${secret}" ".sops.yaml")"
             continue
         fi
 
         # Apply secret resources
-        if sops exec-file "${secret}" "kubectl --namespace flux-system apply --server-side --filename {}" &>/dev/null; then
+        if sops exec-file "${secret}" "kubectl --namespace argo-system apply --server-side --filename {}" &>/dev/null; then
             log info "Secret resource applied successfully" "resource=$(basename "${secret}" ".sops.yaml")"
         else
             log error "Failed to apply secret resource" "resource=$(basename "${secret}" ".sops.yaml")"
@@ -127,6 +125,37 @@ function sync_helm_releases() {
     log info "Helm releases synced successfully"
 }
 
+# Sync Argo Applications
+function sync_argo_apps() {
+    log debug "Sync Argo Applications"
+
+    local -r bootstrappingmaps=(
+        "${ROOT_DIR}/kubernetes/components/common/apps.yaml"
+        "${ROOT_DIR}/kubernetes/components/common/repositories.yaml"
+        "${ROOT_DIR}/kubernetes/components/common/settings.yaml"
+    )
+
+    for bootstrappingmap in "${bootstrappingmaps[@]}"; do
+        if [ ! -f "${bootstrappingmap}" ]; then
+            log warn "File does not exist" file "${bootstrappingmap}"
+            continue
+        fi
+
+        # Check if the bootstrappingmap resources are up-to-date
+        if kubectl --namespace argo-system diff --filename "${bootstrappingmap}" &>/dev/null; then
+            log info "bootstrappingmap resource is up-to-date" "resource=$(basename "${bootstrappingmap}" ".yaml")"
+            continue
+        fi
+
+        # Apply bootstrappingmap resources
+        if kubectl --namespace argo-system apply --server-side --filename "${bootstrappingmap}" &>/dev/null; then
+            log info "bootstrappingmap resource applied successfully" "resource=$(basename "${bootstrappingmap}" ".yaml")"
+        else
+            log error "Failed to apply bootstrappingmap resource" "resource=$(basename "${bootstrappingmap}" ".yaml")"
+        fi
+    done
+}
+
 function main() {
     check_env KUBECONFIG TALOSCONFIG
     check_cli helmfile kubectl kustomize sops talhelper yq
@@ -137,8 +166,9 @@ function main() {
     apply_sops_secrets
     apply_crds
     sync_helm_releases
+    sync_argo_apps
 
-    log info "Congrats! The cluster is bootstrapped and Flux is syncing the Git repository"
+    log info "Congrats! The cluster is bootstrapped and Argo is syncing the Git repository"
 }
 
 main "$@"

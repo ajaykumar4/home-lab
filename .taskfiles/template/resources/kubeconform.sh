@@ -6,7 +6,12 @@ KUBERNETES_DIR=$1
 
 [[ -z "${KUBERNETES_DIR}" ]] && echo "Kubernetes location not specified" && exit 1
 
-kustomize_args=("--load-restrictor=LoadRestrictionsNone")
+kustomize_args=(
+    "--load-restrictor=LoadRestrictionsNone"
+    "--enable-helm"
+    "--enable-alpha-plugins"
+    "--enable-exec"
+    )
 kustomize_config="kustomization.yaml"
 kubeconform_args=(
     "-strict"
@@ -20,8 +25,8 @@ kubeconform_args=(
     "-verbose"
 )
 
-echo "=== Validating standalone manifests in ${KUBERNETES_DIR}/flux ==="
-find "${KUBERNETES_DIR}/flux" -maxdepth 1 -type f -name '*.yaml' -print0 | while IFS= read -r -d $'\0' file;
+echo "=== Validating standalone manifests in ${KUBERNETES_DIR}/argo ==="
+find "${KUBERNETES_DIR}/argo" -maxdepth 1 -type f -name '*.yaml' -print0 | while IFS= read -r -d $'\0' file;
 do
     kubeconform "${kubeconform_args[@]}" "${file}"
     if [[ ${PIPESTATUS[0]} != 0 ]]; then
@@ -29,8 +34,8 @@ do
     fi
 done
 
-echo "=== Validating kustomizations in ${KUBERNETES_DIR}/flux ==="
-find "${KUBERNETES_DIR}/flux" -type f -name $kustomize_config -print0 | while IFS= read -r -d $'\0' file;
+echo "=== Validating kustomizations in ${KUBERNETES_DIR}/argo ==="
+find "${KUBERNETES_DIR}/argo" -type f -name $kustomize_config -print0 | while IFS= read -r -d $'\0' file;
 do
     echo "=== Validating kustomizations in ${file/%$kustomize_config} ==="
     kustomize build "${file/%$kustomize_config}" "${kustomize_args[@]}" | kubeconform "${kubeconform_args[@]}"

@@ -82,3 +82,7 @@ cloudflare_gateway_addr: ""
 # -- The BGP node ASN
 # (OPTIONAL) / (e.g. "64514")
 # cilium_bgp_node_asn: ""
+
+# -- Argo CD Admin password to login
+#    (REQUIRED) / (NOTE: `htpasswd -nbBC 10 "" $ARGO_PWD | tr -d ':\n' | sed 's/$2y/$2a/'`)
+argo_password: ""
