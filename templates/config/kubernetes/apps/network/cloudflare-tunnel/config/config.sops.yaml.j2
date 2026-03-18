@@ -6,9 +6,6 @@ metadata:
 data:
   config.yaml: |
     ---
-    originRequest:
-      originServerName: "external.#{ cloudflare_domain }#"
-
     ingress:
       - hostname: "*.#{ cloudflare_domain }#"
         originRequest:
