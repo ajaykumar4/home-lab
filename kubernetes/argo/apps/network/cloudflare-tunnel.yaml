@@ -13,9 +13,9 @@ spec:
       path: kubernetes/apps/network/cloudflare-tunnel
       targetRevision: main
       ref: repo
-    - repoURL: ghcr.io/bjw-s/helm
+    - repoURL: ghcr.io/bjw-s-labs/helm/app-template
       chart: app-template
-      targetRevision: 3.7.3
+      targetRevision: 4.6.2
       helm:
         releaseName: cloudflare-tunnel
         valueFiles:
