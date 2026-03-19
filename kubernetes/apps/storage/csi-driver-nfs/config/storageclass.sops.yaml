@@ -14,7 +14,6 @@ parameters:
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
 mountOptions:
-    - nfsvers=4.1
     - hard
     - noresvport
 sops:
@@ -28,8 +27,8 @@ sops:
             dms0S29HMUJNb2xXQWVubjVoMG9XbzAKF/c/5c/n8dODdQ9a9Sw0xqvgij4X2Ij1
             iNKR0UfpZ0LfCVyKKufZlctbgPXBumooPD0qg+I2voftoQLQRgdSiw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-19T23:28:04Z"
-    mac: ENC[AES256_GCM,data:a4KGO5cexxAOIU8Y5nmCkpuuXYZEcfGZlDUjoGJViBNUasPWqpf/extx/0nt3yCuAL1A2nnUcHS1eeQloDphK+d8AWZc17fym1rpAS2opPZhY9VPAh+p4N4p86WqabDRSwiID91HCOnrWYeC4VEeSkeQ+yIoSkWrJoUjxAiyTf0=,iv:bjbEb1Qd1V0VF1QFqcLFmc7lJWLhyDJPjVtuldRoO1k=,tag:DcCriZKrGmuieQbHuBaU9Q==,type:str]
+    lastmodified: "2026-03-19T23:54:03Z"
+    mac: ENC[AES256_GCM,data:xY2DA3qpqq3HAihjI7UtMjd5IDly5C+9PMxOCF7d5i8ta7v46YSvzmRDrjmM2swY1HUqO97m7CINzfSLJaZXGPbRDSd6jTPDtMvBnllILJtNGSl2GxYjp9PboVzdeQL3bxJgPV5j5jAx0UQPnHxTKXlk5DyqhImsCIY+LmhHdQo=,iv:9KtDDjFR4HGDg/BhpGa2/+utrmK8nAuSM+KlrmdI5OQ=,tag:U4cUctqA7IB/3T/MjceZAA==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.1
