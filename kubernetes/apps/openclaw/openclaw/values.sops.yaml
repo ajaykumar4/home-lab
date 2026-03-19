@@ -1,0 +1,343 @@
+controllers:
+    openclaw:
+        strategy: RollingUpdate
+        annotations:
+            reloader.stakater.com/auto: "true"
+        initContainers:
+            init-config:
+                image:
+                    repository: ghcr.io/openclaw/openclaw
+                    tag: 2026.3.13-1
+                env:
+                    HOME: /tmp
+                    NPM_CONFIG_CACHE: /tmp/.npm
+                command:
+                    - sh
+                    - -c
+                    - |
+                      log() { echo "[$(date -Iseconds)] [init-config] $*"; }
+
+                      log "Starting config initialization"
+                      mkdir -p /home/node/.openclaw
+                      CONFIG_MODE="${CONFIG_MODE:-merge}"
+
+                      if [ "$CONFIG_MODE" = "merge" ] && [ -f /home/node/.openclaw/openclaw.json ]; then
+                        log "Mode: merge - merging Helm config with existing config"
+                        if node -e "
+                          const fs = require('fs');
+                          // Strip JSON5 single-line comments while preserving // inside strings (e.g. URLs)
+                          const stripComments = (s) => {
+                            let r = '', q = false, i = 0;
+                            while (i < s.length) {
+                              if (q) {
+                                if (s[i] === '\\\\') { r += s[i] + s[i+1]; i += 2; continue; }
+                                if (s[i] === '\"') q = false;
+                                r += s[i++];
+                              } else if (s[i] === '\"') {
+                                q = true; r += s[i++];
+                              } else if (s[i] === '/' && s[i+1] === '/') {
+                                while (i < s.length && s[i] !== '\n') i++;
+                              } else { r += s[i++]; }
+                            }
+                            return r;
+                          };
+                          let existing;
+                          try {
+                            existing = JSON.parse(stripComments(fs.readFileSync('/home/node/.openclaw/openclaw.json', 'utf8')));
+                          } catch (e) {
+                            console.error('[init-config] Warning: existing config is not valid JSON, will overwrite');
+                            process.exit(1);
+                          }
+                          const helm = JSON.parse(stripComments(fs.readFileSync('/config/openclaw.json', 'utf8')));
+                          const deepMerge = (target, source) => {
+                            for (const key of Object.keys(source)) {
+                              if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+                                target[key] = target[key] || {};
+                                deepMerge(target[key], source[key]);
+                              } else {
+                                target[key] = source[key];
+                              }
+                            }
+                            return target;
+                          };
+                          const merged = deepMerge(existing, helm);
+                          fs.writeFileSync('/home/node/.openclaw/openclaw.json', JSON.stringify(merged, null, 2));
+                        "; then
+                          log "Config merged successfully"
+                        else
+                          log "WARNING: Merge failed (existing config may not be valid JSON), falling back to overwrite"
+                          cp /config/openclaw.json /home/node/.openclaw/openclaw.json
+                        fi
+                      else
+                        if [ ! -f /home/node/.openclaw/openclaw.json ]; then
+                          log "Fresh install - writing initial config"
+                        else
+                          log "Mode: overwrite - replacing config with Helm values"
+                        fi
+                        cp /config/openclaw.json /home/node/.openclaw/openclaw.json
+                      fi
+                      log "Config initialization complete"
+            init-skills:
+                image:
+                    repository: ghcr.io/openclaw/openclaw
+                    tag: 2026.3.13-1
+                env:
+                    CONFIG_MODE: merge
+                command:
+                    - sh
+                    - -c
+                    - |
+                      log() { echo "[$(date -Iseconds)] [init-skills] $*"; }
+
+                      log "Starting skills initialization"
+
+                      # ============================================================
+                      # Runtime Dependencies
+                      # ============================================================
+                      # Some skills require additional runtimes (Python, Go, etc.)
+                      # Install them here so they persist across pod restarts.
+                      #
+                      # Example: Install uv (Python package manager) for Python skills
+                      # mkdir -p /home/node/.openclaw/bin
+                      # if [ ! -f /home/node/.openclaw/bin/uv ]; then
+                      #   log "Installing uv..."
+                      #   curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=/home/node/.openclaw/bin sh
+                      # fi
+                      #
+                      # Example: Install pnpm and packages for interfaces (e.g., MS Teams)
+                      # The read-only filesystem and non-root UID prevent writing to default
+                      # pnpm paths (/usr/local/lib/node_modules, ~/.local/share/pnpm, etc.).
+                      # Redirect PNPM_HOME to the PVC so the binary persists across restarts.
+                      # The init container's HOME=/tmp ensures pnpm's cache, state, and config
+                      # writes land on /tmp (writable emptyDir). The store goes on the PVC so
+                      # hardlinks work (same filesystem as node_modules) and persist.
+                      # PNPM_HOME=/home/node/.openclaw/pnpm
+                      # mkdir -p "$PNPM_HOME"
+                      # if [ ! -f "$PNPM_HOME/pnpm" ]; then
+                      #   log "Installing pnpm..."
+                      #   curl -fsSL https://get.pnpm.io/install.sh | env PNPM_HOME="$PNPM_HOME" SHELL=/bin/sh sh -
+                      # fi
+                      # export PATH="$PNPM_HOME:$PATH"
+                      # log "Installing interface dependencies..."
+                      # cd /home/node/.openclaw
+                      # pnpm install <your-package> --store-dir /home/node/.openclaw/.pnpm-store
+
+                      # ============================================================
+                      # Skill Installation
+                      # ============================================================
+                      # Install skills from ClawHub (https://clawhub.com)
+                      # Add skill slugs to the list below to install them declaratively.
+                      mkdir -p /home/node/.openclaw/workspace/skills
+                      cd /home/node/.openclaw/workspace
+                      install_skill() {
+                        skill="$1"
+                        SKILL_NAME="$(basename "$skill")"
+                        if [ -z "$skill" ]; then
+                          return 0
+                        fi
+                        if [ -d "skills/$SKILL_NAME" ]; then
+                          log "Skill already installed: $skill"
+                          return 0
+                        fi
+                        log "Installing skill: $skill"
+                        attempts=6
+                        delay=5
+                        for i in $(seq 1 "$attempts"); do
+                          if npx -y clawhub install "$skill" --no-input; then
+                            log "Installed skill: $skill"
+                            return 0
+                          fi
+                          # Add a little jitter so concurrent pods don't retry in lockstep.
+                          jitter=$((RANDOM % 5))
+                          if [ "$i" -lt "$attempts" ]; then
+                            log "WARNING: Failed to install skill: $skill (attempt $i/$attempts). Retrying in $((delay + jitter))s..."
+                            sleep $((delay + jitter))
+                            delay=$((delay * 2))
+                          fi
+                        done
+                        log "WARNING: Failed to install skill after $attempts attempts: $skill"
+                        return 1
+                      }
+                      for skill in weather gog; do
+                        install_skill "$skill" || true
+                      done
+                      log "Skills initialization complete"
+        containers:
+            app:
+                image:
+                    repository: ghcr.io/openclaw/openclaw
+                    tag: 2026.3.13-1
+                command:
+                    - node
+                    - dist/index.js
+                args:
+                    - gateway
+                    - --bind
+                    - lan
+                    - --port
+                    - "18789"
+                envFrom:
+                    - secretRef:
+                        name: openclaw-secrets
+                probes:
+                    liveness:
+                        enabled: true
+                        type: TCP
+                        spec:
+                            tcpSocket:
+                                port: 18789
+                            initialDelaySeconds: 30
+                            periodSeconds: 30
+                            timeoutSeconds: 5
+                            failureThreshold: 3
+                    readiness:
+                        enabled: true
+                        type: TCP
+                        spec:
+                            tcpSocket:
+                                port: 18789
+                            initialDelaySeconds: 30
+                            periodSeconds: 10
+                            timeoutSeconds: 5
+                            failureThreshold: 3
+                securityContext:
+                    allowPrivilegeEscalation: false
+                    readOnlyRootFilesystem: true
+                    capabilities:
+                        drop:
+                            - ALL
+                resources:
+                    requests:
+                        cpu: 10m
+                    limits:
+                        memory: 256Mi
+            chromium:
+                image:
+                    repository: chromedp/headless-shell
+                    tag: 146.0.7680.154
+                env:
+                    XDG_CACHE_HOME: /tmp
+                probes:
+                    liveness:
+                        enabled: true
+                        custom: true
+                        spec:
+                            httpGet:
+                                path: /json/version
+                                port: 9222
+                            initialDelaySeconds: 10
+                            periodSeconds: 30
+                            timeoutSeconds: 5
+                            failureThreshold: 6
+                    readiness:
+                        enabled: true
+                        custom: true
+                        spec:
+                            httpGet:
+                                path: /json/version
+                                port: 9222
+                            initialDelaySeconds: 5
+                            periodSeconds: 30
+                securityContext:
+                    allowPrivilegeEscalation: false
+                    readOnlyRootFilesystem: true
+                    capabilities:
+                        drop:
+                            - ALL
+                resources:
+                    requests:
+                        cpu: 10m
+                    limits:
+                        memory: 256Mi
+defaultPodOptions:
+    securityContext:
+        runAsNonRoot: true
+        runAsUser: 65534
+        runAsGroup: 65534
+service:
+    app:
+        ports:
+            http:
+                port: 18789
+serviceMonitor:
+    app:
+        endpoints:
+            - port: http
+route:
+    app:
+        hostnames:
+            - openclaw.aknuk.dev
+        parentRefs:
+            - name: envoy-external
+              namespace: network
+              sectionName: https
+        rules:
+            - backendRefs:
+                - identifier: app
+                  port: 18789
+persistence:
+    # ConfigMap for init container to copy from
+    config:
+        type: configMap
+        name: openclaw-configmap
+        advancedMounts:
+            openclaw:
+                init-config:
+                    - path: /config
+                      readOnly: true
+    # Shell alias file mounted from ConfigMap for interactive kubectl exec sessions
+    bash-aliases:
+        type: configMap
+        name: openclaw-configmap
+        advancedMounts:
+            openclaw:
+                app:
+                    - path: /home/node/.bash_aliases
+                      subPath: bash_aliases
+                      readOnly: true
+    # Entire .openclaw directory as PVC
+    data:
+        type: ENC[AES256_GCM,data:cd2DfbJ1/58XOZdAPJHeliRZhlgN,iv:Fa+CLukLTFQ3AQ0X0q9EBy0iguzteDwJI7wxViaW5Qc=,tag:CCFztIouLxsgsIhmN7z41w==,type:str]
+        #ENC[AES256_GCM,data:6f6CA8MLRuYdmIsqebYd719sPTPSOyXNxC748b433QprU3qtZZveznXReMUM+phyPqEDK/aw+cdozRtKDD16FfXLOIL+IAZAt/wWrfLL91W3Ur+5qxXWHTAmDV4=,iv:F47NfhZ8zSXRzalHlFc9MagAPMfeKxc2zaTO9AsdeZ0=,tag:9jhYz1SoruSKh8vLZ9EIDQ==,type:comment]
+        #ENC[AES256_GCM,data:yIIMkyCwJHlMzHPr4oeieF/YEg==,iv:crMpPyru8IInMFVTCFyhLS+4hYyJ+P3btEQuvG+WXhg=,tag:fbLCmgb3noEAzvzwM/Gy+Q==,type:comment]
+        accessMode: ENC[AES256_GCM,data:r6wJN16EwYLA0IqiFw==,iv:x4EgB/slnzPJeLn2Lu/b8/lWa6xVNHp/iG56GV1Vyvo=,tag:lpB0YYRhB0uD+2LFmaCexA==,type:str]
+        #ENC[AES256_GCM,data:ax/BkZKdBqSGwBOV+Emq3Xn+AqUOQliMs5ezOT0Zd4Q=,iv:QnWlz94EV4oP6Bm5fWv2KMmMb1ev97LxhJi2F8TbGXg=,tag:6njULD2f5X4nJfqfQ3lQXQ==,type:comment]
+        #ENC[AES256_GCM,data:5kL6vNvAe1nmDTAc9YjQCDxSgLw=,iv:zWMYMmCctwkrYO0wNfNBQKl4J0yC7m9C4i6R3YOK5Mg=,tag:rxg+vI12pCxfBuotRwtUbg==,type:comment]
+        size: ENC[AES256_GCM,data:cSIn,iv:lZpZrRofxGux3fuMa3kSTCOmU4s6aKnuFREKTxX7ph0=,tag:sca4unte2mADvYUcu70uKw==,type:str]
+        advancedMounts:
+            openclaw:
+                init-config:
+                    - path: ENC[AES256_GCM,data:UxvvHOcQrvj/fWWIcRm+DAjbwGI=,iv:cAOz68Z0Dkq0oVvIsuwaQOV6WfITxcmu5KqSnotX1/M=,tag:rJVyl9ANSAq8cDL2zj6HEQ==,type:str]
+                init-skills:
+                    - path: ENC[AES256_GCM,data:muiBpcRiRachji/a3oZv3d9VOkI=,iv:OwVg6keZyO1C2/pMzYKywltp8ekn3vBKjTpUnq3pfzY=,tag:E9k6CXgk/DfaYak0lndtZA==,type:str]
+                app:
+                    - path: ENC[AES256_GCM,data:hraE7+CsO9Xfi9nivqKFcDNe5J4=,iv:GSAPJ2KyfUom98jhONDAAk69SInARb0ZpMfnCTiqqmI=,tag:IArQqG4YqAebP3hg/P0YTA==,type:str]
+    # Writable /tmp for containers with readOnlyRootFilesystem
+    tmp:
+        type: emptyDir
+        advancedMounts:
+            openclaw:
+                init-config:
+                    - path: /tmp
+                init-skills:
+                    - path: /tmp
+                app:
+                    - path: /tmp
+                chromium:
+                    - path: /tmp
+sops:
+    age:
+        - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArL1dOcHUwOVk4blovdzR6
+            bnpXMklqaVM2eGFOY3NxNkNSQVNRRmNzZXg4CjVkRnNSQjR0QWl1Ym1kaUtNcEdC
+            NHl1akg5MkVhakFrYjh3YnhFOThlTFkKLS0tIFU3dlRhT3FXeVMvbDdKMVVydExK
+            WTUwK3JFdDFJNk5KZWhyc0xUdHlwUEEKfFhUq/SoPJ4tIowXSyqi5sVTVJ5OiaYm
+            sI1ijBW+/2NinNNi5gbMZT7dK8aiW9OlzMFJZW1b7fazHI9C9D0kjQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-03-19T22:35:53Z"
+    mac: ENC[AES256_GCM,data:1qdIPIkmbeythstmkKti1kIBev6LYButEX9Ip3lB18A6QEm8MkPoBB6/1u8bZikBi+TdJvUgvVuR/HAJuX5x/Z/RskruLa8pJ0SEtuk1FmoqH0TXNpo4tNcDGbmLPGmrstoUkkQNhNp3k2jhG4JE5TRf96kE3hsomHKArXKzWAk=,iv:J2j+JyftWvGOesRlTn8aaStL8HxxVXcyQfwA24q8CO8=,tag:GUU1ArjLRgpdZ+wFVQzhiw==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    mac_only_encrypted: true
+    version: 3.12.1
