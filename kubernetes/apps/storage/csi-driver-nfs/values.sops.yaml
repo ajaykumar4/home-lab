@@ -1,0 +1,4 @@
+driver:
+  name: nfs.csi.k8s.io
+controller:
+  replicas: 2

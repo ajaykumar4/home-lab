@@ -298,8 +298,6 @@ persistence:
     # Entire .openclaw directory as PVC
     data:
         type: ENC[AES256_GCM,data:cd2DfbJ1/58XOZdAPJHeliRZhlgN,iv:Fa+CLukLTFQ3AQ0X0q9EBy0iguzteDwJI7wxViaW5Qc=,tag:CCFztIouLxsgsIhmN7z41w==,type:str]
-        #ENC[AES256_GCM,data:6f6CA8MLRuYdmIsqebYd719sPTPSOyXNxC748b433QprU3qtZZveznXReMUM+phyPqEDK/aw+cdozRtKDD16FfXLOIL+IAZAt/wWrfLL91W3Ur+5qxXWHTAmDV4=,iv:F47NfhZ8zSXRzalHlFc9MagAPMfeKxc2zaTO9AsdeZ0=,tag:9jhYz1SoruSKh8vLZ9EIDQ==,type:comment]
-        #ENC[AES256_GCM,data:yIIMkyCwJHlMzHPr4oeieF/YEg==,iv:crMpPyru8IInMFVTCFyhLS+4hYyJ+P3btEQuvG+WXhg=,tag:fbLCmgb3noEAzvzwM/Gy+Q==,type:comment]
         accessMode: ENC[AES256_GCM,data:r6wJN16EwYLA0IqiFw==,iv:x4EgB/slnzPJeLn2Lu/b8/lWa6xVNHp/iG56GV1Vyvo=,tag:lpB0YYRhB0uD+2LFmaCexA==,type:str]
         #ENC[AES256_GCM,data:ax/BkZKdBqSGwBOV+Emq3Xn+AqUOQliMs5ezOT0Zd4Q=,iv:QnWlz94EV4oP6Bm5fWv2KMmMb1ev97LxhJi2F8TbGXg=,tag:6njULD2f5X4nJfqfQ3lQXQ==,type:comment]
         #ENC[AES256_GCM,data:5kL6vNvAe1nmDTAc9YjQCDxSgLw=,iv:zWMYMmCctwkrYO0wNfNBQKl4J0yC7m9C4i6R3YOK5Mg=,tag:rxg+vI12pCxfBuotRwtUbg==,type:comment]
@@ -336,8 +334,8 @@ sops:
             WTUwK3JFdDFJNk5KZWhyc0xUdHlwUEEKfFhUq/SoPJ4tIowXSyqi5sVTVJ5OiaYm
             sI1ijBW+/2NinNNi5gbMZT7dK8aiW9OlzMFJZW1b7fazHI9C9D0kjQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-19T22:35:53Z"
-    mac: ENC[AES256_GCM,data:1qdIPIkmbeythstmkKti1kIBev6LYButEX9Ip3lB18A6QEm8MkPoBB6/1u8bZikBi+TdJvUgvVuR/HAJuX5x/Z/RskruLa8pJ0SEtuk1FmoqH0TXNpo4tNcDGbmLPGmrstoUkkQNhNp3k2jhG4JE5TRf96kE3hsomHKArXKzWAk=,iv:J2j+JyftWvGOesRlTn8aaStL8HxxVXcyQfwA24q8CO8=,tag:GUU1ArjLRgpdZ+wFVQzhiw==,type:str]
+    lastmodified: "2026-03-19T23:19:45Z"
+    mac: ENC[AES256_GCM,data:7NZQ9t9fzmmT+o2RJ65XCJeCCMgHdOZRdVrGkvnE3UumyruGkj70i+ACyaVrp3CMCU3lmCFWJ6scN9pxmPUiOIhr4kT+PvZfja2J68jRwpX49oomdP82pCtPtjvmekgeLq3g3M3Ms7yQbvKoFraJ/bU9+FznVIDdAE8nbIQd7aw=,iv:9T9ki1cAJaaxy+3XC7HAOZudPMS0KTuEcQS3twXiqKI=,tag:VDX7OcjBZVZY8g+38niSSg==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.1
