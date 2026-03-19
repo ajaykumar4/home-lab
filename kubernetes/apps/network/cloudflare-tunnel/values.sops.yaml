@@ -1,98 +1,98 @@
 controllers:
-  cloudflare-tunnel:
-    strategy: RollingUpdate
-    annotations:
-      reloader.stakater.com/auto: "true"
-    containers:
-      app:
-        image:
-          repository: docker.io/cloudflare/cloudflared
-          tag: 2026.3.0
-        env:
-          NO_AUTOUPDATE: true
-          TUNNEL_METRICS: 0.0.0.0:8080
-          # disable when using http2
-          TUNNEL_POST_QUANTUM: true
-          # or http2
-          TUNNEL_TRANSPORT_PROTOCOL: quic
-        envFrom:
-          - secretRef:
-              name: cloudflare-tunnel-secret
-        args:
-          - tunnel
-          - run
-        probes:
-          liveness:
-            enabled: true
-            custom: true
-            spec:
-              httpGet:
-                path: /ready
-                port: 8080
-              initialDelaySeconds: 0
-              periodSeconds: 10
-              timeoutSeconds: 1
-              failureThreshold: 3
-          readiness:
-            enabled: true
-            custom: true
-            spec:
-              httpGet:
-                path: /ready
-                port: 8080
-              initialDelaySeconds: 0
-              periodSeconds: 10
-              timeoutSeconds: 1
-              failureThreshold: 3
-        securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          capabilities:
-            drop:
-              - ALL
-        resources:
-          requests:
-            cpu: 10m
-          limits:
-            memory: 256Mi
+    cloudflare-tunnel:
+        strategy: RollingUpdate
+        annotations:
+            reloader.stakater.com/auto: "true"
+        containers:
+            app:
+                image:
+                    repository: docker.io/cloudflare/cloudflared
+                    tag: 2026.3.0
+                env:
+                    NO_AUTOUPDATE: true
+                    TUNNEL_METRICS: 0.0.0.0:8080
+                    # disable when using http2
+                    TUNNEL_POST_QUANTUM: true
+                    # or http2
+                    TUNNEL_TRANSPORT_PROTOCOL: quic
+                envFrom:
+                    - secretRef:
+                        name: cloudflare-tunnel-secret
+                args:
+                    - tunnel
+                    - run
+                probes:
+                    liveness:
+                        enabled: true
+                        custom: true
+                        spec:
+                            httpGet:
+                                path: /ready
+                                port: 8080
+                            initialDelaySeconds: 0
+                            periodSeconds: 10
+                            timeoutSeconds: 1
+                            failureThreshold: 3
+                    readiness:
+                        enabled: true
+                        custom: true
+                        spec:
+                            httpGet:
+                                path: /ready
+                                port: 8080
+                            initialDelaySeconds: 0
+                            periodSeconds: 10
+                            timeoutSeconds: 1
+                            failureThreshold: 3
+                securityContext:
+                    allowPrivilegeEscalation: false
+                    readOnlyRootFilesystem: true
+                    capabilities:
+                        drop:
+                            - ALL
+                resources:
+                    requests:
+                        cpu: 10m
+                    limits:
+                        memory: 256Mi
 defaultPodOptions:
-  securityContext:
-    runAsNonRoot: true
-    runAsUser: 65534
-    runAsGroup: 65534
+    securityContext:
+        runAsNonRoot: true
+        runAsUser: 65534
+        runAsGroup: 65534
 service:
-  app:
-    ports:
-      http:
-        port: 8080
+    app:
+        ports:
+            http:
+                port: 8080
 serviceMonitor:
-  app:
-    endpoints:
-      - port: http
+    app:
+        endpoints:
+            - port: http
 configMaps:
-  config:
-    data:
-      config.yaml: ENC[AES256_GCM,data:KMUUQmFn66djUXfpTYKCk3cvpeNjPEtjXGDhuprIWdZbGqQXpjkAhU9cPql8Vfjk35TE9vjqZUZJY/aMvXy6nFjuudXUBge8oB7BritY9pKzhDZKryZCrBHb12dqg7u3RTY+mzx2gaoxNM9pDtn9+MfZiDxEqXAyKh8feZz9G5FZDnTdusvT3gCg/1EcXWY+9/ENkwSZyBsXKUzaZ+OqUgo2E48qH9RIpA09IVtwGAU5xYz3IPEvS65zA9CDmPe/fOmJgi16W2jxpt5KttAc3iwiWWNR4OcbGJrE,iv:wJtp+vof4W/KCy4e/aomtYb1UcP7aocwS5X03Rk1Yec=,tag:hlYGjAf5O5kYaWMZBkJFIw==,type:str]
+    config:
+        data:
+            config.yaml: ENC[AES256_GCM,data:RNMdqg3NX32nz/NswAvyXvYcDMKtg/VuIAKBZOYFwO5WEH/TLepzXI4LQ9+5ETU8iyj6OGYhKEOCMDImBZJJF5fPW6wksqS7ucCnfDV+lKgxJ89l5czP2NMBwHVf81BdOAnxBO0bwiW4viBiBjy9jmIAFePrSAvpAs6UUKyivz3CqpIxUnDeAx12rW/33ONNbzsfuSky6B4BwBeXtTTtKAahmWm4dk2FzmmPQaQ23F2+SGTB2TRC8Ce/zA8xPRYtYTSmsTzOLCiWggq+4RbuwD+6+yBikPP96zjkXnAcPTYC57701f0+fZXapqTrXgY6MzDX,iv:i8WEw6KQ5OdZrmrXZVoiPPvOAF3ACJ5sHUOvAPb3qFY=,tag:wIFWKyjihhUJYvFJxtnrgw==,type:str]
 persistence:
-  config-file:
-    type: configMap
-    identifier: config
-    globalMounts:
-      - path: /etc/cloudflared/config.yaml
-        subPath: config.yaml
+    config-file:
+        type: configMap
+        identifier: config
+        globalMounts:
+            - path: /etc/cloudflared/config.yaml
+              subPath: config.yaml
 sops:
-  age:
-    - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
-      enc: |
-        -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArL1dOcHUwOVk4blovdzR6
-        bnpXMklqaVM2eGFOY3NxNkNSQVNRRmNzZXg4CjVkRnNSQjR0QWl1Ym1kaUtNcEdC
-        NHl1akg5MkVhakFrYjh3YnhFOThlTFkKLS0tIFU3dlRhT3FXeVMvbDdKMVVydExK
-        WTUwK3JFdDFJNk5KZWhyc0xUdHlwUEEKfFhUq/SoPJ4tIowXSyqi5sVTVJ5OiaYm
-        sI1ijBW+/2NinNNi5gbMZT7dK8aiW9OlzMFJZW1b7fazHI9C9D0kjQ==
-        -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2026-03-19T19:38:31Z"
-  mac: ENC[AES256_GCM,data:pATuFVHhgfLJMbKXkoflz+oeQHskNX6AZ4MCMx3BucS+ORbhCDsZa80PdIoWOwPf25I0MR1TJA/8gY81aWZHgp8RGW7dUdgTPG6CX0OJYZv+HXWto+ait5wWz3v2BkfamsTUyQLuJdEWMtquqCVNc3S7w/7b8VcrE7nl6bIh9tY=,iv:WHPK3zLUyDrdr5hrwEA6VUgbHOYn5tOWRv21Ds5iH90=,tag:ofrnwYH0kC046S5gZiIUpQ==,type:str]
-  encrypted_regex: ^(data|stringData)$
-  mac_only_encrypted: true
-  version: 3.12.1
+    age:
+        - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArL1dOcHUwOVk4blovdzR6
+            bnpXMklqaVM2eGFOY3NxNkNSQVNRRmNzZXg4CjVkRnNSQjR0QWl1Ym1kaUtNcEdC
+            NHl1akg5MkVhakFrYjh3YnhFOThlTFkKLS0tIFU3dlRhT3FXeVMvbDdKMVVydExK
+            WTUwK3JFdDFJNk5KZWhyc0xUdHlwUEEKfFhUq/SoPJ4tIowXSyqi5sVTVJ5OiaYm
+            sI1ijBW+/2NinNNi5gbMZT7dK8aiW9OlzMFJZW1b7fazHI9C9D0kjQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-03-19T22:51:11Z"
+    mac: ENC[AES256_GCM,data:CK1judWlRN4ORbxCVV0FxPz3WrvBLTapSHXAvTX5eCheq8NdwrESOQoBd2Cu69LcfEiBUJMsFLZzlGiYJTrVJCW9qDpwkzkR8mhCOgnU/rJqbUH+kWHa26Tz3uR52PIFQc76cVMwokEaBGn0DcIBiIZFkrNwPQ2ZsmEmV2GIpLQ=,iv:1n20Rct3qG9tuUC34dLTuA3HFnrXSqLOQ6rOPvEtbPY=,tag:2CQ9qIVK4VD7SEcnRQM9pw==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    mac_only_encrypted: true
+    version: 3.12.1
