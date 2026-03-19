@@ -299,9 +299,8 @@ persistence:
     data:
         type: ENC[AES256_GCM,data:cd2DfbJ1/58XOZdAPJHeliRZhlgN,iv:Fa+CLukLTFQ3AQ0X0q9EBy0iguzteDwJI7wxViaW5Qc=,tag:CCFztIouLxsgsIhmN7z41w==,type:str]
         accessMode: ENC[AES256_GCM,data:r6wJN16EwYLA0IqiFw==,iv:x4EgB/slnzPJeLn2Lu/b8/lWa6xVNHp/iG56GV1Vyvo=,tag:lpB0YYRhB0uD+2LFmaCexA==,type:str]
-        #ENC[AES256_GCM,data:ax/BkZKdBqSGwBOV+Emq3Xn+AqUOQliMs5ezOT0Zd4Q=,iv:QnWlz94EV4oP6Bm5fWv2KMmMb1ev97LxhJi2F8TbGXg=,tag:6njULD2f5X4nJfqfQ3lQXQ==,type:comment]
-        #ENC[AES256_GCM,data:5kL6vNvAe1nmDTAc9YjQCDxSgLw=,iv:zWMYMmCctwkrYO0wNfNBQKl4J0yC7m9C4i6R3YOK5Mg=,tag:rxg+vI12pCxfBuotRwtUbg==,type:comment]
-        size: ENC[AES256_GCM,data:cSIn,iv:lZpZrRofxGux3fuMa3kSTCOmU4s6aKnuFREKTxX7ph0=,tag:sca4unte2mADvYUcu70uKw==,type:str]
+        storageClass: ENC[AES256_GCM,data:mI6GxNNcvufAkg==,iv:/bGi7+ugrRsykzbHeWHjrE0cTwp8cPIyJ6vaZQYO7vE=,tag:+jen6UA7AfUAB/W8Fbj7Ug==,type:str]
+        size: ENC[AES256_GCM,data:Gts+6g==,iv:vNu/auaQnPs5KSfVcm4V5tulxSO10vql+Lim72ZjFdQ=,tag:KZEBRVgQAAznLwE27VKF+w==,type:str]
         advancedMounts:
             openclaw:
                 init-config:
@@ -334,8 +333,8 @@ sops:
             WTUwK3JFdDFJNk5KZWhyc0xUdHlwUEEKfFhUq/SoPJ4tIowXSyqi5sVTVJ5OiaYm
             sI1ijBW+/2NinNNi5gbMZT7dK8aiW9OlzMFJZW1b7fazHI9C9D0kjQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-19T23:19:45Z"
-    mac: ENC[AES256_GCM,data:7NZQ9t9fzmmT+o2RJ65XCJeCCMgHdOZRdVrGkvnE3UumyruGkj70i+ACyaVrp3CMCU3lmCFWJ6scN9pxmPUiOIhr4kT+PvZfja2J68jRwpX49oomdP82pCtPtjvmekgeLq3g3M3Ms7yQbvKoFraJ/bU9+FznVIDdAE8nbIQd7aw=,iv:9T9ki1cAJaaxy+3XC7HAOZudPMS0KTuEcQS3twXiqKI=,tag:VDX7OcjBZVZY8g+38niSSg==,type:str]
+    lastmodified: "2026-03-19T23:36:32Z"
+    mac: ENC[AES256_GCM,data:6FTyVXLznrwsvYn0B0AbnY75iaopUNHaH/T9pFqBqCdQ/e2eY2AGhOsjrmSS9QgK08UTGUDJ8oKLcyd6iYbAnNOAJyhlsiYupySbjLp2hJoPCOnCyzpZzJUHIrUQpWJzF4OcGJH8aRHAW0u+TLMRDz4yDPP5b2sC/5hl0oo5PHs=,iv:O3NIAobvb3qSMCMK6XnihH0MHoEzIb/BLHrY6KCYKoY=,tag:RXtNaRMIV0yxdxFhiNT6xA==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.1
