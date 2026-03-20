@@ -1,0 +1,31 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: openclaw
+spec:
+    parentRefs:
+        - name: envoy-external
+          namespace: network
+          sectionName: https
+    hostnames:
+        - openclaw.aknuk.dev
+    rules:
+        - backendRefs:
+            - name: openclaw
+              port: 18789
+sops:
+    age:
+        - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBqYWx5TVpOa2NDV1NpNlMx
+            SCt3eUZhZ3lTOXMvK2FCMklPZlNEbkxlajJJCjdYRno1ZmRLeXFsbTQ0NHpaeHpK
+            YkhVcFVKdnV5SGhXU01VY3o3U29IRjAKLS0tIHBoWUVBSXZFUEVjNEw1NG4yOHpF
+            MTJJTmtxT08vMXY5b1UxVTVKUWtMMGcKhaPDCOxufws0+8hyJFIx/06VKwJu63za
+            0Iz0mODnEYacz8+WpDEZe3a/jYDZCjMelJfeI+brfXF2YIumKldpog==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-03-20T01:15:33Z"
+    mac: ENC[AES256_GCM,data:ABtYV8V6owa0dLEco04U0bS6sAaNP+9EQfyyoAoEKIMjFw6aOVsU0ke281Das4nz5RY088XuF3j8tmk4z8JNTZoCfsEwaGfnKkaepNLrY5g2fZNdn4jRlS34mTlL+aTAPvmcH2+azR+AazcBBjh+ZTIuACfqUqvnwjJmoSI8Z6Q=,iv:SvVHQl1a6ZCIYyddHLOSskvJKoI683Eek9SBKTNO6JI=,tag:eC80mqURh2L8lzZ4cQvhYA==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    mac_only_encrypted: true
+    version: 3.12.1
