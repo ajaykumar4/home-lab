@@ -26,17 +26,12 @@ resources:
     limits:
         cpu: 2000m
         memory: 12Gi
-securityContext:
+podSecurityContext:
     runAsUser: 1000
     runAsGroup: 1000
     fsGroup: 1000
     fsGroupChangePolicy: Always
     runAsNonRoot: true
-    allowPrivilegeEscalation: false
-    capabilities:
-        drop:
-            - ALL
-    readOnlyRootFilesystem: false
     seccompProfile:
         type: RuntimeDefault
 sops:
@@ -50,8 +45,8 @@ sops:
             WTUwK3JFdDFJNk5KZWhyc0xUdHlwUEEKfFhUq/SoPJ4tIowXSyqi5sVTVJ5OiaYm
             sI1ijBW+/2NinNNi5gbMZT7dK8aiW9OlzMFJZW1b7fazHI9C9D0kjQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-20T16:58:49Z"
-    mac: ENC[AES256_GCM,data:YJYUacozHCx+CsgYUmM9Nc0WZ434WLrgx8uozEAhXjbt9qDDyBi6G3OAJYN8pmx8jAUaSh8yVN6cx+YEnydq4+AtkUYjFx6UvcoccK8Q11sMaZZALknh/Wg7pIYIkiJUpTHtq6R2MtWJ4ycQua+vWijEr5/3pN0Ky3CqXxLmqso=,iv:kOn2g/9ygxA6vQiqc7c3NzeUOloFxseRX/ohgs8qzNI=,tag:ca0YknAzi/XPRMqqlL5kTg==,type:str]
+    lastmodified: "2026-03-20T17:02:14Z"
+    mac: ENC[AES256_GCM,data:KLDIFT8Br+x86kCVeiE/zrEagAQ/uOsYFgP967T1qrAhtM5IW0I/HJFriTqAwDI5VB2wqReyI+8NqHC2ENy3HF2sIDxHcIvUtQaZW/k7qSVH6N+LyJtbvMXP5N3NIAdhGQfmAKGvuhRJ5F22A30f8ZyRt24VHyr827N6neRgNpw=,iv:DbCCJDwIjj3KlIWfXn+ogHVwjU2FdIVw3IZ/H6+tWaI=,tag:tziDeAbEHsvUnTj94+cKQw==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.1
