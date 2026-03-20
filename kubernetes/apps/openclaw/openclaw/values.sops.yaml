@@ -8,7 +8,7 @@ chromium:
         repository: zenika/alpine-chrome
         tag: 124
 openclaw:
-    bind: localhost
+    bind: auto
 persistence:
     enabled: false
     size: 20Gi
@@ -25,8 +25,8 @@ sops:
             WTUwK3JFdDFJNk5KZWhyc0xUdHlwUEEKfFhUq/SoPJ4tIowXSyqi5sVTVJ5OiaYm
             sI1ijBW+/2NinNNi5gbMZT7dK8aiW9OlzMFJZW1b7fazHI9C9D0kjQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-20T14:14:40Z"
-    mac: ENC[AES256_GCM,data:IK0ixKPFdS+v7v6JmtqjG2hHrdapADkM/EtetCHwg/0uyYX9AOsBlHmiQxTYxlk/yiG0Z7/ZAivRips7OM9TOuvG9c4F0y6VzIzzcgRFZdAuQHVqMD2rWRqlYobY9vulPprrgLn35z3+yIp1RX2p+/2C/mg9sESBesqNv0NZ6JE=,iv:D2gljmDjeFetYoAvhACEdUZyjdmPUA/X3paipT06wts=,tag:xhyvjF5n6N/ywLXBzLBjNw==,type:str]
+    lastmodified: "2026-03-20T14:18:39Z"
+    mac: ENC[AES256_GCM,data:vLItQ6OGSrQiX544eSKdNJCWrojU5R9pq8TeSaJmgYzv5nNr98Y9Jy8kZ+zLrG7p7fXdyEGgRvHMrbrz14GxPkDkdSR1o0ekkayxwwdI1LWyL+lgl3Jb492jHMMtJRuVeApiV3crzxPEFxBgS9f5n12p6gE3foWl7L2FzcpTBr4=,iv:hErJSE9RQSH5JvICq8w8+GhvZuTDCWwDWXZwmUHZKzY=,tag:eIxzOY35adEzszIioXjtAA==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.1
