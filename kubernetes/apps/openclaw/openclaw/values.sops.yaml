@@ -14,6 +14,13 @@ persistence:
     size: 20Gi
     storageClass: nfs-shared
     accessMode: ReadWriteOnce
+resources:
+    requests:
+        cpu: 100m
+        memory: 512Mi
+    limits:
+        cpu: 2000m
+        memory: 12Gi
 sops:
     age:
         - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
@@ -25,8 +32,8 @@ sops:
             WTUwK3JFdDFJNk5KZWhyc0xUdHlwUEEKfFhUq/SoPJ4tIowXSyqi5sVTVJ5OiaYm
             sI1ijBW+/2NinNNi5gbMZT7dK8aiW9OlzMFJZW1b7fazHI9C9D0kjQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-20T14:18:39Z"
-    mac: ENC[AES256_GCM,data:vLItQ6OGSrQiX544eSKdNJCWrojU5R9pq8TeSaJmgYzv5nNr98Y9Jy8kZ+zLrG7p7fXdyEGgRvHMrbrz14GxPkDkdSR1o0ekkayxwwdI1LWyL+lgl3Jb492jHMMtJRuVeApiV3crzxPEFxBgS9f5n12p6gE3foWl7L2FzcpTBr4=,iv:hErJSE9RQSH5JvICq8w8+GhvZuTDCWwDWXZwmUHZKzY=,tag:eIxzOY35adEzszIioXjtAA==,type:str]
+    lastmodified: "2026-03-20T15:34:19Z"
+    mac: ENC[AES256_GCM,data:hjSY8OYJ4BBAeISPj8iKCOrA9KQnJsH4soRmfJYi5v5MTxhWTuHZoVaDyYNPwglBUaUY/SzsoxvZrWkC0AOQv7QAEHkZzZRIAgp2unGqdE1VquMv2puuIMUrGgMRlOPJ0eJCBgJY5DSuf+gnMhwtWVSuEJP5w9ex4QszP0mrkE8=,iv:cWPwnuHDodbwlpSzGylMXfnG+RsadtzZ96xRyEpU3ik=,tag:W0zyxaC9qbxM1POvqtffiw==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.1
