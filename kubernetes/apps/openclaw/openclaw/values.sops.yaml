@@ -178,7 +178,7 @@ controllers:
                     - "18789"
                 envFrom:
                     - secretRef:
-                        name: openclaw-secrets
+                        name: openclaw-secret
                 probes:
                     liveness:
                         enabled: true
@@ -333,8 +333,8 @@ sops:
             WTUwK3JFdDFJNk5KZWhyc0xUdHlwUEEKfFhUq/SoPJ4tIowXSyqi5sVTVJ5OiaYm
             sI1ijBW+/2NinNNi5gbMZT7dK8aiW9OlzMFJZW1b7fazHI9C9D0kjQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-20T00:55:08Z"
-    mac: ENC[AES256_GCM,data:sJtQo7s0OnsYiUW3GADT5yJ5kkKJJb1WZBvXjzjWni42l3A2jL3dtds7BXOBcmLYQcI1hVrpRoKJhF+xLorzCajGq8Y+YZFtKTMS5QY0bPfXNeTFYEEEOs3J8uu0O6j/0tqXdwproutkj8t7IFB8dZTdZCNIvx4ZEohInFKH4Pc=,iv:osuTX6wPpZwuDTuX1HFkm40ZzHqXEZFsrAkmlMWVxhY=,tag:NXdJ3y24kpO4ZpZULkUyyQ==,type:str]
+    lastmodified: "2026-03-20T00:59:16Z"
+    mac: ENC[AES256_GCM,data:tsqzMKXBPac39jctidn3x/0zxNZDx5G77rYrtIkRMYh9yaWItTKM/xonXxkx+JNU0DfIZp9at0z17htamzM9RrU+kEXtvQSuCgoHlSHobxaCzoaY7dDhblu/K7EO141PNcPkJv6/wEqj6aZEKD/pAS1Vq9JK9BxOKI2/frW5hbk=,iv:h17HTIS92g1xmVUMQ/wVZmeNadKnFVssUfkvC2DvIlw=,tag:1S7/v5qmepNCxkDYxXBF0A==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.1
