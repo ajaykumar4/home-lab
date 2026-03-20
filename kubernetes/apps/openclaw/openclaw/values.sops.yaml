@@ -252,8 +252,8 @@ controllers:
 defaultPodOptions:
     securityContext:
         runAsNonRoot: true
-        runAsUser: 65534
-        runAsGroup: 65534
+        runAsUser: 1000
+        runAsGroup: 1000
 service:
     app:
         ports:
@@ -333,8 +333,8 @@ sops:
             WTUwK3JFdDFJNk5KZWhyc0xUdHlwUEEKfFhUq/SoPJ4tIowXSyqi5sVTVJ5OiaYm
             sI1ijBW+/2NinNNi5gbMZT7dK8aiW9OlzMFJZW1b7fazHI9C9D0kjQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-19T23:36:32Z"
-    mac: ENC[AES256_GCM,data:6FTyVXLznrwsvYn0B0AbnY75iaopUNHaH/T9pFqBqCdQ/e2eY2AGhOsjrmSS9QgK08UTGUDJ8oKLcyd6iYbAnNOAJyhlsiYupySbjLp2hJoPCOnCyzpZzJUHIrUQpWJzF4OcGJH8aRHAW0u+TLMRDz4yDPP5b2sC/5hl0oo5PHs=,iv:O3NIAobvb3qSMCMK6XnihH0MHoEzIb/BLHrY6KCYKoY=,tag:RXtNaRMIV0yxdxFhiNT6xA==,type:str]
+    lastmodified: "2026-03-20T00:55:08Z"
+    mac: ENC[AES256_GCM,data:sJtQo7s0OnsYiUW3GADT5yJ5kkKJJb1WZBvXjzjWni42l3A2jL3dtds7BXOBcmLYQcI1hVrpRoKJhF+xLorzCajGq8Y+YZFtKTMS5QY0bPfXNeTFYEEEOs3J8uu0O6j/0tqXdwproutkj8t7IFB8dZTdZCNIvx4ZEohInFKH4Pc=,iv:osuTX6wPpZwuDTuX1HFkm40ZzHqXEZFsrAkmlMWVxhY=,tag:NXdJ3y24kpO4ZpZULkUyyQ==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.1
