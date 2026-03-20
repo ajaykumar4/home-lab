@@ -15,7 +15,7 @@ openclaw:
                 allowedOrigins:
                     - https://openclaw.aknuk.dev
 persistence:
-    enabled: false
+    enabled: true
     size: 20Gi
     storageClass: nfs-shared
     accessMode: ReadWriteOnce
@@ -37,8 +37,8 @@ sops:
             WTUwK3JFdDFJNk5KZWhyc0xUdHlwUEEKfFhUq/SoPJ4tIowXSyqi5sVTVJ5OiaYm
             sI1ijBW+/2NinNNi5gbMZT7dK8aiW9OlzMFJZW1b7fazHI9C9D0kjQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-20T16:15:53Z"
-    mac: ENC[AES256_GCM,data:O+YwvvV3Vngwi457fbdDrnih5xUYXT+irrOTm02482j6803hn4FOTWQWkA+afer4CDXvIvOUULLG7BFdgd+9Y8xz8POU8yEReB8ZOsfc8pXt7/MriH2+X89IRLxdkr4rfnC59IiCk4qaBvIlZHEBi+xuaaX28qvdvLZ6i/wJpq0=,iv:QfhNDBJNhkNgtNjW/Pa0dKg73EcKlQzX/RM/h4Ezgn0=,tag:v9YIxb0E/jq8KaEFgFaxkA==,type:str]
+    lastmodified: "2026-03-20T16:53:34Z"
+    mac: ENC[AES256_GCM,data:CeuNdw3vg0ZWFLl3USYRcUgHpZ5bBOfqE6d7KlmRzBAh3FiveKtRHq+CpqUDRpRKuBxLFvL1BqEVX4heG2SuwWyRZ8wb2rgF4si4hFhRt2nzACg4/52lfJRHYVUHqVsIuR4KMBMUr++89C6WV1C6XwNRfxNwgXHAhMeX5EC7lCU=,iv:04CHrnUzo8BbjWgT4OSw6BjdM9kcwQS1pcjjkxb9eOw=,tag:bV7Ms4tabnc5gcFS43vH7w==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.1
