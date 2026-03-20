@@ -72,7 +72,7 @@ serviceMonitor:
 configMaps:
     config:
         data:
-            config.yaml: ENC[AES256_GCM,data:cq/S8d8ovYuPmHsuR0yoZXNxo8h1S/LChEqF1OmEoIigVd8ogxR8Wkt1cHQF8r2DrtM7a2GlekK1/AhM2WbrFD/ANhztA7ijtdXQJNJ8MXJ4W2kGDjP7EV2O2lbNohtoinoUcwb+GqhB4ICj0h163vQTb2Ahp4hbkbE33fLInb/HBCf3Lwy5DsUPb66YYeQxlspp3qMyNyYmfAKkReqSdfLsGAypOkAdZzTv0lyAv4o+xj1xK+egpYCudux+PHaxXyNPZepeWPppsrqEo5EMu/6c9UxWoAblwxJA,iv:h9JudnKS0N8floxRgB1LJ6217EYQNPRiLYNkfwoBBS4=,tag:QdS92s2sJf18V1WxOny9bw==,type:str]
+            config.yaml: ENC[AES256_GCM,data:1ezLqISfCNr4Uk4MKVzNbnu+DC1plr3GFNUUGqZLcarvZUj7vG3Fk3/lXxwRptY+hwgJbyxurPpz7Flmx0yvufHeChkleUGrothw/om4dG9euSfK1GNbWJie5+btlhl91bnZ9bSOqIuiFyMBhxxZ/H82wwub0WcjtIqltyHkylDeWg5SHnhRDSHx9KM/2YatDIecki8lSUHQjQW+BfSINjQ1EhggRul5b2Lx/M/aSaoGNUo9nr1Oaa6+cw6IcAjSf647nHlYKLyj1GFyEPtxaqOCSV1uAH+DjN1rvGzQkfVZgQ89TwaM2j/pRvD0GpLghKBu,iv:lLpEbConmqxhamS9YArO/rhfkL7wmnpziyVd5/Sj9mQ=,tag:VZR+BJSHHtOU44B+xO/y/A==,type:str]
 persistence:
     config-file:
         type: configMap
@@ -91,8 +91,8 @@ sops:
             WTUwK3JFdDFJNk5KZWhyc0xUdHlwUEEKfFhUq/SoPJ4tIowXSyqi5sVTVJ5OiaYm
             sI1ijBW+/2NinNNi5gbMZT7dK8aiW9OlzMFJZW1b7fazHI9C9D0kjQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-19T23:46:06Z"
-    mac: ENC[AES256_GCM,data:NX6k1s9N8ggyinoJooq7fHcnkdVP0yCjnPhadDCa6xRI7QzMFC73mm0+1HB6QEy1SJn4reGVJq1Ms2XiTcDatHVESWT2ryMNgrr20qiiUl8JUqg2VpZy27EzDA8EZKQT2uZ+qUa1SfztGS9Z7ID078nU8xLRvEpkRro3godBSe0=,iv:/5op/jhxgH55HEAkjcLcLQuSSDWSchRR1X09Ike3OU0=,tag:ovaWVxZDYpQhpxNWAcw/Xg==,type:str]
+    lastmodified: "2026-03-20T19:10:12Z"
+    mac: ENC[AES256_GCM,data:RzTXMuzSkHJ9nLLJiBJzQLKzH0W+uysZK36AJvkJbyqhCuMQEDkKwgnVD7wP0a8AJrkLADrl7PUYt/e1/EVI0xMEYjToqOB/ZUnn+8jyVK3mx6tK8XGLBJ5jzQkjUaOci6/RW+MKZhM6tB5Wvr50tP30fD9d1TRPowqWX00DK9E=,iv:0r/46EGhXzhOk0VZ5U+3g0TJrNUS1u6HufPkcpj9yxg=,tag:w3wecx3h/bvA8nenUM5g8Q==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.1

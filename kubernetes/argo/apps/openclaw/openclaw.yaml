@@ -13,13 +13,13 @@ spec:
       path: kubernetes/apps/openclaw/openclaw
       targetRevision: main
       ref: repo
-    - repoURL: https://chrisbattarbee.github.io/openclaw-helm
-      chart: openclaw
-      targetRevision: 0.1.15
-      helm:
-        releaseName: openclaw
-        valueFiles:
-          - $repo/kubernetes/apps/openclaw/openclaw/values.sops.yaml
+    # - repoURL: https://chrisbattarbee.github.io/openclaw-helm
+    #   chart: openclaw
+    #   targetRevision: 0.1.15
+    #   helm:
+    #     releaseName: openclaw
+    #     valueFiles:
+    #       - $repo/kubernetes/apps/openclaw/openclaw/values.sops.yaml
   destination:
     name: in-cluster
     namespace: openclaw
