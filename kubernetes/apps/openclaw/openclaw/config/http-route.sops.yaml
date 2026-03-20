@@ -12,7 +12,7 @@ spec:
     rules:
         - backendRefs:
             - name: openclaw
-              port: 18793
+              port: 18789
 sops:
     age:
         - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
@@ -24,8 +24,8 @@ sops:
             MTJJTmtxT08vMXY5b1UxVTVKUWtMMGcKhaPDCOxufws0+8hyJFIx/06VKwJu63za
             0Iz0mODnEYacz8+WpDEZe3a/jYDZCjMelJfeI+brfXF2YIumKldpog==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-20T15:59:25Z"
-    mac: ENC[AES256_GCM,data:mbDNWuMCwcedo1i42h0a2kxQ8pdTFSoVFge2gFALoV8vuQ4V4dof3qjkaGW9AJqKdKMO11UjPyzSJ26tSy7TeWesh5hSl7q62uf+gNyzlovrsh9/6Iju37W955nmbEFCHM6EGkylbgDOknORX5ZhJAxrd8CuE0bShae9c++JOpQ=,iv:VZBwQbdt0PUeJVCE6yDBt8XGjtpDP2V1eb/5x/AuaUU=,tag:zC2JWlCf5HvTQyRpvq3Tkg==,type:str]
+    lastmodified: "2026-03-20T16:18:00Z"
+    mac: ENC[AES256_GCM,data:RFgimHrm3GB0Dh6CAnJs4lqAROHlfAy8MnixgH83tX/ydrKFBuGQTuf0V5gD1pdGe374na7CSf/W3zPMiKek8QaYUVjwt5dCFGTkpvgR5JKV/JUovGoCGSwhAFVKC+TB+pOFnea3oYmW8dtRtDOK4srUhwKDtmuHQGAD+sJArWw=,iv:+KQi04sNtD7DO00IxdDZ7j6ubFXzuOS/R8+OeQIqqRc=,tag:sDkjX7wBsDqSlRmkhNBULA==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.1
