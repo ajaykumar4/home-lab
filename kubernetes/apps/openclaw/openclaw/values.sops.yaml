@@ -9,6 +9,41 @@ chromium:
         tag: 124
 openclaw:
     bind: lan
+    skills:
+        - apple-notes
+        - apple-reminders
+        - bear-notes
+        - blogwatcher
+        - blucli
+        - bluebubbles
+        - camsnap
+        - clawhub
+        - coding-agent
+        - discord
+        - eightctl
+        - gemini
+        - gh-issues
+        - gifgrep
+        - github
+        - gog
+        - goplaces
+        - himalaya
+        - imsg
+        - mcporter
+        - model-usage
+        - nano-banana-pro
+        - nano-pdf
+        - ordercli
+        - peekaboo
+        - session-logs
+        - slack
+        - spotify-player
+        - things-mac
+        - tmux
+        - voice-call
+        - video-frames
+        - wacli
+        - xurl
     configOverrides:
         gateway:
             controlUi:
@@ -45,8 +80,8 @@ sops:
             WTUwK3JFdDFJNk5KZWhyc0xUdHlwUEEKfFhUq/SoPJ4tIowXSyqi5sVTVJ5OiaYm
             sI1ijBW+/2NinNNi5gbMZT7dK8aiW9OlzMFJZW1b7fazHI9C9D0kjQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-20T17:02:14Z"
-    mac: ENC[AES256_GCM,data:KLDIFT8Br+x86kCVeiE/zrEagAQ/uOsYFgP967T1qrAhtM5IW0I/HJFriTqAwDI5VB2wqReyI+8NqHC2ENy3HF2sIDxHcIvUtQaZW/k7qSVH6N+LyJtbvMXP5N3NIAdhGQfmAKGvuhRJ5F22A30f8ZyRt24VHyr827N6neRgNpw=,iv:DbCCJDwIjj3KlIWfXn+ogHVwjU2FdIVw3IZ/H6+tWaI=,tag:tziDeAbEHsvUnTj94+cKQw==,type:str]
+    lastmodified: "2026-03-20T18:32:03Z"
+    mac: ENC[AES256_GCM,data:TFqYUm3LzKd1lB/Qhqx/HLsxJbztyOXC6aLtxwcssPScxvKgng7oBV2ZBOSEORvOvrhIlVnx+ilikMjWK3vxdDctORbEglzlDBH9oA/FbrrD5n+wRLBEBE20JX62rIbk2+GS3XWrdw0imjbfhZXT3PJbAA0BKyez2zpIeRokYDc=,iv:bmy2i7AIpvH7NdFtCIho9v3w7jOwcSc4zlCsNeRqBzE=,tag:cpDqvFAtivNq43c+kOxWRw==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.1
