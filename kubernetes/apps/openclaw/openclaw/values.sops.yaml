@@ -26,6 +26,19 @@ resources:
     limits:
         cpu: 2000m
         memory: 12Gi
+securityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+    fsGroupChangePolicy: Always
+    runAsNonRoot: true
+    allowPrivilegeEscalation: false
+    capabilities:
+        drop:
+            - ALL
+    readOnlyRootFilesystem: false
+    seccompProfile:
+        type: RuntimeDefault
 sops:
     age:
         - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
@@ -37,8 +50,8 @@ sops:
             WTUwK3JFdDFJNk5KZWhyc0xUdHlwUEEKfFhUq/SoPJ4tIowXSyqi5sVTVJ5OiaYm
             sI1ijBW+/2NinNNi5gbMZT7dK8aiW9OlzMFJZW1b7fazHI9C9D0kjQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-20T16:53:34Z"
-    mac: ENC[AES256_GCM,data:CeuNdw3vg0ZWFLl3USYRcUgHpZ5bBOfqE6d7KlmRzBAh3FiveKtRHq+CpqUDRpRKuBxLFvL1BqEVX4heG2SuwWyRZ8wb2rgF4si4hFhRt2nzACg4/52lfJRHYVUHqVsIuR4KMBMUr++89C6WV1C6XwNRfxNwgXHAhMeX5EC7lCU=,iv:04CHrnUzo8BbjWgT4OSw6BjdM9kcwQS1pcjjkxb9eOw=,tag:bV7Ms4tabnc5gcFS43vH7w==,type:str]
+    lastmodified: "2026-03-20T16:58:49Z"
+    mac: ENC[AES256_GCM,data:YJYUacozHCx+CsgYUmM9Nc0WZ434WLrgx8uozEAhXjbt9qDDyBi6G3OAJYN8pmx8jAUaSh8yVN6cx+YEnydq4+AtkUYjFx6UvcoccK8Q11sMaZZALknh/Wg7pIYIkiJUpTHtq6R2MtWJ4ycQua+vWijEr5/3pN0Ky3CqXxLmqso=,iv:kOn2g/9ygxA6vQiqc7c3NzeUOloFxseRX/ohgs8qzNI=,tag:ca0YknAzi/XPRMqqlL5kTg==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.1
