@@ -6,7 +6,7 @@ metadata:
 provisioner: nfs.csi.k8s.io
 parameters:
     # Your NFS server IP
-    server: 192.168.8.2
+    server: 192.168.8.3
     # NFS export path
     share: /mnt/home-lab/k8s
     subDir: ${pvc.metadata.namespace}/${pvc.metadata.name}
@@ -14,7 +14,7 @@ parameters:
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
 mountOptions:
-    - nolock
+    - nfsvers=4.1
     - hard
     - noresvport
 sops:
@@ -28,8 +28,8 @@ sops:
             dms0S29HMUJNb2xXQWVubjVoMG9XbzAKF/c/5c/n8dODdQ9a9Sw0xqvgij4X2Ij1
             iNKR0UfpZ0LfCVyKKufZlctbgPXBumooPD0qg+I2voftoQLQRgdSiw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-20T00:16:55Z"
-    mac: ENC[AES256_GCM,data:FuY0NMZNKoWkjRaUheEjw+WJXiz5uUz2A8fmdzRBUIf3nSqSYp6J0O/QisqYqLI5NlNQbWY0nQpNRXFeh5ynS3AV7p5uGoJo+bbV+7vjFt3p6LHN+/eiYwY+ShMPX5T0YS5KHoAv3lzJfZ456bukZJhI+zEEF9wCrxT9xKpKpcM=,iv:+bPB8tDB0X6s/N6f/CJVRmJqJbJkVMhhQ355CvTSCFg=,tag:Q59csuNZjYY2uQBr/eKswg==,type:str]
+    lastmodified: "2026-03-20T00:43:19Z"
+    mac: ENC[AES256_GCM,data:/oIOA3OktsZmqVN04fA3peV9s92SviL/9pMcBf5HG3kJQE8k7YUS+3TurGDCy2aDwQXaAyd9eOqrNJ5VpRLaQH82N3yV2Iry5KHsDnaz0Pr2at9c3kPbSjKHOtuKa0oK6R+/IpQfMVvHcSPC37Wn3d2odzYj+oIuIIiyQjIOqhM=,iv:L9vFH/LijEQ8rw0yy5ho/p9JOUrQXOQOpDF5XSw4uwM=,tag:UKXiAgSUe8HNLEEqZTIbaw==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.1
