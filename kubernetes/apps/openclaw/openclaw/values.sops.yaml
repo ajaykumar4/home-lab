@@ -1,17 +1,16 @@
-app-template:
-    controllers:
-        main:
-            containers:
-                main:
-                    envFrom:
-                        - secretRef:
-                            name: openclaw-secret
-    networkpolicies:
-        main:
-            enabled: true
-    persistence:
-        data:
-            storageClass: ENC[AES256_GCM,data:HsLvOO926FHQ7w==,iv:JIm2GL8waJNThuv6CSgE3Pn6BEJKTYyvgpwPVCmM4gs=,tag:Y90yAzWiOAzxFe0E7gFIsQ==,type:str]
+image:
+    repository: ghcr.io/openclaw/openclaw
+    tag: 2026.3.13-1
+openclaw:
+    configOverrides:
+        gateway:
+            controlUi:
+                allowedOrigins:
+                    - https://openclaw.aknuk.dev
+credentials:
+    existingSecret: openclaw-secret
+persistence:
+    storageClass: nfs-shared
 sops:
     age:
         - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
@@ -23,8 +22,8 @@ sops:
             WTUwK3JFdDFJNk5KZWhyc0xUdHlwUEEKfFhUq/SoPJ4tIowXSyqi5sVTVJ5OiaYm
             sI1ijBW+/2NinNNi5gbMZT7dK8aiW9OlzMFJZW1b7fazHI9C9D0kjQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-22T09:42:13Z"
-    mac: ENC[AES256_GCM,data:F93cxW4krcIOnRY/tw8ZI/79e9ls1m5GicSzlx6rUFHXKS9o3/2dv2gg8SGxOiccsxT5S4j8kB/nKXiaGLlJ8G9UrKks/1CxBz8mWaPTS6HNYeLC1Lfo2UsNe8+DRAuCdIr0qTTrtdyOUblgwB7pGYRvumImCrntXgyyLNEYNCI=,iv:korZZW70bmkNtyj2Z1co5EId8KmkAjM5FzpcYPewH3o=,tag:ReBIKswnop87bD9tYVpPsQ==,type:str]
+    lastmodified: "2026-03-22T10:00:49Z"
+    mac: ENC[AES256_GCM,data:XFHAwac5q8aaBkCQiqiLzJRC4I9bwAodu9mat8oF2r++SG7ColSV78F2WRc4ngRCm+K0+ZQgkz7ZO9/DyARfdFWQCHlnEXsUuCjYREbL1tJbghbraIQU0e1s22Ty3ces/f2wVnl32wDp4neQPhsWFncNR7EqwlyJy2FS6uE68so=,iv:+HaE82Oi9jLDfACpR1OLKk9thBgN/SHVZCokC7mUm+4=,tag:vheb6QhDgVNvC4AxSZ92lw==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.2

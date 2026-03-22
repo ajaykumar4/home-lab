@@ -13,9 +13,9 @@ spec:
       path: kubernetes/apps/openclaw/openclaw
       targetRevision: main
       ref: repo
-    - repoURL: https://serhanekicii.github.io/openclaw-helm
+    - repoURL: chrisbattarbee.github.io/openclaw-helm
       chart: openclaw
-      targetRevision: 1.5.5
+      targetRevision: 0.1.15
       helm:
         releaseName: openclaw
         valueFiles:
@@ -40,9 +40,3 @@ spec:
       - ServerSideApply=true
       - PruneLast=true
       - RespectIgnoreDifferences=true
-  ignoreDifferences:
-    - group: ""
-      kind: ConfigMap
-      name: openclaw
-      jsonPointers:
-        - /data
