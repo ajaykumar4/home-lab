@@ -1,9 +1,6 @@
 defaultPodOptions:
-    # -- Pod security context
     securityContext:
-        # @schema type:integer;default:1000
         fsGroup: 1000
-        # @schema type:string;enum:[Always, OnRootMismatch];default:OnRootMismatch
         fsGroupChangePolicy: OnRootMismatch
 controllers:
     main:
@@ -15,10 +12,7 @@ controllers:
             init-config:
                 image:
                     repository: ghcr.io/openclaw/openclaw
-                    # @schema type:string
                     tag: 2026.3.13-1
-                # -- Init-config startup script
-                # @default -- See values.yaml
                 command:
                     - sh
                     - -c
@@ -359,44 +353,29 @@ controllers:
                             failureThreshold: 12
 configMaps:
     config:
-        # @schema type:boolean;default:true
         enabled: true
         data:
-            #ENC[AES256_GCM,data:MIsYNOH4RaATqE5cv8LQ802S2mXGwkNHgoUsCjiEZTnroEaZlEQ3+yC50N5z5IikQv9wUBsUfnoSU5gs,iv:sWyeVYTWmpa2Lht9CFhpfOWDTQpgufICNk5NxVmxQBA=,tag:FiPVrJfp/AgqxllZrw9lew==,type:comment]
-            #ENC[AES256_GCM,data:kItWdhiQOTdqHmaOm43baq0eP2k=,iv:S42aocfShYMQu0qy9Bav3Cx0Kuj0wFB5Y4rURBw7uNU=,tag:8/wArOJLynd5sMAq3yAw+A==,type:comment]
-            bash_aliases: ENC[AES256_GCM,data:ZhAsGIWauxP3ofMwsmMjZLK/fxvO9iYjjzZHI2xy4/vgXJbhm5k9BRc=,iv:zfkCP/UET4XB6Mye/8VAoLdQLpN16sxO4wHoaIuf2R4=,tag:tqR2hrUNOp9r1dzMhgiFJg==,type:str]
-            #ENC[AES256_GCM,data:QGJQdldStyPVFgsVzGRfhl7mKNxxIMos+wbMriynlONtEtPsH/A=,iv:aOuzOsneWy3JhkwrDf8g+CdOaj7r8rofPw/nCpRqT3o=,tag:83FXBxqioKN6csD0OeR9VA==,type:comment]
-            #ENC[AES256_GCM,data:RSwYTDG1Kly9RWL+TD5FpFuyCC7pi9/orpJ8XZ+C1zTWpru3kCxqAcYVjg3KEchxU9nNMXUU8uH1cuXKplAliQVipCjT,iv:623+45CMp0irv4GArpF6KIYAOV6J8zQJHi3ybWmWh9s=,tag:xhIStZIzhefFY3UsFgOv8Q==,type:comment]
-            #ENC[AES256_GCM,data:kItWdhiQOTdqHmaOm43baq0eP2k=,iv:S42aocfShYMQu0qy9Bav3Cx0Kuj0wFB5Y4rURBw7uNU=,tag:8/wArOJLynd5sMAq3yAw+A==,type:comment]
-            openclaw.json: ENC[AES256_GCM,data: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,iv:ntHs1XEhGIh9vJUtPvSsg+EA9ZD37rfj6OA4ChnIy9w=,tag:IY+xhzA6+BmLMqrOlv6Klg==,type:str]
+            bash_aliases: ENC[AES256_GCM,data:x6vjdXYoGRZjwjaInPvhTNY51DeKCZn3x+YdwdnHUrUV1BS8RaY5ijI=,iv:D2SwZKKYSu2Fv3O0pwgHvnsuqeYUkW2qfsveJuBjW0Q=,tag:5nytDBuzhcAgLfCcpSfZsw==,type:str]
+            openclaw.json: ENC[AES256_GCM,data:DrqITbOWOMOxvFUuOHjv+INuSTPe3WdWIrL8ocJRO9RiUWqA9UeWO0tJpxm1qVcy69koNzyAp800ccMSsmhf30zjyxuoUqb6aSCqvK8tuHJtLqh4gWJys4GDNFrPNbCAiI3xvUqKRgA5sxC9D1ZQ1EQLH3T8K52Fd/9bXoSBmW5/42GI8XTYql/CRzjabEWafBigyS/AXYabOyps+rsIF+trLV3coiK1d34aGYBgomj2UbNivZ70Z415S0OztVBZkGwHp7LNHBOwWkHpKk4lXpcG0bI0jTrN/WD8+/cCUCPj0D8MRlO5azXiXGomOowuutM7ST6imr7ZN8sNof84J2KJNwQ+ZmsEvKhIENdPce38aouoWD9Fgv2Dm6NQdWVJRAohr7+LIJcWdpyITUz10xPqjkVpzAbd7o54Q6XhfKAawV+x4GRP5d7Ul1xxRA90K0798vffFP0nxDuonBWKrlVgBE5IO19jPNccacUbpDHbbR0peNSWCKbR+NE4Pn1f36E41AJX1Cp5GBhuLX+Q4Ul65MokQRb/GI0dwQY1eL/Ch1Ws/3YJv1rftoK93hy1f5Uyz4y9d8n3p20/xbCYg5KSLIHA2If6g8CQP6f61Kcc22latQuSjgnHAyOgTKAWXUSWQgyRzJ0uk11nIVw2aAYli36R45NgHmQggD0YzyE3bBgp+oxU/3bTBVrdmoTVTHFiStl8N29Op+0eBPZEZyFWNWNtKbHeDZmkQ1wZg/FPGwTGOLLN9cLXREBpu4X2R6so69co+zK9qo31M4fkQcCpxdJMR6n7hwf9Uy5+rhRD2b+OZudiYWMX+Njj7cVv6uxrufnY58ZvuPBHtGAwORL8auL25HL98xxjejyTnh9hwlVyaXiG6PEUchewjfmpgp+QB+pNqUyKQs/rTc0UZyMvrtzeur1l0gkqaplL4zlhjSjkAYvq076Fo+/nh1bfJjJeDE+HlT/T2XlctbyX5K7vRQYGRWRSjXey91qQ/WMTNAW3uIK3vwoEPRYkuPb1Mr6uwhMhTsEnT/RnKEYddNfs6i9mb3n0Nn7tAzbLFUOr0HLnN1vzO34wWA5yvbd/6X7moloT4m99GyDwK9uqQIc2HmjDWzOv/ref7tJxNwxDwQf6F3Vja7d57WkrortWORsPMNc0UfQHGjw/69Tw46U8GGFGT/wuDoLjMgnqednJhV/o2HfM1pJpooJUcOyCaO2567RwomoMlj4YX/nL6AQppVY4vrpMuG+8P2n4zdHGW3v5OqOmuCA6+qIN+xs5mqCtQIVq8Qbe4IYZQ0u/ByXuY9UhbTsMFtWsuAoTeT0fz3txPA8lQeANnH4o7rk0SZldP6ve8MKE3kg4Oz2/MUYompmRhSFA8irXBujWWBzmQJpguapAmR+KGRNLlS08+5OqZfLCTZjgPgu+jQsbNrymyam9ZUFum466umMkd7nbuGeYNvQHN87QhPyBCImR4qxGmlDr8Hf16Y6F1RH4FnrjsZwdyKoTCAr+NKVxnNt3M0nsVLIP6pW6nMnXUp80AAV/NIfjBxygxAg9p0F0kKnlsHZbEautBv33bNpsBkK00G2N3kFvNSXk/SxcGGSI99pNhSjtCgp615wO1nwz9GoITjUEmvpz0lReThoqVJfC09WNI7x9iD9iqsl40KQ75w==,iv:IT6g9aueDy01ryPmgPt07uX5GgaoT0L0aAMlYwGA+kI=,tag:z27pDa/mt7riR55DUHMiOw==,type:str]
 service:
     main:
         controller: main
-        # @schema type:string;enum:[SingleStack, PreferDualStack, RequireDualStack];default:SingleStack
-        # -- IPv4-only (see trustedProxies note in gateway config)
         ipFamilyPolicy: SingleStack
         ipFamilies:
             - IPv4
         ports:
             http:
-                # @schema type:integer;default:18789
-                # -- Gateway service port
                 port: 18789
 persistence:
-    # ConfigMap for init container to copy from
     config:
-        # @schema type:boolean;default:true
         enabled: true
-        # @schema type:string;default:configMap
         type: configMap
-        # @schema type:string;default:config
         identifier: config
         advancedMounts:
             main:
                 init-config:
                     - path: /config
                       readOnly: true
-    # Shell alias file mounted from ConfigMap for interactive kubectl exec sessions
     bash-aliases:
         enabled: true
         type: configMap
@@ -407,16 +386,11 @@ persistence:
                     - path: /home/node/.bash_aliases
                       subPath: bash_aliases
                       readOnly: true
-    # Entire .openclaw directory as PVC
     data:
-        #ENC[AES256_GCM,data:HTFkkZHzbmkPyNUgViAhq9FeQ80EJxV4doyLiC6c1Zcs/g==,iv:ZG6sdXB9pl07bgZ2JOwZh6XmRTGzldbVpK9RZXOWysg=,tag:3CBz3reR3Z5aOghTjVOv6A==,type:comment]
         enabled: ENC[AES256_GCM,data:RgMj8A==,iv:qT5rIR2ml9q3tQd2mnxnXTGRULwofahCiPffkWoS3qg=,tag:1ySjMcGNadZJrwBAGei4+g==,type:bool]
-        #ENC[AES256_GCM,data:z9Xu/E5C394LQqDsdfzW5ku6S61bIkSc1d+fRN7LuFKkY/u595jL8Qp34GjTpvP12QI=,iv:wrqeXTWhdo22JA98G9WGx76bVEKrb6wRT+B/r9m0ivE=,tag:kgwdB5Rr2s+JDvnE5IRMng==,type:comment]
         type: ENC[AES256_GCM,data:tMDfUE4jpMjKO2+TmpJGPgjMuizj,iv:qY1i/2XVpxSB1B+GDuVCzSQyQOVCJUDCTTe4n7AX27g=,tag:sADFSWLdjr/LPNZx1Rb1gA==,type:str]
         storageClass: ENC[AES256_GCM,data:sOSuXYi8esgf9g==,iv:y/VvOhSRBmWFyQ/6Wk4dLeTPqkwYl7diWG2RTsFti40=,tag:eDz1WHGwEL/of+Ok8ajuzw==,type:str]
         accessMode: ENC[AES256_GCM,data:PU+DMIqzbcqK/CobaA==,iv:uzdjwl9j+dSVoO5Qb//WsrYo9GqrmAGjHLKQ/ujJXgY=,tag:pBfx87O+yqlbifP1gq1BLw==,type:str]
-        #ENC[AES256_GCM,data:HgF2vwgnZ16AlfORnnEZcwAXIdQE0XiTpv/16Q2UWfw=,iv:dWEoT0dOrYuw6X0PAGeraycVqcn48N5EFA/WCxtzTwk=,tag:0Q5eZRdB2c7In8hX93+WXw==,type:comment]
-        #ENC[AES256_GCM,data:m728nRj5BLK+YNLW7xxsPYX+eLY=,iv:NeZTZNhKF1LethlzLgnt1qcwtcvdYohuHZF/os7ef1U=,tag:qU3qeiqUAPqYewsMQ98oXw==,type:comment]
         size: ENC[AES256_GCM,data:gliF,iv:GTNyz4y8dcpBRSXJ9xClyW/OCKshCOOd0An4J8qR9vc=,tag:JtfLKXQMaIOhVDTf5byUZg==,type:str]
         advancedMounts:
             main:
@@ -426,11 +400,8 @@ persistence:
                     - path: ENC[AES256_GCM,data:lcGpnw7QF0WrKnjdEapmldAxz7Q=,iv:tESKlPyHtAgBqlQ6ptuEqZIWzSTx+q1nGXpPt5ZrBkY=,tag:nCzUC0Qp6JvQV0pJaiPRTA==,type:str]
                 main:
                     - path: ENC[AES256_GCM,data:hbG4gnfupwvtwNv9yAWtaFDoROw=,iv:CtsI2wiw3bsVBn4MkKhWVou0XS1NYlzKPBNIzrpJy64=,tag:Qt12Oi4NnVgyvv7dwCIihg==,type:str]
-    # Writable /tmp for containers with readOnlyRootFilesystem
     tmp:
-        # @schema type:boolean;default:true
         enabled: true
-        # @schema type:string;default:emptyDir
         type: emptyDir
         advancedMounts:
             main:
@@ -477,8 +448,8 @@ sops:
             WTUwK3JFdDFJNk5KZWhyc0xUdHlwUEEKfFhUq/SoPJ4tIowXSyqi5sVTVJ5OiaYm
             sI1ijBW+/2NinNNi5gbMZT7dK8aiW9OlzMFJZW1b7fazHI9C9D0kjQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-22T08:21:26Z"
-    mac: ENC[AES256_GCM,data:2q0tMef6KF35SFBXbKMHA4eed1FshvZ3dyZkXcNs5UqhVw8vwhw06WoB2qiGju/QoOdf3h/BcmdiB1lvoYVOJr4Snmf2jHwWY/WXjetMRNmHsk1suUx9nhuvlgNzDJliSqAlnFVXBkuj5sfgKty88u6nU4MOVmVHLqkDs1fryIY=,iv:GMZkANeyIjCGP6TnrECI/5A1GGrOeIERzYW11Xn0RHc=,tag:q7PeFBAqltxNXHvaFt84GA==,type:str]
+    lastmodified: "2026-03-22T08:55:30Z"
+    mac: ENC[AES256_GCM,data:Fej0E2dojOBWoGYAKVRhz/i+ole8rLSpSs/HebWSQkIPMNG63+wPHrxacp27WpGMJ12D9I/FHsYprncjgtT5kzJvhIYbMMbmfvYUoePPFmMIxwCQl5K9ja3slwekir6Kn6G1kwASEtlg09FNza5Deeqs6sZsne6Q+kHr4LC9+XU=,iv:qWH6gNtOdJKrtalqgEUQ1mVfwbn23iA4nOvUSnTpgYc=,tag:7kfKkYNIjrW8WZEJVqh6Yg==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.1
