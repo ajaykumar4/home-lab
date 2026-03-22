@@ -13,7 +13,7 @@ spec:
       path: kubernetes/apps/openclaw/openclaw
       targetRevision: main
       ref: repo
-    - repoURL: chrisbattarbee.github.io/openclaw-helm
+    - repoURL: https://chrisbattarbee.github.io/openclaw-helm
       chart: openclaw
       targetRevision: 0.1.15
       helm:
