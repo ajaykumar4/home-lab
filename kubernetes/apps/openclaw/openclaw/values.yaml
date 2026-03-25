@@ -97,6 +97,13 @@ persistence:
     globalMounts:
       - path: /config
         readOnly: true
+  secret:
+    enabled: true
+    type: secret
+    identifier: secret
+    globalMounts:
+      - path: /config
+        readOnly: true
   data:
     enabled: true
     type: persistentVolumeClaim
