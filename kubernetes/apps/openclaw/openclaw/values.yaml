@@ -89,13 +89,24 @@ service:
             http:
                 port: 18789
 
-
+route:
+    app:
+        hostnames:
+            - openclaw.aknuk.dev
+        parentRefs:
+            - name: envoy-external
+              namespace: network
+              sectionName: https
+        rules:
+            - backendRefs:
+                - identifier: app
+                  port: 18789
 
 persistence:
   config:
     enabled: true
     type: configMap
-    identifier: openclaw-config
+    name: openclaw-config
     advancedMounts:
       openclaw:
         init-config:
