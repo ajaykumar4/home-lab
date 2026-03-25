@@ -103,7 +103,7 @@ route:
                   port: 18789
 
 persistence:
-    config-file:
+    config:
         type: configMap
         identifier: openclaw-config
         advancedMounts:
