@@ -1,5 +1,5 @@
 apiVersion: v1
-kind: configMap
+kind: ConfigMap
 metadata:
     name: openclaw-config
 data:
@@ -16,8 +16,8 @@ sops:
             dms0S29HMUJNb2xXQWVubjVoMG9XbzAKF/c/5c/n8dODdQ9a9Sw0xqvgij4X2Ij1
             iNKR0UfpZ0LfCVyKKufZlctbgPXBumooPD0qg+I2voftoQLQRgdSiw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-25T22:24:21Z"
-    mac: ENC[AES256_GCM,data:vDvwHpYoQxn70L/sbkf2ujWWAdAwF3ExSpR8ogNKIox07RbXTyns2lMO2M+LgtUra3spcW9Tw/KpvA0Wn8ZMGmp1DCsM2wym05xWyuIXd5dSu8RnXpt0X0mHPT4X8ssE169G0PCFdyz1lgUl7NFw++4Wjx94/vwNPO9186OoYSY=,iv:KYEO+HKOtzCjqvzjFj8vlI3MKinEHDY5Mhxi4tGKLU8=,tag:hbNjHZBMBX41ZfIvSQftEQ==,type:str]
+    lastmodified: "2026-03-25T22:34:09Z"
+    mac: ENC[AES256_GCM,data:IjriFRVWdyDnhZJQ5r8zEsoVn+yGWQju3b6LnV3XAauz+oCx060jFMazwqLfYrV73FBcL/Nn7Vi99VtSjfq2Iltttn7sZUUWgxXhwskUdtfVZa1mJ1LaLJx+SwxIYVxcSzl2+5TxylmqezVoycBQQ4A6G88M5m4w3uiYaIEmlAs=,iv:fQJaATUpsFeyMaQM2Q/X+1u0ZrgPByqAc4EBklWPsdE=,tag:Mo1IVQaC+zWAYfDrLkUb2w==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.2
