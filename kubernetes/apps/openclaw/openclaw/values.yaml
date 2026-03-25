@@ -105,3 +105,8 @@ persistence:
     size: 5Gi
     globalMounts:
       - path: /home/node/.openclaw
+  tmp:
+    enabled: true
+    type: emptyDir
+    globalMounts:
+      - path: /tmp
