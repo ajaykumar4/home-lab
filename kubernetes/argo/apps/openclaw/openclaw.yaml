@@ -19,6 +19,7 @@ spec:
       helm:
         releaseName: openclaw
         valueFiles:
+          - $repo/kubernetes/apps/openclaw/openclaw/values.yaml
           - $repo/kubernetes/apps/openclaw/openclaw/values.sops.yaml
   destination:
     name: in-cluster

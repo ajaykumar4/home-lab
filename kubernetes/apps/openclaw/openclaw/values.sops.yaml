@@ -1,38 +1,9 @@
-image:
-    repository: ghcr.io/openclaw/openclaw
-    tag: 2026.3.13-1
-credentials:
-    existingSecret: openclaw-secret
-chromium:
-    image:
-        repository: zenika/alpine-chrome
-        tag: 124
 openclaw:
     configOverrides:
         gateway:
             controlUi:
                 allowedOrigins:
                     - https://openclaw.aknuk.dev
-persistence:
-    enabled: true
-    size: 20Gi
-    storageClass: nfs-shared
-    accessMode: ReadWriteOnce
-resources:
-    requests:
-        cpu: 100m
-        memory: 512Mi
-    limits:
-        cpu: 2000m
-        memory: 12Gi
-podSecurityContext:
-    runAsUser: 1000
-    runAsGroup: 1000
-    fsGroup: 1000
-    fsGroupChangePolicy: Always
-    runAsNonRoot: true
-    seccompProfile:
-        type: RuntimeDefault
 sops:
     age:
         - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
@@ -44,8 +15,8 @@ sops:
             WTUwK3JFdDFJNk5KZWhyc0xUdHlwUEEKfFhUq/SoPJ4tIowXSyqi5sVTVJ5OiaYm
             sI1ijBW+/2NinNNi5gbMZT7dK8aiW9OlzMFJZW1b7fazHI9C9D0kjQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-22T10:17:12Z"
-    mac: ENC[AES256_GCM,data:MarDemdQPkqKDwW+voiuU1GiBeNdauW0ljB/UHpSVUf4pjoBmoDSax7qnROBbz19Xgxpo9YwbdzucdCoYSWNy02p9djeLa9bsg4Romx4B4vN8stMDCAulNsCqyraqJb4+u1DJPp5mt+LklP7fDjrejdARhWxrHdDeT7bnYFjAzE=,iv:nxho6XRtTEkOv4ND470uYhnSG1nUvzz0RXB/b1f+5Yk=,tag:kAZGazz6u+ufT9FOhBVEGA==,type:str]
+    lastmodified: "2026-03-25T19:09:13Z"
+    mac: ENC[AES256_GCM,data:hroCwls3t4Skdv2jpTP6XmUv/d6q5US5Gu8dcH0kKAGz4OP42J6myMj4iEUAlsaVn1g3tEWm4xy1zN5/fg09DroZQvLQ/m1l5crgSRhbDBecAQ/grXaTl00f33l8Tmmj4kAmAyVmrNRPUmf3ts3IH3rMTpTYCHJAHhplaMywW+c=,iv:Mc6xeh46TALXqIySxJyS+3Iu4o4Tma7Lx+tF0gwVTWY=,tag:wIzXn5+lYshM5eR3l09NlQ==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.2
