@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: configMap
+metadata:
+    name: openclaw-config
+data:
+    openclaw.json: ENC[AES256_GCM,data:57hiFs2LunsmMbxLYvhejHyKvyu1OCSAQ4Y0/U+gVAcLVvfuH0bupQbLllK0p+HbVKQsTwJCbgrEfmNaUGBbxFMDKuPL2DDD1y88r8MHyRRmbEY9/Vo6qYxMPgfKU5T/WP6eqV3yC0LgYfqqLxQ34GCYd4PT4z5csfPUO6NlSKRxxk8CSnqwEFhc1ID1Qol3E7xMpJhkdfjWFX/Yp3pIpir/I9Znp4eCsl64n/K0VxnsYslryFmDkCkVYHmYwL+WlYo6LCLOY36g7Zzu4RtSIra8F6fbobSfOGRRsd3Duo49xNOXP587R8y9x575OeJrzJp+ksR/Q9W0egpk6yYPzqptmxgPId0vY5aMOT3nWVMJzFJj79yRUOzR19TmzZwfWczhcZ6RBRTvxgq8jw2uE7N5NclgveWV5cM76BQ96o1VH6yfdMSX4x5PgyLdb+od2DmizKWrGqZbrZkTAgKRG3pzikPtM8VjWWimhEX+P/NKpuatp1sTgRsOoG7bjHYfBe6YdxMKYPj2frnWh6gGKh9w2CU0/SQ7a6a0gCGhibv89uyJFAP/2cykIBU+sCJ8FTeyN+4bad1VvxWEw1cNxXA3XdHoyDuXuLDWSAgBnLSrKcoP27PsxiR4P7DIh5U5CrAjmri0BRryRtbP55NMpqf1tWyavvkFolfZ,iv:Kn1h+Iub5AbybZZBMLzlv3HOvHVuAPzf3vQbmrAbLGw=,tag:+9jQKozq7lz2YoRBLSouMg==,type:str]
+    AGENTS.md: ENC[AES256_GCM,data:02uLl7PANXnlpUf/qmL4Izce/h5S+gxTKnHHTmTdjEfGEyFNvZEHcZG8tpu8wAQOR+kN8l6A3jbUKzjo7hEXIDFhebfsuD+Rvcxh1w==,iv:qc6BnZi45dd1kk3D+wVAOLld507cH1b3f8Mi2vokoBQ=,tag:VqytzN2xuBmcxf9x69VJYg==,type:str]
+sops:
+    age:
+        - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBFbUVMb1R5WkNJQTBWb2hR
+            bms3Nlh3TE45bkMrTHhxa0dtaDY5bGdVekFFCm1INVlBbVIxaDV4MDVPUkNIOFdN
+            L0h5bWFyS1NuZDFKUHNQY3hUeDcxb3MKLS0tIHp2TkVMeFNJZU1DckxqV24yenBh
+            dms0S29HMUJNb2xXQWVubjVoMG9XbzAKF/c/5c/n8dODdQ9a9Sw0xqvgij4X2Ij1
+            iNKR0UfpZ0LfCVyKKufZlctbgPXBumooPD0qg+I2voftoQLQRgdSiw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-03-25T21:46:14Z"
+    mac: ENC[AES256_GCM,data:UkIRSd9xJJR93aQmKVJpOygiU2TW1XaCmuh/h/Uu1NBXaYwIF9YlrAuwVjXzkrdTfddLGcvq3BVHe25TQQP7KiVwdDwFt/tmGicUwvkZciozvdI3UhTR6pCj5pIDbpadvVX5GMSrpFSaEIfTqzjS6UuwY4P2bmlNe6GSZnurJiM=,iv:38/bQl2rzaHm4bjo350T+jRVHfUiEuKkV1GfYWjtwUg=,tag:+xCyatGNqcumPo8izMU0hg==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    mac_only_encrypted: true
+    version: 3.12.2

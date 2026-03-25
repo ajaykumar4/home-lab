@@ -13,14 +13,13 @@ spec:
       path: kubernetes/apps/openclaw/openclaw
       targetRevision: main
       ref: repo
-    - repoURL: https://chrisbattarbee.github.io/openclaw-helm
-      chart: openclaw
-      targetRevision: 0.1.15
+    - repoURL: ghcr.io/bjw-s-labs/helm
+      chart: app-template
+      targetRevision: 4.6.2
       helm:
         releaseName: openclaw
         valueFiles:
           - $repo/kubernetes/apps/openclaw/openclaw/values.yaml
-          - $repo/kubernetes/apps/openclaw/openclaw/values.sops.yaml
   destination:
     name: in-cluster
     namespace: openclaw
