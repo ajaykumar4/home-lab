@@ -110,9 +110,17 @@ persistence:
           openclaw:
             init-config:
               - path: /config
+                subPath: openclaw.json
+                readOnly: true
+              - path: /config
+                subPath: AGENTS.md
                 readOnly: true
             app:
               - path: /config
+                subPath: openclaw.json
+                readOnly: true
+              - path: /config
+                subPath: AGENTS.md
                 readOnly: true
     data:
       enabled: true
