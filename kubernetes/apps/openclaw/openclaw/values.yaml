@@ -94,23 +94,14 @@ persistence:
     enabled: true
     type: configMap
     name: openclaw-config
-    advancedMounts:
-      openclaw:
-        init-config:
-          - path: /config
-            readOnly: true
-        app:
-          - path: /config
-            readOnly: true
+    globalMounts:
+      - path: /config
+        readOnly: true
   data:
     enabled: true
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
     storageClass: nfs-shared
     size: 5Gi
-    advancedMounts:
-      openclaw:
-        init-config:
-          - path: /home/node/.openclaw
-        app:
-          - path: /home/node/.openclaw
+    globalMounts:
+      - path: /home/node/.openclaw
