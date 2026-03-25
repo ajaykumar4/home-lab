@@ -1,38 +1,29 @@
-image:
-    repository: ghcr.io/openclaw/openclaw
-    tag: 2026.3.24
-credentials:
-    existingSecret: openclaw-secret
-chromium:
-    image:
-        repository: zenika/alpine-chrome
-        tag: 124
-persistence:
-    enabled: true
-    size: 20Gi
-    storageClass: nfs-shared
-    accessMode: ReadWriteOnce
-resources:
-    requests:
-        cpu: 100m
-        memory: 512Mi
-    limits:
-        cpu: 2000m
-        memory: 12Gi
-podSecurityContext:
-    runAsUser: 1000
-    runAsGroup: 1000
-    fsGroup: 1000
-    fsGroupChangePolicy: Always
-    runAsNonRoot: true
-    seccompProfile:
-        type: RuntimeDefault
-openclaw:
-    configOverrides:
-        gateway:
-            controlUi:
-                allowedOrigins:
-                    - https://openclaw.aknuk.dev
+route:
+    app:
+        hostnames:
+            - openclaw.aknuk.dev
+        parentRefs:
+            - name: envoy-external
+              namespace: network
+              sectionName: https
+        rules:
+            - backendRefs:
+                - identifier: app
+                  port: 18789
+secrets:
+    secret:
+        enabled: true
+        stringData:
+            ANTHROPIC_API_KEY: ENC[AES256_GCM,data:X0hQsckOzW2Gqk10hs7dh4Ni+3omw2smpQyzGina78vFmFBHD9OUJilJxeAPm2UoUHzgaMJj5c9YH221pZtBKz6Ppigc7bAZuXKpZnUXY2Pm6vQm1rwtQu7l5F3p4XXuChJeEV+7rf+b51LN,iv:90i0HzSwdN1yEAFoCBmWsmuAOC4k+zhLr8rVW2Ghiw4=,tag:+NibruMN3w+ynSURCK699A==,type:str]
+            OPENCLAW_GATEWAY_TOKEN: ENC[AES256_GCM,data:wJ5LfkfX6sNNurkg,iv:QWrgA13xdRA2uUW448JfB7ATHyv4yFYR6JMqYoVhlgQ=,tag:5IJIrqp4M5jcVss9FyIRfQ==,type:str]
+            OPENAI_API_KEY: ENC[AES256_GCM,data:mAMqEdux52z5JJDOdndBiU1tsdtaNK01aPyEEKUtLVWbjX/ghi5EWZ/B5vGxygV0dCLSmwfovYYlfm2ThyFSy4Yj1JyoULdJ9/sOTW9hn3Vy30ucWtc+agRSlKLzkadfFRp7SNImfixKN4U4BWgU/ivxURYloVNKu66G4OLnH6SfdKlJiPHyRQBR6SpBW9xWI225o9USmsf10Zbp0/iPkkVGv2M=,iv:Ai1YaAqMjDlOc5OhGDOUfIiC68FAKwhvEJMPpKojBBo=,tag:3N745CbiIHg4NE5+2Pi8yw==,type:str]
+            GEMINI_API_KEY: ENC[AES256_GCM,data:5JDv/WcxYlTXvdl2C5oUI/aJkSCu7+buLAjzv2GRuk76Vp8teSN0,iv:BlTHmjJZ6nUApO56nZuzpEnoRkht3T7+0NQRH/eq+6M=,tag:Np1iNNbY5S7Cobl/iT4UhA==,type:str]
+            OPENROUTER_API_KEY: ENC[AES256_GCM,data:JAY/RnUP35viSnVe5X6WoMyMY8nTH5U70g37PSTO/sxKMO1vCdAlzBCYVxrsR1LqJAHCuv8EmXEXcnNiZtC31rOR/vtqjRWf5A==,iv:FaoudLOlxViPIYVFVk6WWy/a1eJOjjg/ROdxXIklJF8=,tag:wOcUNhR/+aZFTnrKWLyJUw==,type:str]
+configMaps:
+    config:
+        data:
+            openclaw.json: ENC[AES256_GCM,data:jMHohtZT4HbiyLztg+W4+IIed0OXiLVFpPgJ9Kt4nUNUf+Rb/YkEPmjmsp3V8j2xt3gnFHLqL0nAv6u5itr2pbWei0uZF3J8CVL/lAQcsL6mgqsTeQ93Cq5czGawuKtM39nNIAKIto74Jgd9AS5jn+HzZJXzYDUAgmhM+qoZiGLQpuxuzemuo70M54YDWsJ98MoZHuNMG8gc5Sc1RV5fnL6WIls/fpP1Vze4tGE4FgQ59m2v1p/8su7C2sWOFb+E8A2xPLYw7FNcJzzfzsKrGzWj1v+hdA2YTQ7ZMJkmGDAocYPtmXwgMuUGrXGsYz5IM4VwGQG/emmz/BHZsyxnQ3dqhgvH87KfkGsBfM6n1A2C3V5vckJnKkojLfFFfl4rMlFewEfkh+KmUAFyXf08JDo9Fz+fXfnKHMgyR3n9BVjJPE3hLrPxlMWFa1D2KyL/a6Cdp8hnQb2IxvZZn/n/U/de1qQNsvLy5i+wyhmWvudwOKC0ycNM9hlpe4njDXp1R8CGFXsqCZNUS2NQ5skYUXglqWg5mCAA41oje3HN3jUlp8DEZyaxYFazZW+9/nqg1TdIGWONxMqoIZUaJkt9uvXvV2in142mRBMAM2AwFvm/oZcx/tgGHMLUb+3LRB57mcyglwP+QPG7yOg3fS9SOtgMCOgUjAo7OUIj,iv:ndMgmzym4Uf1iwgqXvH7vW8cfSP4HA5sIwd6xLJ6Jek=,tag:Rh2HdE7INVtAW/F4i3X7Ig==,type:str]
+            AGENTS.md: ENC[AES256_GCM,data:GHhS6hGGNtMs2FZW01CzIc7VZlkMtUMGlBj2GlRIg6U/qYIry6jSr08CPZVgiC7PpAd1jJQTfd8LYYhYXlTa7BVv/hLisjI/1/M=,iv:0sxH0V9zYKTCeXZY+h7CulDV8SNvvZzSb9gHUx7kjtc=,tag:6yrxY4dy8kxkqWhfeID8pw==,type:str]
 sops:
     age:
         - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
@@ -44,8 +35,8 @@ sops:
             WTUwK3JFdDFJNk5KZWhyc0xUdHlwUEEKfFhUq/SoPJ4tIowXSyqi5sVTVJ5OiaYm
             sI1ijBW+/2NinNNi5gbMZT7dK8aiW9OlzMFJZW1b7fazHI9C9D0kjQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-25T21:20:48Z"
-    mac: ENC[AES256_GCM,data:40m5fRSaxQrSw0d/34qFdU9I1jdd8qncm0qXuNQUf1Uch+fbvxXC3SKIldSYpj6Hv/IGZR/G7JgJ1r1g/7GPDOknqWne6emxGETa++pigXRwTZnX6l1uT9HThFJxQ2ghaAQfKwKApdavHQmAgnqH3ACu4WVNFRGaq3usdVGv6kM=,iv:/hzPArEUgfqxOqwqY5Qt13JRZif8grmQsmSqm2HLtVQ=,tag:eWxjuc4EJRfpU/aPMMiT6A==,type:str]
+    lastmodified: "2026-03-25T23:13:32Z"
+    mac: ENC[AES256_GCM,data:R1OJZyCWG49Dxcb9PR9+vBh2Li5tQ7VLYgzV/a2xzd0ik9YtMzO5C6X1GklWjOv17FeGZ5tncj5WkWMe6XMg3B533Gi2t2hxe3rr8WkuhuGxBS9X5ZIDxo5KcBT9a5NQYqJzNj3HuUSxHdcFKaUQMEfivMiniIQWSG2yqp7urTY=,iv:OaeJAHlYFAHePpXS9AcoNLVI1gN1fjbmmutbkmdPixQ=,tag:cBCswteXf8DcgNj+heQPwQ==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.2

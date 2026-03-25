@@ -93,7 +93,7 @@ persistence:
   config:
     enabled: true
     type: configMap
-    name: openclaw-config
+    identifier: config
     globalMounts:
       - path: /config
         readOnly: true
