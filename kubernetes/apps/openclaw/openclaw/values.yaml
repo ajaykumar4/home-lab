@@ -95,7 +95,7 @@ persistence:
   config:
     enabled: true
     type: configMap
-    identifier: openclaw-config
+    existingClaim: openclaw-config
     advancedMounts:
       openclaw:
         init-config:
