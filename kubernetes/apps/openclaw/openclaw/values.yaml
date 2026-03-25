@@ -103,6 +103,18 @@ route:
                   port: 18789
 
 persistence:
+  config:
+    enabled: true
+    type: configMap
+    identifier: openclaw-config
+    advancedMounts:
+      openclaw:
+        init-config:
+          - path: /config
+            readOnly: true
+        app:
+          - path: /config
+            readOnly: true
   data:
     enabled: true
     type: persistentVolumeClaim
