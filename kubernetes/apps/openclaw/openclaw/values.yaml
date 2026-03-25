@@ -34,6 +34,9 @@ controllers:
                     HOME: /home/node
                     OPENCLAW_CONFIG_DIR: /home/node/.openclaw
                     NODE_ENV: production
+                envFrom:
+                    - secretRef:
+                        identifier: secret
                 probes:
                     liveness:
                         enabled: true
@@ -91,13 +94,6 @@ persistence:
     enabled: true
     type: configMap
     identifier: config
-    globalMounts:
-      - path: /config
-        readOnly: true
-  secret:
-    enabled: true
-    type: secret
-    identifier: secret
     globalMounts:
       - path: /config
         readOnly: true
