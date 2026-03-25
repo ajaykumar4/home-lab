@@ -36,7 +36,7 @@ controllers:
                     NODE_ENV: production
                 envFrom:
                     - secretRef:
-                        name: openclaw-secret
+                        identifier: secret
                 probes:
                     liveness:
                         enabled: true
