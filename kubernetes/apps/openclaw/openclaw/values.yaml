@@ -99,9 +99,10 @@ persistence:
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
     storageClass: nfs-shared
-    size: 5Gi
+    size: 25Gi
     globalMounts:
       - path: /home/node/.openclaw
+      - path: /home/node/.node
   tmp:
     enabled: true
     type: emptyDir
