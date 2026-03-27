@@ -8,7 +8,7 @@ parameters:
     # Your NFS server IP
     server: 192.168.8.3
     # NFS export path
-    share: /mnt/home-lab/k8s
+    share: /mnt/home-lab/kubernetes
     subDir: ${pvc.metadata.namespace}/${pvc.metadata.name}
     mountPermissions: "0777"
 reclaimPolicy: Delete
@@ -24,8 +24,8 @@ sops:
             dms0S29HMUJNb2xXQWVubjVoMG9XbzAKF/c/5c/n8dODdQ9a9Sw0xqvgij4X2Ij1
             iNKR0UfpZ0LfCVyKKufZlctbgPXBumooPD0qg+I2voftoQLQRgdSiw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-20T00:48:22Z"
-    mac: ENC[AES256_GCM,data:vr7CeWr7lhohfG/UY8rerFzj3z3DFbgprPutZPHKb8XnQYkE5gae3yxWLMiUNDq9byJG2IVqBnbCJ6aGfS/XcTuyLxxjQX9V0mc3EkazD6WpSjT2m7CeFDYIxHmbI4aojkGNBBO72+TDKAsguSJ/j6RpifXdcSetHpkNW7SNNmU=,iv:UItLkWx3I1xpX5orPsZkGM2Acf9A5eIKDcIl2kk1NiY=,tag:MG9jhbHGShHvg0Q0eZZSfA==,type:str]
+    lastmodified: "2026-03-27T06:57:11Z"
+    mac: ENC[AES256_GCM,data:etKbUqM/r6q1k2P/VnPTa7wIuXR8QVFMLJKcktVoAvolKmRPV5WK1UYogakA+1rOhq9ugQ4v3MAsKtxeki7i+0jpfy4IsPRJxPZcZ16/V5dSyYw8MIKjgBlux+ykN7dSgBp0tDyn78o4lslWsz+59G+BPL4g2cfO/mXrDe2rf5E=,iv:p2HKzUA6oXpxN1DMSDp6J7tYcwK51CihfI7JCVPTQ8g=,tag:8A1gLzOaQ9Xv1s1VQXippg==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
-    version: 3.12.1
+    version: 3.12.2
