@@ -110,3 +110,4 @@ persistence:
       - path: /home/linuxbrew
       - path: /home/node/.node
       - path: /home/node/.npm
+      - path: /home/node/.cache
