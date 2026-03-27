@@ -94,18 +94,3 @@ persistence:
     globalMounts:
       - path: /config
         readOnly: true
-  data:
-    enabled: true
-    type: persistentVolumeClaim
-    accessMode: ReadWriteOnce
-    storageClass: nfs-shared
-    size: 25Gi
-    globalMounts:
-      - path: /home/node/.openclaw
-      - path: /home/node/.node
-      - path: /home/node/.npm
-  tmp:
-    enabled: true
-    type: emptyDir
-    globalMounts:
-      - path: /tmp
