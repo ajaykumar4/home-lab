@@ -38,26 +38,24 @@ controllers:
                 probes:
                     liveness:
                         enabled: true
-                        custom: true
+                        type: TCP
                         spec:
-                            httpGet:
-                                path: /healthz
-                                port: 18789
-                            initialDelaySeconds: 60
-                            periodSeconds: 30
-                            timeoutSeconds: 10
-                            failureThreshold: 3
+                          tcpSocket:
+                            port: 18789
+                          initialDelaySeconds: 60
+                          periodSeconds: 30
+                          timeoutSeconds: 10
+                          failureThreshold: 3
                     readiness:
                         enabled: true
-                        custom: true
+                        type: TCP
                         spec:
-                            httpGet:
-                                path: /readyz
-                                port: 18789
-                            initialDelaySeconds: 15
-                            periodSeconds: 10
-                            timeoutSeconds: 5
-                            failureThreshold: 3
+                          tcpSocket:
+                            port: 18789
+                          initialDelaySeconds: 15
+                          periodSeconds: 10
+                          timeoutSeconds: 5
+                          failureThreshold: 3
                 securityContext:
                   runAsUser: 1000
                   runAsGroup: 1000
