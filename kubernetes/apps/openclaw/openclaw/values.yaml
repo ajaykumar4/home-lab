@@ -103,6 +103,7 @@ persistence:
     globalMounts:
       - path: /home/node/.openclaw
       - path: /home/node/.node
+      - path: /home/node/.npm
   tmp:
     enabled: true
     type: emptyDir
