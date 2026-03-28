@@ -1,0 +1,5 @@
+adminPassword: "admin" # Change this or use External Secrets in production
+persistence:
+  enabled: false # Change to true to persist dashboards and data
+ingress:
+  enabled: false # Configure ingress if needed

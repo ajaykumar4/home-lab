@@ -1,0 +1,42 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana
+  namespace: argo-system
+  annotations:
+    argocd.argoproj.io/sync-wave: '1'
+spec:
+  project: kubernetes
+  sources:
+    - repoURL: "https://github.com/ajaykumar4/home-lab.git"
+      path: kubernetes/apps/monitoring/grafana
+      targetRevision: main
+      ref: repo
+    - repoURL: https://grafana.github.io/helm-charts
+      chart: grafana
+      targetRevision: 8.9.0
+      helm:
+        releaseName: grafana
+        valueFiles:
+          - $repo/kubernetes/apps/monitoring/grafana/values.yaml
+  destination:
+    name: in-cluster
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 1
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 3m
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true
+      - PruneLast=true
+      - RespectIgnoreDifferences=true
