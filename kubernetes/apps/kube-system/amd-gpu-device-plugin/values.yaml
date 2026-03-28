@@ -1,6 +1,13 @@
-# Default values for AMD GPU Device Plugin
-# Usually this runs as a DaemonSet
-image:
-  repository: rocm/k8s-device-plugin
-  tag: 1.31.0.9 # Or specify a specific ROCm version matching your drivers
-  pullPolicy: IfNotPresent
+node-feature-discovery:
+  enabled: true
+
+crds:
+  defaultCR:
+    install: true
+
+deviceConfig:
+  spec:
+    devicePlugin:
+      devicePluginImage: rocm/k8s-device-plugin:5.7.1
+      # To specify tolerations for nodes with AMD GPU taints that are unrelated to ROCm:
+      # devicePluginTolerations: []
