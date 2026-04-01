@@ -19,7 +19,6 @@ spec:
       helm:
         releaseName: csi-driver-nfs
         valueFiles:
-          - $repo/kubernetes/apps/storage/csi-driver-nfs/values.sops.yaml
   destination:
     name: in-cluster
     namespace: storage

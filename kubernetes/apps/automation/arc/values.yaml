@@ -1,0 +1,3 @@
+authSecret:
+  create: false
+  name: arc-auth-secret

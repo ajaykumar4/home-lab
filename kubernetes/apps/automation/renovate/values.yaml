@@ -1,0 +1,10 @@
+cronjob:
+  schedule: '@hourly'
+renovate:
+  config:
+    platform: github
+    onboarding: true
+    autodiscover: true
+envFrom:
+  - secretRef:
+      name: renovate-secret

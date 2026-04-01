@@ -13,11 +13,13 @@ spec:
       path: kubernetes/apps/kube-system/amd-gpu-device-plugin
       targetRevision: main
       ref: repo
-    - repoURL: https://radeonopencompute.github.io/k8s-device-plugin/
-      chart: amd-gpu
-      targetRevision: 0.14.0 # Using recent 0.14.0, adjust based on your ROCm version
+    - repoURL: https://rocm.github.io/gpu-operator
+      chart: gpu-operator-charts
+      targetRevision: 1.4.1
       helm:
         releaseName: amd-gpu-device-plugin
+        valueFiles:
+          - $repo/kubernetes/apps/kube-system/amd-gpu-device-plugin/values.yaml
   destination:
     name: in-cluster
     namespace: kube-system

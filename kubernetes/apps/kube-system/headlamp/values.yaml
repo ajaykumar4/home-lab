@@ -1,0 +1,10 @@
+ingress:
+  enabled: false # Use Envoy Gateway Route instead
+config:
+  oidc:
+    secret:
+      create: false
+      name: oidc
+    clientID: headlamp-authentik-client
+    issuerURL: https://authentik.aknuk.dev/application/o/headlamp/
+    scopes: openid profile email groups

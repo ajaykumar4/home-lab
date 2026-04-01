@@ -1,0 +1,33 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: cloudflare-tunnel-dnsendpoint
+spec:
+  target:
+    name: cloudflare-tunnel-dnsendpoint
+    template:
+      engineVersion: v2
+      templateFrom:
+        - literal: |
+            apiVersion: externaldns.k8s.io/v1alpha1
+            kind: DNSEndpoint
+            metadata:
+              name: cloudflare-tunnel
+            spec:
+              endpoints:
+                - dnsName: external.{{ .domain }}
+                  recordType: CNAME
+                  targets:
+                    - {{ .tunnelID }}.cfargotunnel.com
+  secretStoreRef:
+    name: passbolt
+    kind: ClusterSecretStore
+  data:
+    - secretKey: domain
+      remoteRef:
+        key: cloudflare
+        property: domain
+    - secretKey: tunnelID
+      remoteRef:
+        key: cloudflare
+        property: TunnelID

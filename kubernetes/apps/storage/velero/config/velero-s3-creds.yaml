@@ -1,0 +1,26 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: velero-s3-creds
+spec:
+  target:
+    name: velero-s3-creds
+    template:
+      engineVersion: v2
+      data:
+        cloud: |
+          [default]
+          aws_access_key_id={{ .username }}
+          aws_secret_access_key={{ .password }}
+  secretStoreRef:
+    name: passbolt
+    kind: ClusterSecretStore
+  data:
+    - secretKey: username
+      remoteRef:
+        key: minio
+        property: username
+    - secretKey: password
+      remoteRef:
+        key: minio
+        property: password

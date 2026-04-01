@@ -1,0 +1,42 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: opentelemetry
+  namespace: argo-system
+  annotations:
+    argocd.argoproj.io/sync-wave: '2'
+spec:
+  project: kubernetes
+  sources:
+    - repoURL: "https://github.com/ajaykumar4/home-lab.git"
+      path: kubernetes/apps/monitoring/opentelemetry
+      targetRevision: main
+      ref: repo
+    - repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
+      chart: opentelemetry-collector
+      targetRevision: 0.147.1
+      helm:
+        releaseName: opentelemetry
+        valueFiles:
+          - $repo/kubernetes/apps/monitoring/opentelemetry/values.yaml
+  destination:
+    name: in-cluster
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 1
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 3m
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true
+      - PruneLast=true
+      - RespectIgnoreDifferences=true

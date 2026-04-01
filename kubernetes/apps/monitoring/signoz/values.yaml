@@ -1,0 +1,18 @@
+fullnameOverride: signoz
+global:
+  storageClass: nfs-shared
+clusterName: home-lab
+clickhouse:
+  auth:
+    username: admin
+    existingSecret: signoz-clickhouse-secret
+    existingSecretKey: password
+signoz:
+  ingress:
+    enabled: false
+  persistence:
+    enabled: true
+    size: 1Gi
+otelCollector:
+  service:
+    type: ClusterIP

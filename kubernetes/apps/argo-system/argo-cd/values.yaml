@@ -7,8 +7,15 @@ configs:
   params:
     server.insecure: true
     controller.diff.server.side: true
+    controller.status.processors: 30
+    controller.operation.processors: 15
+    controller.kubectl.parallelism.limit: 30
+    reposerver.parallelism.limit: 8
+    reposerver.git.request.timeout: 30s
   cm:
     statusbadge.enabled: true
+    timeout.reconciliation: 10m
+    timeout.reconciliation.jitter: 2m
     kustomize.buildOptions: "--enable-alpha-plugins --enable-exec"
     helm.valuesFileSchemes: >-
       secrets+gpg-import, secrets+gpg-import-kubernetes,
@@ -24,31 +31,65 @@ configs:
           - "*"
 controller:
   replicas: 2
+  extraArgs:
+    - --repo-server-timeout-seconds=120
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: "2"
+      memory: 2Gi
   metrics:
     enabled: true
     applicationLabels:
       enabled: true
     serviceMonitor: &service-monitor
-      enabled: true
+      enabled: false
       additionalLabels:
         release: kube-prometheus-stack
 dex:
   replicas: 2
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
   metrics:
     enabled: true
     serviceMonitor: *service-monitor
 redis:
-  metrics:
-    enabled: true
-    serviceMonitor: *service-monitor
+  enabled: false
+externalRedis:
+  host: "192.168.8.3"
+  port: 6379
 server:
   replicas: 2
   allowAnyNamespace: true
+  env:
+    - name: ARGOCD_API_SERVER_REPLICAS
+      value: "2"
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: "1"
+      memory: 1Gi
   metrics:
     enabled: true
     serviceMonitor: *service-monitor
 notifications:
   replicas: 2
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
   metrics:
     enabled: true
     serviceMonitor: *service-monitor
@@ -92,6 +133,17 @@ repoServer:
       value: /usr/local/bin/helm
     - name: SOPS_AGE_KEY_FILE # For age
       value: /helm-secrets-private-keys/key.txt
+    - name: ARGOCD_EXEC_TIMEOUT
+      value: 180s
+    - name: ARGOCD_GIT_ATTEMPTS_COUNT
+      value: "3"
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: "2"
+      memory: 2Gi
   volumes:
     - name: custom-tools
       emptyDir: {}
@@ -115,7 +167,7 @@ repoServer:
       name: helm-secrets-private-keys
   initContainers:
     - name: gitops-tools
-      image: ghcr.io/ajaykumar4/gitops-tools:2026.3.0
+      image: ghcr.io/ajaykumar4/gitops-tools:2026.4.0
       imagePullPolicy: Always
       command: [sh, -ec]
       args:

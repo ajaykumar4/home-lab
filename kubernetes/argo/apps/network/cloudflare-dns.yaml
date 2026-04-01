@@ -19,7 +19,6 @@ spec:
       helm:
         releaseName: cloudflare-dns
         valueFiles:
-          - $repo/kubernetes/apps/network/cloudflare-dns/values.sops.yaml
   destination:
     name: in-cluster
     namespace: network

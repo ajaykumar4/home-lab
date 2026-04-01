@@ -1,0 +1,34 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: velero
+  namespace: argo-system
+  annotations:
+    argocd.argoproj.io/sync-wave: '1'
+spec:
+  project: kubernetes
+  sources:
+    - repoURL: "https://github.com/ajaykumar4/home-lab.git"
+      path: kubernetes/apps/storage/velero
+      targetRevision: main
+      ref: repo
+    - repoURL: https://vmware-tanzu.github.io/helm-charts
+      chart: velero
+      targetRevision: 12.0.0
+      helm:
+        releaseName: velero
+        valueFiles:
+          - $repo/kubernetes/apps/storage/velero/values.yaml
+  destination:
+    name: in-cluster
+    namespace: storage
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true
