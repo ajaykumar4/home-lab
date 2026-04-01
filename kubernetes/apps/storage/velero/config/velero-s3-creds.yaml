@@ -19,9 +19,9 @@ spec:
   data:
     - secretKey: username
       remoteRef:
-        key: 038783b6-400d-4ad3-b050-3634c14cb78d
+        key: f43bca66-b11a-4829-967c-cea4c42bb7f1
         property: username
     - secretKey: password
       remoteRef:
-        key: 038783b6-400d-4ad3-b050-3634c14cb78d
+        key: f43bca66-b11a-4829-967c-cea4c42bb7f1
         property: password
