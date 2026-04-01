@@ -15,7 +15,7 @@ spec:
       ref: repo
     - repoURL: https://charts.bitnami.com/bitnami
       chart: postgresql
-      targetRevision: 15.2.5
+      targetRevision: 15.5.38
       helm:
         releaseName: postgresql
         valueFiles:
