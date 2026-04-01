@@ -29,6 +29,12 @@ configs:
           - CiliumIdentity
         clusters:
           - "*"
+    resource.customizations: |
+      apiextensions.k8s.io/CustomResourceDefinition:
+        ignoreDifferences: |
+          jsonPointers:
+          - /spec/conversion/webhook
+          - /spec/conversion/strategy
 controller:
   replicas: 2
   extraArgs:
