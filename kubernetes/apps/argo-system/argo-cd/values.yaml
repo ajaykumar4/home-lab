@@ -65,7 +65,6 @@ redis:
 externalRedis:
   host: "192.168.8.3"
   port: 6379
-  existingSecret: argocd-secret
   existingSecretPasswordKey: redis.password
 server:
   replicas: 2

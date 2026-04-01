@@ -5,7 +5,7 @@ metadata:
   name: arc
   namespace: argo-system
   annotations:
-    argocd.argoproj.io/sync-wave: '2'
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: kubernetes
   sources:
@@ -19,6 +19,7 @@ spec:
       helm:
         releaseName: arc
         valueFiles:
+          - $repo/kubernetes/apps/automation/arc/values.yaml
   destination:
     name: in-cluster
     namespace: automation

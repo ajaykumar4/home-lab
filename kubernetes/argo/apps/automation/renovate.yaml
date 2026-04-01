@@ -5,7 +5,7 @@ metadata:
   name: renovate
   namespace: argo-system
   annotations:
-    argocd.argoproj.io/sync-wave: '3'
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   project: kubernetes
   sources:
@@ -19,6 +19,7 @@ spec:
       helm:
         releaseName: renovate
         valueFiles:
+          - $repo/kubernetes/apps/automation/renovate/values.yaml
   destination:
     name: in-cluster
     namespace: automation
