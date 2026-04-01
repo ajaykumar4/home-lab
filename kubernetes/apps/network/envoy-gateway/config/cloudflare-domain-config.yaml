@@ -1,8 +1,9 @@
-apiVersion: external-secrets.io/v1beta1
+apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
   name: cloudflare-domain-config
 spec:
+  refreshInterval: "1h0m0s"
   target:
     name: cloudflare-domain-config
     template:
@@ -17,9 +18,9 @@ spec:
   data:
     - secretKey: domain
       remoteRef:
-        key: cloudflare
+        key: 2663d32c-47b4-4e4c-917d-95cd4bae8fb8
         property: domain
     - secretKey: tunnelID
       remoteRef:
-        key: cloudflare
+        key: 2663d32c-47b4-4e4c-917d-95cd4bae8fb8
         property: TunnelID

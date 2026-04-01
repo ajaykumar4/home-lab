@@ -1,8 +1,9 @@
-apiVersion: external-secrets.io/v1beta1
+apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
   name: velero-s3-creds
 spec:
+  refreshInterval: "1h0m0s"
   target:
     name: velero-s3-creds
     template:
@@ -18,9 +19,9 @@ spec:
   data:
     - secretKey: username
       remoteRef:
-        key: minio
+        key: 038783b6-400d-4ad3-b050-3634c14cb78d
         property: username
     - secretKey: password
       remoteRef:
-        key: minio
+        key: 038783b6-400d-4ad3-b050-3634c14cb78d
         property: password
