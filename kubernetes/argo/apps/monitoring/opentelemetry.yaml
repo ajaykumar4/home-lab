@@ -2,25 +2,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana
+  name: opentelemetry
   namespace: argo-system
   annotations:
-    argocd.argoproj.io/sync-wave: '1'
+    argocd.argoproj.io/sync-wave: '2'
 spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-      path: kubernetes/apps/monitoring/grafana
+      path: kubernetes/apps/monitoring/opentelemetry
       targetRevision: main
       ref: repo
-    - repoURL: https://grafana.github.io/helm-charts
-      chart: grafana
-      targetRevision: 8.9.0
+    - repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
+      chart: opentelemetry-collector
+      targetRevision: 0.61.1
       helm:
-        releaseName: grafana
+        releaseName: opentelemetry
         valueFiles:
-          - $repo/kubernetes/apps/monitoring/grafana/values.yaml
-          - $repo/kubernetes/apps/monitoring/grafana/values.sops.yaml
+          - $repo/kubernetes/apps/monitoring/opentelemetry/values.yaml
   destination:
     name: in-cluster
     namespace: monitoring

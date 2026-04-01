@@ -1,4 +1,20 @@
 driver:
-  name: nfs.csi.k8s.io
+  name: ENC[AES256_GCM,data:Q5NnNOHebb6FJjrb7rM=,iv:ICMLJqaugwve1Rcz66BEQ5qU8vdFd4wCIyATzF/dCbs=,tag:MI0/6Bx8pwfccvfulYWUGA==,type:str]
 controller:
-  replicas: 1
+  replicas: ENC[AES256_GCM,data:ww==,iv:MHDirihlm09UMixuSUdOopuPSpM4gUW597dXS1SccZ8=,tag:ZpIGhTrZcXnOWsdtwJGrnQ==,type:int]
+sops:
+  age:
+    - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBFMG5TRUJVOWNEeFd6WDgy
+        Wlg0d0ZrcVl6WVAwcFJwQWJHcXhhQWhGdHljCld0M3E3SHpLQWtiWTlDUXV3eUNo
+        VEY5ZkpaMEdNQ283U2hDdnpkTXNjK0UKLS0tIElLeERMWTcxRmoyanJwUVkxN2t4
+        UE5xK2RKYXlTNmpiNkVIWVJMNy9CZHMKC3VhQ3RIJxjW9itMEK4SSvD68rvkNxqP
+        TGo21/06mDTLc2rlRxzwELOy/qiE+NTRkzYukf7HXAXJ6aghlv80ZQ==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2026-04-01T14:58:47Z"
+  mac: ENC[AES256_GCM,data:nFaVByxjNVArafvOYdeFe4ptwtENpg8h2bAzs5pWyDFdnkcAMAVOpdtvYmY7VRKfaHG7dKqmsmlUQU+/0xx7ZpJ+SQ5ZpULSKwhSx3+16h1PkA4t6AsS6eFFHZDl7z5+fAvtT/gK5/d+oUhwFl0i7pv/130k96iJ+WX8ZKEVdOE=,iv:G9a5xuQ6ARafzC4Qsb3yRTYQKAqPbNLQMmTId9mrTLY=,tag:fIwuHQzMlqk9rTCGWbqIEg==,type:str]
+  unencrypted_suffix: _unencrypted
+  mac_only_encrypted: true
+  version: 3.12.2

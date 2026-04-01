@@ -1,0 +1,20 @@
+authSecret:
+  create: ENC[AES256_GCM,data:W7s8tA==,iv:4006uNgMM1x3nGKeY7qJbU8JfMPbbHdMh85Vcw3qrVI=,tag:bdpiHSCainnX6AdhTDMtNQ==,type:bool]
+  #ENC[AES256_GCM,data:6/paedNRQWXSxbib5YDLy3abCi4bYh703a+2ob7JVdZGxdTv6lHq7mtcRX04tacBmMdyXvBIq4ndVqvLFDza9AqXWmoGapNNwEqILWzbgU7i2ap+,iv:eIVXiktuNq7UvgjgjLpXGk1WDYnRpvKuK1/4XBXoSBE=,tag:b7sbG7YuNIB2yWLAS8sxDA==,type:comment]
+  github_token: ENC[AES256_GCM,data:p5EsQPMSj9J0BOh3ukZQO2VaLob2c0p4aDklIK/lUb/QURQZci82QQ==,iv:GshxkAxqTzUkiCgN94XEzxWz2SO3SfyE3LUpXS9HmNg=,tag:dGEJ1R+wpUY7FqIdgNxgKg==,type:str]
+sops:
+  age:
+    - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBzVFdCcE9SU080SXFwYjRN
+        UWN3VGEvRjJTZFdoNUxydjFmTVQxN3dmc1V3CnNSSUFaRWNtM0VwNTJRVUp5M1Rs
+        bTdSWEphY1M1ME9pQVZFc0ErK3JPQUUKLS0tIHJ2a0piRU9nSUgzQ2F2KzNlTWhs
+        amE1OG1FWGUwamh1eDhrR2VEYlFQazgK+fc0Xi1Ut6GPyWd7QENlYZtmvj3qRWiO
+        H2xTwJpX0JQKlxG0VPU9mGcDpsEMxIVWKqU+Z+j2TRmHqLG+ZbpQyA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2026-04-01T14:58:46Z"
+  mac: ENC[AES256_GCM,data:GcFHFyJmvKL2ot5Ip3tNsWXL6k9sJlq7mUVbgws9Q8yb5TZAQlazo8H727LGpn29PvZpW2sNyINvrhHT48X4UbExjMi2YG9N+M5cn4gVgdlLuNg199XDrVZJLtwoBDf0e37EPa0yR8sHm6UyuAONJw4Fmex+z3xfxVEqfcFr6tg=,iv:1jGTAF1iWwDZ0IA5kmmF5tbPhcTbNH/mICQIsWH9iBU=,tag:P1/x81YsdRHCNMFvVE4L2g==,type:str]
+  unencrypted_suffix: _unencrypted
+  mac_only_encrypted: true
+  version: 3.12.2

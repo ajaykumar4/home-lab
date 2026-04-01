@@ -1,0 +1,6 @@
+opencost:
+  exporter:
+    defaultClusterId: "home-lab"
+  prometheus:
+    external:
+      url: "http://prometheus-kube-prometheus-prometheus.monitoring:9090"

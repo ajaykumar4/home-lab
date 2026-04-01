@@ -1,5 +1,42 @@
-adminPassword: "admin" # Change this or use External Secrets in production
 persistence:
-  enabled: false # Change to true to persist dashboards and data
-ingress:
-  enabled: false # Configure ingress if needed
+  enabled: false # We use Postgres instead of SQLite
+adminUser: "admin"
+grafana.ini:
+  server:
+    domain: "grafana.aknuk.dev"
+    root_url: "https://grafana.aknuk.dev"
+  database:
+    type: postgres
+    host: "postgresql.database.svc.cluster.local:5432"
+    name: "admin"
+    user: "$__env{GF_DATABASE_USER}"
+    password: "$__env{GF_DATABASE_PASSWORD}"
+  auth.generic_oauth:
+    enabled: true
+    name: "Authentik"
+    allow_sign_up: true
+    client_id: "$__env{GF_AUTH_GENERIC_OAUTH_CLIENT_ID}"
+    client_secret: "$__env{GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET}"
+    scopes: "openid profile email"
+    auth_url: "https://authentik.aknuk.dev/application/o/authorize/"
+    token_url: "https://authentik.aknuk.dev/application/o/token/"
+    api_url: "https://authentik.aknuk.dev/application/o/userinfo/"
+    role_attribute_path: "contains(groups, 'Grafana Admins') && 'Admin' || contains(groups, 'Grafana Editors') && 'Editor' || 'Viewer'"
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        url: http://prometheus-kube-prometheus-prometheus.monitoring:9090
+        access: proxy
+        isDefault: true
+      - name: ClickHouse
+        type: grafana-clickhouse-datasource
+        url: http://clickhouse.database.svc.cluster.local:8123
+        jsonData:
+          defaultDatabase: default
+          username: $GF_CLICKHOUSE_USERNAME
+        secureJsonData:
+          password: $GF_CLICKHOUSE_PASSWORD

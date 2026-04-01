@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana
+  name: velero
   namespace: argo-system
   annotations:
     argocd.argoproj.io/sync-wave: '1'
@@ -10,34 +10,26 @@ spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-      path: kubernetes/apps/monitoring/grafana
+      path: kubernetes/apps/storage/velero
       targetRevision: main
       ref: repo
-    - repoURL: https://grafana.github.io/helm-charts
-      chart: grafana
-      targetRevision: 8.9.0
+    - repoURL: https://vmware-tanzu.github.io/helm-charts
+      chart: velero
+      targetRevision: 8.3.0
       helm:
-        releaseName: grafana
+        releaseName: velero
         valueFiles:
-          - $repo/kubernetes/apps/monitoring/grafana/values.yaml
-          - $repo/kubernetes/apps/monitoring/grafana/values.sops.yaml
+          - $repo/kubernetes/apps/storage/velero/values.yaml
+          - $repo/kubernetes/apps/storage/velero/values.sops.yaml
   destination:
     name: in-cluster
-    namespace: monitoring
+    namespace: storage
   syncPolicy:
     automated:
       allowEmpty: true
       prune: true
       selfHeal: true
-    retry:
-      limit: 1
-      backoff:
-        duration: 10s
-        factor: 2
-        maxDuration: 3m
     syncOptions:
       - CreateNamespace=true
       - ApplyOutOfSyncOnly=true
       - ServerSideApply=true
-      - PruneLast=true
-      - RespectIgnoreDifferences=true

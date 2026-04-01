@@ -1,98 +1,98 @@
 controllers:
-    cloudflare-tunnel:
-        strategy: RollingUpdate
-        annotations:
-            reloader.stakater.com/auto: "true"
-        containers:
-            app:
-                image:
-                    repository: docker.io/cloudflare/cloudflared
-                    tag: 2026.3.0
-                env:
-                    NO_AUTOUPDATE: true
-                    TUNNEL_METRICS: 0.0.0.0:8080
-                    # disable when using http2
-                    TUNNEL_POST_QUANTUM: true
-                    # or http2
-                    TUNNEL_TRANSPORT_PROTOCOL: quic
-                envFrom:
-                    - secretRef:
-                        name: cloudflare-tunnel-secret
-                args:
-                    - tunnel
-                    - run
-                probes:
-                    liveness:
-                        enabled: true
-                        custom: true
-                        spec:
-                            httpGet:
-                                path: /ready
-                                port: 8080
-                            initialDelaySeconds: 0
-                            periodSeconds: 10
-                            timeoutSeconds: 1
-                            failureThreshold: 3
-                    readiness:
-                        enabled: true
-                        custom: true
-                        spec:
-                            httpGet:
-                                path: /ready
-                                port: 8080
-                            initialDelaySeconds: 0
-                            periodSeconds: 10
-                            timeoutSeconds: 1
-                            failureThreshold: 3
-                securityContext:
-                    allowPrivilegeEscalation: false
-                    readOnlyRootFilesystem: true
-                    capabilities:
-                        drop:
-                            - ALL
-                resources:
-                    requests:
-                        cpu: 10m
-                    limits:
-                        memory: 256Mi
+  cloudflare-tunnel:
+    strategy: ENC[AES256_GCM,data:huprCsuWLgMi1oNzhg==,iv:aVXufVv4PvhRcjFTmhul1s+upcSSPrlpj5K4AQFlh8U=,tag:6elaFMtpDTI4fjWaJ42eRQ==,type:str]
+    annotations:
+      reloader.stakater.com/auto: ENC[AES256_GCM,data:SA9ICw==,iv:+1p0da83+gEox7ws7gwLiIZleIXhzxTWDQ0EZV4ZOrw=,tag:6U5z0+sIveqbcxHZkAGpRw==,type:str]
+    containers:
+      app:
+        image:
+          repository: ENC[AES256_GCM,data:j+hQT2Iflurm0DGTCViVE3f2yIkX8ja6C5rYNW/r4YY=,iv:Ij7zxcsZcaqfiDuIrGVHR4y05zR8Bc4D01uu7T1T6MY=,tag:71Q8sVkRKzCVWXrMxEunXg==,type:str]
+          tag: ENC[AES256_GCM,data:6cwBuu/5OTw=,iv:lmrkDhz6QDvogFcXvmcjHMSkfXBy17o9XXmVf1jTyw8=,tag:uIDOXAgdTfG0qf0DLSc5FA==,type:str]
+        env:
+          NO_AUTOUPDATE: ENC[AES256_GCM,data:QDnK5Q==,iv:qlh+2lAV6OXY5sfvc59/Q5/xncHWOy67QD4uQHsUwV0=,tag:4fiXDVH99mlA8EhFjt3TDA==,type:bool]
+          TUNNEL_METRICS: ENC[AES256_GCM,data:QW18VTWzZUcY8+y+,iv:0IxZicDQntGhT70+U4NHI3tqwbtjo/+s4d1pjAwPU7A=,tag:giXEIF72mQRePVpbvwRCBg==,type:str]
+          #ENC[AES256_GCM,data:xme3s/IlhsLGnX/jvZYS7C+vcSb/dOjhBA==,iv:VVrsRQa6RNcwbxmqIIZ7QYHPIAnWTcr0kZR61+cvzE8=,tag:OmOH1nLRctag2ftge8gwdQ==,type:comment]
+          TUNNEL_POST_QUANTUM: ENC[AES256_GCM,data:QCWwkA==,iv:o1b5AEu0YtG+F0VYABlDXkDXiul6jhTQgvKbvFTVElA=,tag:RxxSp/eXd4m35QWcWZ3pWA==,type:bool]
+          #ENC[AES256_GCM,data:z1BKM0epSLnb,iv:8z/RpZj2q0lhmjaPc/HZNlxT6se4AaFcnj7Ngprkzr4=,tag:RTJ+W+fbT6G5Kpv0FqEX5g==,type:comment]
+          TUNNEL_TRANSPORT_PROTOCOL: ENC[AES256_GCM,data:G/TGJw==,iv:mC7XKr/+3xagikunJtH56I0v1T/VzaBxUfdUHMo7uYo=,tag:MU8yb4JTt1Aky5bjC60FWw==,type:str]
+        envFrom:
+          - secretRef:
+              name: ENC[AES256_GCM,data:e9BzdJs8L7WxWeiEf7ersiTIdEePkGZB,iv:JF93ZSCAsVd+sttHqe/AHjYGAetWXYbdJxscEBz01/I=,tag:xth9AwDUA/+xtPbgURdZxw==,type:str]
+        args:
+          - ENC[AES256_GCM,data:jqjMdvO5,iv:ouDFAZOp76ZlSIJ+9gWgbMTaryXuM+tbIXbWH0rFHvM=,tag:B0IdsSB9exFxRjsnzutwFA==,type:str]
+          - ENC[AES256_GCM,data:s+zM,iv:sFsvz/AFs2eh47e2OnURnhbBr2h+epgmAQBx1WZWxAU=,tag:0DU/BFobtp338+/ZjZ9EXQ==,type:str]
+        probes:
+          liveness:
+            enabled: ENC[AES256_GCM,data:BqILYg==,iv:j51Qj0I7FPDLYaXDTWQD6A6L24xPhNZWqOGT3iWIz/8=,tag:DFk5NSVRIc5f1du87zBE7w==,type:bool]
+            custom: ENC[AES256_GCM,data:0hG8zw==,iv:ZDQvyXH/aPvxbunoNrQnfTj879fZVUJuMQaruTObzo0=,tag:RE839vXu+1fuwN4UIz/UUA==,type:bool]
+            spec:
+              httpGet:
+                path: ENC[AES256_GCM,data:f/rHSKGu,iv:IkSXZMZ8IIdF+DCi6QTGpHIgxlpcfPFY8bcS+5sjj2o=,tag:m4OCBiqrvCgAf3gPE5BeSA==,type:str]
+                port: ENC[AES256_GCM,data:UI53dQ==,iv:ukg8FfSJ2fVEjSRVZiYE1nTFePmwdlDcu/UBK5lQwgo=,tag:jqNDXZ564Qs42DIX+BUFGA==,type:int]
+              initialDelaySeconds: ENC[AES256_GCM,data:GQ==,iv:vwFNPH27jOfLp/3O2SJvRVlkvbRXWZKMfyi8ZgcUglI=,tag:VC6D68JrR+YFOmzYT+gxmA==,type:int]
+              periodSeconds: ENC[AES256_GCM,data:hHA=,iv:PaiPqaxfi7EzNdnhbqiF+ASdkcEt76oAE6RA2+HiweE=,tag:jas+wSnRhH0i7Yxpn84MMw==,type:int]
+              timeoutSeconds: ENC[AES256_GCM,data:1g==,iv:5T7gcQKRTGG5ZvYZH/oOBlrziXMPa1/ZW0dNT27J9/k=,tag:OkSqxnC1i0iHS19lRh2jzw==,type:int]
+              failureThreshold: ENC[AES256_GCM,data:gA==,iv:9cLm4tvSWTGS5rfanAkaLYCy0Ur/WQdrYP2cDcGML2w=,tag:gByutBhTX7jhZUAMJsvcuw==,type:int]
+          readiness:
+            enabled: ENC[AES256_GCM,data:YAJrxg==,iv:IBIM7PJpSYAlPM53KeoAcpngeQXPwXH+YPZ23xsuC/s=,tag:99BIPqdkd/pXh+rAESmF0A==,type:bool]
+            custom: ENC[AES256_GCM,data:Xz3gAw==,iv:E50AgOlb8C0aLtRSMafa+0AycXJw3HKVmTGK6rDg+0U=,tag:yz0U/oMmvyPryFXbjCYApg==,type:bool]
+            spec:
+              httpGet:
+                path: ENC[AES256_GCM,data:fNBKRY8b,iv:FRVvGoh5K1zAu5qgY5uPvb66/aTDndbezNHns1VjjXk=,tag:9pvnSWX8Lszrjvxqs6Sfgg==,type:str]
+                port: ENC[AES256_GCM,data:KbFUmA==,iv:guHf6vlu2Tn0WarCn2ZyARd7KwY5Ug8Epfw/XoktjPE=,tag:iiM97bsY4qS1GYmeCkkYVw==,type:int]
+              initialDelaySeconds: ENC[AES256_GCM,data:Cw==,iv:ly3CWPjbTst9ZLwjnApZ7d28drba/rZhHPpvvR5ON3M=,tag:M2KMpe/iPN62D+d7WkHZQg==,type:int]
+              periodSeconds: ENC[AES256_GCM,data:Sq4=,iv:i5Gvbmt8QzDpdyGMtG1LhWNPBKk9OBAwlgTSz+krb4Y=,tag:xFllhPDlhcJcecLx9EKBTQ==,type:int]
+              timeoutSeconds: ENC[AES256_GCM,data:JQ==,iv:2Alb3Q+L8RVZhtTB5yKJbsDNFusSBtmjzuKlnOKgmdI=,tag:eE161U916DZIiHH6msR9Hw==,type:int]
+              failureThreshold: ENC[AES256_GCM,data:yA==,iv:/C1XVJ4Vs17owhEGgptqASMlYMBs3F3afCRyuLqApjo=,tag:wfrb3yyIsm9mJT2vAuZrDg==,type:int]
+        securityContext:
+          allowPrivilegeEscalation: ENC[AES256_GCM,data:gPdsAjQ=,iv:3RbFG32qAznxM6E4NlwaieC7HFjF6ykaOO+BDHdmKnQ=,tag:2c+FZYr7YtfogFNU7v5dXQ==,type:bool]
+          readOnlyRootFilesystem: ENC[AES256_GCM,data:d81l3g==,iv:DH5phqDpE20rVwpU35a3VN1eVvLGO08rhYyJOXj3mBc=,tag:ody5zDtPU5gU5b0s49PmPg==,type:bool]
+          capabilities:
+            drop:
+              - ENC[AES256_GCM,data:9yos,iv:d7MwcYBqNtb9iJSNMHlZeNUq4N5g3RqAHsrxAsDd30Y=,tag:RJSw5g95nu/foMQCE1oNmw==,type:str]
+        resources:
+          requests:
+            cpu: ENC[AES256_GCM,data:YnUu,iv:wAVt+9aTKKsPwjqeOWcokwmAsGT4huCY7Yq9YZVNztk=,tag:ttsiTbhZYXyQyBkiKWa21A==,type:str]
+          limits:
+            memory: ENC[AES256_GCM,data:4KFo09k=,iv:0t5RXMqWbmHuXY0qLHd/B3RAOukfPyqe4NdeNqRFJH0=,tag:zUhuefglOx7HzM9De5V/Pg==,type:str]
 defaultPodOptions:
-    securityContext:
-        runAsNonRoot: true
-        runAsUser: 65534
-        runAsGroup: 65534
+  securityContext:
+    runAsNonRoot: ENC[AES256_GCM,data:JCk2bQ==,iv:6rWH93LRgLNa1pL8KYMtuVYPdniAAH0HpdDalrtBBdo=,tag:rmnXGOJDvwf7JiOjHRzOIg==,type:bool]
+    runAsUser: ENC[AES256_GCM,data:xjkVzMk=,iv:7MwqqUpZvPm7/E1cLX4i0tJjjMDPxeLDBELocIB/kI0=,tag:wjPSD9BJpOQfkSXPqd9rbw==,type:int]
+    runAsGroup: ENC[AES256_GCM,data:G4jfTSE=,iv:m97cdBIkv2CT2oh7dVe3vbN4pkhIpXGijcM3x4zg5B8=,tag:UXSrJQxRERJ+lXQZe584UA==,type:int]
 service:
-    app:
-        ports:
-            http:
-                port: 8080
+  app:
+    ports:
+      http:
+        port: ENC[AES256_GCM,data:bJ1PPQ==,iv:QPUnxMXCyGZqqHSkG81CZ07cXwBa7Uqxgs0x9FtSQ7Y=,tag:7xngwK2PaSmn1v6ydSkVVw==,type:int]
 serviceMonitor:
-    app:
-        endpoints:
-            - port: http
+  app:
+    endpoints:
+      - port: ENC[AES256_GCM,data:zdCGpA==,iv:c9JRmQzOgdxkpUl/Fzk+OvfqnZLEr5/9DuaF6rMjnaU=,tag:YBtCQTAPaNaHRJjsskw8zQ==,type:str]
 configMaps:
-    config:
-        data:
-            config.yaml: ENC[AES256_GCM,data:Wf+HOjzQmDFtNr1XAJEuorwnAA/3rHO6i41qrGd+IbTtpeDU5NBS+ggLwf9vTjPM6xT+3Wxpb4TumJhI+ObIRLusfWXO3bvOew3qIHjhHlXWw/6DAAgxQihkAt/Ly0yK5Vgtni1bO+K6joVHG264CXjyR3/va5/mfcu3z7xDxGjTTS8NUxLn23Qw3ga/+XI48k1hEFLl+l3QVRA7gr3QciUk+evzcIAamf+Ns7Ebqium14vBm97Eg3lOMl/FPh7J2/TwnQ0ec+vgiWfiNrRfLS+WHfxavhQqU1mi,iv:js3ffOn6ud1TzqS9fBi9mv6H3upgeVN0UjT9LHYvFo0=,tag:6wn9fzgem1HmJBySui/4yw==,type:str]
+  config:
+    data:
+      config.yaml: ENC[AES256_GCM,data:e8pYusyjFdAgk+SYOmflVIa9VDANTZDo5Q9VE7QcywPSdJ69sNekLwT63EdSU7+WimDQrLYPazHjoWVYdiWG129nkhuZneGzczR2JYvh2mdafo/Y0dcQbhdKtqzY8zjBq4VGKszF/1J5GbPCKco5qaz2shqSGlFnnqLYQgRZsLbxfdtVFilMip1xJ4HBmPxr7Do6DFP5r8vgzk/kFNpF5oL6DZAstCyGrnrDTPXUcei3bsp/4Q1KbB1zYU5CRVtX9lzMs+Hc91ea1DhhZW4WIgdcs113kJp664F0,iv:v2ADp1Sy2KzqbJzQeaMr8fjsHPbLQagf0lT2TLkkgJo=,tag:gbcO5d7q3qa4yUIfDn7bVQ==,type:str]
 persistence:
-    config-file:
-        type: configMap
-        identifier: config
-        globalMounts:
-            - path: /etc/cloudflared/config.yaml
-              subPath: config.yaml
+  config-file:
+    type: ENC[AES256_GCM,data:BHtLca2kAxdg,iv:Huch+UKl9rdpJzDxLFN1zK7Pxa0JbyldS++iOH9Tgkg=,tag:Qtb41R/87i8PJBHU7nh10g==,type:str]
+    identifier: ENC[AES256_GCM,data:1OEvSz30,iv:pfSM6I9S7AVJDzv+rEcoGz0lFromsQddMwzDdbFPnMk=,tag:YOPcvQ3iT9DRT9+Bev9rNQ==,type:str]
+    globalMounts:
+      - path: ENC[AES256_GCM,data:QMEKWMi6O4I/2RT6CR1UJ3YhQA2eVuFOiQo4YA==,iv:fNcMSuC1rfRWVEBswE7H0kUHaYpcS+0Dzv0pv8j053g=,tag:MdBey12bkOM+xWBT5ij0rQ==,type:str]
+        subPath: ENC[AES256_GCM,data:L1Fxm/p28GVyoMI=,iv:Cl99I4vRPe/P+zFm452DUrEFsFBREvcp4JJbk3wmJWQ=,tag:48ZAGCW6nS47VkbVhj47cQ==,type:str]
 sops:
-    age:
-        - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArL1dOcHUwOVk4blovdzR6
-            bnpXMklqaVM2eGFOY3NxNkNSQVNRRmNzZXg4CjVkRnNSQjR0QWl1Ym1kaUtNcEdC
-            NHl1akg5MkVhakFrYjh3YnhFOThlTFkKLS0tIFU3dlRhT3FXeVMvbDdKMVVydExK
-            WTUwK3JFdDFJNk5KZWhyc0xUdHlwUEEKfFhUq/SoPJ4tIowXSyqi5sVTVJ5OiaYm
-            sI1ijBW+/2NinNNi5gbMZT7dK8aiW9OlzMFJZW1b7fazHI9C9D0kjQ==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-21T06:48:20Z"
-    mac: ENC[AES256_GCM,data:gCP7vSNXoS4WWZzZ+BtDWQIAHF1qmbzI1jco+U5tPrnv0QooDBm6ru/hWmCW6KJllcx8b+zGdXLeFIBlkGu3olJHK1ISde9Qb/NMd2+X7h0X0Gx8LjfPX9cUJam1SnlMyM+5zuU51AVmZCNRdDgURf3db+Fdie5ujzXdS0txPpw=,iv:iND8vWi0h3Y7+1baamVY9KKm+KpoisisZkSbau0BdtM=,tag:6HM58H22CosnfLpa5bCjxQ==,type:str]
-    encrypted_regex: ^(data|stringData)$
-    mac_only_encrypted: true
-    version: 3.12.1
+  age:
+    - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxeGZySmVMWklhZVUxSU0z
+        SzR3YTBxTDFwRFV3eC9nQnZiUS85Szk2bmlNCmxYUDk0T015dTlXdXprWWlHdUNF
+        RWxTdHdYL3dEQ0I2enRxdVNxaUJYdVEKLS0tIHZXTStvNEpORmxjZmVnejFzMTFH
+        dTNjWFVjeGNMWGFpZ2I3ODBqbm45UHcKkYIcfV/kMEddaZtnjLLGVGDvzSKtnxKz
+        YynnWPZNdEPdweutGxuy916YqmOZtORPs3e6cAtPD6QURvmeQSyVxA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2026-04-01T14:58:47Z"
+  mac: ENC[AES256_GCM,data:C2WFc+zzqV9vaxGb9hBc6BailCWXqYNqh10Fmijrrg8FLmlWMaz0g/uDT4KNCn8yrDoq5uX0NrMc6+bp96j/E3Psv1DzBx6vT5eZAa5G63wawCpf5mOBYyiNGmTMHWJEX8TJQtZBI3xaxoiSjhFiJqtSMjtwxuyoy9EpmRQbhU0=,iv:B1pHjyTH6nAa2wqE7Y4uG6otQl1lVBUnDtNsNthhNlA=,tag:uveOFWjljtRMO15LrqC8bw==,type:str]
+  unencrypted_suffix: _unencrypted
+  mac_only_encrypted: true
+  version: 3.12.2

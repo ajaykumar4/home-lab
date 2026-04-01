@@ -1,28 +1,28 @@
-fullnameOverride: k8s-gateway
-domain: aknuk.dev
-ttl: 1
+fullnameOverride: ENC[AES256_GCM,data:TcCIGN9Qv2d/fCs=,iv:64ZAULnSPhDjbuufkKVLpblujtIhBLDpQcgd8p6e9EE=,tag:jvURhtWEDjAi2hzsoa5+zQ==,type:str]
+domain: ENC[AES256_GCM,data:vppvTkLwYd6E,iv:SlsPWFLmwc+Fq/HLsXe3ff5PCli9HOoq6VwZQOfwdEA=,tag:WcHY8EGC1dN7qkWtRehCug==,type:str]
+ttl: ENC[AES256_GCM,data:6w==,iv:mphGQR5Wb/uo2yzhI0tjMyVOprg6RNLJ1ofJw2ptA8g=,tag:Az100OMmpHGAWe9EXV/EfA==,type:int]
 service:
-  type: LoadBalancer
-  port: 53
+  type: ENC[AES256_GCM,data:jOg3nbaVGhlmz91C,iv:pOFZM3xpEz2HMhZkCBYHa95i5+6zw9Frrd67UUvrhOE=,tag:KKK4rmx/p2ObdPiec7E/MA==,type:str]
+  port: ENC[AES256_GCM,data:j2I=,iv:Riot+q0kQ+7b6+ZBEgzetgUiUf6CcJ/sK34Rb8FJwBs=,tag:uPHtFDESOnaacGKVnR7Dsg==,type:int]
   annotations:
-    io.cilium/lb-ipam-ips: 192.168.8.201
-  externalTrafficPolicy: Cluster
+    io.cilium/lb-ipam-ips: ENC[AES256_GCM,data:ZVnxXLIvtEOmey8HzQ==,iv:YEi1SUkhgMYH/jCjgDGH5JrUF1OTiUK0WMpK1iOYf0w=,tag:yRt3BY2nXXWKewY4xOQHew==,type:str]
+  externalTrafficPolicy: ENC[AES256_GCM,data:+g+O7Oeg1Q==,iv:RlKS+GXSBfV2Fs3i1Pt3jfcMYSJkiTcOLYcFs5w4tpc=,tag:MLTtWsoYt9lPrcUAh8WbqQ==,type:str]
 watchedResources:
-  - HTTPRoute
-  - Service
+  - ENC[AES256_GCM,data:lLQciunLhcki,iv:L7PV+5OxGB4/2NrnD23L8WFrnyusC1OMZoSynY5rxFY=,tag:2ZJ2JhGaqeXdIsaUC0FhLw==,type:str]
+  - ENC[AES256_GCM,data:IT9/qtmqvw==,iv:uktfqshDXTlnfZyF8ViRRr7/zdWkNY3KMkWHFXt3FU4=,tag:TcAr+sN8BxNls+kkc7JDSA==,type:str]
 sops:
   age:
     - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBJL3JxdlBFR3A3Yk8zeEJ0
-        b1lwVERCTzFYWUZxZUZRelRMLzlsY0RKc1FzCjN3Y3F3SEpwcnRpY25MM3RoNWRr
-        Q2dSME5XQkc2V1YxZjRqcWZZNzZucW8KLS0tIG1ZVXByRkJqbHpld0t4Y2M3Ulp1
-        NitGRGVJZFJnclMyNUZMTmZCcmhPT1kK4kA2wklxTG6KLoTiXaJA/Qu5Ig40pxJH
-        x+SDIgFyMMPcN+04ZafhrBAF0k+9OeO5fJ+asBEnwwCGZeDjG16Fsw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB3aHhzbWtQcnk4c1IxV2c1
+        T29VUkxDRVJQYU1CM2YxVWdOT1A5Y1JZSGc4CnpZTkVIYWlIMW5YbU9WNmVVSVRH
+        RUEwYjI2ZHZvU1VNSGpyN0tYajBpRTgKLS0tIGtlVXVwdFRyV0liMTFLU1hHODFU
+        SGsyL2JqSnBNWVo4S01ESzd6OW5ya0EKn7A2A+rI4EW6xBlOMJG3o3R+mKZyhj/Q
+        fs5oKJrzK724NEToZ95dmUaVQ7mX/tJNyFY0Viz/V9KVQIHsZZaotw==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2026-03-19T19:38:31Z"
-  mac: ENC[AES256_GCM,data:PHQTsaWc48febOCy2vR+JfvjpUchYYsim5vbTzHZXitNBmM8ds+dplGYX+abs6TlyQaXhZiK2fbNxdCHmdWlG+7JGRCQzk5/u+Le0sF0kXUwDy1TpmbCCJ5lhQ2vjcFAKDrHOhsFwIWPe5pGU/0z08KlHdlX3Kbd3IT89JzxdgI=,iv:BsQL6upQOLpd0nmHznhkQMgS+BlqFU2jLpbII0hJRF4=,tag:Cm+Fm1EtEm2C/Yu5KgHoJA==,type:str]
-  encrypted_regex: ^(data|stringData)$
+  lastmodified: "2026-04-01T14:58:47Z"
+  mac: ENC[AES256_GCM,data:sTPMqv48t0/dC6hWsVMxSsfq5WJoWAvQO8ZY7g0k+XJN/rqBd0S1JracGXb/KoxkgsLWHRndP7aeyVtW6mqBPnUFILo5wn55kYc9DR976qJHOQYatZBDdBfKid9FiBThwBr/AwBQ+VGOMofNGeLzi+N9QaAaMv5TcvpvnoMf6SM=,iv:DJgHzVa2H4vhONnZW5wItC4gRVXU91sZs5imgyJe8yM=,tag:wql/bLNC+KqwepNXOYoTJw==,type:str]
+  unencrypted_suffix: _unencrypted
   mac_only_encrypted: true
-  version: 3.12.1
+  version: 3.12.2

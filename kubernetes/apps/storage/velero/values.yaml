@@ -1,0 +1,18 @@
+configuration:
+  backupStorageLocation:
+    - name: truenas-minio
+      provider: aws
+      bucket: kubernetes-backups
+      config:
+        region: minio
+        s3ForcePathStyle: true
+        s3Url: https://s3.aknuk.dev
+  volumeSnapshotLocation:
+    - name: default
+      provider: aws
+      config:
+        region: minio
+credentials:
+  useSecret: true
+  name: velero-s3-creds
+deployNodeAgent: true

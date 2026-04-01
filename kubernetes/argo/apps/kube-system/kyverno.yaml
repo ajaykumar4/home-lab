@@ -1,0 +1,32 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kyverno
+  namespace: argo-system
+  annotations:
+    argocd.argoproj.io/sync-wave: '1'
+spec:
+  project: kubernetes
+  sources:
+    - repoURL: "https://github.com/ajaykumar4/home-lab.git"
+      path: kubernetes/apps/kube-system/kyverno
+      targetRevision: main
+      ref: repo
+    - repoURL: https://kyverno.github.io/kyverno/
+      chart: kyverno
+      targetRevision: 3.1.4
+      helm:
+        releaseName: kyverno
+  destination:
+    name: in-cluster
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true

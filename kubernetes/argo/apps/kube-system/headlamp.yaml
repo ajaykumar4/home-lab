@@ -2,24 +2,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: amd-gpu-device-plugin
+  name: headlamp
   namespace: argo-system
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: '2'
 spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-      path: kubernetes/apps/kube-system/amd-gpu-device-plugin
+      path: kubernetes/apps/kube-system/headlamp
       targetRevision: main
       ref: repo
-    - repoURL: https://rocm.github.io/gpu-operator
-      chart: gpu-operator-charts
-      targetRevision: 1.4.1
+    - repoURL: https://kubernetes-sigs.github.io/headlamp/
+      chart: headlamp
+      targetRevision: 0.24.0
       helm:
-        releaseName: amd-gpu-device-plugin
+        releaseName: headlamp
         valueFiles:
-          - $repo/kubernetes/apps/kube-system/amd-gpu-device-plugin/values.yaml
+          - $repo/kubernetes/apps/kube-system/headlamp/values.yaml
+          - $repo/kubernetes/apps/kube-system/headlamp/values.sops.yaml
   destination:
     name: in-cluster
     namespace: kube-system
@@ -28,15 +29,7 @@ spec:
       allowEmpty: true
       prune: true
       selfHeal: true
-    retry:
-      limit: 1
-      backoff:
-        duration: 10s
-        factor: 2
-        maxDuration: 3m
     syncOptions:
       - CreateNamespace=true
       - ApplyOutOfSyncOnly=true
       - ServerSideApply=true
-      - PruneLast=true
-      - RespectIgnoreDifferences=true

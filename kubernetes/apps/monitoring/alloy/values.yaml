@@ -1,0 +1,30 @@
+alloy:
+  configMap:
+    content: |
+      logging {
+        level = "info"
+        format = "logfmt"
+      }
+      
+      loki.source.kubernetes_events "cluster_events" {
+        forward_to = [otelcol.receiver.otlp.default.receiver]
+      }
+      
+      otelcol.receiver.otlp "default" {
+        grpc { }
+        http { }
+        output {
+          metrics = [otelcol.exporter.otlp.default.input]
+          logs    = [otelcol.exporter.otlp.default.input]
+          traces  = [otelcol.exporter.otlp.default.input]
+        }
+      }
+      
+      otelcol.exporter.otlp "default" {
+        client {
+          endpoint = "opentelemetry-collector:4317"
+          tls {
+            insecure = true
+          }
+        }
+      }
