@@ -2,24 +2,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: alloy
+  name: signoz
   namespace: argo-system
   annotations:
-    argocd.argoproj.io/sync-wave: '2'
+    argocd.argoproj.io/sync-wave: '1'
 spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-      path: kubernetes/apps/monitoring/alloy
+      path: kubernetes/apps/monitoring/signoz
       targetRevision: main
       ref: repo
-    - repoURL: https://grafana.github.io/helm-charts
-      chart: alloy
-      targetRevision: 0.3.2
+    - repoURL: https://charts.signoz.io
+      chart: signoz
+      targetRevision: 0.117.1
       helm:
-        releaseName: alloy
+        releaseName: signoz
         valueFiles:
-          - $repo/kubernetes/apps/monitoring/alloy/values.yaml
+          - $repo/kubernetes/apps/monitoring/signoz/values.yaml
+          - $repo/kubernetes/apps/monitoring/signoz/values.sops.yaml
   destination:
     name: in-cluster
     namespace: monitoring

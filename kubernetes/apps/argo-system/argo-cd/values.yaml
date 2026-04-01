@@ -45,7 +45,7 @@ controller:
     applicationLabels:
       enabled: true
     serviceMonitor: &service-monitor
-      enabled: true
+      enabled: false
       additionalLabels:
         release: kube-prometheus-stack
 dex:
@@ -61,16 +61,10 @@ dex:
     enabled: true
     serviceMonitor: *service-monitor
 redis:
-  resources:
-    requests:
-      cpu: 100m
-      memory: 256Mi
-    limits:
-      cpu: 500m
-      memory: 512Mi
-  metrics:
-    enabled: true
-    serviceMonitor: *service-monitor
+  enabled: false
+externalRedis:
+  host: "192.168.8.3"
+  port: 6379
 server:
   replicas: 2
   allowAnyNamespace: true
