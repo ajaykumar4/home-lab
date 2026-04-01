@@ -61,11 +61,15 @@ dex:
     enabled: true
     serviceMonitor: *service-monitor
 redis:
-  enabled: false
-externalRedis:
-  host: "192.168.8.3"
-  port: 6379
-  existingSecretPasswordKey: redis.password
+  enabled: true
+  replicas: 2
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: "1"
+      memory: 1Gi
 server:
   replicas: 2
   allowAnyNamespace: true
