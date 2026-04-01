@@ -1,8 +1,9 @@
-apiVersion: external-secrets.io/v1beta1
+apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
   name: cloudflare-tunnel-dnsendpoint
 spec:
+  refreshInterval: "1h0m0s"
   target:
     name: cloudflare-tunnel-dnsendpoint
     template:
