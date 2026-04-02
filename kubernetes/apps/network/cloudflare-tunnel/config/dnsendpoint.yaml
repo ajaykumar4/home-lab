@@ -16,10 +16,10 @@ spec:
               name: cloudflare-tunnel
             spec:
               endpoints:
-                - dnsName: external.{{ (.cloudflare | fromJson).Domain }}
+                - dnsName: external.{{ (fromJson .cloudflare).Domain }}
                   recordType: CNAME
                   targets:
-                    - {{ (.cloudflare | fromJson).TunnelID }}.cfargotunnel.com
+                    - {{ (fromJson .cloudflare).TunnelID }}.cfargotunnel.com
   secretStoreRef:
     name: passbolt
     kind: ClusterSecretStore
