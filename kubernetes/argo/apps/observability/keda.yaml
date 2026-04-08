@@ -10,10 +10,9 @@ spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-    # Pointing to the correct observability path
-    path: kubernetes/apps/observability/keda
-    targetRevision: main
-    ref: repo
+      path: kubernetes/apps/observability/keda
+      targetRevision: main
+      ref: repo
     - repoURL: https://kedacore.github.io/charts
       chart: keda
       targetRevision: 2.14.2

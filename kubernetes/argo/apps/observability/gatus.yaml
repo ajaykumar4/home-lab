@@ -10,10 +10,9 @@ spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-    # Pointing to the correct observability path
-    path: kubernetes/apps/observability/gatus
-    targetRevision: main
-    ref: repo
+      path: kubernetes/apps/observability/gatus
+      targetRevision: main
+      ref: repo
     - repoURL: https://bjw-s.github.io/helm-charts
       chart: app-template
       targetRevision: 3.2.1

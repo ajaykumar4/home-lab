@@ -10,10 +10,9 @@ spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-    # Pointing to the correct observability path
-    path: kubernetes/apps/observability/kube-prometheus-stack
-    targetRevision: main
-    ref: repo
+      path: kubernetes/apps/observability/kube-prometheus-stack
+      targetRevision: main
+      ref: repo
     - repoURL: https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack
       targetRevision: 60.0.0

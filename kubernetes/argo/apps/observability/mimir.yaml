@@ -10,10 +10,9 @@ spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-    # Pointing to the correct observability path
-    path: kubernetes/apps/observability/mimir
-    targetRevision: main
-    ref: repo
+      path: kubernetes/apps/observability/mimir
+      targetRevision: main
+      ref: repo
     - repoURL: https://grafana.github.io/helm-charts
       chart: mimir-distributed
       targetRevision: 5.4.0
