@@ -2,24 +2,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: opentelemetry
+  name: kube-prometheus-stack
   namespace: argo-system
   annotations:
-    argocd.argoproj.io/sync-wave: '2'
+    argocd.argoproj.io/sync-wave: '3'
 spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-      path: kubernetes/apps/monitoring/opentelemetry
-      targetRevision: main
-      ref: repo
-    - repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
-      chart: opentelemetry-collector
-      targetRevision: 0.147.2
+    # Pointing to the correct observability path
+    path: kubernetes/apps/observability/kube-prometheus-stack
+    targetRevision: main
+    ref: repo
+    - repoURL: https://prometheus-community.github.io/helm-charts
+      chart: kube-prometheus-stack
+      targetRevision: 60.0.0
       helm:
-        releaseName: opentelemetry
+        releaseName: kube-prometheus-stack
         valueFiles:
-          - $repo/kubernetes/apps/monitoring/opentelemetry/values.yaml
+          - $repo/kubernetes/apps/observability/kube-prometheus-stack/values.yaml
   destination:
     name: in-cluster
     namespace: observability

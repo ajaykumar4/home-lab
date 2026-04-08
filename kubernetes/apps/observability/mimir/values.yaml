@@ -1,0 +1,29 @@
+mimir:
+  structuredConfig:
+    blocks_storage:
+      backend: s3
+      s3:
+        endpoint: s3.aknuk.dev
+        bucket_name: mimir-blocks
+        access_key_id: "${AWS_ACCESS_KEY_ID}"
+        secret_access_key: "${AWS_SECRET_ACCESS_KEY}"
+        insecure: false
+    alertmanager_storage:
+      backend: s3
+      s3:
+        endpoint: s3.aknuk.dev
+        bucket_name: mimir-alertmanager
+        access_key_id: "${AWS_ACCESS_KEY_ID}"
+        secret_access_key: "${AWS_SECRET_ACCESS_KEY}"
+        insecure: false
+    ruler_storage:
+      backend: s3
+      s3:
+        endpoint: s3.aknuk.dev
+        bucket_name: mimir-ruler
+        access_key_id: "${AWS_ACCESS_KEY_ID}"
+        secret_access_key: "${AWS_SECRET_ACCESS_KEY}"
+        insecure: false
+  extraEnvFrom:
+    - secretRef:
+        name: mimir-s3-secret

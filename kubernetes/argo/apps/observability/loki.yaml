@@ -2,27 +2,28 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: clickhouse
+  name: loki
   namespace: argo-system
   annotations:
-    argocd.argoproj.io/sync-wave: '0'
+    argocd.argoproj.io/sync-wave: '3'
 spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-      path: kubernetes/apps/database/clickhouse
-      targetRevision: main
-      ref: repo
-    - repoURL: https://charts.bitnami.com/bitnami
-      chart: clickhouse
-      targetRevision: 9.4.4
+    # Pointing to the correct observability path
+    path: kubernetes/apps/observability/loki
+    targetRevision: main
+    ref: repo
+    - repoURL: https://grafana.github.io/helm-charts
+      chart: loki
+      targetRevision: 6.6.2
       helm:
-        releaseName: clickhouse
+        releaseName: loki
         valueFiles:
-          - $repo/kubernetes/apps/database/clickhouse/values.yaml
+          - $repo/kubernetes/apps/observability/loki/values.yaml
   destination:
     name: in-cluster
-    namespace: database
+    namespace: observability
   syncPolicy:
     automated:
       allowEmpty: true

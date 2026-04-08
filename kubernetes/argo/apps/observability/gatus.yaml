@@ -2,24 +2,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: signoz
+  name: gatus
   namespace: argo-system
   annotations:
-    argocd.argoproj.io/sync-wave: '1'
+    argocd.argoproj.io/sync-wave: '3'
 spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-      path: kubernetes/apps/monitoring/signoz
-      targetRevision: main
-      ref: repo
-    - repoURL: https://charts.signoz.io
-      chart: signoz
-      targetRevision: 0.118.0
+    # Pointing to the correct observability path
+    path: kubernetes/apps/observability/gatus
+    targetRevision: main
+    ref: repo
+    - repoURL: https://bjw-s.github.io/helm-charts
+      chart: app-template
+      targetRevision: 3.2.1
       helm:
-        releaseName: signoz
+        releaseName: gatus
         valueFiles:
-          - $repo/kubernetes/apps/monitoring/signoz/values.yaml
+          - $repo/kubernetes/apps/observability/gatus/values.yaml
   destination:
     name: in-cluster
     namespace: observability

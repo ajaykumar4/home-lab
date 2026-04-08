@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: opencost
+  name: alloy
   namespace: argo-system
   annotations:
     argocd.argoproj.io/sync-wave: '3'
@@ -10,16 +10,17 @@ spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-      path: kubernetes/apps/observability/opencost
-      targetRevision: main
-      ref: repo
-    - repoURL: https://opencost.github.io/opencost-helm-chart
-      chart: opencost
-      targetRevision: 2.5.12
+    # Pointing to the correct observability path
+    path: kubernetes/apps/observability/alloy
+    targetRevision: main
+    ref: repo
+    - repoURL: https://grafana.github.io/helm-charts
+      chart: alloy
+      targetRevision: 0.5.0
       helm:
-        releaseName: opencost
+        releaseName: alloy
         valueFiles:
-          - $repo/kubernetes/apps/observability/opencost/values.yaml
+          - $repo/kubernetes/apps/observability/alloy/values.yaml
   destination:
     name: in-cluster
     namespace: observability

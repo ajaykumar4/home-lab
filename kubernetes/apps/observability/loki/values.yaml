@@ -1,0 +1,16 @@
+loki:
+  storage:
+    type: s3
+    bucketNames:
+      chunks: loki-data
+      ruler: loki-data
+      admin: loki-data
+    s3:
+      endpoint: s3.aknuk.dev
+      secretAccessKey: "${AWS_SECRET_ACCESS_KEY}"
+      accessKeyId: "${AWS_ACCESS_KEY_ID}"
+      s3ForcePathStyle: true
+      insecure: false
+  extraEnvFrom:
+    - secretRef:
+        name: loki-s3-secret
