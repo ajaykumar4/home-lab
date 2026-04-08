@@ -1,1 +1,3 @@
-# Default values for keda
+prometheus:
+  metricServer:
+    enabled: false
