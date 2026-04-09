@@ -94,14 +94,6 @@ server:
       - name: envoy-external
         namespace: network
         sectionName: https
-  grpcroute:
-    enabled: true
-    hostnames:
-      - argo.aknuk.dev
-    parentRefs:
-      - name: envoy-external
-        namespace: network
-        sectionName: https
 notifications:
   replicas: 2
   resources:
