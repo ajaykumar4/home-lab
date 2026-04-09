@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: renovate
+  name: renovate-operator
   namespace: argo-system
   annotations:
     argocd.argoproj.io/sync-wave: "3"
@@ -10,19 +10,19 @@ spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-      path: kubernetes/apps/automation/renovate
+      path: kubernetes/apps/renovate/renovate-operator
       targetRevision: main
       ref: repo
-    - repoURL: https://docs.renovatebot.com/helm-charts
-      chart: renovate
-      targetRevision: 46.105.3
+    - repoURL: ghcr.io/mogenius/helm-charts
+      chart: renovate-operator
+      targetRevision: 4.2.2
       helm:
         releaseName: renovate
         valueFiles:
-          - $repo/kubernetes/apps/automation/renovate/values.yaml
+          - $repo/kubernetes/apps/renovate/renovate-operator/values.yaml
   destination:
     name: in-cluster
-    namespace: automation
+    namespace: renovate
   syncPolicy:
     automated:
       allowEmpty: true

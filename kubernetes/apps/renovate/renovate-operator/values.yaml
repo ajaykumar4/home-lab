@@ -1,0 +1,10 @@
+fullnameOverride: renovate-operator
+route:
+  enabled: true
+  hostnames:
+    - renovate.aknuk.dev
+  parentRefs:
+    - name: envoy-internal
+      namespace: network
+webhook:
+  enabled: true
