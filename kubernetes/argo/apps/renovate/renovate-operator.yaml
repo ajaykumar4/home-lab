@@ -17,7 +17,7 @@ spec:
       chart: renovate-operator
       targetRevision: 4.2.2
       helm:
-        releaseName: renovate
+        releaseName: renovate-operator
         valueFiles:
           - $repo/kubernetes/apps/renovate/renovate-operator/values.yaml
   destination:
