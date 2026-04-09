@@ -2,24 +2,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: truenas-iscsi
+  name: truenas-nfs
   namespace: argo-system
   annotations:
     argocd.argoproj.io/sync-wave: "0"
 spec:
   project: kubernetes
   sources:
-    - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-      path: kubernetes/apps/storage/truenas-iscsi
-      targetRevision: main
-      ref: repo
     - repoURL: ghcr.io/democratic-csi/charts
-      chart: democratic-csi
-      targetRevision: 0.15.1
+      chart: snapshot-controller
+      targetRevision: 0.3.0
       helm:
-        releaseName: truenas-iscsi
-        valueFiles:
-          - $repo/kubernetes/apps/storage/truenas-iscsi/values.yaml
+        releaseName: snapshot-controller
   destination:
     name: in-cluster
     namespace: storage

@@ -14,11 +14,6 @@ spec:
       targetRevision: main
       ref: repo
     - repoURL: ghcr.io/democratic-csi/charts
-      chart: snapshot-controller
-      targetRevision: 0.3.0
-      helm:
-        releaseName: snapshot-controller
-    - repoURL: ghcr.io/democratic-csi/charts
       chart: democratic-csi
       targetRevision: 0.15.1
       helm:
