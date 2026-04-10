@@ -1,4 +1,6 @@
 fullnameOverride: "argocd"
+global:
+  domain: argo.aknuk.dev
 crds:
   install: true
   # -- Keep CRDs on chart uninstall
@@ -29,6 +31,24 @@ configs:
           - CiliumIdentity
         clusters:
           - "*"
+    dex.config: |
+      connectors:
+        - config:
+            issuer: https://authentik.aknuk.dev/application/o/argo/
+            clientID: y7EvAMUYoilDLvxPC57P5frIZEYfBd2NF2UZWHOV
+            clientSecret: $dex.authentik.clientSecret
+            insecureEnableGroups: true
+            scopes:
+              - openid
+              - profile
+              - email
+          name: authentik
+          type: oidc
+          id: authentik
+  rbac:
+    policy.csv: |
+      g, ArgoCD Admins, role:admin
+      g, ArgoCD Viewers, role:readonly
 controller:
   replicas: 2
   extraArgs:
