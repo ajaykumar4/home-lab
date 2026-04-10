@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: arc
+  name: home-lab-runner
   namespace: argo-system
   annotations:
     argocd.argoproj.io/sync-wave: "2"
@@ -10,19 +10,19 @@ spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-      path: kubernetes/apps/automation/arc
+      path: kubernetes/apps/actions-runner-controller/runners
       targetRevision: main
       ref: repo
-    - repoURL: https://actions-runner-controller.github.io/actions-runner-controller
-      chart: actions-runner-controller
-      targetRevision: 0.23.7
+    - repoURL: oci://ghcr.io/actions/actions-runner-controller-charts
+      chart: gha-runner-scale-set
+      targetRevision: 0.14.0
       helm:
-        releaseName: arc
+        releaseName: home-lab-runner
         valueFiles:
-          - $repo/kubernetes/apps/automation/arc/values.yaml
+          - $repo/kubernetes/apps/actions-runner-controller/runners/values.yaml
   destination:
     name: in-cluster
-    namespace: automation
+    namespace: actions-runner-controller
   syncPolicy:
     automated:
       allowEmpty: true

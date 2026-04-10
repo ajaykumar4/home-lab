@@ -1,0 +1,38 @@
+githubConfigUrl: https://github.com/ajaykumar4/home-lab
+githubConfigSecret: home-lab-runner-secret
+minRunners: ${minRunners:=1}
+maxRunners: ${maxRunners:=2} #Double total nodes
+containerMode:
+  type: kubernetes
+  kubernetesModeWorkVolumeClaim:
+    accessModes: ["ReadWriteOnce"]
+    storageClassName: local-hostpath
+    resources:
+      requests:
+        storage: 25Gi
+controllerServiceAccount:
+  name: actions-runner-controller
+  namespace: actions-runner-system
+template:
+  spec:
+    containers:
+      - name: runner
+        image: ghcr.io/home-operations/actions-runner:2.333.1@sha256:1a7726bcaeba4e46fe07fe98e1805b4df78618a71e67758f932862b929f852d4
+        command:
+          - /home/runner/run.sh
+        env:
+          - name: ACTIONS_RUNNER_REQUIRE_JOB_CONTAINER
+            value: "false"
+          - name: NODE
+            valueFrom:
+              fieldRef:
+                fieldPath: status.hostIP
+        volumeMounts:
+          - mountPath: /var/run/secrets/talos.dev
+            name: talos
+            readOnly: true
+    serviceAccountName: home-lab-runner
+    volumes:
+      - name: talos
+        secret:
+          secretName: home-lab-runner

@@ -60,6 +60,7 @@ function apply_sops_secrets() {
     local -r secrets=(
         "${ROOT_DIR}/kubernetes/components/common/helm-secrets-private-keys.sops.yaml"
         "${ROOT_DIR}/kubernetes/components/common/passbolt-secrets.sops.yaml"
+        "${ROOT_DIR}/kubernetes/components/common/bitwarden-secrets.sops.yaml"
     )
 
     for secret in "${secrets[@]}"; do
