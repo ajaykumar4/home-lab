@@ -16,4 +16,10 @@ subjects:
   - kind: ServiceAccount
     name: home-lab-runner
     namespace: actions-runner-system
-
+---
+apiVersion: talos.dev/v1alpha1
+kind: ServiceAccount
+metadata:
+  name: home-lab-runner
+spec:
+  roles: ["os:admin"]
