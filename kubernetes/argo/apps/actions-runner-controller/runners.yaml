@@ -13,7 +13,7 @@ spec:
       path: kubernetes/apps/actions-runner-controller/runners
       targetRevision: main
       ref: repo
-    - repoURL: oci://ghcr.io/actions/actions-runner-controller-charts
+    - repoURL: ghcr.io/actions/actions-runner-controller-charts
       chart: gha-runner-scale-set
       targetRevision: 0.14.0
       helm:
