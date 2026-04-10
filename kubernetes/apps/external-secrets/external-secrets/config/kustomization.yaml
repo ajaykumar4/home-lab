@@ -5,3 +5,6 @@ resources:
   - ./clustersecretstore.yaml
   - ./issuer.yaml
   - ./certificate.yaml
+
+generators:
+- ./secret-generator.yaml
