@@ -45,10 +45,6 @@ configs:
           name: authentik
           type: oidc
           id: authentik
-  rbac:
-    policy.csv: |
-      g, ArgoCD Admins, role:admin
-      g, ArgoCD Viewers, role:readonly
 controller:
   replicas: 2
   extraArgs:
