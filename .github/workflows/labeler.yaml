@@ -9,7 +9,7 @@ on:
 jobs:
   labeler:
     name: Labeler
-    runs-on: ubuntu-latest
+    runs-on: home-lab-runner
     permissions:
       contents: write
       pull-requests: write
