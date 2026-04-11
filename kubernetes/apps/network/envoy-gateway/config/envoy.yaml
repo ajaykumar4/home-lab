@@ -81,7 +81,7 @@ spec:
   infrastructure:
     annotations:
       external-dns.alpha.kubernetes.io/hostname: internal.aknuk.dev
-      lbipam.cilium.io/ips: 192.168.8.202
+      lbipam.cilium.io/ips: 192.168.8.201
   listeners:
     - name: http
       protocol: HTTP
