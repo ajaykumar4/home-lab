@@ -50,8 +50,8 @@ configs:
     policy.default: "role:readonly"
     scopes: "[groups]"
     policy.csv: |
-      g, ArgoCD Admins, role:admin
-      g, ArgoCD Viewers, role:readonly
+      g, "ArgoCD Admins", role:admin
+      g, "ArgoCD Viewers", role:readonly
 controller:
   replicas: 2
   extraArgs:
