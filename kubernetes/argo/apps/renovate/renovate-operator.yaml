@@ -20,7 +20,6 @@ spec:
         releaseName: renovate-operator
         valueFiles:
           - $repo/kubernetes/apps/renovate/renovate-operator/values.yaml
-          - $repo/kubernetes/apps/renovate/renovate-operator/values.sops.yaml
   destination:
     name: in-cluster
     namespace: renovate

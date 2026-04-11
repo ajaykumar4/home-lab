@@ -4,15 +4,9 @@ route:
   hostnames:
     - renovate.aknuk.dev
   parentRefs:
-    - name: envoy-external
+    - name: envoy-internal
       namespace: network
       sectionName: https
 webhook:
   enabled: true
-  hostnames:
-    - renovate-webhook.aknuk.dev
-  parentRefs:
-    - name: envoy-external
-      namespace: network
-      sectionName: https
 
