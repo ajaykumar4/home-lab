@@ -42,10 +42,13 @@ configs:
               - openid
               - profile
               - email
+              - groups
           name: authentik
           type: oidc
           id: authentik
   rbac:
+    policy.default: "role:readonly"
+    scopes: "[groups]"
     policy.csv: |
       g, ArgoCD Admins, role:admin
       g, ArgoCD Viewers, role:readonly
