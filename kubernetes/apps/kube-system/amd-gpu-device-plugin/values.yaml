@@ -8,4 +8,4 @@ crds:
 deviceConfig:
   spec:
     devicePlugin:
-      devicePluginImage: rocm/k8s-device-plugin:5.7.1
+      devicePluginImage: rocm/k8s-device-plugin:latest
