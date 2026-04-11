@@ -1,0 +1,34 @@
+auth:
+    # Enable OIDC for Authentik
+    oidc:
+        enabled: true
+        # Replace with your Authentik slug/URL
+        issuerUrl: https://authentik.aknuk.dev/application/o/renovate/
+        clientId: iSM1si5Gr3POSUnpa8ummPhPIdzejnhOsCV7jpOa
+        # Reference a secret you've created manually in the namespace
+        existingSecret: renovate-oidc-secret
+        secretKey: client-secret
+        # Ensure this matches your Authentik redirect URI
+        redirectUrl: https://renovate.aknuk.dev/auth/callback
+        # Authentik usually needs 'groups' scope for RBAC mapping
+        additionalScopes:
+            - groups
+            - email
+            - openid
+            - profile
+sops:
+    age:
+        - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSByQ3NqNzZ0eUhibEFJSHNk
+            RU5uTzUrV3RPQ3JNMk5SdDNodGs4MzBMUEVRCjhBMUhpOS9XeDl6WlpOd2tkNFg2
+            emtwRm1TRHR0bW9EelZvaWFiaGJuazgKLS0tIHBicDRYWEQ4Z2tPUGN4QUZzeHBS
+            SWxJRWtyakVrYy8zRkZEN2N5TEhZZ1EK2vg5i+MxDfAUZxwQAd2h/eGd1xOl37LQ
+            FDB/CxiNHOw443w0SpM2ZiUeHvgVkHVeiqDQYnNZ6x7twLiMCp68zA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-04-11T14:03:15Z"
+    mac: ENC[AES256_GCM,data:iUe/neylcwvZY7KFXRkfXxh5z34vT1Y4Ko14eljHp7grRDCmoZHVGYFUgxuxijmL4lIz/8zVpXUovN0aBMzy+xP03NX2A0fACvpIvp65MicyXu50S1LPnKtHSJ9StX+u5ZpBW041AUHqg3+SLfmSLIL96hhc9CQQQFB4ZZZmFlw=,iv:xoCpOw4Y2FkmEA18AbGfw1V1/OCMeQnXbNzQBth+XFA=,tag:DDEfrXO9DH50bB51zVSuzg==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    mac_only_encrypted: true
+    version: 3.12.2
