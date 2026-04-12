@@ -7,7 +7,7 @@ metadata:
 data:
   truenasURL: "wss://192.168.8.3/api/current"
   truenasInsecure: "true"  # Set to "true" for self-signed certificates, "false" or remove for valid certs
-  defaultPool: "tank"
+  defaultPool: "nas"
   nfsServer: "192.168.8.3"
   iscsiPortal: "192.168.8.3:3260"
   iscsiIQNBase: "iqn.2005-10.org.freenas.ctl" #"iqn.2000-01.io.truenas"
