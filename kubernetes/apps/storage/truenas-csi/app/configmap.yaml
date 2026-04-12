@@ -6,7 +6,7 @@ metadata:
   name: truenas-csi-config
 data:
   truenasURL: "wss://192.168.8.3/api/current"
-  truenasInsecure: true  # Set to "true" for self-signed certificates, "false" or remove for valid certs
+  truenasInsecure: "true"  # Set to "true" for self-signed certificates, "false" or remove for valid certs
   defaultPool: "nas"
   nfsServer: "192.168.8.3"
   iscsiPortal: "192.168.8.3:3260"
