@@ -1,4 +1,18 @@
 ---
+# ServiceAccount for the CSI driver
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: truenas-csi-controller-sa
+
+---
+# ServiceAccount for node plugin
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: truenas-csi-node-sa
+  
+---
 # ClusterRole for CSI controller
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
