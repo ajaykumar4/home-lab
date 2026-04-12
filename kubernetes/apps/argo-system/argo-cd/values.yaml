@@ -35,7 +35,7 @@ configs:
       connectors:
         - config:
             issuer: https://authentik.aknuk.dev/application/o/argo/
-            clientID: y7EvAMUYoilDLvxPC57P5frIZEYfBd2NF2UZWHOV
+            clientID: YdqRB7ntb9TFLmZYW9nOMLU2UxtxHSOnbycFDllS
             clientSecret: $dex.authentik.clientSecret
             insecureEnableGroups: true
             scopes:
