@@ -4,6 +4,28 @@ configs:
         githubSecret: 7c5b4c326e8d691b13f15f37198a4cc8
         extra:
             dex.authentik.clientSecret: Y3H3aE74v9EUMX9iG5H6KTPs2Qz62kK00tgGlt26c7dyIfVUkTjBKBQ7ZiNzz3mxblePptdbhKhYFLhga3UD5UDNG4LT9TT0hApaiUS5bstUFGCJReZxdSzu4RuGJLCq
+    cm:
+        dex.config: |
+            connectors:
+              - config:
+                  issuer: https://authentik.aknuk.dev/application/o/argo/
+                  clientID: YdqRB7ntb9TFLmZYW9nOMLU2UxtxHSOnbycFDllS
+                  clientSecret: $dex.authentik.clientSecret
+                  insecureEnableGroups: true
+                  scopes:
+                    - openid
+                    - profile
+                    - email
+                    - groups
+                name: authentik
+                type: oidc
+                id: authentik
+    rbac:
+        policy.default: role:readonly
+        scopes: '[groups]'
+        policy.csv: |
+            g, "ArgoCD Admins", role:admin
+            g, "ArgoCD Viewers", role:readonly
 sops:
     age:
         - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
@@ -15,8 +37,8 @@ sops:
             SWxJRWtyakVrYy8zRkZEN2N5TEhZZ1EK2vg5i+MxDfAUZxwQAd2h/eGd1xOl37LQ
             FDB/CxiNHOw443w0SpM2ZiUeHvgVkHVeiqDQYnNZ6x7twLiMCp68zA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-04-12T08:44:39Z"
-    mac: ENC[AES256_GCM,data:3BsuM/esVLRhePQunB7MzpvQRsdDuKt4Uc15rKKgP5u8xRNSC3O4fnWRThFdBSsZhKTR7pMTn12YoYkgToKyjeBRaFynM7o126L0SdAdF+D47monmbDHUBNLJSD4uvGWj4/oHN6EW6IR53yZxIYdaCtAG+NBGkXMdZpd+mNEWKI=,iv:cSwju4rEK/2AG7wsw9lWSKEAxEz6lS8K3Gynsp0TKj8=,tag:cluj8GM7aKFrSkWsyHsIBg==,type:str]
+    lastmodified: "2026-04-12T19:45:25Z"
+    mac: ENC[AES256_GCM,data:UHzY9jP9RnpK593LDm9xTRclqebstX5P8S+nSAEWEBdTA9M/vrbCpl1cLVdrXHozyI6tdWmbDmg3U//tNTGC4/NrzzdEcV7qlfGQoGJa+T9HOvHdWCKHe5T89hsEECIycTtphK9ihSB0sfKFCnGJbgLzX1HdHtYvB9dYUO+YrGE=,iv:lKSGQJrB9qZgYbq9z4wY5itCymoh0TFITqyvnXAd5EI=,tag:1sB6mtbIVGd8Uza7Edn/yQ==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.2
