@@ -7,3 +7,4 @@ resources:
   - ./daemonset.yaml
   - ./secret.yaml
   - ./configmap.yaml
+  - ./csidriver.yaml
