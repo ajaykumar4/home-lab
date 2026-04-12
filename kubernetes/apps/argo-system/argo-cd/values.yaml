@@ -15,7 +15,6 @@ configs:
     reposerver.parallelism.limit: 8
     reposerver.git.request.timeout: 30s
   cm:
-    admin.enabled: false
     statusbadge.enabled: true
     timeout.reconciliation: 10m
     timeout.reconciliation.jitter: 2m
