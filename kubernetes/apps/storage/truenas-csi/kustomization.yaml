@@ -4,5 +4,3 @@ kind: Kustomization
 resources:
   - ./app
 
-commonLabels:
-  pod-security.kubernetes.io/enforce: privileged
