@@ -18,8 +18,6 @@ spec:
       targetRevision: 0.35.1
       helm:
         releaseName: descheduler
-        valueFiles:
-          - $repo/kubernetes/apps/kube-system/descheduler/values.yaml
   destination:
     name: in-cluster
     namespace: kube-system
