@@ -1,3 +1,4 @@
+installCRDs: true
 kind: Deployment
 deschedulerPolicyAPIVersion: "descheduler/v1alpha2"
 deschedulerPolicy:

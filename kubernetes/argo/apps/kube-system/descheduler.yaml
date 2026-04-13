@@ -17,7 +17,6 @@ spec:
       chart: descheduler
       targetRevision: 0.35.1
       helm:
-        skipCrds: false
         releaseName: descheduler
         valueFiles:
           - $repo/kubernetes/apps/kube-system/descheduler/values.yaml
