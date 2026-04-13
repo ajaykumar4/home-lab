@@ -76,7 +76,6 @@ configMaps:
         ingress:
           - hostname: "*.aknuk.dev"
             originRequest:
-              noTLSVerify: true
               http2Origin: true
               originServerName: "external.aknuk.dev"
             service: https://envoy-external.network.svc.cluster.local:443
