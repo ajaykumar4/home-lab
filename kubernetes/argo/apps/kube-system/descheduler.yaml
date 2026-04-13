@@ -9,16 +9,12 @@ metadata:
 spec:
   project: kubernetes
   sources:
-    - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-      path: kubernetes/apps/kube-system/descheduler
-      targetRevision: main
-      ref: repo
     - repoURL: https://kubernetes-sigs.github.io/descheduler
       chart: descheduler
       targetRevision: 0.35.1
       helm:
         releaseName: descheduler
-        values:
+        values: |
           kind: Deployment
           deschedulerPolicyAPIVersion: "descheduler/v1alpha2"
           deschedulerPolicy:
