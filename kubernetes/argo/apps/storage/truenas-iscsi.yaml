@@ -1,0 +1,71 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: truenas-iscsi
+  namespace: argo-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  project: kubernetes
+  sources:
+    - repoURL: "https://github.com/ajaykumar4/home-lab.git"
+      path: kubernetes/apps/storage/longhorn
+      targetRevision: main
+      ref: repo
+    - repoURL: ghcr.io/democratic-csi/
+      chart: democratic-csi
+      targetRevision: 1.9.5
+      helm:
+        releaseName: truenas-iscsi
+        valueFiles:
+          - $repo/kubernetes/apps/storage/truenas-iscsi/values.yaml
+  destination:
+    name: in-cluster
+    namespace: storage
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 1
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 3m
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true
+      - PruneLast=true
+      - RespectIgnoreDifferences=true
+  ignoreDifferences:
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      name: engineimages.longhorn.io
+      jsonPointers: ["/spec/preserveUnknownFields"]
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      name: engines.longhorn.io
+      jsonPointers: ["/spec/preserveUnknownFields"]
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      name: instancemanagers.longhorn.io
+      jsonPointers: ["/spec/preserveUnknownFields"]
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      name: nodes.longhorn.io
+      jsonPointers: ["/spec/preserveUnknownFields"]
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      name: replicas.longhorn.io
+      jsonPointers: ["/spec/preserveUnknownFields"]
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      name: settings.longhorn.io
+      jsonPointers: ["/spec/preserveUnknownFields"]
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      name: volumes.longhorn.io
+      jsonPointers: ["/spec/preserveUnknownFields"]
