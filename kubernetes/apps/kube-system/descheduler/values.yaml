@@ -1,5 +1,4 @@
 kind: Deployment
-apiVersion: descheduler/v1alpha2
 deschedulerPolicy:
   metricsProviders:
     - source: KubernetesMetrics
