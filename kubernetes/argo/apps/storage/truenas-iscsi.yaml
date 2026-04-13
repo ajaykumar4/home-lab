@@ -13,7 +13,7 @@ spec:
       path: kubernetes/apps/storage/longhorn
       targetRevision: main
       ref: repo
-    - repoURL: ghcr.io/democratic-csi/
+    - repoURL: ghcr.io/democratic-csi
       chart: democratic-csi
       targetRevision: 1.9.5
       helm:
