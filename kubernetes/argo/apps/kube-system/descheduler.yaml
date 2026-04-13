@@ -13,7 +13,7 @@ spec:
       path: kubernetes/apps/kube-system/descheduler
       targetRevision: main
       ref: repo
-    - repoURL: ghcr.io/home-operations/charts-mirror
+    - repoURL: https://kubernetes-sigs.github.io/descheduler
       chart: descheduler
       targetRevision: 0.35.1
       helm:
