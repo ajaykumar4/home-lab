@@ -15,7 +15,7 @@ spec:
       ref: repo
     - repoURL: https://democratic-csi.github.io/charts
       chart: democratic-csi
-      targetRevision: 1.9.5
+      targetRevision: v1.9.5
       helm:
         releaseName: truenas-iscsi
         valueFiles:
