@@ -6,7 +6,7 @@ containerMode:
   type: kubernetes
   kubernetesModeWorkVolumeClaim:
     accessModes: ["ReadWriteOnce"]
-    storageClassName: local-hostpath
+    storageClassName: longhorn
     resources:
       requests:
         storage: 25Gi

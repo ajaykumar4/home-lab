@@ -16,3 +16,12 @@ credentials:
   useSecret: true
   name: velero-s3-creds
 deployNodeAgent: true
+
+schedules:
+  cluster-backup:
+    disabled: false
+    schedule: "0 */6 * * *"
+    template:
+      ttl: "168h"
+      includedNamespaces:
+        - '*'

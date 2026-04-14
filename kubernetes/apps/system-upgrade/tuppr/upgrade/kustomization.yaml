@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
   - ./kubernetes.yaml
   - ./talos.yaml
+  - ./pre-upgrade-backup-hook.yaml
 
