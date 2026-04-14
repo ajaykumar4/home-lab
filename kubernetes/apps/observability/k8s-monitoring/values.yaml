@@ -3,15 +3,15 @@ cluster:
   name: home-lab
 
 destinations:
-  - name: mimir
+  mimir:
     type: prometheus
     url: http://mimir-gateway.observability.svc.cluster.local/api/v1/push
     auth:
       type: basic
-  - name: loki
+  loki:
     type: loki
     url: http://loki-gateway.observability.svc.cluster.local/loki/api/v1/push
-  - name: tempo
+  tempo:
     type: otlp
     url: http://tempo-gateway.observability.svc.cluster.local:4318
 
