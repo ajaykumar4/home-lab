@@ -4,3 +4,13 @@ grafana:
     enabled: true
     storageClassName: "longhorn"
     size: 5Gi
+  additionalDataSources:
+    - name: Mimir
+      type: prometheus
+      url: http://mimir-gateway.observability.svc.cluster.local/prometheus
+      access: proxy
+      isDefault: true
+    - name: Loki
+      type: loki
+      url: http://loki-gateway.observability.svc.cluster.local
+      access: proxy
