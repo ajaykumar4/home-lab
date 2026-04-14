@@ -8,6 +8,7 @@ mimir:
         access_key_id: "${AWS_ACCESS_KEY_ID}"
         secret_access_key: "${AWS_SECRET_ACCESS_KEY}"
         insecure: false
+        s3_force_path_style: true
     alertmanager_storage:
       backend: s3
       s3:
@@ -16,6 +17,7 @@ mimir:
         access_key_id: "${AWS_ACCESS_KEY_ID}"
         secret_access_key: "${AWS_SECRET_ACCESS_KEY}"
         insecure: false
+        s3_force_path_style: true
     ruler_storage:
       backend: s3
       s3:
@@ -24,6 +26,7 @@ mimir:
         access_key_id: "${AWS_ACCESS_KEY_ID}"
         secret_access_key: "${AWS_SECRET_ACCESS_KEY}"
         insecure: false
+        s3_force_path_style: true
   extraEnvFrom:
     - secretRef:
         name: mimir-s3-secret
