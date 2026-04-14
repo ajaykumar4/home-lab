@@ -7,8 +7,11 @@ loki:
       admin: loki-data
     s3:
       endpoint: s3.aknuk.dev
+      insecure: false
       s3ForcePathStyle: true
-      existingSecret: loki-s3-secret
+  extraEnvFrom:
+    - secretRef:
+        name: loki-s3-secret
   schemaConfig:
     configs:
       - from: "2024-04-01"
