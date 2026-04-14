@@ -27,4 +27,4 @@ run = [
 "aqua:mikefarah/yq" = "4.52.5"
 "aqua:siderolabs/talos" = "1.12.6"
 "aqua:yannh/kubeconform" = "0.7.0"
-"aqua:viaduct-ai/kustomize-sops" = "4.4.0"
+"aqua:viaduct-ai/kustomize-sops" = "4.5.1"
