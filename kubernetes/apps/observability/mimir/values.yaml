@@ -4,16 +4,19 @@ mimir:
       backend: s3
       s3:
         endpoint: s3.aknuk.dev
+        bucket_lookup_type: path
         bucket_name: mimir-blocks
     alertmanager_storage:
       backend: s3
       s3:
         endpoint: s3.aknuk.dev
+        bucket_lookup_type: path
         bucket_name: mimir-alertmanager
     ruler_storage:
       backend: s3
       s3:
         endpoint: s3.aknuk.dev
+        bucket_lookup_type: path
         bucket_name: mimir-ruler
   extraEnvFrom:
     - secretRef:

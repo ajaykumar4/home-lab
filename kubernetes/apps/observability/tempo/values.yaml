@@ -5,6 +5,7 @@ tempo:
       s3:
         bucket: tempo-data
         endpoint: s3.aknuk.dev
+        forcepathstyle: true
   extraEnvFrom:
     - secretRef:
         name: tempo-s3-secret
