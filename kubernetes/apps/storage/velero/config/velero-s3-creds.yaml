@@ -2,8 +2,12 @@ apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
   name: velero-s3-creds
+  namespace: storage
 spec:
-  refreshInterval: "1h0m0s"
+  refreshInterval: 1h
+  secretStoreRef:
+    name: bitwarden
+    kind: ClusterSecretStore
   target:
     name: velero-s3-creds
     template:
@@ -11,17 +15,8 @@ spec:
       data:
         cloud: |
           [default]
-          aws_access_key_id={{ .username }}
-          aws_secret_access_key={{ .password }}
-  secretStoreRef:
-    name: passbolt
-    kind: ClusterSecretStore
-  data:
-    - secretKey: username
-      remoteRef:
-        key: 831a7e64-674e-429c-b912-8fe24a7bb44c
-        property: username
-    - secretKey: password
-      remoteRef:
-        key: 831a7e64-674e-429c-b912-8fe24a7bb44c
-        property: password
+          aws_access_key_id={{ .aws_access_key_id }}
+          aws_secret_access_key={{ .aws_secret_access_key }}
+  dataFrom:
+    - extract:
+        key: bc7ddb89-0509-4464-aa2c-b42801206116
