@@ -5,10 +5,6 @@ tempo:
       s3:
         bucket: tempo-data
         endpoint: s3.aknuk.dev
-        access_key: "${AWS_ACCESS_KEY_ID}"
-        secret_key: "${AWS_SECRET_ACCESS_KEY}"
-        forcepathstyle: true
-        insecure: false
   extraEnvFrom:
     - secretRef:
         name: tempo-s3-secret
