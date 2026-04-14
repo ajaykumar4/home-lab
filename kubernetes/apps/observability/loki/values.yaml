@@ -8,9 +8,7 @@ loki:
     s3:
       endpoint: s3.aknuk.dev
       s3ForcePathStyle: true
-  extraEnvFrom:
-    - secretRef:
-        name: loki-s3-secret
+      existingSecret: loki-s3-secret
   schemaConfig:
     configs:
       - from: "2024-04-01"

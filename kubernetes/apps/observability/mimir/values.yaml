@@ -18,6 +18,14 @@ mimir:
         endpoint: s3.aknuk.dev
         bucket_lookup_type: path
         bucket_name: mimir-ruler
-  extraEnvFrom:
-    - secretRef:
-        name: mimir-s3-secret
+  extraEnv:
+    - name: AWS_ACCESS_KEY_ID
+      valueFrom:
+        secretKeyRef:
+          name: mimir-s3-secret
+          key: access_key
+    - name: AWS_SECRET_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: mimir-s3-secret
+          key: secret_key
