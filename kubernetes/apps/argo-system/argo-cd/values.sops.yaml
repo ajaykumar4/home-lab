@@ -1,9 +1,20 @@
 fullnameOverride: argocd
 configs:
     secret:
-        argocdServerAdminPassword: $2a$10$0qzj8cjWcMZHpshxeqiF6uILeiqaAe49WUl/9va2uhprj99dza38e
-        argocdServerAdminPasswordMtime: 2026-03-19T19:38:31
         githubSecret: 7c5b4c326e8d691b13f15f37198a4cc8
+        extra:
+            oidc.pocketid.clientSecret: QYtR91rI4BxYO08n5vqAEtzv6Ty4jqQY
+    cm:
+        oidc.config: |
+            name: Pocket ID
+            issuer: https://pocket-id.aknuk.dev
+            clientID: argo
+            clientSecret: $oidc.pocketid.clientSecret
+            requestedScopes: ["openid", "profile", "email", "groups"]
+    rbac:
+        policy.default: role:readonly
+        policy.csv: |
+            g, argocd-admins, role:admin
 sops:
     age:
         - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
@@ -15,8 +26,8 @@ sops:
             SWxJRWtyakVrYy8zRkZEN2N5TEhZZ1EK2vg5i+MxDfAUZxwQAd2h/eGd1xOl37LQ
             FDB/CxiNHOw443w0SpM2ZiUeHvgVkHVeiqDQYnNZ6x7twLiMCp68zA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-04-15T14:05:42Z"
-    mac: ENC[AES256_GCM,data:FpIFPjy9b+PnY/EpI8HkfNFplYwlF9zjFIP6A5uH0wyQnj4qh2MDqytU1UxP8ZMnL/IXhameWj8tOymgoEQXkLdcYrC3+hk1BgAh3wEmIcuc4AgS8In8k+mnZU4vgjWVziyNBcK2GTedZ69vOmMd7GOT/uRVACzZvmSqbNGIIZM=,iv:NOayxa09n6/Ge2ml26PFEEud4DgIWMPkfUR9XVnjMqM=,tag:W5l2m5OY+bU2krbBFAy5TQ==,type:str]
+    lastmodified: "2026-04-15T18:17:50Z"
+    mac: ENC[AES256_GCM,data:nTRsb68axLJAYh5JFfBHvjangYojpDyWLs3oxu8QxPa7GVlkab2N8wtRDGWGeW5VeT7E7nMrwr2TDC6FTG5sgdvmNHhdBLi8A5qTjlfmWTys1izz2azN6UXvEJNKa8+mdlPiFPS2G4WfvsXb3hfLUuDbhOuoxHEAGr3BeSJkkhw=,iv:v8upSTEJ0WzpMkv1qBlUhdkcvfQlaenNclxkB5DYXdo=,tag:nhp1CjWiQMl/ZwYjMPPr8A==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.2
