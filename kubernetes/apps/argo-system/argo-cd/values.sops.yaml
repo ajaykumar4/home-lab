@@ -14,7 +14,7 @@ configs:
     rbac:
         policy.default: role:readonly
         policy.csv: |
-            g, argocd-admins, role:admin
+            g, admin, role:admin
 sops:
     age:
         - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
@@ -26,8 +26,8 @@ sops:
             SWxJRWtyakVrYy8zRkZEN2N5TEhZZ1EK2vg5i+MxDfAUZxwQAd2h/eGd1xOl37LQ
             FDB/CxiNHOw443w0SpM2ZiUeHvgVkHVeiqDQYnNZ6x7twLiMCp68zA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-04-15T18:17:50Z"
-    mac: ENC[AES256_GCM,data:nTRsb68axLJAYh5JFfBHvjangYojpDyWLs3oxu8QxPa7GVlkab2N8wtRDGWGeW5VeT7E7nMrwr2TDC6FTG5sgdvmNHhdBLi8A5qTjlfmWTys1izz2azN6UXvEJNKa8+mdlPiFPS2G4WfvsXb3hfLUuDbhOuoxHEAGr3BeSJkkhw=,iv:v8upSTEJ0WzpMkv1qBlUhdkcvfQlaenNclxkB5DYXdo=,tag:nhp1CjWiQMl/ZwYjMPPr8A==,type:str]
+    lastmodified: "2026-04-15T21:42:30Z"
+    mac: ENC[AES256_GCM,data:FrnKRSMCcrq5FG5DKTS7pbf9YrgEONiklghhP7rV1oy0/HMt8VEmIkOmsCcUcIfOer9k2OSFfJmEEuJLrdG3h/ia3VjHd99Aq7cHsTc7DA0q/gQaA2YCEi71yR5UVT+CuAWmaVJM9UeD2bW/0770/EGNWl2Y86oWgeFdYOMsCbE=,iv:DR/rapZwxOFKKzmrGzPKB/sgqqb+zXCwm2F9VnogAiA=,tag:TgIV4cdmceGmjK9nZjftYw==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.2
