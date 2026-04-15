@@ -5,7 +5,7 @@ tempo:
       s3:
         bucket: tempo-data
         endpoint: s3.aknuk.dev
-        insecure: false
+        insecure: true
         forcepathstyle: true
   extraEnv:
     - name: AWS_ACCESS_KEY_ID
