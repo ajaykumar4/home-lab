@@ -1,4 +1,6 @@
 loki:
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
   storage:
     type: s3
     bucketNames:

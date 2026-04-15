@@ -109,6 +109,8 @@ notifications:
     enabled: true
     serviceMonitor: *service-monitor
 repoServer:
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
   replicas: 2
   serviceAccount:
     create: true

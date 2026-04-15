@@ -1,4 +1,6 @@
 tempo:
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
   storage:
     trace:
       backend: s3

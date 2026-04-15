@@ -1,3 +1,5 @@
+podAnnotations:
+  reloader.stakater.com/auto: "true"
 githubConfigUrl: https://github.com/ajaykumar4/home-lab
 githubConfigSecret: home-lab-runner-secret
 minRunners: ${minRunners:=1}

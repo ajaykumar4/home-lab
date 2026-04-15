@@ -1,4 +1,6 @@
 mimir:
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
   structuredConfig:
     blocks_storage:
       backend: s3

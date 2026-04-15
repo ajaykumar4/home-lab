@@ -1,4 +1,6 @@
 grafana:
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
   envFromSecret: grafana-postgres-secret
   persistence:
     enabled: true
