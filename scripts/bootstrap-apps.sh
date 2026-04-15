@@ -165,8 +165,7 @@ function main() {
     wait_for_nodes
     apply_namespaces
     apply_sops_secrets
-    apply_crds
-    sync_helm_releases
+
     sync_argo_apps
 
     log info "Congrats! The cluster is bootstrapped and Argo is syncing the Git repository"
