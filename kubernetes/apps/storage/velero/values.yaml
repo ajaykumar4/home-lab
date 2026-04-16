@@ -1,29 +1,41 @@
 podAnnotations:
   reloader.stakater.com/auto: "true"
+initContainers:
+  - name: velero-plugin-for-aws
+    image: velero/velero-plugin-for-aws:v1.13.1
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+      - mountPath: /target
+        name: plugins
 configuration:
   backupStorageLocation:
-    - name: truenas-minio
+    - name: default
       provider: aws
       bucket: kubernetes-backups
+      default: true
+      prefix: home-lab
       config:
         region: minio
         s3ForcePathStyle: true
         s3Url: https://s3.aknuk.dev
-  volumeSnapshotLocation:
-    - name: default
-      provider: aws
-      config:
-        region: minio
+  uploaderType: kopia
+  defaultBackupTTL: 720h
+  defaultVolumesToFsBackup: true
 credentials:
   useSecret: true
   name: velero-s3-creds
+backupsEnabled: true
+snapshotsEnabled: false
 deployNodeAgent: true
+metrics:
+  serviceMonitor:
+    enabled: true
 
 schedules:
   cluster-backup:
     disabled: false
-    schedule: "0 */6 * * *"
+    schedule: "0 2 * * *"
     template:
-      ttl: "168h"
+      ttl: "720h"
       includedNamespaces:
         - '*'

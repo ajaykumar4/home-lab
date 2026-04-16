@@ -1,18 +1,34 @@
 grafana:
   podAnnotations:
     reloader.stakater.com/auto: "true"
-  envFromSecret: grafana-postgres-secret
   persistence:
     enabled: true
     storageClassName: "longhorn"
     size: 5Gi
   additionalDataSources:
     - name: Mimir
+      uid: mimir
       type: prometheus
       url: http://mimir-gateway.observability.svc.cluster.local/prometheus
       access: proxy
       isDefault: true
     - name: Loki
+      uid: loki
       type: loki
       url: http://loki-gateway.observability.svc.cluster.local
       access: proxy
+    - name: Tempo
+      uid: tempo
+      type: tempo
+      url: http://tempo-gateway.observability.svc.cluster.local
+      access: proxy
+      jsonData:
+        tracesToLogsV2:
+          datasourceUid: loki
+          spanStartTimeShift: "-5m"
+          spanEndTimeShift: "5m"
+          filterByTraceID: true
+        tracesToMetrics:
+          datasourceUid: mimir
+        serviceMap:
+          datasourceUid: mimir

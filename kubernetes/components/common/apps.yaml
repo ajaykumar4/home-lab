@@ -1,47 +1,34 @@
 ---
 apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
+kind: Application
 metadata:
   name: apps
   namespace: argo-system
   annotations:
     argocd.argoproj.io/sync-wave: '0'
 spec:
-  generators:
-  - git:
-      repoURL: "https://github.com/ajaykumar4/home-lab.git"
-      revision: main
-      directories:
-      - path: kubernetes/argo/apps/*
-  template:
-    metadata:
-      name: '{{path.basename}}'
-      namespace: argo-system
-      annotations:
-        argocd.argoproj.io/sync-wave: '0'
-    spec:
-      project: kubernetes
-      source:
-        repoURL: "https://github.com/ajaykumar4/home-lab.git"
-        targetRevision: main
-        path: '{{path}}'
-      destination:
-        name: in-cluster
-        namespace: argo-system
-      syncPolicy:
-        automated:
-          allowEmpty: true
-          prune: true
-          selfHeal: true
-        retry:
-          limit: 1
-          backoff:
-            duration: 10s
-            factor: 2
-            maxDuration: 3m
-        syncOptions:
-          - CreateNamespace=true
-          - ApplyOutOfSyncOnly=true
-          - ServerSideApply=true
-          - PruneLast=true
-          - RespectIgnoreDifferences=true
+  project: kubernetes
+  source:
+    repoURL: "https://github.com/ajaykumar4/home-lab.git"
+    targetRevision: main
+    path: kubernetes/argo/apps
+  destination:
+    name: in-cluster
+    namespace: argo-system
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 1
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 3m
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true
+      - PruneLast=true
+      - RespectIgnoreDifferences=true

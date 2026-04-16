@@ -11,11 +11,11 @@ spec:
     spec:
       containers:
         - name: velero
-          image: velero/velero:v1.13.0
+          image: velero/velero:v1.18.0
           command:
             - /bin/sh
             - -c
             - |
-              velero backup create pre-upgrade-$(date +%s) --wait
+              velero backup create pre-upgrade-$(date +%Y%m%d%H%M%S) --wait --ttl 720h
       restartPolicy: Never
       serviceAccountName: velero

@@ -2,5 +2,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - config/observability-s3-secret.yaml
-  - config/httproute.yaml
+  - longhorn.yaml
+  - velero.yaml

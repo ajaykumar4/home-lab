@@ -5,32 +5,38 @@ mimir:
     blocks_storage:
       backend: s3
       s3:
+        access_key_id: "${AWS_ACCESS_KEY_ID}"
+        secret_access_key: "${AWS_SECRET_ACCESS_KEY}"
         endpoint: s3.aknuk.dev
-        insecure: true
+        insecure: false
         bucket_lookup_type: path
         bucket_name: mimir-blocks
     alertmanager_storage:
       backend: s3
       s3:
+        access_key_id: "${AWS_ACCESS_KEY_ID}"
+        secret_access_key: "${AWS_SECRET_ACCESS_KEY}"
         endpoint: s3.aknuk.dev
-        insecure: true
+        insecure: false
         bucket_lookup_type: path
         bucket_name: mimir-alertmanager
     ruler_storage:
       backend: s3
       s3:
+        access_key_id: "${AWS_ACCESS_KEY_ID}"
+        secret_access_key: "${AWS_SECRET_ACCESS_KEY}"
         endpoint: s3.aknuk.dev
-        insecure: true
+        insecure: false
         bucket_lookup_type: path
         bucket_name: mimir-ruler
   extraEnv:
     - name: AWS_ACCESS_KEY_ID
       valueFrom:
         secretKeyRef:
-          name: mimir-s3-secret
+          name: observability-s3-secret
           key: access_key
     - name: AWS_SECRET_ACCESS_KEY
       valueFrom:
         secretKeyRef:
-          name: mimir-s3-secret
+          name: observability-s3-secret
           key: secret_key
