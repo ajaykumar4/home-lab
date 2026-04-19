@@ -1,4 +1,7 @@
 loki:
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
+  auth_enabled: false
   storage:
     type: s3
     bucketNames:
@@ -6,11 +9,17 @@ loki:
       ruler: loki-data
       admin: loki-data
     s3:
-      endpoint: s3.aknuk.dev
-      secretAccessKey: "${AWS_SECRET_ACCESS_KEY}"
-      accessKeyId: "${AWS_ACCESS_KEY_ID}"
+      endpoint: https://s3.aknuk.dev
       s3ForcePathStyle: true
-      insecure: false
   extraEnvFrom:
     - secretRef:
         name: loki-s3-secret
+  schemaConfig:
+    configs:
+      - from: "2024-04-01"
+        store: tsdb
+        object_store: s3
+        schema: v13
+        index:
+          prefix: index_
+          period: 24h

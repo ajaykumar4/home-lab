@@ -5,13 +5,13 @@ metadata:
   name: apps
   namespace: argo-system
   annotations:
-    argocd.argoproj.io/sync-wave: '2'
+    argocd.argoproj.io/sync-wave: '0'
 spec:
-  project: default
+  project: kubernetes
   source:
     repoURL: "https://github.com/ajaykumar4/home-lab.git"
-    path: kubernetes/argo/apps
     targetRevision: main
+    path: kubernetes/argo/apps
     directory:
       recurse: true
   destination:
@@ -34,8 +34,3 @@ spec:
       - ServerSideApply=true
       - PruneLast=true
       - RespectIgnoreDifferences=true
-  ignoreDifferences:
-    - group: argoproj.io
-      kind: Application
-      jsonPointers:
-        - /spec/syncPolicy

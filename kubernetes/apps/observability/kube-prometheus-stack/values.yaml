@@ -1,2 +1,0 @@
-grafana:
-  envFromSecret: grafana-postgres-secret

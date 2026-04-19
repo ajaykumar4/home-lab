@@ -1,3 +1,5 @@
+podAnnotations:
+  reloader.stakater.com/auto: "true"
 ingress:
   enabled: false # Use Envoy Gateway Route instead
 config:

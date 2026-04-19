@@ -31,27 +31,6 @@ configs:
           - CiliumIdentity
         clusters:
           - "*"
-    dex.config: |
-      connectors:
-        - config:
-            issuer: https://authentik.aknuk.dev/application/o/argo/
-            clientID: y7EvAMUYoilDLvxPC57P5frIZEYfBd2NF2UZWHOV
-            clientSecret: $dex.authentik.clientSecret
-            insecureEnableGroups: true
-            scopes:
-              - openid
-              - profile
-              - email
-              - groups
-          name: authentik
-          type: oidc
-          id: authentik
-  rbac:
-    policy.default: "role:readonly"
-    scopes: "[groups]"
-    policy.csv: |
-      g, "ArgoCD Admins", role:admin
-      g, "ArgoCD Viewers", role:readonly
 controller:
   replicas: 2
   extraArgs:
@@ -130,6 +109,8 @@ notifications:
     enabled: true
     serviceMonitor: *service-monitor
 repoServer:
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
   replicas: 2
   serviceAccount:
     create: true

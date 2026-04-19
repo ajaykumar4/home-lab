@@ -1,0 +1,10 @@
+preUpgradeChecker:
+  jobEnabled: false
+httproute:
+  enabled: true
+  hostnames:
+    - longhorn.aknuk.dev
+  parentRefs:
+    - name: envoy-external
+      namespace: network
+      sectionName: https

@@ -288,6 +288,22 @@ task talos:upgrade-k8s
 # e.g. task talos:upgrade-k8s
 ```
 
+Velero is configured to take a full-cluster backup to `s3.aknuk.dev` every day at `02:00` and to trigger an extra pre-upgrade backup before `tuppr` applies Talos or Kubernetes upgrades.
+
+If you need to restore after a failed upgrade or a cluster disaster:
+
+```sh
+# Check available backups
+velero backup get
+
+# Restore the latest successful backup
+velero restore create --from-backup <backup-name>
+
+# Follow restore progress
+velero restore describe <restore-name>
+velero restore logs <restore-name>
+```
+
 ### ➕ Adding a node to your cluster
 
 At some point you might want to expand your cluster to run more workloads and/or improve the reliability of your cluster. Keep in mind it is recommended to have an **odd number** of control plane nodes for quorum reasons.

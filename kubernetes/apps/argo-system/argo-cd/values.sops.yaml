@@ -3,7 +3,18 @@ configs:
     secret:
         githubSecret: 7c5b4c326e8d691b13f15f37198a4cc8
         extra:
-            dex.authentik.clientSecret: mUcyh0SJBLo8uPfh1jnFObmYjHLNGJOQYnpaUZIVLPxgS5NtMgvVeBaSaVgN9FueLWgTF769SxsImSCQ2ZxlQxo4CzNnN4DzlLlF9qZDSIKkCpeeVybxBipZrZA6Vhwu
+            oidc.pocketid.clientSecret: QYtR91rI4BxYO08n5vqAEtzv6Ty4jqQY
+    cm:
+        oidc.config: |
+            name: Pocket ID
+            issuer: https://pocket-id.aknuk.dev
+            clientID: argo
+            clientSecret: $oidc.pocketid.clientSecret
+            requestedScopes: ["openid", "profile", "email", "groups"]
+    rbac:
+        policy.default: role:readonly
+        policy.csv: |
+            g, admin, role:admin
 sops:
     age:
         - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
@@ -15,8 +26,8 @@ sops:
             SWxJRWtyakVrYy8zRkZEN2N5TEhZZ1EK2vg5i+MxDfAUZxwQAd2h/eGd1xOl37LQ
             FDB/CxiNHOw443w0SpM2ZiUeHvgVkHVeiqDQYnNZ6x7twLiMCp68zA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-04-10T23:28:03Z"
-    mac: ENC[AES256_GCM,data:7/hQiblGUpupe3Sq7QeiVhY1pSZVIzRbHgxYs7MEK1GcwZGU+B+Z35XeuQXtsGplqsjSXlN0qQIN0GPDbA4nL8P+R6HUCVQxlLky5AX9lVoQjODBwTHKuo19UcjHeKasON29lFtWB2I0MS2MuxcPeoyEd1pLjRgXF//b0DodjrE=,iv:zSslhxvCTHorU+dx6wh0FyHELTSDORm7CbdNpOF+xa0=,tag:R6rC/XG49DkGoFZ8+QQGRw==,type:str]
+    lastmodified: "2026-04-15T21:42:30Z"
+    mac: ENC[AES256_GCM,data:FrnKRSMCcrq5FG5DKTS7pbf9YrgEONiklghhP7rV1oy0/HMt8VEmIkOmsCcUcIfOer9k2OSFfJmEEuJLrdG3h/ia3VjHd99Aq7cHsTc7DA0q/gQaA2YCEi71yR5UVT+CuAWmaVJM9UeD2bW/0770/EGNWl2Y86oWgeFdYOMsCbE=,iv:DR/rapZwxOFKKzmrGzPKB/sgqqb+zXCwm2F9VnogAiA=,tag:TgIV4cdmceGmjK9nZjftYw==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.2

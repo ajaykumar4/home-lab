@@ -6,15 +6,16 @@ metadata:
   name: github-ajaykumar4
   namespace: renovate
 spec:
+  image: ghcr.io/renovatebot/renovate:43.115.1
   discoveryFilters:
     - ajaykumar4/*
+  skipForks: true
   extraEnv:
     - name: LOG_LEVEL
       value: debug
     - name: RENOVATE_ALLOWED_COMMANDS
       value: |-
         ["pnpm run bundle"]
-  image: ghcr.io/renovatebot/renovate:43.110.14
   parallelism: 5
   provider:
     name: github

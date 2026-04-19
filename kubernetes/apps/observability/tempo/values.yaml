@@ -1,14 +1,21 @@
 tempo:
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
   storage:
     trace:
       backend: s3
       s3:
         bucket: tempo-data
         endpoint: s3.aknuk.dev
-        access_key: "${AWS_ACCESS_KEY_ID}"
-        secret_key: "${AWS_SECRET_ACCESS_KEY}"
         forcepathstyle: true
-        insecure: false
-  extraEnvFrom:
-    - secretRef:
-        name: tempo-s3-secret
+  extraEnv:
+    - name: AWS_ACCESS_KEY_ID
+      valueFrom:
+        secretKeyRef:
+          name: tempo-s3-secret
+          key: access_key
+    - name: AWS_SECRET_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: tempo-s3-secret
+          key: secret_key

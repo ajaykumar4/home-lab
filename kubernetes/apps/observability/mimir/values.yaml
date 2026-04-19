@@ -1,29 +1,42 @@
 mimir:
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
   structuredConfig:
     blocks_storage:
       backend: s3
       s3:
-        endpoint: s3.aknuk.dev
-        bucket_name: mimir-blocks
         access_key_id: "${AWS_ACCESS_KEY_ID}"
         secret_access_key: "${AWS_SECRET_ACCESS_KEY}"
+        endpoint: s3.aknuk.dev
         insecure: false
+        bucket_lookup_type: path
+        bucket_name: mimir-blocks
     alertmanager_storage:
       backend: s3
       s3:
-        endpoint: s3.aknuk.dev
-        bucket_name: mimir-alertmanager
         access_key_id: "${AWS_ACCESS_KEY_ID}"
         secret_access_key: "${AWS_SECRET_ACCESS_KEY}"
+        endpoint: s3.aknuk.dev
         insecure: false
+        bucket_lookup_type: path
+        bucket_name: mimir-alertmanager
     ruler_storage:
       backend: s3
       s3:
-        endpoint: s3.aknuk.dev
-        bucket_name: mimir-ruler
         access_key_id: "${AWS_ACCESS_KEY_ID}"
         secret_access_key: "${AWS_SECRET_ACCESS_KEY}"
+        endpoint: s3.aknuk.dev
         insecure: false
-  extraEnvFrom:
-    - secretRef:
-        name: mimir-s3-secret
+        bucket_lookup_type: path
+        bucket_name: mimir-ruler
+  extraEnv:
+    - name: AWS_ACCESS_KEY_ID
+      valueFrom:
+        secretKeyRef:
+          name: mimir-s3-secret
+          key: access_key
+    - name: AWS_SECRET_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: mimir-s3-secret
+          key: secret_key

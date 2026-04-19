@@ -1,0 +1,39 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mimir-create-buckets
+  namespace: observability
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  ttlSecondsAfterFinished: 300
+  template:
+    spec:
+      restartPolicy: Never
+      volumes:
+        - name: s3-creds
+          secret:
+            secretName: mimir-s3-secret
+            optional: true
+      containers:
+        - name: create-buckets
+          image: minio/mc:latest
+          volumeMounts:
+            - name: s3-creds
+              mountPath: /credentials
+              readOnly: true
+          command:
+            - /bin/sh
+            - -c
+            - |
+              until [ -s /credentials/AWS_ACCESS_KEY_ID ] && [ -s /credentials/AWS_SECRET_ACCESS_KEY ]; do
+                echo "Waiting for mimir-s3-secret..."
+                sleep 5
+              done
+              AWS_ACCESS_KEY_ID="$(cat /credentials/AWS_ACCESS_KEY_ID)"
+              AWS_SECRET_ACCESS_KEY="$(cat /credentials/AWS_SECRET_ACCESS_KEY)"
+              mc alias set rustfs https://s3.aknuk.dev "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY"
+              mc mb --ignore-existing rustfs/mimir-blocks
+              mc mb --ignore-existing rustfs/mimir-alertmanager
+              mc mb --ignore-existing rustfs/mimir-ruler
