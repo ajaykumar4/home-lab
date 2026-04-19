@@ -28,4 +28,4 @@ txtOwnerId: default
 serviceMonitor:
   enabled: false
 podAnnotations:
-  secret.reloader.stakater.com/reload: cloudflare-dns-secret
+  reloader.stakater.com/auto: "true"
