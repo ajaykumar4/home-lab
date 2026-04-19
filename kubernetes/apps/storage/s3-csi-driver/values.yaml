@@ -1,0 +1,2 @@
+awsAccessSecret:
+  name: rustfs-s3-secret

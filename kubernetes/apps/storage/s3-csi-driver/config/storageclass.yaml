@@ -1,0 +1,16 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: rustfs-s3
+provisioner: s3.csi.aws.com
+parameters:
+  bucket: home-lab
+  region: us-east-1                # dummy but required
+  endpoint: http://s3.aknuk.dev
+  usePathStyle: "true"
+  authenticationSource: "secret"
+mountOptions:
+  - allow-delete
+  - region=us-east-1
+  - endpoint-url=http://s3.aknuk.dev
+  - force-path-style=true

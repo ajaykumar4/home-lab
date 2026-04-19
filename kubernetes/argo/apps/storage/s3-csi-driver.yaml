@@ -1,0 +1,42 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: s3-csi-driver
+  namespace: argo-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  project: kubernetes
+  sources:
+    - repoURL: "https://github.com/ajaykumar4/home-lab.git"
+      path: kubernetes/apps/storage/s3-csi-driver
+      targetRevision: main
+      ref: repo
+    - repoURL: https://awslabs.github.io/mountpoint-s3-csi-driver
+      chart: aws-mountpoint-s3-csi-driver
+      targetRevision: 2.5.0
+      helm:
+        releaseName: s3-csi-driver
+        valueFiles:
+          - $repo/kubernetes/apps/storage/s3-csi-driver/values.yaml
+  destination:
+    name: in-cluster
+    namespace: storage
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 1
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 3m
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true
+      - PruneLast=true
+      - RespectIgnoreDifferences=true
