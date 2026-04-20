@@ -41,15 +41,25 @@ operator:
   dashboards:
     enabled: true
   prometheus:
-    enabled: false
+    enabled: true
     serviceMonitor:
-      enabled: false
+      enabled: true
+      namespace: observability
+      interval: 30s
+      scrapeTimeout: 10s
+      labels:
+        release: prometheus
   replicas: 1
   rollOutPods: true
 prometheus:
-  enabled: false
+  enabled: true
   serviceMonitor:
-    enabled: false
+    enabled: true
+    namespace: observability
+    interval: 30s
+    scrapeTimeout: 10s
+    labels:
+      release: prometheus
     trustCRDsExist: true
 rollOutCiliumPods: true
 routingMode: native

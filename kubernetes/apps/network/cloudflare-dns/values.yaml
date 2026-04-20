@@ -26,6 +26,11 @@ sources:
 txtPrefix: k8s.
 txtOwnerId: default
 serviceMonitor:
-  enabled: false
+  enabled: true
+  namespace: observability
+  interval: 30s
+  scrapeTimeout: 10s
+  labels:
+    release: prometheus
 podAnnotations:
   reloader.stakater.com/auto: "true"

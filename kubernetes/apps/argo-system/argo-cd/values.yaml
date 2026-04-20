@@ -47,9 +47,12 @@ controller:
     applicationLabels:
       enabled: true
     serviceMonitor: &service-monitor
-      enabled: false
+      enabled: true
+      namespace: observability
+      interval: 30s
+      scrapeTimeout: 10s
       additionalLabels:
-        release: kube-prometheus-stack
+        release: prometheus
 dex:
   replicas: 2
   resources:
@@ -100,10 +103,10 @@ notifications:
   replicas: 2
   resources:
     requests:
-      cpu: 100m
-      memory: 128Mi
+      cpu: 50m
+      memory: 64Mi
     limits:
-      cpu: 500m
+      cpu: 200m
       memory: 256Mi
   metrics:
     enabled: true
@@ -195,3 +198,6 @@ repoServer:
       volumeMounts:
         - mountPath: /custom-tools
           name: custom-tools
+  metrics:
+    enabled: true
+    serviceMonitor: *service-monitor

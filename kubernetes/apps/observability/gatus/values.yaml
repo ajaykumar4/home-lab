@@ -1,1 +1,70 @@
-# Default values for gatus
+app:
+  title: Status Page
+
+service:
+  app:
+    port: 8080
+    type: ClusterIP
+
+ingress:
+  enabled: false
+
+persistence:
+  data:
+    enabled: true
+    type: pvc
+    size: 5Gi
+    storageClass: s3
+    globalMounts:
+      - path: /data
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
+
+config:
+  endpoints:
+    - name: Status Page
+      group: internal
+      url: http://localhost:8080/health
+      interval: 30s
+      timeout: 5s
+      
+    - name: Grafana
+      group: observability
+      url: http://grafana:3000
+      interval: 30s
+      timeout: 5s
+      
+    - name: VictoriaMetrics
+      group: observability
+      url: http://victoria-metrics-vmselect:8481
+      interval: 30s
+      timeout: 5s
+      
+    - name: ArgoCD
+      group: core
+      url: http://argocd-server:80
+      interval: 30s
+      timeout: 5s
+  
+  ui:
+    title: Home Lab Status
+  
+  storage:
+    type: sqlite
+    path: /data/gatus.db
+
+serviceMonitor:
+  enabled: true
+  namespace: observability
+  interval: 30s
+  scrapeTimeout: 10s
+  labels:
+    release: prometheus
+  endpoints:
+    - port: http

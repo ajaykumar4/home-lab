@@ -30,6 +30,11 @@ deployNodeAgent: true
 metrics:
   serviceMonitor:
     enabled: true
+    namespace: observability
+    interval: 30s
+    scrapeTimeout: 10s
+    labels:
+      release: prometheus
 
 schedules:
   cluster-backup:

@@ -1,0 +1,42 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: victoria-metrics
+  namespace: argo-system
+  annotations:
+    argocd.argoproj.io/sync-wave: '3'
+spec:
+  project: kubernetes
+  sources:
+    - repoURL: "https://github.com/ajaykumar4/home-lab.git"
+      path: kubernetes/apps/observability/victoria-metrics
+      targetRevision: main
+      ref: repo
+    - repoURL: https://victoriametrics.github.io/helm-charts/
+      chart: victoria-metrics-cluster
+      targetRevision: 0.39.2
+      helm:
+        releaseName: victoria-metrics
+        valueFiles:
+          - $repo/kubernetes/apps/observability/victoria-metrics/values.yaml
+  destination:
+    name: in-cluster
+    namespace: observability
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 1
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 3m
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true
+      - PruneLast=true
+      - RespectIgnoreDifferences=true

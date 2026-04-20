@@ -1,0 +1,145 @@
+mode: daemonset
+replicaCount: 1
+
+image:
+  repository: otel/opentelemetry-collector-k8s
+
+config:
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: 0.0.0.0:4317
+        http:
+          endpoint: 0.0.0.0:4318
+    
+    k8s_cluster:
+      collection_interval: 30s
+    
+    kubeletstats:
+      collection_interval: 30s
+      auth_type: serviceAccount
+      endpoint: https://$\{K8S_NODE_NAME\}:10250
+      k8s_api_config:
+        auth_type: serviceAccount
+    
+    prometheus:
+      config:
+        scrape_configs:
+          - job_name: 'otel-collector'
+            scrape_interval: 30s
+            static_configs:
+              - targets: ['localhost:8888']
+    
+    syslog:
+      protocol_config:
+        protocol: rfc5424
+      listen_address: 0.0.0.0:514
+    
+    files_logs:
+      include_paths:
+        - /var/log/pods/*/*/*.log
+      multiline_parser:
+        type: json
+        parse_from: body
+        time_parser:
+          parse_from: attributes.timestamp
+          layout: "%Y-%m-%dT%H:%M:%S.%LZ"
+
+  processors:
+    batch:
+      send_batch_size: 1000
+      timeout: 10s
+    
+    memory_limiter:
+      check_interval: 1s
+      limit_mib: 512
+      spike_limit_mib: 128
+    
+    attributes:
+      actions:
+        - key: cluster.name
+          value: home-lab
+          action: upsert
+        - key: deployment.environment
+          value: production
+          action: upsert
+    
+    resource:
+      attributes:
+        - key: service.namespace
+          from_attribute: kubernetes.namespace.name
+          action: upsert
+
+  exporters:
+    otlp:
+      endpoint: victoria-metrics:4317
+      tls:
+        insecure: true
+    
+    prometheusremotewrite:
+      endpoint: http://victoria-metrics-vminsert:8400/insert/0/prometheus/api/v1/write
+    
+    logging:
+      loglevel: debug
+
+  service:
+    pipelines:
+      traces:
+        receivers: [otlp]
+        processors: [memory_limiter, batch, attributes, resource]
+        exporters: [otlp, logging]
+      
+      metrics:
+        receivers: [otlp, prometheus, k8s_cluster, kubeletstats]
+        processors: [memory_limiter, batch, attributes, resource]
+        exporters: [prometheusremotewrite, logging]
+      
+      logs:
+        receivers: [otlp, files_logs, syslog]
+        processors: [memory_limiter, batch, attributes, resource]
+        exporters: [logging]
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+serviceAccount:
+  create: true
+  name: opentelemetry-collector
+
+rbac:
+  create: true
+
+service:
+  enabled: true
+  type: ClusterIP
+  ports:
+    otlp-grpc:
+      enabled: true
+      containerPort: 4317
+      protocol: TCP
+    otlp-http:
+      enabled: true
+      containerPort: 4318
+      protocol: TCP
+    metrics:
+      enabled: true
+      containerPort: 8888
+      protocol: TCP
+
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "8888"
+
+serviceMonitor:
+  enabled: true
+  namespace: observability
+  interval: 30s
+  scrapeTimeout: 10s
+  labels:
+    release: prometheus

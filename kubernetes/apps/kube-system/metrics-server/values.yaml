@@ -8,4 +8,9 @@ args:
 metrics:
   enabled: true
 serviceMonitor:
-  enabled: false
+  enabled: true
+  namespace: observability
+  interval: 30s
+  scrapeTimeout: 10s
+  labels:
+    release: prometheus

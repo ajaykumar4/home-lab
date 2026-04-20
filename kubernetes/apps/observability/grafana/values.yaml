@@ -2,5 +2,79 @@ service:
   enabled: true
   type: ClusterIP
 persistence:
-  enabled: false
+  enabled: true
+  size: 10Gi
+  storageClassName: s3
 adminUser: admin
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: VictoriaMetrics
+        type: prometheus
+        access: proxy
+        url: http://victoria-metrics-vmselect:8481/select/0
+        isDefault: true
+        editable: true
+        jsonData:
+          timeInterval: 30s
+
+      - name: OpenTelemetry Traces
+        type: jaeger
+        access: proxy
+        url: http://opentelemetry-collector:16686
+        editable: true
+
+      - name: Logs
+        type: loki
+        access: proxy
+        url: http://loki:3100
+        editable: true
+
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+      - name: 'default'
+        orgId: 1
+        folder: ''
+        type: file
+        disableDeletion: false
+        updateIntervalSeconds: 30
+        allowUiUpdates: true
+        options:
+          path: /var/lib/grafana/dashboards/default
+
+dashboards:
+  default:
+    kubernetes-cluster:
+      gnetId: 7249
+      revision: 1
+      datasource: VictoriaMetrics
+
+    kubernetes-pods:
+      gnetId: 6417
+      revision: 1
+      datasource: VictoriaMetrics
+
+grafana.ini:
+  paths:
+    data: /var/lib/grafana/
+    logs: /var/log/grafana
+    plugins: /var/lib/grafana/plugins
+    provisioning: /etc/grafana/provisioning
+  analytics:
+    check_for_updates: true
+  auth:
+    disable_login_form: false
+  users:
+    allow_sign_up: false
+
+serviceMonitor:
+  enabled: true
+  namespace: observability
+  interval: 30s
+  scrapeTimeout: 10s
+  labels:
+    release: prometheus
