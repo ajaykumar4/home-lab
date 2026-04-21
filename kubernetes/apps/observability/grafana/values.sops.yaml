@@ -1,26 +1,5 @@
-grafana.ini:
-    server:
-        root_url: https://grafana.aknuk.dev
-    auth:
-        disable_login_form: false
-        oauth_auto_login: false
-        signout_redirect_url: https://pocket-id.aknuk.dev/logout
-    auth.generic_oauth:
-        enabled: true
-        name: Pocket ID
-        allow_sign_up: true
-        client_id: 58c70f10-a6b1-4b2f-806c-4bc08e5505d5
-        client_secret: ADd4XOfg4ZBkrsQyTtqahHsVaomLIyVA
-        auth_url: https://pocket-id.aknuk.dev/oauth/authorize
-        token_url: https://pocket-id.aknuk.dev/oauth/token
-        api_url: https://pocket-id.aknuk.dev/oauth/userinfo
-        scopes: openid profile email
-        email_attribute_path: email
-        name_attribute_path: name
-        login_attribute_path: preferred_username
-        role_attribute_path: |
-            contains(groups[*], 'admin') && 'Admin' || 'Viewer'
-        use_pkce: true
+adminUser: ajaykumar
+adminPassword: Friendship@4
 sops:
     age:
         - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
@@ -32,8 +11,8 @@ sops:
             SWxJRWtyakVrYy8zRkZEN2N5TEhZZ1EK2vg5i+MxDfAUZxwQAd2h/eGd1xOl37LQ
             FDB/CxiNHOw443w0SpM2ZiUeHvgVkHVeiqDQYnNZ6x7twLiMCp68zA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-04-21T05:42:35Z"
-    mac: ENC[AES256_GCM,data:DrOOmGw3ecIyEpRCeaOfWhgGefAxBjv6VqodAocWhRWCn96ULQJeDHpF23jTNFjlCVRqMkL7IWJ/kg7kGSpukboYfapWfVmAj5PCpsA327/O9u9Kv4ydYZStFY5acHQlGkc5wnmD2ZCGWTZlvDyAjuvoQcoNPCnwe45ce5/lEkI=,iv:THJC/7ykLfQsF/2FTtXrt4NLAbGunlLr0JJryHj9Fpc=,tag:nvCcoLDhme7J7KNzby26Iw==,type:str]
+    lastmodified: "2026-04-21T06:16:15Z"
+    mac: ENC[AES256_GCM,data:sPluF4u9K/9qJLNFF3u7Xdm+NVXa3tv6sB9j2LZIRnmn7abL+lkYrn89j+xyA3sw/hWQJViDSaJ64rr1Duw89soJFpNsOhxSebaes8WFWY8v4qDsYXjgRAAxLK5zLwCCC/cZuPoE9rmgtX/nQf/JeNlA1m0+Vq04TDEMAqCUWzI=,iv:tMNLYewsZJyjWujS4iS8j5whFV6XWVmygSy3DchZAAw=,tag:Phjl2X8oJXPuWit9ar2ngA==,type:str]
     encrypted_regex: ^(data|stringData)$
     mac_only_encrypted: true
     version: 3.12.2
