@@ -13,9 +13,9 @@ spec:
       path: kubernetes/apps/observability/victoria-metrics
       targetRevision: main
       ref: repo
-    - repoURL: https://victoriametrics.github.io/helm-charts/
+    - repoURL: ghcr.io/victoriametrics/helm-charts
       chart: victoria-metrics-cluster
-      targetRevision: 0.39.2
+      targetRevision: 0.35.0
       helm:
         releaseName: victoria-metrics
         valueFiles:
