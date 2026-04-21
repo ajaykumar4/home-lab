@@ -99,7 +99,6 @@ config:
         receivers: [otlp, files_logs, syslog]
         processors: [memory_limiter, batch, attributes, resource]
         exporters: [logging]
-        exporters: [logging]
 
 resources:
   requests:
@@ -112,26 +111,6 @@ resources:
 serviceAccount:
   create: true
   name: opentelemetry-collector
-
-rbac:
-  create: true
-
-service:
-  enabled: true
-  type: ClusterIP
-  ports:
-    otlp-grpc:
-      enabled: true
-      containerPort: 4317
-      protocol: TCP
-    otlp-http:
-      enabled: true
-      containerPort: 4318
-      protocol: TCP
-    metrics:
-      enabled: true
-      containerPort: 8888
-      protocol: TCP
 
 podAnnotations:
   prometheus.io/scrape: "true"
