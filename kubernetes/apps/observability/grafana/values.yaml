@@ -1,10 +1,6 @@
 service:
   enabled: true
   type: ClusterIP
-persistence:
-  enabled: true
-  size: 10Gi
-  storageClassName: s3
 
 datasources:
   datasources.yaml:
