@@ -31,20 +31,16 @@ config:
             static_configs:
               - targets: ['localhost:8888']
 
-    syslog:
-      protocol_config:
-        protocol: rfc5424
-      listen_address: 0.0.0.0:514
-
-    files_logs:
-      include_paths:
+    filelog:
+      include:
         - /var/log/pods/*/*/*.log
-      multiline_parser:
-        type: json
-        parse_from: body
-        time_parser:
-          parse_from: attributes.timestamp
-          layout: "%Y-%m-%dT%H:%M:%S.%LZ"
+      operators:
+        - type: json_parser
+          parse_from: body
+          parse_to: attributes
+          timestamp:
+            parse_from: attributes.timestamp
+            layout: "%Y-%m-%dT%H:%M:%S.%LZ"
 
   processors:
     batch:
@@ -80,25 +76,25 @@ config:
     prometheusremotewrite:
       endpoint: http://victoria-metrics-vminsert:8400/insert/0/prometheus/api/v1/write
 
-    logging:
-      loglevel: debug
+    debug:
+      verbosity: detailed
 
   service:
     pipelines:
       traces:
         receivers: [otlp]
         processors: [memory_limiter, batch, attributes, resource]
-        exporters: [otlp, logging]
+        exporters: [otlp, debug]
 
       metrics:
         receivers: [otlp, prometheus, k8s_cluster, kubeletstats]
         processors: [memory_limiter, batch, attributes, resource]
-        exporters: [prometheusremotewrite, logging]
+        exporters: [prometheusremotewrite, debug]
 
       logs:
-        receivers: [otlp, files_logs, syslog]
+        receivers: [otlp, filelog]
         processors: [memory_limiter, batch, attributes, resource]
-        exporters: [logging]
+        exporters: [debug]
 
 resources:
   requests:
@@ -111,6 +107,12 @@ resources:
 serviceAccount:
   create: true
   name: opentelemetry-collector
+
+extraEnvs:
+  - name: K8S_NODE_NAME
+    valueFrom:
+      fieldRef:
+        fieldPath: spec.nodeName
 
 podAnnotations:
   prometheus.io/scrape: "true"
