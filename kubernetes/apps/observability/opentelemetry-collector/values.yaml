@@ -12,17 +12,17 @@ config:
           endpoint: 0.0.0.0:4317
         http:
           endpoint: 0.0.0.0:4318
-    
+
     k8s_cluster:
       collection_interval: 30s
-    
+
     kubeletstats:
       collection_interval: 30s
       auth_type: serviceAccount
-      endpoint: https://$\{K8S_NODE_NAME\}:10250
+      endpoint: https://${K8S_NODE_NAME}:10250
       k8s_api_config:
         auth_type: serviceAccount
-    
+
     prometheus:
       config:
         scrape_configs:
@@ -30,12 +30,12 @@ config:
             scrape_interval: 30s
             static_configs:
               - targets: ['localhost:8888']
-    
+
     syslog:
       protocol_config:
         protocol: rfc5424
       listen_address: 0.0.0.0:514
-    
+
     files_logs:
       include_paths:
         - /var/log/pods/*/*/*.log
@@ -50,12 +50,12 @@ config:
     batch:
       send_batch_size: 1000
       timeout: 10s
-    
+
     memory_limiter:
       check_interval: 1s
       limit_mib: 512
       spike_limit_mib: 128
-    
+
     attributes:
       actions:
         - key: cluster.name
@@ -64,7 +64,7 @@ config:
         - key: deployment.environment
           value: production
           action: upsert
-    
+
     resource:
       attributes:
         - key: service.namespace
@@ -76,10 +76,10 @@ config:
       endpoint: victoria-metrics:4317
       tls:
         insecure: true
-    
+
     prometheusremotewrite:
       endpoint: http://victoria-metrics-vminsert:8400/insert/0/prometheus/api/v1/write
-    
+
     logging:
       loglevel: debug
 
@@ -89,15 +89,16 @@ config:
         receivers: [otlp]
         processors: [memory_limiter, batch, attributes, resource]
         exporters: [otlp, logging]
-      
+
       metrics:
         receivers: [otlp, prometheus, k8s_cluster, kubeletstats]
         processors: [memory_limiter, batch, attributes, resource]
         exporters: [prometheusremotewrite, logging]
-      
+
       logs:
         receivers: [otlp, files_logs, syslog]
         processors: [memory_limiter, batch, attributes, resource]
+        exporters: [logging]
         exporters: [logging]
 
 resources:
