@@ -2,6 +2,14 @@ service:
   enabled: true
   type: ClusterIP
 
+persistence:
+  enabled: true
+  type: pvc
+  storageClassName: s3
+  accessModes:
+    - ReadWriteOnce
+  size: 10Gi
+
 datasources:
   datasources.yaml:
     apiVersion: 1
@@ -14,18 +22,6 @@ datasources:
         editable: true
         jsonData:
           timeInterval: 30s
-
-      - name: OpenTelemetry Traces
-        type: jaeger
-        access: proxy
-        url: http://opentelemetry-collector:16686
-        editable: true
-
-      - name: Logs
-        type: loki
-        access: proxy
-        url: http://loki:3100
-        editable: true
 
 dashboardProviders:
   dashboardproviders.yaml:
@@ -69,6 +65,9 @@ grafana.ini:
   auth.anonymous:
     enabled: false
 
+  feature_toggles:
+    enable: traceqlEditor
+
 serviceMonitor:
   enabled: true
   namespace: observability
@@ -87,4 +86,3 @@ route:
       - name: envoy-external
         namespace: network
         sectionName: https
-

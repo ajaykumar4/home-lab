@@ -68,11 +68,6 @@ config:
           action: upsert
 
   exporters:
-    otlp:
-      endpoint: victoria-metrics:4317
-      tls:
-        insecure: true
-
     prometheusremotewrite:
       endpoint: http://victoria-metrics-vminsert:8400/insert/0/prometheus/api/v1/write
 
@@ -84,7 +79,7 @@ config:
       traces:
         receivers: [otlp]
         processors: [memory_limiter, batch, attributes, resource]
-        exporters: [otlp, debug]
+        exporters: [debug]
 
       metrics:
         receivers: [otlp, prometheus, k8s_cluster, kubeletstats]
@@ -107,6 +102,13 @@ resources:
 serviceAccount:
   create: true
   name: opentelemetry-collector
+
+ports:
+  metrics:
+    enabled: true
+    containerPort: 8888
+    servicePort: 8888
+    protocol: TCP
 
 extraEnvs:
   - name: K8S_NODE_NAME
