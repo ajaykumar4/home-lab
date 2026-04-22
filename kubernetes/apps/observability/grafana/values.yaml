@@ -1,88 +1,82 @@
-service:
-  enabled: true
-  type: ClusterIP
+fullnameOverride: grafana-stack
 
-persistence:
-  enabled: true
-  type: pvc
-  storageClassName: s3
-  accessModes:
-    - ReadWriteOnce
-  size: 10Gi
+# Talos + Cilium setups typically don't expose these scrape targets in the same
+# way kube-prometheus-stack expects by default.
+kubeEtcd:
+  enabled: false
 
-datasources:
-  datasources.yaml:
-    apiVersion: 1
-    datasources:
-      - name: VictoriaMetrics
-        type: prometheus
-        access: proxy
-        url: http://victoria-metrics-vmselect:8481/select/0
-        isDefault: true
-        editable: true
-        jsonData:
-          timeInterval: 30s
+kubeControllerManager:
+  enabled: false
 
-dashboardProviders:
-  dashboardproviders.yaml:
-    apiVersion: 1
-    providers:
-      - name: 'default'
-        orgId: 1
-        folder: ''
-        type: file
-        disableDeletion: false
-        updateIntervalSeconds: 30
-        allowUiUpdates: true
-        options:
-          path: /var/lib/grafana/dashboards/default
+kubeScheduler:
+  enabled: false
 
-dashboards:
-  default:
-    kubernetes-cluster:
-      gnetId: 7249
-      revision: 1
-      datasource: VictoriaMetrics
+kubeProxy:
+  enabled: false
 
-    kubernetes-pods:
-      gnetId: 6417
-      revision: 1
-      datasource: VictoriaMetrics
+grafana:
+  fullnameOverride: grafana
 
-grafana.ini:
-  paths:
-    data: /var/lib/grafana/
-    logs: /var/log/grafana
-    plugins: /var/lib/grafana/plugins
-    provisioning: /etc/grafana/provisioning
-  analytics:
-    check_for_updates: true
+  persistence:
+    enabled: true
+    type: pvc
+    storageClassName: s3
+    accessModes:
+      - ReadWriteOnce
+    size: 10Gi
 
-  users:
-    allow_sign_up: true
-    auto_assign_org: true
-    auto_assign_org_role: Viewer
-  auth.anonymous:
-    enabled: false
+  grafana.ini:
+    analytics:
+      check_for_updates: true
+    users:
+      allow_sign_up: true
+      auto_assign_org: true
+      auto_assign_org_role: Viewer
+    auth.anonymous:
+      enabled: false
 
-  feature_toggles:
-    enable: traceqlEditor
-
-serviceMonitor:
-  enabled: true
-  namespace: observability
-  interval: 30s
-  scrapeTimeout: 10s
-  labels:
-    release: prometheus
-
-route:
-  main:
+  serviceMonitor:
     enabled: true
 
-    hostnames:
-      - grafana.aknuk.dev
-    parentRefs:
-      - name: envoy-external
-        namespace: network
-        sectionName: https
+  route:
+    main:
+      enabled: true
+      hostnames:
+        - grafana.aknuk.dev
+      parentRefs:
+        - name: envoy-external
+          namespace: network
+          sectionName: https
+
+prometheus:
+  service:
+    type: ClusterIP
+
+  prometheusSpec:
+    retention: 15d
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    probeSelectorNilUsesHelmValues: false
+    ruleSelectorNilUsesHelmValues: false
+    scrapeConfigSelectorNilUsesHelmValues: false
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          storageClassName: s3
+          resources:
+            requests:
+              storage: 50Gi
+
+alertmanager:
+  alertmanagerSpec:
+    storage:
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          storageClassName: s3
+          resources:
+            requests:
+              storage: 10Gi

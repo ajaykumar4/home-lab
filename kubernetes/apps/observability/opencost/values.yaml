@@ -6,7 +6,7 @@ opencost:
   
   prometheus:
     external:
-      url: "http://victoria-metrics-vmselect:8481/select/0"
+      url: "http://grafana-stack-prometheus:9090"
   
   ui:
     enabled: true
@@ -32,7 +32,7 @@ serviceMonitor:
   interval: 30s
   scrapeTimeout: 10s
   labels:
-    release: prometheus
+    release: grafana
 
 ingress:
   enabled: false

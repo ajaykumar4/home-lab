@@ -1,5 +1,6 @@
-adminUser: ajaykumar
-adminPassword: Friendship@4
+grafana:
+    adminUser: ajaykumar
+    adminPassword: Friendship@4
 sops:
     age:
         - recipient: age1nekqln4rq0mqqgv650u5a7zvgdeh472phq2ckl7ufzan04qlj90q3guut8
