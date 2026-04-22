@@ -5,7 +5,10 @@ opencost:
     replicas: 2
   
   prometheus:
+    internal:
+      enabled: false
     external:
+      enabled: true
       url: "https://prometheus.aknuk.dev"
   
   ui:

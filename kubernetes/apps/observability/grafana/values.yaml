@@ -16,6 +16,8 @@ kubeProxy:
 
 grafana:
   fullnameOverride: grafana
+  initChownData:
+    enabled: false
 
   persistence:
     enabled: true
