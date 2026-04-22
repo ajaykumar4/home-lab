@@ -6,7 +6,7 @@ opencost:
   
   prometheus:
     external:
-      url: "http://grafana-stack-prometheus:9090"
+      url: "https://prometheus.aknuk.dev"
   
   ui:
     enabled: true

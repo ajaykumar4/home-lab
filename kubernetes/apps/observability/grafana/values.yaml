@@ -49,6 +49,15 @@ grafana:
           sectionName: https
 
 prometheus:
+  route:
+    main:
+      enabled: true
+      hostnames:
+        - prometheus.aknuk.dev
+      parentRefs:
+        - name: envoy-external
+          namespace: network
+          sectionName: https
   service:
     type: ClusterIP
 
@@ -70,6 +79,15 @@ prometheus:
               storage: 50Gi
 
 alertmanager:
+  route:
+    main:
+      enabled: true
+      hostnames:
+        - alertmanager.aknuk.dev
+      parentRefs:
+        - name: envoy-external
+          namespace: network
+          sectionName: https
   alertmanagerSpec:
     storage:
       volumeClaimTemplate:

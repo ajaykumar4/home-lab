@@ -43,7 +43,7 @@ config:
       
     - name: Prometheus
       group: observability
-      url: http://grafana-stack-prometheus:9090
+      url: https://prometheus.aknuk.dev
       interval: 30s
       timeout: 5s
       
