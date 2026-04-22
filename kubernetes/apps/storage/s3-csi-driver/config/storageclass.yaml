@@ -2,15 +2,17 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: s3
-provisioner: s3.csi.aws.com
+provisioner: ru.yandex.s3.csi
 parameters:
+  mounter: geesefs
+  options: "--memory-limit 1000 --dir-mode 0777 --file-mode 0666"
   bucket: home-lab
-  region: us-east-1                # dummy but required
-  endpoint: http://s3.aknuk.dev
-  usePathStyle: "true"
-  authenticationSource: "secret"
-mountOptions:
-  - allow-delete
-  - region=us-east-1
-  - endpoint-url=http://s3.aknuk.dev
-  - force-path-style=true
+  csi.storage.k8s.io/provisioner-secret-name: csi-s3-secret
+  csi.storage.k8s.io/provisioner-secret-namespace: storage
+  csi.storage.k8s.io/controller-publish-secret-name: csi-s3-secret
+  csi.storage.k8s.io/controller-publish-secret-namespace: storage
+  csi.storage.k8s.io/node-stage-secret-name: csi-s3-secret
+  csi.storage.k8s.io/node-stage-secret-namespace: storage
+  csi.storage.k8s.io/node-publish-secret-name: csi-s3-secret
+  csi.storage.k8s.io/node-publish-secret-namespace: storage
+reclaimPolicy: Retain

@@ -13,9 +13,9 @@ spec:
       path: kubernetes/apps/storage/s3-csi-driver
       targetRevision: main
       ref: repo
-    - repoURL: https://awslabs.github.io/mountpoint-s3-csi-driver
-      chart: aws-mountpoint-s3-csi-driver
-      targetRevision: 2.5.0
+    - repoURL: https://yandex-cloud.github.io/k8s-csi-s3/charts
+      chart: csi-s3
+      targetRevision: 0.43.6
       helm:
         releaseName: s3-csi-driver
         valueFiles:

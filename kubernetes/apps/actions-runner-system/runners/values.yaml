@@ -8,7 +8,7 @@ containerMode:
   type: kubernetes
   kubernetesModeWorkVolumeClaim:
     accessModes: ["ReadWriteOnce"]
-    storageClassName: s3
+    storageClassName: longhorn
     resources:
       requests:
         storage: 25Gi

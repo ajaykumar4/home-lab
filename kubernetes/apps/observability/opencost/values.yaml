@@ -11,10 +11,12 @@ opencost:
   ui:
     enabled: true
   
-  persistence:
-    enabled: true
-    storageClass: s3
-    size: 10Gi
+  exporter:
+    persistence:
+      enabled: true
+      accessMode: ReadWriteOnce
+      storageClass: s3
+      size: 10Gi
 
 resources:
   requests:

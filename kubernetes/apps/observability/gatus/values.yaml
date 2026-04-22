@@ -12,7 +12,8 @@ ingress:
 persistence:
   data:
     enabled: true
-    type: pvc
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
     size: 5Gi
     storageClass: s3
     globalMounts:
