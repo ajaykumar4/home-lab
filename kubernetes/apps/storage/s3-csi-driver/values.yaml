@@ -1,2 +1,5 @@
-awsAccessSecret:
-  name: rustfs-s3-secret
+storageClass:
+  create: false
+
+secret:
+  create: false

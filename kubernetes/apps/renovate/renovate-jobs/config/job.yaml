@@ -6,7 +6,7 @@ metadata:
   name: github-ajaykumar4
   namespace: renovate
 spec:
-  image: ghcr.io/renovatebot/renovate:43.115.1
+  image: ghcr.io/renovatebot/renovate:43.141.6
   discoveryFilters:
     - ajaykumar4/*
   skipForks: true

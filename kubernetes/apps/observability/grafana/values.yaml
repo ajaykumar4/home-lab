@@ -1,6 +1,102 @@
-service:
-  enabled: true
-  type: ClusterIP
-persistence:
+fullnameOverride: grafana-stack
+
+# Talos + Cilium setups typically don't expose these scrape targets in the same
+# way kube-prometheus-stack expects by default.
+kubeEtcd:
   enabled: false
-adminUser: admin
+
+kubeControllerManager:
+  enabled: false
+
+kubeScheduler:
+  enabled: false
+
+kubeProxy:
+  enabled: false
+
+grafana:
+  fullnameOverride: grafana
+  initChownData:
+    enabled: false
+
+  persistence:
+    enabled: true
+    type: pvc
+    storageClassName: s3
+    accessModes:
+      - ReadWriteOnce
+    size: 10Gi
+
+  grafana.ini:
+    analytics:
+      check_for_updates: true
+    users:
+      allow_sign_up: true
+      auto_assign_org: true
+      auto_assign_org_role: Viewer
+    auth.anonymous:
+      enabled: false
+
+  serviceMonitor:
+    enabled: true
+
+  route:
+    main:
+      enabled: true
+      hostnames:
+        - grafana.aknuk.dev
+      parentRefs:
+        - name: envoy-external
+          namespace: network
+          sectionName: https
+
+prometheus:
+  route:
+    main:
+      enabled: true
+      hostnames:
+        - prometheus.aknuk.dev
+      parentRefs:
+        - name: envoy-external
+          namespace: network
+          sectionName: https
+  service:
+    type: ClusterIP
+
+  prometheusSpec:
+    retention: 15d
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    probeSelectorNilUsesHelmValues: false
+    ruleSelectorNilUsesHelmValues: false
+    scrapeConfigSelectorNilUsesHelmValues: false
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          storageClassName: s3
+          resources:
+            requests:
+              storage: 50Gi
+
+alertmanager:
+  route:
+    main:
+      enabled: true
+      hostnames:
+        - alertmanager.aknuk.dev
+      parentRefs:
+        - name: envoy-external
+          namespace: network
+          sectionName: https
+  alertmanagerSpec:
+    storage:
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          storageClassName: s3
+          resources:
+            requests:
+              storage: 10Gi

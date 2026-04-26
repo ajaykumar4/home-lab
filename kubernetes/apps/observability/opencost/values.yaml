@@ -1,6 +1,30 @@
 opencost:
   exporter:
     defaultClusterId: "home-lab"
-  prometheus:
-    external:
-      url: "http://prometheus-kube-prometheus-prometheus.monitoring:9090"
+    defaultBillingCurrency: "USD"
+    replicas: 2
+
+  ui:
+    enabled: true
+
+  exporter:
+    persistence:
+      enabled: true
+      accessMode: ReadWriteOnce
+      storageClass: s3
+      size: 10Gi
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 1Gi
+
+ingress:
+  enabled: false
+
+service:
+  type: ClusterIP
+  port: 9003
