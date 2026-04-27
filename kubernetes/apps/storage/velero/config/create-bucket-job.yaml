@@ -34,4 +34,8 @@ spec:
               AWS_ACCESS_KEY_ID="$(cat /credentials/aws_access_key_id)"
               AWS_SECRET_ACCESS_KEY="$(cat /credentials/aws_secret_access_key)"
               rc alias set rustfs https://s3.aknuk.dev "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY"
-              rc mb --ignore-existing rustfs/kubernetes-backups
+              if ! rc ls rustfs/kubernetes-backups > /dev/null 2>&1; then
+                rc mb rustfs/kubernetes-backups
+              else
+                echo "Bucket kubernetes-backups already exists, ignoring."
+              fi
