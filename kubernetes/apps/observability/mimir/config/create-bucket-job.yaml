@@ -33,8 +33,18 @@ spec:
               AWS_ACCESS_KEY_ID="$(cat /credentials/aws_access_key_id)"
               AWS_SECRET_ACCESS_KEY="$(cat /credentials/aws_secret_access_key)"
               rc alias set rustfs https://s3.aknuk.dev "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY"
-              if ! rc ls rustfs/mimir > /dev/null 2>&1; then
-                rc mb rustfs/mimir
+              if ! rc ls rustfs/mimir-blocks > /dev/null 2>&1; then
+                rc mb rustfs/mimir-blocks
               else
-                echo "Bucket mimir already exists, ignoring."
+                echo "Bucket mimir-blocks already exists, ignoring."
+              fi
+              if ! rc ls rustfs/mimir-ruler > /dev/null 2>&1; then
+                rc mb rustfs/mimir-ruler
+              else
+                echo "Bucket mimir-ruler already exists, ignoring."
+              fi
+              if ! rc ls rustfs/mimir-alertmanager > /dev/null 2>&1; then
+                rc mb rustfs/mimir-alertmanager
+              else
+                echo "Bucket mimir-alertmanager already exists, ignoring."
               fi

@@ -8,8 +8,7 @@ tempo:
         insecure: false
         access_key: ${AWS_ACCESS_KEY_ID}
         secret_key: ${AWS_SECRET_ACCESS_KEY}
-  ingester:
-    replicas: 1
+
 persistence:
   enabled: true
   storageClass: s3
