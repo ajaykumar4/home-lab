@@ -1,0 +1,22 @@
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: observability-s3-creds
+  namespace: observability
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: bitwarden
+    kind: ClusterSecretStore
+  target:
+    name: observability-s3-creds
+    template:
+      engineVersion: v2
+      data:
+        aws_access_key_id: "{{ .aws_access_key_id }}"
+        aws_secret_access_key: "{{ .aws_secret_access_key }}"
+  dataFrom:
+    - extract:
+        key: bc7ddb89-0509-4464-aa2c-b42801206116

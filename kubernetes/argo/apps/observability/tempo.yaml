@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana
+  name: tempo
   namespace: argo-system
   annotations:
     argocd.argoproj.io/sync-wave: '4'
@@ -10,17 +10,16 @@ spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-      path: kubernetes/apps/observability/grafana
+      path: kubernetes/apps/observability/tempo
       targetRevision: main
       ref: repo
     - repoURL: https://grafana.github.io/helm-charts
-      chart: grafana
-      targetRevision: 8.5.1
+      chart: tempo
+      targetRevision: 1.8.0
       helm:
-        releaseName: grafana
+        releaseName: tempo
         valueFiles:
-          - $repo/kubernetes/apps/observability/grafana/values.yaml
-          - $repo/kubernetes/apps/observability/grafana/values.sops.yaml
+          - $repo/kubernetes/apps/observability/tempo/values.yaml
   destination:
     name: in-cluster
     namespace: observability

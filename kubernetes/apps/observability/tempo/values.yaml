@@ -1,0 +1,16 @@
+tempo:
+  storage:
+    trace:
+      backend: s3
+      s3:
+        bucket: tempo
+        endpoint: s3.aknuk.dev
+        insecure: false
+  ingester:
+    replicas: 1
+persistence:
+  enabled: true
+  storageClass: s3
+  size: 10Gi
+minio:
+  enabled: false

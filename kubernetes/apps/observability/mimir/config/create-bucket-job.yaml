@@ -1,0 +1,41 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mimir-create-bucket
+  namespace: observability
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  ttlSecondsAfterFinished: 300
+  template:
+    spec:
+      restartPolicy: Never
+      volumes:
+        - name: s3-creds
+          secret:
+            secretName: observability-s3-creds
+            optional: false
+      containers:
+        - name: create-bucket
+          image: minio/mc:RELEASE.2026-03-26T22-28-36Z
+          volumeMounts:
+            - name: s3-creds
+              mountPath: /credentials
+              readOnly: true
+          command:
+            - /bin/sh
+            - -c
+            - |
+              until [ -s /credentials/aws_access_key_id ] && [ -s /credentials/aws_secret_access_key ]; do
+                echo "Waiting for observability-s3-creds..."
+                sleep 5
+              done
+              AWS_ACCESS_KEY_ID="$(cat /credentials/aws_access_key_id)"
+              AWS_SECRET_ACCESS_KEY="$(cat /credentials/aws_secret_access_key)"
+              mc alias set rustfs https://s3.aknuk.dev "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY"
+              if ! mc ls rustfs/mimir > /dev/null 2>&1; then
+                mc mb rustfs/mimir
+              else
+                echo "Bucket mimir already exists, ignoring."
+              fi

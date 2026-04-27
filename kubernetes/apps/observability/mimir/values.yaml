@@ -1,0 +1,33 @@
+mimir:
+  structuredConfig:
+    blocks_storage:
+      backend: s3
+      s3:
+        endpoint: s3.aknuk.dev
+        bucket_name: mimir
+        insecure: false
+    ruler_storage:
+      backend: s3
+      s3:
+        endpoint: s3.aknuk.dev
+        bucket_name: mimir
+        insecure: false
+    alertmanager_storage:
+      backend: s3
+      s3:
+        endpoint: s3.aknuk.dev
+        bucket_name: mimir
+        insecure: false
+minio:
+  enabled: false
+ingester:
+  replicas: 1
+  persistentVolume:
+    storageClass: s3
+store_gateway:
+  replicas: 1
+  persistentVolume:
+    storageClass: s3
+compactor:
+  persistentVolume:
+    storageClass: s3
