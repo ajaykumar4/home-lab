@@ -18,7 +18,7 @@ spec:
             optional: false
       containers:
         - name: create-bucket
-          image: minio/mc:RELEASE.2026-03-26T22-28-36Z
+          image: rustfs/rc:v0.1.12
           volumeMounts:
             - name: s3-creds
               mountPath: /credentials
@@ -33,9 +33,9 @@ spec:
               done
               AWS_ACCESS_KEY_ID="$(cat /credentials/aws_access_key_id)"
               AWS_SECRET_ACCESS_KEY="$(cat /credentials/aws_secret_access_key)"
-              mc alias set rustfs https://s3.aknuk.dev "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY"
-              if ! mc ls rustfs/tempo > /dev/null 2>&1; then
-                mc mb rustfs/tempo
+              rc alias set rustfs https://s3.aknuk.dev "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY"
+              if ! rc ls rustfs/tempo > /dev/null 2>&1; then
+                rc mb rustfs/tempo
               else
                 echo "Bucket tempo already exists, ignoring."
               fi

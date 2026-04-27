@@ -18,7 +18,7 @@ spec:
             optional: true
       containers:
         - name: create-bucket
-          image: minio/mc:RELEASE.2026-03-26T22-28-36Z
+          image: rustfs/rc:v0.1.12
           volumeMounts:
             - name: s3-creds
               mountPath: /credentials
@@ -33,5 +33,5 @@ spec:
               done
               AWS_ACCESS_KEY_ID="$(cat /credentials/aws_access_key_id)"
               AWS_SECRET_ACCESS_KEY="$(cat /credentials/aws_secret_access_key)"
-              mc alias set rustfs https://s3.aknuk.dev "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY"
-              mc mb --ignore-existing rustfs/kubernetes-backups
+              rc alias set rustfs https://s3.aknuk.dev "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY"
+              rc mb --ignore-existing rustfs/kubernetes-backups
