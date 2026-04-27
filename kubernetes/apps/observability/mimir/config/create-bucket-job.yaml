@@ -3,7 +3,6 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: mimir-create-bucket
-  namespace: observability
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
@@ -14,7 +13,7 @@ spec:
       volumes:
         - name: s3-creds
           secret:
-            secretName: observability-s3-creds
+            secretName: mimir-s3-creds
             optional: false
       containers:
         - name: create-bucket
@@ -28,7 +27,7 @@ spec:
             - -c
             - |
               until [ -s /credentials/aws_access_key_id ] && [ -s /credentials/aws_secret_access_key ]; do
-                echo "Waiting for observability-s3-creds..."
+                echo "Waiting for mimir-s3-creds..."
                 sleep 5
               done
               AWS_ACCESS_KEY_ID="$(cat /credentials/aws_access_key_id)"
