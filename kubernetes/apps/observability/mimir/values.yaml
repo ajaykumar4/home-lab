@@ -6,18 +6,28 @@ mimir:
         endpoint: s3.aknuk.dev
         bucket_name: mimir
         insecure: false
+        access_key_id: ${AWS_ACCESS_KEY_ID}
+        secret_access_key: ${AWS_SECRET_ACCESS_KEY}
     ruler_storage:
       backend: s3
       s3:
         endpoint: s3.aknuk.dev
         bucket_name: mimir
         insecure: false
+        access_key_id: ${AWS_ACCESS_KEY_ID}
+        secret_access_key: ${AWS_SECRET_ACCESS_KEY}
     alertmanager_storage:
       backend: s3
       s3:
         endpoint: s3.aknuk.dev
         bucket_name: mimir
         insecure: false
+        access_key_id: ${AWS_ACCESS_KEY_ID}
+        secret_access_key: ${AWS_SECRET_ACCESS_KEY}
+global:
+  extraEnvFrom:
+    - secretRef:
+        name: mimir-s3-creds
 minio:
   enabled: false
 ingester:
