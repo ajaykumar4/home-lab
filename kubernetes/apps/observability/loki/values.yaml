@@ -10,6 +10,8 @@ loki:
       region: us-east-1
       s3ForcePathStyle: false
       insecure: false
+      accessKeyId: ${AWS_ACCESS_KEY_ID}
+      secretAccessKey: ${AWS_SECRET_ACCESS_KEY}
   auth_enabled: false
   commonConfig:
     replication_factor: 1
@@ -38,3 +40,9 @@ backend:
     size: 10Gi
 gateway:
   enabled: false
+global:
+  extraEnvFrom:
+    - secretRef:
+        name: loki-s3-creds
+  extraArgs:
+    - "-config.expand-env=true"

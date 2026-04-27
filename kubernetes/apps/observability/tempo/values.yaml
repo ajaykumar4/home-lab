@@ -6,6 +6,8 @@ tempo:
         bucket: tempo
         endpoint: s3.aknuk.dev
         insecure: false
+        access_key: ${AWS_ACCESS_KEY_ID}
+        secret_key: ${AWS_SECRET_ACCESS_KEY}
   ingester:
     replicas: 1
 persistence:
@@ -14,3 +16,9 @@ persistence:
   size: 10Gi
 minio:
   enabled: false
+global:
+  extraEnvFrom:
+    - secretRef:
+        name: tempo-s3-creds
+  extraArgs:
+    - "-config.expand-env=true"
