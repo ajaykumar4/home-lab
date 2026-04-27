@@ -1,0 +1,40 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: opencost-create-bucket
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  ttlSecondsAfterFinished: 300
+  template:
+    spec:
+      restartPolicy: Never
+      volumes:
+        - name: s3-creds
+          secret:
+            secretName: opencost-s3-creds
+            optional: false
+      containers:
+        - name: create-bucket
+          image: rustfs/rc:v0.1.12
+          volumeMounts:
+            - name: s3-creds
+              mountPath: /credentials
+              readOnly: true
+          command:
+            - /bin/sh
+            - -c
+            - |
+              until [ -s /credentials/aws_access_key_id ] && [ -s /credentials/aws_secret_access_key ]; do
+                echo "Waiting for opencost-s3-creds..."
+                sleep 5
+              done
+              AWS_ACCESS_KEY_ID="$(cat /credentials/aws_access_key_id)"
+              AWS_SECRET_ACCESS_KEY="$(cat /credentials/aws_secret_access_key)"
+              rc alias set rustfs https://s3.aknuk.dev "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY"
+              if ! rc ls rustfs/opencost > /dev/null 2>&1; then
+                rc mb rustfs/opencost
+              else
+                echo "Bucket opencost already exists, ignoring."
+              fi
