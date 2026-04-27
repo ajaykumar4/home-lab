@@ -8,14 +8,6 @@ tempo:
         insecure: false
         access_key: ${AWS_ACCESS_KEY_ID}
         secret_key: ${AWS_SECRET_ACCESS_KEY}
-
-persistence:
-  enabled: true
-  storageClass: s3
-  size: 10Gi
-minio:
-  enabled: false
-global:
   extraEnv:
     - name: AWS_ACCESS_KEY_ID
       valueFrom:
@@ -29,3 +21,11 @@ global:
           key: aws_secret_access_key
   extraArgs:
     - "-config.expand-env=true"
+
+persistence:
+  enabled: true
+  storageClass: s3
+  size: 10Gi
+minio:
+  enabled: false
+
