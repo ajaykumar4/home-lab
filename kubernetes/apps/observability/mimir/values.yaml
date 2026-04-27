@@ -25,9 +25,17 @@ mimir:
         access_key_id: ${AWS_ACCESS_KEY_ID}
         secret_access_key: ${AWS_SECRET_ACCESS_KEY}
 global:
-  extraEnvFrom:
-    - secretRef:
-        name: mimir-s3-creds
+  extraEnv:
+    - name: AWS_ACCESS_KEY_ID
+      valueFrom:
+        secretKeyRef:
+          name: mimir-s3-creds
+          key: aws_access_key_id
+    - name: AWS_SECRET_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: mimir-s3-creds
+          key: aws_secret_access_key
 minio:
   enabled: false
 ingester:

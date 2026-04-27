@@ -17,8 +17,16 @@ persistence:
 minio:
   enabled: false
 global:
-  extraEnvFrom:
-    - secretRef:
-        name: tempo-s3-creds
+  extraEnv:
+    - name: AWS_ACCESS_KEY_ID
+      valueFrom:
+        secretKeyRef:
+          name: tempo-s3-creds
+          key: aws_access_key_id
+    - name: AWS_SECRET_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: tempo-s3-creds
+          key: aws_secret_access_key
   extraArgs:
     - "-config.expand-env=true"
