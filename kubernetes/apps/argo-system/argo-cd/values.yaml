@@ -1,6 +1,6 @@
 fullnameOverride: "argocd"
 global:
-  domain: argo.aknuk.dev
+  domain: argocd.aknuk.dev
 crds:
   install: true
   # -- Keep CRDs on chart uninstall
@@ -9,14 +9,19 @@ configs:
   params:
     server.insecure: true
     controller.diff.server.side: true
+    controller.status.processors: 30
+    controller.operation.processors: 15
+    controller.kubectl.parallelism.limit: 30
+    reposerver.parallelism.limit: 8
+    reposerver.git.request.timeout: 30s
   cm:
     statusbadge.enabled: true
+    timeout.reconciliation: 10m
+    timeout.reconciliation.jitter: 2m
     kustomize.buildOptions: "--enable-alpha-plugins --enable-exec"
     helm.valuesFileSchemes: >-
-      secrets+gpg-import, secrets+gpg-import-kubernetes,
-      secrets+age-import, secrets+age-import-kubernetes,
-      secrets, secrets+literal,
-      https
+      secrets+gpg-import, secrets+gpg-import-kubernetes, secrets+age-import,
+      secrets+age-import-kubernetes, secrets, secrets+literal, https
     resource.exclusions: |
       - apiGroups:
           - cilium.io
@@ -24,19 +29,54 @@ configs:
           - CiliumIdentity
         clusters:
           - "*"
+controller:
+  replicas: 2
+  extraArgs:
+    - --repo-server-timeout-seconds=120
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: "2"
+      memory: 2Gi
+  metrics:
+    enabled: true
+    applicationLabels:
+      enabled: true
+    serviceMonitor: &service-monitor
+      enabled: true
+      additionalLabels:
+        release: kube-prometheus-stack
+dex:
+  replicas: 2
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
 server:
+  replicas: 2
   allowAnyNamespace: true
+  env:
+    - name: ARGOCD_API_SERVER_REPLICAS
+      value: "2"
   httproute:
-    enabled: false
+    enabled: true
     hostnames:
-      - argo.aknuk.dev
+      - argocd.aknuk.dev
     parentRefs:
       - name: envoy-external
         namespace: network
         sectionName: https
+notifications:
+  replicas: 2
 repoServer:
   podAnnotations:
     reloader.stakater.com/auto: "true"
+  replicas: 2
   serviceAccount:
     create: true
     name: argocd-repo-server
@@ -75,6 +115,10 @@ repoServer:
       value: /usr/local/bin/helm
     - name: SOPS_AGE_KEY_FILE # For age
       value: /helm-secrets-private-keys/key.txt
+    - name: ARGOCD_EXEC_TIMEOUT
+      value: 180s
+    - name: ARGOCD_GIT_ATTEMPTS_COUNT
+      value: "3"
   volumes:
     - name: custom-tools
       emptyDir: {}
@@ -100,7 +144,7 @@ repoServer:
     - name: gitops-tools
       image: ghcr.io/ajaykumar4/gitops-tools:2026.4.0
       imagePullPolicy: Always
-      command: [sh, -ec]
+      command: [ sh, -ec ]
       args:
         - |
           mkdir -p /custom-tools/
