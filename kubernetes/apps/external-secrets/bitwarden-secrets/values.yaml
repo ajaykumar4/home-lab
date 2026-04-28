@@ -2,3 +2,6 @@ bitwarden-sdk-server:
   enabled: true
 
 installCRDs: true
+
+webhook:
+  create: false
