@@ -20,7 +20,7 @@ tempo:
           name: tempo-s3-creds
           key: aws_secret_access_key
   extraArgs:
-    - "-config.expand-env=true"
+    config.expand-env: true
 
 persistence:
   enabled: true
