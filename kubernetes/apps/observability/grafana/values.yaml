@@ -6,7 +6,6 @@ initChownData:
 persistence:
   enabled: true
   type: pvc
-  storageClassName: s3
   accessModes:
     - ReadWriteOnce
   size: 10Gi

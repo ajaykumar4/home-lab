@@ -29,14 +29,12 @@ minio:
 write:
   replicas: 1
   persistence:
-    storageClass: s3
     size: 10Gi
 read:
   replicas: 1
 backend:
   replicas: 1
   persistence:
-    storageClass: s3
     size: 10Gi
 gateway:
   enabled: false

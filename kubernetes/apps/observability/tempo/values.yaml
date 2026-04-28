@@ -24,7 +24,6 @@ tempo:
 
 persistence:
   enabled: true
-  storageClass: s3
   size: 10Gi
 minio:
   enabled: false
