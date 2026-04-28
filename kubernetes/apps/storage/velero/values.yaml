@@ -29,7 +29,7 @@ snapshotsEnabled: false
 deployNodeAgent: true
 metrics:
   serviceMonitor:
-    enabled: true
+    enabled: false
 
 schedules:
   cluster-backup:
