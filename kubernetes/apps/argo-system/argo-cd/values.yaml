@@ -27,7 +27,7 @@ configs:
 server:
   allowAnyNamespace: true
   httproute:
-    enabled: true
+    enabled: false
     hostnames:
       - argo.aknuk.dev
     parentRefs:
