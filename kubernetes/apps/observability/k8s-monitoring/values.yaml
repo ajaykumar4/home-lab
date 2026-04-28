@@ -1,0 +1,31 @@
+cluster:
+  name: home-lab
+
+destinations:
+  - name: mimir
+    type: prometheus
+    url: http://mimir-gateway.observability.svc.cluster.local:80/api/v1/push
+  - name: loki
+    type: loki
+    url: http://loki-gateway.observability.svc.cluster.local:80/loki/api/v1/push
+  - name: tempo
+    type: otlp
+    url: http://tempo-distributor.observability.svc.cluster.local:4317
+
+clusterMetrics:
+  enabled: true
+
+clusterEvents:
+  enabled: true
+
+podLogsViaLoki:
+  enabled: true
+
+prometheusOperatorObjects:
+  enabled: false
+
+telemetryServices:
+  kube-state-metrics:
+    deploy: true
+  node-exporter:
+    deploy: true
