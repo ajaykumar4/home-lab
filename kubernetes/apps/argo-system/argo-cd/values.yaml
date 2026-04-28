@@ -47,6 +47,9 @@ controller:
     applicationLabels:
       enabled: true
     serviceMonitor: &service-monitor
+      enabled: true
+      additionalLabels:
+        release: kube-prometheus-stack
 dex:
   replicas: 2
   resources:
@@ -60,15 +63,9 @@ dex:
     enabled: true
     serviceMonitor: *service-monitor
 redis:
-  enabled: true
-  replicas: 2
-  resources:
-    requests:
-      cpu: 250m
-      memory: 512Mi
-    limits:
-      cpu: "1"
-      memory: 1Gi
+  metrics:
+    enabled: true
+    serviceMonitor: *service-monitor
 server:
   replicas: 2
   allowAnyNamespace: true
@@ -192,6 +189,3 @@ repoServer:
       volumeMounts:
         - mountPath: /custom-tools
           name: custom-tools
-  metrics:
-    enabled: true
-    serviceMonitor: *service-monitor
