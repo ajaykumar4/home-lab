@@ -12,6 +12,7 @@ opencost:
 
   ui:
     enabled: true
+    useIPv6: false
     httpRoute:
       enabled: true
       hostnames:
