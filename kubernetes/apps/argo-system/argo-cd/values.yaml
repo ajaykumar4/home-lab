@@ -1,6 +1,6 @@
 fullnameOverride: "argocd"
 global:
-  domain: argocd.aknuk.dev
+  domain: argo.aknuk.dev
 crds:
   install: true
   # -- Keep CRDs on chart uninstall
@@ -66,7 +66,7 @@ server:
   httproute:
     enabled: true
     hostnames:
-      - argocd.aknuk.dev
+      - argo.aknuk.dev
     parentRefs:
       - name: envoy-external
         namespace: network
