@@ -12,7 +12,14 @@ opencost:
 
   ui:
     enabled: true
-
+    httpRoute:
+      enabled: true
+      hostnames:
+        - opencost.aknuk.dev
+      parentRefs:
+        - name: envoy-external
+          namespace: network
+          sectionName: https
 
   exporter:
     persistence:
