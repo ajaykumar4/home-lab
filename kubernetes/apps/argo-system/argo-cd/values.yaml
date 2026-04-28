@@ -47,12 +47,6 @@ controller:
     applicationLabels:
       enabled: true
     serviceMonitor: &service-monitor
-      enabled: true
-      namespace: observability
-      interval: 30s
-      scrapeTimeout: 10s
-      additionalLabels:
-        release: prometheus
 dex:
   replicas: 2
   resources:

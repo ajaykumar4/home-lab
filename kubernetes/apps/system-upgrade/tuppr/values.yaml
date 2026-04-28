@@ -1,4 +1,4 @@
 replicaCount: 2
 monitoring:
   serviceMonitor:
-    enabled: true
+    enabled: false
