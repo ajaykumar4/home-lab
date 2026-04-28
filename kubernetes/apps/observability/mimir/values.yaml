@@ -45,10 +45,43 @@ ingester:
   replicas: 1
   persistentVolume:
     storageClass: s3
+  extraArgs:
+    config.expand-env: true
 store_gateway:
   replicas: 1
   persistentVolume:
     storageClass: s3
+  extraArgs:
+    config.expand-env: true
 compactor:
   persistentVolume:
     storageClass: s3
+  extraArgs:
+    config.expand-env: true
+distributor:
+  extraArgs:
+    config.expand-env: true
+querier:
+  extraArgs:
+    config.expand-env: true
+query_frontend:
+  extraArgs:
+    config.expand-env: true
+query_scheduler:
+  extraArgs:
+    config.expand-env: true
+ruler:
+  extraArgs:
+    config.expand-env: true
+alertmanager:
+  extraArgs:
+    config.expand-env: true
+ruler_querier:
+  extraArgs:
+    config.expand-env: true
+ruler_query_frontend:
+  extraArgs:
+    config.expand-env: true
+ruler_query_scheduler:
+  extraArgs:
+    config.expand-env: true
