@@ -26,7 +26,7 @@ opencost:
     persistence:
       enabled: true
       accessMode: ReadWriteOnce
-      storageClass: s3
+      storageClass: opencost-s3
       size: 10Gi
 
 resources:
