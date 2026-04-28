@@ -17,7 +17,7 @@ controllers:
                     TUNNEL_TRANSPORT_PROTOCOL: quic
                 envFrom:
                     - secretRef:
-                        name: cloudflare-tunnel-secret
+                          name: cloudflare-tunnel-secret
                 args:
                     - tunnel
                     - run
@@ -67,25 +67,24 @@ service:
                 port: 8080
 serviceMonitor:
     app:
-        enabled: false
         endpoints:
             - port: http
 configMaps:
-  config:
-    data:
-      config.yaml: |-
-        ingress:
-          - hostname: "*.aknuk.dev"
-            originRequest:
-              http2Origin: true
-              # noTLSVerify: true
-              originServerName: "external.aknuk.dev"
-            service: https://envoy-external.network.svc.cluster.local:443
-          - service: http_status:404
+    config:
+        data:
+            config.yaml: |-
+                ingress:
+                  - hostname: "*.aknuk.dev"
+                    originRequest:
+                      http2Origin: true
+                      # noTLSVerify: true
+                      originServerName: "external.aknuk.dev"
+                    service: https://envoy-external.network.svc.cluster.local:443
+                  - service: http_status:404
 persistence:
-  config-file:
-    type: configMap
-    identifier: config
-    globalMounts:
-      - path: /etc/cloudflared/config.yaml
-        subPath: config.yaml
+    config-file:
+        type: configMap
+        identifier: config
+        globalMounts:
+            - path: /etc/cloudflared/config.yaml
+              subPath: config.yaml

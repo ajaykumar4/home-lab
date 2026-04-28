@@ -29,7 +29,7 @@ snapshotsEnabled: false
 deployNodeAgent: true
 metrics:
   serviceMonitor:
-    enabled: false
+    enabled: true
 
 schedules:
   cluster-backup:
@@ -38,4 +38,4 @@ schedules:
     template:
       ttl: "720h"
       includedNamespaces:
-        - '*'
+        - "*"

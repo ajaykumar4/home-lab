@@ -21,7 +21,7 @@ grafana.ini:
     enabled: false
 
 serviceMonitor:
-  enabled: false
+  enabled: true
 
 additionalDataSources:
   - name: Loki
