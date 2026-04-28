@@ -7,7 +7,7 @@ opencost:
       url: "http://mimir-gateway.observability.svc.cluster.local:80/prometheus"
   exporter:
     defaultClusterId: "home-lab"
-    defaultBillingCurrency: "USD"
+    defaultBillingCurrency: "EUR"
     replicas: 2
 
   ui:
