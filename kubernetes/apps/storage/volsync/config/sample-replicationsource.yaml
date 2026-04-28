@@ -1,0 +1,25 @@
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: sample-app-pvc-backup
+  namespace: default # Adjust to match the namespace of the PVC
+spec:
+  sourcePVC: sample-app-pvc # Name of the PVC to backup
+  trigger:
+    schedule: "0 * * * *" # Hourly backup
+  restic:
+    copyMethod: Snapshot # Can be Snapshot (if CSI supports it) or Direct
+    pruneIntervalDays: 7
+    repository: sample-app-repo
+    retain:
+      hourly: 24
+      daily: 7
+      weekly: 4
+    secretRef:
+      name: volsync-s3-creds # Reference to the S3 credentials secret
+    customCA:
+      secretName: "" # If using self-signed certs
+    endpoint: "https://s3.aknuk.dev" # Minio/S3 endpoint
+    bucket: "kubernetes-backups"
+    path: "volsync/sample-app" # Path within the bucket

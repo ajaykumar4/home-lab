@@ -1,0 +1,23 @@
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: volsync-s3-creds
+  namespace: storage
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: bitwarden
+    kind: ClusterSecretStore
+  target:
+    name: volsync-s3-creds
+    template:
+      engineVersion: v2
+      data:
+        AWS_ACCESS_KEY_ID: "{{ .aws_access_key_id }}"
+        AWS_SECRET_ACCESS_KEY: "{{ .aws_secret_access_key }}"
+        RESTIC_PASSWORD: "{{ .aws_secret_access_key }}" # Re-using secret access key as restic password for simplicity
+  dataFrom:
+    - extract:
+        key: bc7ddb89-0509-4464-aa2c-b42801206116
