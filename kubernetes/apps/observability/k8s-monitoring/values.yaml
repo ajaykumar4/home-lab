@@ -18,7 +18,7 @@ clusterMetrics:
 clusterEvents:
   enabled: true
 
-podLogsViaLoki:
+podLogs:
   enabled: true
 
 prometheusOperatorObjects:
