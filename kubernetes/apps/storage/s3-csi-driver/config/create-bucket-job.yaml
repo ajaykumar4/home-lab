@@ -8,14 +8,16 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
   ttlSecondsAfterFinished: 300
+  backoffLimit: 5
   template:
     spec:
-      restartPolicy: Never
+      restartPolicy: OnFailure
+      serviceAccountName: default
       volumes:
         - name: s3-creds
           secret:
             secretName: csi-s3-secret
-            optional: true
+            optional: false
       containers:
         - name: create-bucket
           image: rustfs/rc:v0.1.12
@@ -23,31 +25,49 @@ spec:
             - name: s3-creds
               mountPath: /credentials
               readOnly: true
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: csi-s3-secret
+                  key: accessKeyID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: csi-s3-secret
+                  key: secretAccessKey
+            - name: AWS_ENDPOINT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: csi-s3-secret
+                  key: endpoint
           command:
             - /bin/sh
             - -c
             - |
-              until [ -s /credentials/accessKeyID ] && [ -s /credentials/secretAccessKey ]; do
-                echo "Waiting for csi-s3-secret..."
-                sleep 5
-              done
-              AWS_ACCESS_KEY_ID="$(cat /credentials/accessKeyID)"
-              AWS_SECRET_ACCESS_KEY="$(cat /credentials/secretAccessKey)"
-              ENDPOINT="$(cat /credentials/endpoint)"
-              rc alias set rustfs "${ENDPOINT}" "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY"
+              set -e
+
+              echo "Loading S3 credentials..."
+              echo "Endpoint: $AWS_ENDPOINT_URL"
+
+              # Configure rc alias for rustfs
+              rc alias set rustfs "$AWS_ENDPOINT_URL" "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY"
+
               # Create home-lab bucket for main storage
-              if ! rc ls rustfs/home-lab > /dev/null 2>&1; then
-                rc mb rustfs/home-lab
-                echo "Created home-lab bucket"
-              else
-                echo "Bucket home-lab already exists, ignoring."
-              fi
+              echo "Creating/checking home-lab bucket..."
+              rc mb rustfs/home-lab || echo "Bucket home-lab already exists"
+
               # Create service-specific buckets for static provisioning
               for bucket in grafana loki tempo mimir opencost; do
-                if ! rc ls "rustfs/$bucket" > /dev/null 2>&1; then
-                  rc mb "rustfs/$bucket"
-                  echo "Created $bucket bucket"
-                else
-                  echo "Bucket $bucket already exists, ignoring."
-                fi
+                echo "Creating/checking $bucket bucket..."
+                rc mb "rustfs/$bucket" || echo "Bucket $bucket already exists"
               done
+
+              echo "All buckets created/verified successfully!"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
