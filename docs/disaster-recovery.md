@@ -24,6 +24,18 @@ What they do:
 - Velero takes a full-cluster backup every day at `02:00`.
 - `talos-etcd-backup` is created suspended and takes an `etcd` snapshot every day at `01:30` once enabled.
 - Both backup flows store data in `s3.aknuk.dev` under the `kubernetes-backups` bucket.
+- The `etcd` backup `CronJob` is annotated for `reloader` so Talos config or S3 secret changes cause the workload to refresh automatically.
+
+## Argo Sync Order
+
+The relevant Argo ordering is:
+
+- `bitwarden-secrets`: wave `1`
+- `reloader`: wave `1`
+- `velero`: wave `3`
+- `volsync`: wave `3`
+
+This keeps secret generation and reload handling ahead of the storage backup apps, which reduces sync stalls when backup apps depend on generated secrets.
 
 ## Required Preparation
 

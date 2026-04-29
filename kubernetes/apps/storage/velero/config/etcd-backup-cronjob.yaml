@@ -3,6 +3,8 @@ kind: CronJob
 metadata:
   name: talos-etcd-backup
   namespace: storage
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   schedule: "30 1 * * *"
   suspend: true
