@@ -32,10 +32,11 @@ The relevant Argo ordering is:
 
 - `bitwarden-secrets`: wave `1`
 - `reloader`: wave `1`
+- `volume-snapshotter`: wave `2`
 - `velero`: wave `3`
 - `volsync`: wave `3`
 
-This keeps secret generation and reload handling ahead of the storage backup apps, which reduces sync stalls when backup apps depend on generated secrets.
+This keeps secret generation and reload handling ahead of the storage backup apps, and it makes sure the CSI `VolumeSnapshot` CRDs/controller exist before `volsync` starts.
 
 ## Required Preparation
 

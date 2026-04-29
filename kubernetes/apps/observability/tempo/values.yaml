@@ -25,6 +25,7 @@ tempo:
 persistence:
   enabled: true
   size: 10Gi
+  storageClassName: s3-tempo
 minio:
   enabled: false
 

@@ -4,3 +4,5 @@ kind: Kustomization
 resources:
   - ./secret.yaml
   - ./storageclass.yaml
+  - ./storage-classes.yaml
+  - ./create-bucket-job.yaml

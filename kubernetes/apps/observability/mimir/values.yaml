@@ -45,17 +45,20 @@ ingester:
   replicas: 1
   persistentVolume:
     enabled: true
+    storageClassName: s3-mimir
   extraArgs:
     config.expand-env: true
 store_gateway:
   replicas: 1
   persistentVolume:
     enabled: true
+    storageClassName: s3-mimir
   extraArgs:
     config.expand-env: true
 compactor:
   persistentVolume:
     enabled: true
+    storageClassName: s3-mimir
   extraArgs:
     config.expand-env: true
 distributor:

@@ -2,10 +2,10 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: s3
-provisioner: ru.yandex.s3.csi
+provisioner: s3.csi.aws.com
 parameters:
   mounter: geesefs
-  options: "--memory-limit 1000 --dir-mode 0777 --file-mode 0666"
+  options: "--memory-limit 1000 --dir-mode 0777 --file-mode 0666 --endpoint https://s3.aknuk.dev"
   bucket: home-lab
   csi.storage.k8s.io/provisioner-secret-name: csi-s3-secret
   csi.storage.k8s.io/provisioner-secret-namespace: storage

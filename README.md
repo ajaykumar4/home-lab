@@ -341,6 +341,10 @@ You don't need to re-bootstrap the cluster to add new nodes. Follow these steps:
 
 The node should join the cluster automatically and workloads will be scheduled once they report as ready.
 
+### S3 CSI
+
+The repository uses the `csi-s3` driver to mount the RustFS S3-compatible endpoint at `https://s3.aknuk.dev` using credentials sourced from `ExternalSecret`.
+
 ## 🤖 Renovate
 
 [Renovate](https://www.mend.io/renovate) is a tool that automates dependency management. It is designed to scan your repository around the clock and open PRs for out-of-date dependencies it finds. Common dependencies it can discover are Helm charts, container images, GitHub Actions and more! In most cases merging a PR will cause Argo to apply the update to your cluster.

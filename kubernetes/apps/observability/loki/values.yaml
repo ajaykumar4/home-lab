@@ -30,12 +30,14 @@ write:
   replicas: 1
   persistence:
     size: 10Gi
+    storageClassName: s3-loki
 read:
   replicas: 1
 backend:
   replicas: 1
   persistence:
     size: 10Gi
+    storageClassName: s3-loki
 gateway:
   enabled: false
 global:

@@ -8,6 +8,7 @@ persistence:
   type: pvc
   accessModes:
     - ReadWriteOnce
+  storageClassName: s3-grafana
   size: 10Gi
 
 grafana.ini:
