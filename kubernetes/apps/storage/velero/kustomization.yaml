@@ -3,4 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ./config/velero-s3-creds.yaml
+  - ./config/talos-etcd-backup-s3-creds.yaml
+  - ./config/talos-etcd-backup-secret.yaml
   - ./config/create-bucket-job.yaml
+  - ./config/etcd-backup-cronjob.yaml

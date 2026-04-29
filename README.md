@@ -290,18 +290,25 @@ task talos:upgrade-k8s
 
 Velero is configured to take a full-cluster backup to `s3.aknuk.dev` every day at `02:00` and to trigger an extra pre-upgrade backup before `tuppr` applies Talos or Kubernetes upgrades.
 
+This repository also includes a Kubernetes-native Talos `etcd` backup `CronJob` for control-plane recovery. For the full DR workflow, including same-system and different-hardware recovery, see [docs/disaster-recovery.md](/Users/aj/Projects/home-lab/docs/disaster-recovery.md).
+
 If you need to restore after a failed upgrade or a cluster disaster:
 
 ```sh
-# Check available backups
-velero backup get
+kubectl get backups.velero.io -n storage
 
-# Restore the latest successful backup
-velero restore create --from-backup <backup-name>
+kubectl apply -f - <<EOF
+apiVersion: velero.io/v1
+kind: Restore
+metadata:
+  name: restore-$(date +%Y%m%d-%H%M%S)
+  namespace: storage
+spec:
+  backupName: <backup-name>
+  existingResourcePolicy: update
+EOF
 
-# Follow restore progress
-velero restore describe <restore-name>
-velero restore logs <restore-name>
+kubectl describe restore -n storage <restore-name>
 ```
 
 ### ➕ Adding a node to your cluster

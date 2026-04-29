@@ -1,0 +1,94 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: talos-etcd-backup
+  namespace: storage
+spec:
+  schedule: "30 1 * * *"
+  suspend: true
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 300
+      template:
+        spec:
+          restartPolicy: Never
+          volumes:
+            - name: backup
+              emptyDir: {}
+            - name: talos-config
+              secret:
+                secretName: talos-etcd-backup-config
+                items:
+                  - key: talosconfig
+                    path: talosconfig
+          initContainers:
+            - name: snapshot
+              image: ghcr.io/siderolabs/talosctl:v1.13.0
+              command:
+                - /talosctl
+                - etcd
+                - snapshot
+                - /backup/etcd.db
+                - --talosconfig=/etc/talos/talosconfig
+                - --endpoints=$(TALOS_ENDPOINTS)
+                - --nodes=$(TALOS_NODES)
+              env:
+                - name: TALOS_ENDPOINTS
+                  valueFrom:
+                    secretKeyRef:
+                      name: talos-etcd-backup-config
+                      key: endpoints
+                - name: TALOS_NODES
+                  valueFrom:
+                    secretKeyRef:
+                      name: talos-etcd-backup-config
+                      key: nodes
+              volumeMounts:
+                - name: backup
+                  mountPath: /backup
+                - name: talos-config
+                  mountPath: /etc/talos
+                  readOnly: true
+          containers:
+            - name: upload
+              image: rustfs/rc:v0.1.12
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  set -eu
+                  TS="$(date +%Y%m%d-%H%M%S)"
+                  rc alias set rustfs "$S3_URL" "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY"
+                  rc cp /backup/etcd.db "rustfs/$BUCKET/$PREFIX/etcd-${TS}.db"
+              env:
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: talos-etcd-backup-s3-creds
+                      key: AWS_ACCESS_KEY_ID
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: talos-etcd-backup-s3-creds
+                      key: AWS_SECRET_ACCESS_KEY
+                - name: BUCKET
+                  valueFrom:
+                    secretKeyRef:
+                      name: talos-etcd-backup-config
+                      key: bucket
+                - name: PREFIX
+                  valueFrom:
+                    secretKeyRef:
+                      name: talos-etcd-backup-config
+                      key: prefix
+                - name: S3_URL
+                  valueFrom:
+                    secretKeyRef:
+                      name: talos-etcd-backup-config
+                      key: s3-url
+              volumeMounts:
+                - name: backup
+                  mountPath: /backup
