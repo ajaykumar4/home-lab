@@ -80,7 +80,7 @@ alertmanager:
     hostnames:
       - vmalertmanager.aknuk.dev
     parentRefs:
-      - name: envoy-external
+      - name: envoy-internal
         namespace: network
   spec:
     externalURL: https://vmalertmanager.aknuk.dev
@@ -163,7 +163,7 @@ vmalert:
     hostnames:
       - vmalert.aknuk.dev
     parentRefs:
-      - name: envoy-external
+      - name: envoy-internal
         namespace: network
 vmauth:
   enabled: true
@@ -185,7 +185,7 @@ vmsingle:
     hostnames:
       - vmsingle.aknuk.dev
     parentRefs:
-      - name: envoy-external
+      - name: envoy-internal
         namespace: network
   spec:
     retentionPeriod: 90d

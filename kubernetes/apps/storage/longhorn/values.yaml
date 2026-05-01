@@ -5,6 +5,6 @@ httproute:
   hostnames:
     - longhorn.aknuk.dev
   parentRefs:
-    - name: envoy-external
+    - name: envoy-internal
       namespace: network
       sectionName: https

@@ -17,7 +17,7 @@ server:
     hostnames:
       - vlogs.aknuk.dev
     parentRefs:
-      - name: envoy-external
+      - name: envoy-internal
         namespace: network
   serviceMonitor:
     enabled: true
