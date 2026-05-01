@@ -26,6 +26,8 @@ sources:
 txtPrefix: k8s.
 txtOwnerId: default
 serviceMonitor:
-  enabled: false
+  enabled: true
+domainFilters:
+  - aknuk.dev
 podAnnotations:
   reloader.stakater.com/auto: "true"
