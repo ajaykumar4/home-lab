@@ -22,7 +22,7 @@ spec:
           - $repo/kubernetes/apps/observability/victoria-logs/app/values.yaml
     - repoURL: ghcr.io/victoriametrics/helm-charts
       chart: victoria-logs-collector
-      targetRevision: 0.3.2
+      targetRevision: 0.3.3
       helm:
         releaseName: victoria-logs-collector
         valueFiles:
