@@ -1,0 +1,10 @@
+fullnameOverride: victoria-metrics
+global:
+  image:
+    registry: quay.io
+crds:
+  plain: true
+operator:
+  enable_converter_ownership: true
+serviceMonitor:
+  enabled: true
