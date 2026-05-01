@@ -42,7 +42,7 @@ provider:
 triggerLoopOnEvent: true
 policy: sync
 sources:
-  - crd
+  - service
   - gateway-httproute
 txtPrefix: k8s.
 txtOwnerId: default
