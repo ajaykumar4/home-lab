@@ -14,19 +14,12 @@ spec:
       targetRevision: main
       ref: repo
     - repoURL: ghcr.io/victoriametrics/helm-charts
-      chart: victoria-metrics-operator
-      targetRevision: 0.62.1
-      helm:
-        releaseName: victoria-metrics
-        valueFiles:
-          - $repo/kubernetes/apps/observability/victoria-metrics/app/values.yaml
-    - repoURL: ghcr.io/victoriametrics/helm-charts
       chart: victoria-metrics-k8s-stack
       targetRevision: 0.76.0
       helm:
         releaseName: victoria-metrics-k8s-stack
         valueFiles:
-          - $repo/kubernetes/apps/observability/victoria-metrics/cluster/values.yaml
+          - $repo/kubernetes/apps/observability/victoria-metrics/values.yaml
   destination:
     name: in-cluster
     namespace: observability

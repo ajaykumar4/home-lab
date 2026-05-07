@@ -1,5 +1,8 @@
 
-fullnameOverride: victoria-metrics-cluster
+fullnameOverride: victoria-metrics
+global:
+  image:
+    registry: quay.io
 alertmanager:
   config:
     route:
@@ -94,7 +97,7 @@ alertmanager:
     storage:
       volumeClaimTemplate:
         spec:
-          storageClassName: longhorn
+          storageClassName: ceph-block
           resources:
             requests:
               storage: 1Gi
@@ -113,7 +116,7 @@ grafana:
   enabled: false
   forceDeployDatasource: true
 kube-state-metrics:
-  fullnameOverride: kube-state-metrics
+  enabled: false
 kubeControllerManager:
   vmScrape:
     spec:
@@ -143,9 +146,15 @@ kubeScheduler:
           tlsConfig:
             insecureSkipVerify: true
 prometheus-node-exporter:
-  fullnameOverride: node-exporter
-victoria-metrics-operator:
   enabled: false
+victoria-metrics-operator:
+  admissionWebhooks:
+    policy: Ignore
+  crds:
+    cleanup:
+      enabled: false
+  operator:
+    enable_converter_ownership: true
 vmagent:
   spec:
     extraArgs:
@@ -157,7 +166,7 @@ vmalert:
     extraArgs:
       external.url: https://vmalert.aknuk.dev
     datasource:
-      url: http://vmauth-victoria-metrics-cluster.observability.svc.cluster.local:8427
+      url: http://vmauth-victoria-metrics.o11y.svc.cluster.local:8427
   route:
     enabled: true
     hostnames:
@@ -175,10 +184,10 @@ vmauth:
         - src_paths:
             - /api/v1/query.*
             - /api/v1/label/.*
-          url_prefix: http://vmsingle-victoria-metrics-cluster.observability.svc.cluster.local:8428
+          url_prefix: http://vmsingle-victoria-metrics.o11y.svc.cluster.local:8428
         - src_paths:
             - /select/logsql/.*
-          url_prefix: http://victoria-logs.observability.svc.cluster.local:9428
+          url_prefix: http://victoria-logs.o11y.svc.cluster.local:9428
 vmsingle:
   route:
     enabled: true
@@ -195,7 +204,7 @@ vmsingle:
       resources:
         requests:
           storage: 50Gi
-      storageClassName: longhorn
+      storageClassName: ceph-block
 additionalVictoriaMetricsMap:
   dockerhub-rules:
     create: true
