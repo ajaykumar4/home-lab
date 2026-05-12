@@ -15,7 +15,7 @@ spec:
       ref: repo
     - repoURL: https://rocm.github.io/gpu-operator
       chart: gpu-operator-charts
-      targetRevision: 1.4.1
+      targetRevision: v1.5.0
       helm:
         releaseName: amd-gpu-device-plugin
         valueFiles:
