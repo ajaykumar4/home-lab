@@ -56,7 +56,7 @@ spec:
                   readOnly: true
           containers:
             - name: upload
-              image: rustfs/rc:v0.1.13
+              image: rustfs/rc:v0.1.15
               command:
                 - /bin/sh
                 - -c
