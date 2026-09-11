@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: velero
-          image: velero/velero:v1.18.0
+          image: velero/velero:v1.18.2
           command:
             - /bin/sh
             - -c
