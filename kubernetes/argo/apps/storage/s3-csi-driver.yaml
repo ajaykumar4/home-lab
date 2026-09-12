@@ -15,7 +15,7 @@ spec:
       ref: repo
     - repoURL: https://awslabs.github.io/mountpoint-s3-csi-driver
       chart: aws-mountpoint-s3-csi-driver
-      targetRevision: 2.5.0
+      targetRevision: 2.8.0
       helm:
         releaseName: s3-csi-driver
         valueFiles:
