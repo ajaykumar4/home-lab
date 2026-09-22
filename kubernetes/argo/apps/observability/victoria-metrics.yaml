@@ -15,7 +15,7 @@ spec:
       ref: repo
     - repoURL: ghcr.io/victoriametrics/helm-charts
       chart: victoria-metrics-operator
-      targetRevision: 0.62.1
+      targetRevision: 0.67.3
       helm:
         releaseName: victoria-metrics
         valueFiles:
