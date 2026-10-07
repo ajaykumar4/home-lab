@@ -41,15 +41,15 @@ operator:
   dashboards:
     enabled: true
   prometheus:
-    enabled: false
+    enabled: true
     serviceMonitor:
-      enabled: false
+      enabled: true
   replicas: 1
   rollOutPods: true
 prometheus:
-  enabled: false
+  enabled: true
   serviceMonitor:
-    enabled: false
+    enabled: true
     trustCRDsExist: true
 rollOutCiliumPods: true
 routingMode: native

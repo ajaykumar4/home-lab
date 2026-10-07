@@ -11,13 +11,13 @@ metadata:
 spec:
   project: kubernetes
   sources:
-    - repoURL: "https://github.com/ajaykumar4/home-lab.git"
+    - repoURL: https://github.com/ajaykumar4/home-lab.git
       path: kubernetes/apps/argo-system/argo-cd
       targetRevision: main
       ref: repo
     - repoURL: ghcr.io/argoproj/argo-helm
       chart: argo-cd
-      targetRevision: 9.5.13
+      targetRevision: 10.9.0
       helm:
         releaseName: argo-cd
         valueFiles:

@@ -5,11 +5,11 @@ metadata:
   name: cloudflare-tunnel
   namespace: argo-system
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   project: kubernetes
   sources:
-    - repoURL: "https://github.com/ajaykumar4/home-lab.git"
+    - repoURL: https://github.com/ajaykumar4/home-lab.git
       path: kubernetes/apps/network/cloudflare-tunnel
       targetRevision: main
       ref: repo
@@ -19,7 +19,7 @@ spec:
       helm:
         releaseName: cloudflare-tunnel
         valueFiles:
-          - $repo/kubernetes/apps/network/cloudflare-tunnel/values.yaml
+          - $repo/kubernetes/apps/network/cloudflare-tunnel/values.sops.yaml
   destination:
     name: in-cluster
     namespace: network
@@ -40,8 +40,3 @@ spec:
       - ServerSideApply=true
       - PruneLast=true
       - RespectIgnoreDifferences=true
-  ignoreDifferences:
-    - group: argoproj.io
-      kind: Application
-      jsonPointers:
-        - /status

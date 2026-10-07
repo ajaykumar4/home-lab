@@ -5,17 +5,17 @@ metadata:
   name: envoy-gateway
   namespace: argo-system
   annotations:
-    argocd.argoproj.io/sync-wave: '2'
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   project: kubernetes
   sources:
-    - repoURL: "https://github.com/ajaykumar4/home-lab.git"
+    - repoURL: https://github.com/ajaykumar4/home-lab.git
       path: kubernetes/apps/network/envoy-gateway
       targetRevision: main
       ref: repo
     - repoURL: mirror.gcr.io/envoyproxy
       chart: gateway-helm
-      targetRevision: v1.7.3
+      targetRevision: v1.9.1
       helm:
         releaseName: envoy-gateway
         valueFiles:

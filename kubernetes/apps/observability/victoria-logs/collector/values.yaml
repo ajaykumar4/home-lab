@@ -1,8 +1,0 @@
-fullnameOverride: victoria-logs-collector
-global:
-  image:
-    registry: quay.io
-podMonitor:
-  enabled: true
-remoteWrite:
-  - url: http://victoria-logs.observability.svc.cluster.local:9428
