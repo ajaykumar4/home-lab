@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: velero-pre-upgrade-backup
+  namespace: system-upgrade
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      containers:
+        - name: velero
+          image: velero/velero:v1.18.0
+          command:
+            - /bin/sh
+            - -c
+            - |
+              velero backup create pre-upgrade-$(date +%Y%m%d%H%M%S) --wait --ttl 720h
+      restartPolicy: Never
+      serviceAccountName: velero
