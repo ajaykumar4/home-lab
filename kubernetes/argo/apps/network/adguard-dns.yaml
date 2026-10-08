@@ -2,33 +2,41 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: renovate-operator
+  name: adguard-dns
   namespace: argo-system
   annotations:
-    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: kubernetes
   sources:
     - repoURL: "https://github.com/ajaykumar4/home-lab.git"
-      path: kubernetes/apps/renovate/renovate-operator
+      path: kubernetes/apps/network/adguard-dns
       targetRevision: main
       ref: repo
-    - repoURL: ghcr.io/mogenius/helm-charts
-      chart: renovate-operator
-      targetRevision: 4.7.1
+    - repoURL: https://kubernetes-sigs.github.io/external-dns
+      chart: external-dns
+      targetRevision: 1.21.1
       helm:
-        releaseName: renovate-operator
+        releaseName: adguard-dns
         valueFiles:
-          - $repo/kubernetes/apps/renovate/renovate-operator/values.yaml
+          - $repo/kubernetes/apps/network/adguard-dns/values.yaml
   destination:
     name: in-cluster
-    namespace: renovate
+    namespace: network
   syncPolicy:
     automated:
       allowEmpty: true
       prune: true
       selfHeal: true
+    retry:
+      limit: 1
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 3m
     syncOptions:
       - CreateNamespace=true
       - ApplyOutOfSyncOnly=true
       - ServerSideApply=true
+      - PruneLast=true
+      - RespectIgnoreDifferences=true

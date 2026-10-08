@@ -9,9 +9,10 @@ metadata:
 spec:
   project: kubernetes
   sources:
-    - repoURL: https://github.com/ajaykumar4/home-lab.git
+    - repoURL: "https://github.com/ajaykumar4/home-lab.git"
       path: kubernetes/apps/renovate/renovate-jobs
       targetRevision: main
+      ref: repo
   destination:
     name: in-cluster
     namespace: renovate
