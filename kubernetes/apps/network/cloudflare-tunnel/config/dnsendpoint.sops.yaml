@@ -7,51 +7,51 @@ spec:
     - dnsName: external.${SECRET_DOMAIN}
       recordType: CNAME
       targets:
-        - 82a675b2-425d-4816-965e-b81fa9053660.cfargotunnel.com
+        - 31b8ad46-ea32-43a3-abe9-d48783f5d628.cfargotunnel.com
 sops:
   age:
     - enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IG1sa2VtNzY4eDI1NTE5IEdwcTJmUE1D
-        bjdyNUJUNUNEaGo4ajdETWdFeXQ0Ym5RTllkeVFVSlBxMVpIZ09xbHMyRTQ1K0w4
-        WENiWjdja1pQWkxNOVhkT0U4VEpXeDUyVDc4TlNCTXlqVHNOdEsvaVNHNlZsbXZn
-        ZVQxaklMc015ejh2YjhlWWZtSXVTck1DNFZlQk5wTTVZMVVrVjE0cEQ5Q3kzdFZv
-        TXg1cTAvbHNEM0h1ZXh5WTRmY3NxNndUcFlQN3NodVdWSmJudlYxT1FFMTBHNGdq
-        Q3lNOU1OcHVXcDhCMktRNFkzMVNIUDF2dHl0YlRiZnlqVmIybjJvcDd0VTJRQjcv
-        d1VnazE2aHN3MXh0UE5vRi84Y3pBcGhoci9UOUt3UEpQRmFyZ21YQ1JaYThJTGNa
-        cXk4UGgwYW9obHRRWFBJU3VtVStWUHpNM3BJRFQxbHlIMDJneHc5TEFUb3BTdFkv
-        WENjMjFuOUZQbW5nL3k3MmJ1WHMxTjlKWVpLcXV0OTJ2MVJJWFVUcUphZUJ5UlNG
-        N3dwSS9VSS9QditkSEdTWVBWcFhKUWh1bTdrR3h0NEM5czBPaTg5VjZ5bzAvMmt2
-        UVdORWRCUE1kRi9SZGZXUVFGVW1ST1dLaTc1anA0SlhlenovWWVHbTR6bHJWN0pH
-        emgyK0NBaHZkVFlJeWx3MzluQmljanRwU1JXTUhGTW9BU2dlWTFyRXZqSzBWc2hu
-        ZEJDNkE1bTN0MXRLVXNCSTZ0ZlJzR2t2SWt4TGhISGVRc0c3RE5kb1lVOWJyS1JV
-        YjI2RlA3NjZvVHlXTmJUTUs2Z0hCMEVNeHdHT3d1Y21WcEwySHpqcVFqYm5KRGJE
-        d1JDS2J1RllzVWJ4TE02MnBsL3RZVitNWkM4RnpjNGN1QWlGczNXOHU0N1h2b3dD
-        dC9ONmJTNHdPMk1vcUpPZE1hc09sV3NIWDVuZlplVHp2eEFrVmFsWEFBdFJuZkJt
-        TGtPT3BSWThIL1E2WkpHSmt2aC92aktoU0ovLzJmQXpPRUtmeWQwUkU0Z0RGc1RC
-        Qjh1eXlGbjh6Mkw4SFIzUXlVblU0dmRaVjJXbWNyeGFDbUc4Y0d0WlZMVm9FMVJ3
-        ODdEekpGS1ZUczhHd3Qzd3dmdGNDQ3lkY25TM3pPbjI1dnptcnI4RmdzYmdJK3Ey
-        TkZvNDFLYUhMUVJPbi9tRE9sNEpacWswMlF4WjAwMTVZZE5PNXlLTVFCR3hMZE9W
-        cWU3djRYQVg0VldLR1orSjBMaDl5YlRFMGh2TWJVZk9ERDFOYm5jMjA1bTZzNEFr
-        UW0xOVBudXcyZU1pdU1wQ2JXUjRMRWxFV0toZGNRUjBWNmpZMkJRTm9MOExCVFBP
-        RVR2V1NLNk9TckY5U0lNOVliWHl5TmUydytHbVIrNjRkai9TT0xNOWhuK0pVSWVu
-        cHZxcHdNZ0lsV1c1cTJYSk9vaWx1M3lGK3NoUFo4YmE0c09TL3NBbHFXN2dvSjFW
-        aHhQVWlRcGJTbGp0KzRBaTdodlo3R0h3YUtOMFFZcC9pV1VVUFlUZUI2NWFYMElF
-        REcwRnJGb3BEOXluN2R6Y2VWNm1naGk4a2ZHVHVuTXM3cjF2dHhNNnZHRG1heVVj
-        MjQvelloQ2EvNytOSU1LU1N2WHlRQkFxc3hBZTZydkdsNTNERlRHOWNkbi9zQ0lj
-        b241MVlHS3ppNDdQL3l1SkJsZXRZZmJnUndDZ3kxS2xhSktqMjZmbCtDZ2xIdG5U
-        ZkRZb3AxeFVsY1ZqdVFnalliUkJoUWFDcU50cm5PSjZ5SDhOdEZyVE8rM0tNZUh5
-        QmVFMU1VSGFscjVUNjQ3dE5DOXVVSkxJMDZ4Y1h1LzRKNVBGQXBZVWZJUkEvbXB2
-        NVI0M1k4NlpEUk8raDF4eVpzSnZPQVh6b0Z3eEd3UGJ0UWFaZnhWbXZqZGxxMGwz
-        dUFubXZHcUJyR3NqZmdpV1FEdldyYkc3ZjNNSVdNRTFtN3ZEbDUyOGcrOEROdwpq
-        MElnc2pZdnd2R0Y2VkhLNk51MHBJekNJWElWVkU0UzdXbWlQc3RJTy9VCi0tLSB2
-        S2hlU09kbU1lOFJvOXNIYTA5ZnlGazUvd29acmV2T2tleW1SSTgvVStJChyNh1Wm
-        rrljLezqNxGNhQhlZOG2ow4L076YKEESjosrAHVm2fbubwk2XVruxE7GJhYFnLF/
-        5bE48AA7z7k6ufk=
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IG1sa2VtNzY4eDI1NTE5IE05Z3RHcWpW
+        cnRQUmp5ckovSkdpS0VQNjBIOTAyNTMvTWc2dmpneHZNSmFNcXp0eDYvVSt6S3Nv
+        RzA4b0lUQkVERUw3Nk5wS2trbS85TzEyajJxRGQ0K1U5bS9pVFgxT0Q2aEg1ZTRt
+        K0dKTTF3ODlWMTZEeGVwTm5kbVRYY0VINjllS3RTOGFiVVowSlQyTEE1Uy9KQUtD
+        UGIwLzlDc09mOUlFMTBHUjdKQkpFUzE4U0RnMitsV001NWFMNlRlSDFUdEgvcWEz
+        Q0c2aWh0alF6UUl1R2llUk90dTZtdzg1Qm42MXhKSnNOVVo2Q2swVTNOamhtazVS
+        Y0dmNXpMTGJ4QktzeFFWRnZ6VmZzMVczMnR0ajBOdlRURld6VVd5UVFuSStpUGxS
+        azFyUnZoVTJZbEdXN1BzWWkzRC9MUlZjRzZ4TFNmQWlpcmQ1UW8vL00rd1ZSZkxa
+        QUVxbEdLMnhuMU5KVFZ2OUZHcFVlRC9kclJJVmFnUTFGNGl4SHlaOHloRjl3RUdX
+        UERySFJTdVZVUUJKNXdGVEU4U002TFM1Z09YNTZadFBtVlZGR3N6M01DQkZ5aG5C
+        NlRLZm5kMTY4V3Y1eHE5RFdxSFBuOFJzeVRpRjYrYmRwbWlZRVUyaVBvZXIxNkNU
+        dFRUazliOGNTRUx3dmtzZDFtVE9YZG5RT21TcUxZUDk3V2hISEY2N0Rzb1dEQURk
+        cFpCbGpoS0J2U1RtY2FiTVFPUG1nVTNiRSs2bVNrTVVsejNPRVhNVTVrc0FpZ3pH
+        VUJZY051KzZUaCs5ZVhNQTJBVzBjb0RQaHdkOTZDZHZnS1BHSzVkcVlNc0VwMWF0
+        VHBWNXY1TDY2TGlLZEg3OU84WmwvZFY1NDcrNGZIU0M2VHp3SDR6UVc0VmFVczhU
+        WW1RbWVQUWVPUXg4UGxaa1pjTUs5YVkrZ1JwajR3RUZmbE5QdVVUQkwvSVVZVmxv
+        R3ZFcDNjaDFDc0N5TllHdmxZYXJBM0FjRk9uYi9zNDRNdytHaXpGVVNFT3lqV2Fs
+        UVpKd1hBRi9PZk5sQ3FpK1pQNmo3Z3pCbWVDdzlOQXFtRVJkNGhaeHZ0bDRCNmQx
+        OVIya3Uvc0xrWURTUHN5NWpSQk5aR3dXSmlpL0QzVDRwa1Jla2dxSEk1OVM5alN1
+        VExlQlZBNTlYc0VSNlBPdlk5dTZqcjdaMUwrVkdHTW5OZFY5Mm00eFhKMnNhRGxu
+        d2ZvWFVpK3BGQm1GQ0Z3bFFLcVlTUXlUVVVPc1crTVI5MWJjbjhkcTZTeit1NmRU
+        cENDbWc4SE9QRWp2TmUwS0hCNmkyeUNEVUpOVUlFV2VYbEFpOVlyb1BiWHdQeWhS
+        WGYzMk8zTS9xZGdZV1NRamp3WElreXhVMmR3emtXT3hQdUhvVEgxZnlzNnZmVHpi
+        V013dTVOVVdaaHJVQ3d2Vmg4VVlVT3lRalBKSVZVcWV0VCtYdXRnNkJKdExiL3dq
+        Nmk3a2VzVGVNZ2tIY3BsTUZPUWRPZFhhODdsR2hQcEJQSHhJa0pYdXJaSzlRaElV
+        bU9qcnE4VTJZV1VzcDFYMlB5QnlGSTMrby9BZDdKdmxCcG9yRkFvUDg2YjBjbUtt
+        QlFiVTVSelZRcW5qNUJYejNRV2VKd3VRWGFZL044ak8zTnRhbHd3eE01aTZNQ1Bq
+        YSszMWh0UDRMZldCNHdpb2VlWVlZWk83blF1ZEpGdVpvV3Jpb2t4eHREU2tnVG5J
+        SUl1TmVPejNUYWFNNDhIVnFGbS9DbThiOU5XT2xPVnZCdUtGWmdCQklhTHRjek5k
+        bzAra2Z1bVZpUmdnOFRuSE94bytyaEs4Y3Q1NzA4c21TV0tDVjM0aVhnZzlZK0pq
+        eU8xMVo1cS83dTU1UjhlWGhmR2RMdS9kcGNTaVNiZTVKZ2VHN2ZCdWl6RFIvd2FR
+        U09pK0p5UjFmby9RN1pzR2hlM3Z6MkZlbG9XUzB3cVVXVytxTTM1UFNTTnNQUQo3
+        d2FraW5pVHVFU05YMTZXbS9LTklmZGV6a1U1L0E4SXFzQlhKSkFQRjlBCi0tLSBT
+        OU95NERTUW0yOXhSUzRlVHU5enlmaXhWcFErMTJTVlQ3d0hFdjg4ZkE4CkYWUN1z
+        kkWp8ruhqUGprX2swQEoIJ6OmjmofPTaC6dsq+kj4HTzei99vmng5wXekM8f1UIB
+        hPvCYexj5At3bEQ=
         -----END AGE ENCRYPTED FILE-----
       recipient: age1pq1gt53jawqp8al0dmpzf39qxpmhux2g9sqdylryy0h2wqga3e0y4c4vd8f552gsnm6vpzskcpn37j4ma9vrpz2h3z926kxzynkxrysdgug5ykvx4pxvuvwm7zcgk43r3dtwnsj8demqf663j48tdx9qfa8vzd99nzcu2y8u7ej4amrw64qetj4hp776txdya5xgrfyywvp9dtun8rk3jn4y0zk5un4zjeewxegfd9vevx5cqxryxvm8dtg3ppdxgv5vfa0jwvk8l6z3h46f3w9z628sa739ddsuumkdwjg8s3c09wnl293hxz0dca9ttwztgtqhpjnj50sxu2sfxdcc3l6c7e5rw2uqjsq2dmgnmxf3v9y27edvafmgssckv6my0z9hkvzdcdafxv7pynel0xyjfan4ennwgd7j9yvg7x8ueahgjq5rh4eq5u4whzwknz0wgz4ccye2kstjazhttmqmnyezkr9t0mjlgskezy9836vrnxd8f47d228zvrqjf5swpxz7zc6dnp4zumn53w655gdyyg3u0pvtj4a4akvlkgey4x7wczjjhyuka5m7zy99w5r8vcknw5zswutypy35dnc4qz8y97dyqu4nw307xfv5hjpuyjc5wkfrtdy7ae7ws5awhwxyk4625594g8ak3eqztqcc0yyftdeq97ywq7va2zkx72733jvjvd84nmz2raxe389gx35autg0ucqnqjtjz6wmwaz6syf23gna8mtk7pptpc20pp3vef35qvrldhgzumccrs4a2vfaxawddtm6rdytgaxenzztdhr8jmufcduqk44ge9xslnqdpagh7477fv60p5hy5ayg4zum38qf8xz6ddmer7qrt42jwatzwqap6ndzhn5fxs2d4nttr5q57gy7dedlra55znsg9cez4zyy2vctda78n53dplp845re35kr305ua9dy2mngxzmhldz3nqg4jnslfnykd9ftc2pv77t9pm57y5cujdkfdc28dreg3pyyz4vpsp7au4q87efpuv25vkfxsrt57rq04su6smjpuvmypnqdrje6duzxkf0dvmgf45kfpsxqyvsvefd4ayydgxp6hn4huqa4rdmaqxw0a4n8ysp7uqp0e7m26v5ksxxjwantkm3krw4jh02j97yp3j0dv2y5qcgh4xpq7djs5ysgs5c25q56t2r6m2trxfuqmgdfz4jy8ydmpx8fmdpk6ynf97pswsdq6tzm8drjvlv308c30ej2wmk0pf92mf5qfqk348hg00wnx5grqygxjpzqe8j2ejvwvvdufhjqs2fyp4r8x0fqep0g6r7cfn0kpn8e9qyskjqdlhu2ugek0qd3d5vnwt94lv600jy4qhuz587pc4vzquqe66sy7ftwfzz6jnzpc267s6t8naz9cga8psee2gzc2zywjnm5rl489cfns9c59a29qzlkns8wujmg3zvdvkn5xfdlqaqe8qn28sf2x9d8t4xzsdzqk667qq4srf4kcattw5ddgl9n94rrk454y3efwzhsa5dyxsska9qpamj93z6rp7jfw8cgjgzws6a4jnyk8xp5t8ugjsxxquxxcz7pzyjx2u38dcjggqzqczuxrpfmju9ek0243pat2pquj0hmvv2smjgfkvr5mdzn2zvse5hrg3t8v992au2n8gypzdqa2s3p26kjkqjt23g4g525mttu7rgvuavd94rd8l4gu46egp0l3k5rgs467a3tl83gzf3pzn6ynru2jtjsvkt4ag3qqejqd7mfvpv3668w5rrnk5re8lqpd33fyg9ee4np93eql4thvx0kggyyfmvqy9fuckqj9lzgfdyzrgkmq6hvhj277j2qyqh7lrn8ya7v9stp8q65ujuffstktg3xnhah3g0fnqul8k5y9eckc540jc5fyr8k4r80vasq0x0
   encrypted_regex: ^(data|stringData)$
-  lastmodified: "2026-10-08T20:18:57Z"
-  mac: ENC[AES256_GCM,data:CeEUoQbtNuub3Bklni01lJWbKq4u6ylrtcTZSNA3N4k7fd3QtOYg+EzGk7tucnvOwh/y7MiZXsKw+NXyOxdxNiOofvEdvTzmPepUF6Q5jhRYJEMfeuu4F9Bx7tLAfGtpilcWn22eO2ISzobEAA979fnf05BwZ467j/trPy5VeIY=,iv:zbVzrynt/Qs6520d3izowz48SwaXAbIHtHQZ/p6EFt8=,tag:LXK9GnpViCtXwJ9No5F0iA==,type:str]
+  lastmodified: "2026-10-09T21:06:19Z"
+  mac: ENC[AES256_GCM,data:4pDsgk1Qkm7y8inNUlukLYoafqt9PEJxy9JELxY9Xxr6xEy/OFc1QP889j0Ld73XItrfHnIZ6YR90hFmq4mlI8ZT+Q78NhZXvxUAKDbseMzlQvs2sEpgQeDXVgMg1h0O6iAxqqTgx3LgD90mp25x5pRxcuhlKzM4KF3ZnYeAVE0=,iv:z06sO7nwSW2xAKlVOD6XnTBfNai0pm23aGTEEvVuRRQ=,tag:Xegn3fJSdqy36AimtoIpdA==,type:str]
   mac_only_encrypted: true
   version: 3.13.3
