@@ -13,7 +13,7 @@ nodes:
   - host: "home-lab"
     ip: "192.168.8.2"
     role: control-plane
-    schematicId: "1e17720baa2217bdf64a7caa256011144fce07af5dd12ce18baed735789e7c81"
+    schematicId: "f1dfec3707317eb401a187b3a0aa4edae6a08d6be9e501bd10afe7990f589f75"
     data:
       installDisk: "/dev/sda"
       installDiskSerial: ""
